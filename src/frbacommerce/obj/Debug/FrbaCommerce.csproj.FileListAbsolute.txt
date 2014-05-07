@@ -1,0 +1,64 @@
+D:\UTN\Facultad\gestion de datos\aplicacion desktop\frbacommerce\FrbaCommerce\bin\Debug\FrbaCommerce.exe
+D:\UTN\Facultad\gestion de datos\aplicacion desktop\frbacommerce\FrbaCommerce\bin\Debug\FrbaCommerce.pdb
+D:\UTN\Facultad\gestion de datos\aplicacion desktop\frbacommerce\FrbaCommerce\obj\Debug\ResolveAssemblyReference.cache
+D:\UTN\Facultad\gestion de datos\aplicacion desktop\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Properties.Resources.resources
+D:\UTN\Facultad\gestion de datos\aplicacion desktop\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.csproj.GenerateResource.Cache
+D:\UTN\Facultad\gestion de datos\aplicacion desktop\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.exe
+D:\UTN\Facultad\gestion de datos\aplicacion desktop\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.pdb
+D:\UTN\Facultad\gestion de datos\aplicacion desktop\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Login.Form1.resources
+D:\UTN\Facultad\gestion de datos\aplicacion desktop\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Login.UserControl1.resources
+D:\UTN\Facultad\gestion de datos\aplicacion desktop\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Login.UserControl2.resources
+D:\UTN\Facultad\gestion de datos\aplicacion desktop\frbacommerce\FrbaCommerce\bin\Debug\FrbaCommerce.exe.config
+D:\UTN\Facultad\gestion de datos\aplicacion desktop\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.ctrlABM.resources
+D:\UTN\Facultad\gestion de datos\aplicacion desktop\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.ABM_Rol.ABM_Rol.resources
+D:\UTN\Facultad\gestion de datos\aplicacion desktop\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Abm_Rubro.Abm_Rubro.resources
+D:\UTN\Facultad\gestion de datos\aplicacion desktop\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Menu.resources
+D:\UTN\Facultad\gestion de datos\aplicacion desktop\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.FiltroTextBox.resources
+D:\UTN\Facultad\gestion de datos\aplicacion desktop\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.Filtro.resources
+D:\UTN\Facultad\gestion de datos\aplicacion desktop\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.FiltroComboBox.resources
+D:\UTN\Facultad\gestion de datos\aplicacion desktop\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Form1.resources
+D:\UTN\Facultad\gestion de datos\aplicacion desktop\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.ABM_Cliente.ABM_Cliente.resources
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce_20140425\FrbaCommerce\bin\Debug\FrbaCommerce.exe.config
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce_20140425\FrbaCommerce\obj\Debug\FrbaCommerce.exe
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce_20140425\FrbaCommerce\obj\Debug\FrbaCommerce.pdb
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce_20140425\FrbaCommerce\bin\Debug\FrbaCommerce.exe
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce_20140425\FrbaCommerce\bin\Debug\FrbaCommerce.pdb
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce_20140425\FrbaCommerce\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce_20140425\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.ctrlABM.resources
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce_20140425\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.Filtro.resources
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce_20140425\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.FiltroComboBox.resources
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce_20140425\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.FiltroTextBox.resources
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce_20140425\FrbaCommerce\obj\Debug\FrbaCommerce.Form1.resources
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce_20140425\FrbaCommerce\obj\Debug\FrbaCommerce.Abm_Cliente.ABM_Cliente.resources
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce_20140425\FrbaCommerce\obj\Debug\FrbaCommerce.Menu.resources
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce_20140425\FrbaCommerce\obj\Debug\FrbaCommerce.ABM_Rol.ABM_Rol.resources
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce_20140425\FrbaCommerce\obj\Debug\FrbaCommerce.Abm_Rubro.Abm_Rubro.resources
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce_20140425\FrbaCommerce\obj\Debug\FrbaCommerce.Login.Form1.resources
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce_20140425\FrbaCommerce\obj\Debug\FrbaCommerce.Login.UserControl1.resources
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce_20140425\FrbaCommerce\obj\Debug\FrbaCommerce.Login.UserControl2.resources
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce_20140425\FrbaCommerce\obj\Debug\FrbaCommerce.Properties.Resources.resources
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce_20140425\FrbaCommerce\obj\Debug\FrbaCommerce.csproj.GenerateResource.Cache
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce_20140428\FrbaCommerce\bin\Debug\FrbaCommerce.exe.config
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce_20140428\FrbaCommerce\obj\Debug\FrbaCommerce.exe
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce_20140428\FrbaCommerce\obj\Debug\FrbaCommerce.pdb
+C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\bin\Debug\FrbaCommerce.exe.config
+C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.exe
+C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.pdb
+C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\bin\Debug\FrbaCommerce.exe
+C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\bin\Debug\FrbaCommerce.pdb
+C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.ctrlABM.resources
+C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.Filtro.resources
+C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.FiltroComboBox.resources
+C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.FiltroTextBox.resources
+C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Form1.resources
+C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Abm_Cliente.ABM_Cliente.resources
+C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Menu.resources
+C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.ABM_Rol.ABM_Rol.resources
+C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Abm_Rubro.Abm_Rubro.resources
+C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Login.Form1.resources
+C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Login.UserControl1.resources
+C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Login.UserControl2.resources
+C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Properties.Resources.resources
+C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.csproj.GenerateResource.Cache
+C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Generar_Publicacion.Listado.resources
