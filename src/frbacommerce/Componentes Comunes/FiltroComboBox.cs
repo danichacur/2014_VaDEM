@@ -40,5 +40,10 @@ namespace FrbaCommerce.Componentes_Comunes
             cboFiltro.DisplayMember = display;
             cboFiltro.ValueMember = value;
         }
+
+        public override void colocarValor(Object texto)
+        {
+            cboFiltro.SelectedValue = texto;
+        }
     }
 }

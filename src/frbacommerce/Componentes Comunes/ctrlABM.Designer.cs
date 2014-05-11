@@ -31,6 +31,9 @@
             this.dgvDatos = new System.Windows.Forms.DataGridView();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
+            this.btnAlta = new System.Windows.Forms.Button();
+            this.btnModificacion = new System.Windows.Forms.Button();
+            this.btnBaja = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,10 +71,43 @@
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
+            // btnAlta
+            // 
+            this.btnAlta.Location = new System.Drawing.Point(49, 335);
+            this.btnAlta.Name = "btnAlta";
+            this.btnAlta.Size = new System.Drawing.Size(75, 23);
+            this.btnAlta.TabIndex = 9;
+            this.btnAlta.Text = "Alta";
+            this.btnAlta.UseVisualStyleBackColor = true;
+            this.btnAlta.Click += new System.EventHandler(this.btnAlta_Click);
+            // 
+            // btnModificacion
+            // 
+            this.btnModificacion.Location = new System.Drawing.Point(283, 335);
+            this.btnModificacion.Name = "btnModificacion";
+            this.btnModificacion.Size = new System.Drawing.Size(75, 23);
+            this.btnModificacion.TabIndex = 10;
+            this.btnModificacion.Text = "Modificar";
+            this.btnModificacion.UseVisualStyleBackColor = true;
+            this.btnModificacion.Click += new System.EventHandler(this.btnModificacion_Click);
+            // 
+            // btnBaja
+            // 
+            this.btnBaja.Location = new System.Drawing.Point(167, 335);
+            this.btnBaja.Name = "btnBaja";
+            this.btnBaja.Size = new System.Drawing.Size(75, 23);
+            this.btnBaja.TabIndex = 11;
+            this.btnBaja.Text = "Baja";
+            this.btnBaja.UseVisualStyleBackColor = true;
+            this.btnBaja.Click += new System.EventHandler(this.btnBaja_Click);
+            // 
             // ctrlABM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnBaja);
+            this.Controls.Add(this.btnModificacion);
+            this.Controls.Add(this.btnAlta);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.dgvDatos);
             this.Controls.Add(this.btnBuscar);
@@ -87,5 +123,8 @@
         private System.Windows.Forms.DataGridView dgvDatos;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Button btnAlta;
+        private System.Windows.Forms.Button btnModificacion;
+        private System.Windows.Forms.Button btnBaja;
     }
 }

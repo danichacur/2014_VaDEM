@@ -28,7 +28,8 @@ namespace FrbaCommerce.Componentes_Comunes
         /// <param name="filtrosDerecha"></param>
         public void cargarFiltros(List<Filtro> filtrosIzquierda, List<Filtro> filtrosDerecha)
         {
-            try {
+            try
+            {
                 int contador;
 
                 filtrosEnPantalla = new List<Filtro>();
@@ -65,27 +66,35 @@ namespace FrbaCommerce.Componentes_Comunes
             {
                 throw new Exception("Error " + ex.Message);
             }
-            
+
         }
 
         /// <summary>
         /// Carga la grilla con la tabla que recibe como parámetro
         /// </summary>
         /// <param name="tbl"></param>
-        public void cargarGrilla(Object lista, DataGridViewTextBoxColumn[] columnas)
+        public DataGridView cargarGrilla(Object lista, DataGridViewColumn[] columnas)
         {
-            dgvDatos.Columns.AddRange(columnas);
-            dgvDatos.AutoGenerateColumns = false;
+            dgvDatos.Columns.Clear();
+            if (dgvDatos.Columns.Count == 0)
+            {
+                dgvDatos.Columns.AddRange(columnas);
+                dgvDatos.AutoGenerateColumns = false;
+            }
             cargarGrilla(lista);
+
+            return dgvDatos;
         }
 
         public void cargarGrilla(Object lista)
         {
             Object listDatos = lista;
+            dgvDatos.DataSource = null;
             dgvDatos.DataSource = listDatos;
         }
-        
-        private String armarClausuraWhere() {
+
+        private String armarClausuraWhere()
+        {
 
             String clausulaWhere = "WHERE ";
             bool aplicaWhere = false;
@@ -118,8 +127,20 @@ namespace FrbaCommerce.Componentes_Comunes
         /// <param name="e"></param>
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            String clausulaWhere = armarClausuraWhere();
-            ((ABM)this.ParentForm).aplicarFiltro(clausulaWhere);
+            buscar();
+        }
+
+        public void buscar()
+        {
+            try
+            {
+                String clausulaWhere = armarClausuraWhere();
+                ((ABM)this.ParentForm).aplicarFiltro(clausulaWhere);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
@@ -132,7 +153,7 @@ namespace FrbaCommerce.Componentes_Comunes
 
         private void btnAlta_Click(object sender, EventArgs e)
         {
-            
+            ((ABM)this.ParentForm).btnAlta_Click();
         }
 
         private void btnBaja_Click(object sender, EventArgs e)
@@ -154,14 +175,12 @@ namespace FrbaCommerce.Componentes_Comunes
         {
             if (dgvDatos.SelectedCells.Count > 0)
             {
-                    MessageBox.Show("Se abre ventana para modificar //IMPLEMENTAR CODIGO");
+                MessageBox.Show("Se abre ventana para modificar //IMPLEMENTAR CODIGO");
             }
             else
             {
                 MessageBox.Show("Debe seleccionar una fila para modificar");
             }
         }
-
-        
     }
 }

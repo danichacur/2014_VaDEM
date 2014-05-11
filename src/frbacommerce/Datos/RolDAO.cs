@@ -38,6 +38,18 @@ namespace FrbaCommerce.Datos
                 throw new Exception("Error " + ex.Message);
             }
         }
+
+        public static void ejecutar(String script)
+        {
+            try
+            {
+                AccesoDatos.Instance.EjecutarScript(script);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error " + ex.Message);
+            }
+        }
     }
 }
         /*

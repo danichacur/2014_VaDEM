@@ -9,6 +9,8 @@ namespace FrbaCommerce.Componentes_Comunes
     public class ABM : Form
     {
         public virtual void aplicarFiltro(String clausulaWhere) { }
+
+        public virtual void btnAlta_Click() { }
         
     }
 }

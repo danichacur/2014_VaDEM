@@ -52,11 +52,29 @@
     <Compile Include="Componentes Comunes\ABM.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Componentes Comunes\CampoTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Componentes Comunes\CampoTextBox.Designer.cs">
+      <DependentUpon>CampoTextBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Componentes Comunes\ctrlABM.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Componentes Comunes\ctrlABM.Designer.cs">
       <DependentUpon>ctrlABM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Componentes Comunes\ctrlAltaModificacion.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Componentes Comunes\ctrlAltaModificacion.Designer.cs">
+      <DependentUpon>ctrlAltaModificacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Componentes Comunes\FiltroDgvCheck.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Componentes Comunes\FiltroDgvCheck.Designer.cs">
+      <DependentUpon>FiltroDgvCheck.cs</DependentUpon>
     </Compile>
     <Compile Include="Componentes Comunes\Filtro.cs">
       <SubType>UserControl</SubType>
@@ -75,12 +93,12 @@
     </Compile>
     <Compile Include="Datos\ClienteDAO.cs" />
     <Compile Include="Datos\Datos.cs" />
-    <Compile Include="Datos\EstadoPublicacionDAO.cs" />
+    <Compile Include="Datos\FuncionalidadDAO.cs" />
     <Compile Include="Datos\RolDAO.cs" />
     <Compile Include="Datos\RubroDAO.cs" />
     <Compile Include="Entidades\Cliente.cs" />
     <Compile Include="Entidades\Empresa.cs" />
-    <Compile Include="Entidades\EstadoPublicacion.cs" />
+    <Compile Include="Entidades\Funcionalidad.cs" />
     <Compile Include="Entidades\Rubro.cs" />
     <Compile Include="Entidades\Rol.cs" />
     <Compile Include="Entidades\Usuario.cs" />
@@ -102,17 +120,29 @@
     <Compile Include="Formularios\Abm Empresa\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\ABM Rol\ABMRoles.cs">
+    <Compile Include="Formularios\ABM Rol\Rol_Listar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formularios\ABM Rol\ABMRoles.Designer.cs">
-      <DependentUpon>ABMRoles.cs</DependentUpon>
+    <Compile Include="Formularios\ABM Rol\Rol_Listar.Designer.cs">
+      <DependentUpon>Rol_Listar.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Abm Cliente\ABMClientes.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Formularios\Abm Cliente\ABMClientes.Designer.cs">
       <DependentUpon>ABMClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\ABM Rol\Rol_Agregar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\ABM Rol\Rol_Agregar.Designer.cs">
+      <DependentUpon>Rol_Agregar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\ABM Rol\Rol_Modificar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\ABM Rol\Rol_Modificar.Designer.cs">
+      <DependentUpon>Rol_Modificar.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Abm Rubro\AMBRubros.cs">
       <SubType>Form</SubType>
@@ -162,11 +192,11 @@
     <Compile Include="Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\Generar Publicacion\Listado.cs">
+    <Compile Include="Formularios\Generar Publicacion\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formularios\Generar Publicacion\Listado.Designer.cs">
-      <DependentUpon>Listado.cs</DependentUpon>
+    <Compile Include="Formularios\Generar Publicacion\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Gestion de Preguntas\Form1.cs">
       <SubType>Form</SubType>
@@ -209,6 +239,12 @@
     <EmbeddedResource Include="Componentes Comunes\ctrlABM.resx">
       <DependentUpon>ctrlABM.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Componentes Comunes\ctrlAltaModificacion.resx">
+      <DependentUpon>ctrlAltaModificacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Componentes Comunes\FiltroDgvCheck.resx">
+      <DependentUpon>FiltroDgvCheck.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Componentes Comunes\Filtro.resx">
       <DependentUpon>Filtro.cs</DependentUpon>
     </EmbeddedResource>
@@ -224,14 +260,17 @@
     <EmbeddedResource Include="Formularios\Abm Cliente\ABMClientes.resx">
       <DependentUpon>ABMClientes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\Generar Publicacion\Listado.resx">
-      <DependentUpon>Listado.cs</DependentUpon>
+    <EmbeddedResource Include="Formularios\ABM Rol\Rol_Agregar.resx">
+      <DependentUpon>Rol_Agregar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\ABM Rol\Rol_Modificar.resx">
+      <DependentUpon>Rol_Modificar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\ABM Rol\ABMRoles.resx">
-      <DependentUpon>ABMRoles.cs</DependentUpon>
+    <EmbeddedResource Include="Formularios\ABM Rol\Rol_Listar.resx">
+      <DependentUpon>Rol_Listar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Abm Rubro\AMBRubros.resx">
       <DependentUpon>AMBRubros.cs</DependentUpon>

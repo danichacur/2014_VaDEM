@@ -41,24 +41,74 @@ C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerc
 C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce_20140428\FrbaCommerce\bin\Debug\FrbaCommerce.exe.config
 C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce_20140428\FrbaCommerce\obj\Debug\FrbaCommerce.exe
 C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce_20140428\FrbaCommerce\obj\Debug\FrbaCommerce.pdb
-C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\bin\Debug\FrbaCommerce.exe.config
-C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.exe
-C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.pdb
-C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\bin\Debug\FrbaCommerce.exe
-C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\bin\Debug\FrbaCommerce.pdb
-C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.ctrlABM.resources
-C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.Filtro.resources
-C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.FiltroComboBox.resources
-C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.FiltroTextBox.resources
-C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Form1.resources
-C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Abm_Cliente.ABM_Cliente.resources
-C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Menu.resources
-C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.ABM_Rol.ABM_Rol.resources
-C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Abm_Rubro.Abm_Rubro.resources
-C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Login.Form1.resources
-C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Login.UserControl1.resources
-C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Login.UserControl2.resources
-C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Properties.Resources.resources
-C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.csproj.GenerateResource.Cache
-C:\Users\danytin\Documents\UTN\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Generar_Publicacion.Listado.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce_20140502\frbacommerce\FrbaCommerce\bin\Debug\FrbaCommerce.exe.config
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.exe
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.pdb
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce_20140502\frbacommerce\FrbaCommerce\bin\Debug\FrbaCommerce.exe
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce_20140502\frbacommerce\FrbaCommerce\bin\Debug\FrbaCommerce.pdb
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\ResolveAssemblyReference.cache
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.ctrlABM.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.Filtro.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.FiltroComboBox.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.FiltroTextBox.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Form1.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Abm_Cliente.ABM_Cliente.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Menu.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Abm_Rubro.Abm_Rubro.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Login.Form1.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Login.UserControl1.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Login.UserControl2.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Properties.Resources.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.csproj.GenerateResource.Cache
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.ctrlAltaModificacion.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.ABM_Rol.Rol_Modificar.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.ABM_Rol.Rol_Agregar.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce_20140502\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.ABM_Rol.Rol_Listar.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\bin\Debug\FrbaCommerce.exe.config
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.exe
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.pdb
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\bin\Debug\FrbaCommerce.exe
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\bin\Debug\FrbaCommerce.pdb
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\obj\Debug\ResolveAssemblyReference.cache
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.ctrlABM.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.ctrlAltaModificacion.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.FiltroDgvCheck.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.Filtro.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.FiltroComboBox.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.FiltroTextBox.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Form1.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Abm_Cliente.ABM_Cliente.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.ABM_Rol.Rol_Agregar.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.ABM_Rol.Rol_Modificar.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Menu.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.ABM_Rol.Rol_Listar.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Abm_Rubro.Abm_Rubro.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Login.Form1.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Login.UserControl1.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Login.UserControl2.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Properties.Resources.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.csproj.GenerateResource.Cache
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce\FrbaCommerce\bin\Debug\FrbaCommerce.exe.config
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.exe
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.pdb
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce\FrbaCommerce\bin\Debug\FrbaCommerce.exe
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce\FrbaCommerce\bin\Debug\FrbaCommerce.pdb
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce\FrbaCommerce\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.ctrlABM.resources
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.ctrlAltaModificacion.resources
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.FiltroDgvCheck.resources
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.Filtro.resources
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.FiltroComboBox.resources
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.FiltroTextBox.resources
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Form1.resources
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Abm_Cliente.ABM_Cliente.resources
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.ABM_Rol.Rol_Agregar.resources
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.ABM_Rol.Rol_Modificar.resources
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Menu.resources
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.ABM_Rol.Rol_Listar.resources
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Abm_Rubro.Abm_Rubro.resources
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Login.Form1.resources
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Login.UserControl1.resources
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Login.UserControl2.resources
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Properties.Resources.resources
+C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.csproj.GenerateResource.Cache

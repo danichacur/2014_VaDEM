@@ -31,7 +31,10 @@ namespace FrbaCommerce.Datos
         }
         AccesoDatos()
         {
-            String cstr = ConfigurationManager.ConnectionStrings["FrbaCommerce.Properties.Settings.ConnStrGD"].ToString();
+
+            
+            //String cstr = ConfigurationManager.ConnectionStrings["FrbaCommerce.Properties.Settings.conexionBD"].ToString();
+            String cstr = ConfigurationManager.AppSettings["conexionBD"];
             mConnectionString = cstr;
             mSqlCnn = new SqlConnection(mConnectionString);
 

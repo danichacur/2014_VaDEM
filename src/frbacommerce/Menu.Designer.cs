@@ -31,7 +31,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.btnClientes = new System.Windows.Forms.Button();
-            this.btnModPubli = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -64,22 +63,11 @@
             this.btnClientes.UseVisualStyleBackColor = true;
             this.btnClientes.Click += new System.EventHandler(this.btnClientes_Click);
             // 
-            // btnModPubli
-            // 
-            this.btnModPubli.Location = new System.Drawing.Point(70, 298);
-            this.btnModPubli.Name = "btnModPubli";
-            this.btnModPubli.Size = new System.Drawing.Size(136, 50);
-            this.btnModPubli.TabIndex = 3;
-            this.btnModPubli.Text = "Modificar Publicacion";
-            this.btnModPubli.UseVisualStyleBackColor = true;
-            this.btnModPubli.Click += new System.EventHandler(this.btnModPubli_Click);
-            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 422);
-            this.Controls.Add(this.btnModPubli);
             this.Controls.Add(this.btnClientes);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -94,7 +82,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnClientes;
-        private System.Windows.Forms.Button btnModPubli;
     }
 }
 

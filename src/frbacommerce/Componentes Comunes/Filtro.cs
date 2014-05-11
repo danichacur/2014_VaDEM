@@ -35,6 +35,10 @@ namespace FrbaCommerce.Componentes_Comunes
         public virtual void LimpiarContenido()
         {            
         }
+        
+        public virtual void colocarValor(object texto)
+        {
+        }
 
         private void InitializeComponent()
         {

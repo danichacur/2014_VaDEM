@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using FrbaCommerce.Datos;
 
 namespace FrbaCommerce.Entidades
 {
-    class Rol
+    public class Rol
     {
 
         public int Id { get; set; }
@@ -22,6 +23,39 @@ namespace FrbaCommerce.Entidades
             Id = id;
             Descripcion = descripcion;
             Habilitado = habilitado;
+        }
+
+        public void insertar()
+        {
+            String query = "INSERT INTO vadem.rol VALUES(";
+            query += Id;
+            query += ",";
+            query += "'" + Descripcion + "'";
+            query += ",";
+            query += (Habilitado ? 1 : 0);
+            query += ")";
+
+            RolDAO.ejecutar(query);
+        }
+
+        public void modificar()
+        {
+            String query = "UPDATE vadem.rol SET ";
+            query += "Descripcion ='" + Descripcion + "'";
+            query += ",";
+            query += "Habilitado = " + (Habilitado ? 1 : 0);
+            query += " WHERE IdRol = " + Id;
+          
+            RolDAO.ejecutar(query);
+        
+        }
+
+        public void eliminar()
+        {
+            String query = "DELETE FROM vadem.rol ";
+            query += " WHERE IdRol = " + Id;
+
+            RolDAO.ejecutar(query);
         }
     }
 }

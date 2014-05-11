@@ -31,6 +31,11 @@ namespace FrbaCommerce.Componentes_Comunes
         {
             txtFiltro.Text = "";
         }
+
+        public override void colocarValor(Object texto)
+        {
+            txtFiltro.Text = Convert.ToString(texto);
+        }
       
     }
 }

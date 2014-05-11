@@ -13,7 +13,7 @@ namespace FrbaCommerce
     public partial class Menu : Form
     {
 
-        Form abmRol, abmRubro, abmCliente, abmModificarPbl;
+        Form abmRol, abmRubro, abmCliente;
 
         public Menu()
         {
@@ -26,7 +26,7 @@ namespace FrbaCommerce
             {
                 if (abmRol == null)
                 {
-                    abmRol = new ABM_Rol.ABM_Rol();
+                    abmRol = new ABM_Rol.Rol_Listar();
                 }
                 abmRol.ShowDialog();
             }
@@ -59,22 +59,6 @@ namespace FrbaCommerce
                     abmCliente = new Abm_Cliente.ABM_Cliente();
                 }
                 abmCliente.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void btnModPubli_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (abmModificarPbl == null)
-                {
-                    abmModificarPbl = new Generar_Publicacion.Listado();
-                }
-                abmModificarPbl.ShowDialog();
             }
             catch (Exception ex)
             {
