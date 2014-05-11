@@ -7,7 +7,7 @@ using System.Data;
 
 namespace FrbaCommerce.Datos
 {
-    class EstadoPublicacionDAO
+    class PublicacionDAO
     {
 
         public static DataTable obtenerEstados(String script)
@@ -42,5 +42,38 @@ namespace FrbaCommerce.Datos
 
 
 
+
+        public static DataTable obtenerVisualizacion(string script)
+        {
+            try
+            {
+                
+                return AccesoDatos.Instance.EjecutarScript(script);
+
+              
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error " + ex.Message);
+            }
+       
+
+        }
+
+        public static object obtenerPublicaciones(string script)
+        {
+            try
+            {
+
+                return AccesoDatos.Instance.EjecutarScript(script);
+
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error " + ex.Message);
+            }
+       
+        }
     }
 }

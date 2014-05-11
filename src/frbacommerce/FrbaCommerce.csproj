@@ -93,6 +93,7 @@
     </Compile>
     <Compile Include="Datos\ClienteDAO.cs" />
     <Compile Include="Datos\Datos.cs" />
+    <Compile Include="Datos\PublicacionDAO.cs" />
     <Compile Include="Datos\FuncionalidadDAO.cs" />
     <Compile Include="Datos\RolDAO.cs" />
     <Compile Include="Datos\RubroDAO.cs" />
@@ -186,17 +187,17 @@
     <Compile Include="Formularios\Facturar Publicaciones\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Generar Publicacion\Listado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Generar Publicacion\Listado.Designer.cs">
+      <DependentUpon>Listado.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Formularios\Generar Publicacion\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Formularios\Generar Publicacion\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Gestion de Preguntas\Form1.cs">
       <SubType>Form</SubType>
@@ -265,6 +266,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\ABM Rol\Rol_Modificar.resx">
       <DependentUpon>Rol_Modificar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Generar Publicacion\Listado.resx">
+      <DependentUpon>Listado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>

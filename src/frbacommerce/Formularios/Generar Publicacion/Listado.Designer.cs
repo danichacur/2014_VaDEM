@@ -33,16 +33,16 @@
             // 
             // ctrlABM1
             // 
-            this.ctrlABM1.Location = new System.Drawing.Point(105, 4);
+            this.ctrlABM1.Location = new System.Drawing.Point(53, 12);
             this.ctrlABM1.Name = "ctrlABM1";
-            this.ctrlABM1.Size = new System.Drawing.Size(407, 371);
+            this.ctrlABM1.Size = new System.Drawing.Size(805, 371);
             this.ctrlABM1.TabIndex = 1;
             // 
             // Listado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(616, 379);
+            this.ClientSize = new System.Drawing.Size(922, 379);
             this.Controls.Add(this.ctrlABM1);
             this.Name = "Listado";
             this.Text = "Listado";

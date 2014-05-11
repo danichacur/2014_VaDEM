@@ -10,9 +10,10 @@ using FrbaCommerce.Componentes_Comunes;
 using FrbaCommerce.Datos;
 using FrbaCommerce.Entidades;
 
+
 namespace FrbaCommerce.Generar_Publicacion
 {
-    public partial class Listado : Form
+    public partial class Listado : ABM
     {
         public Listado()
         {
@@ -24,7 +25,7 @@ namespace FrbaCommerce.Generar_Publicacion
             try
             {
                 cargaFiltros();
-               // cargaInicialGrilla();
+                cargaInicialGrilla();
             }
             catch (Exception ex)
             {
@@ -32,25 +33,45 @@ namespace FrbaCommerce.Generar_Publicacion
             }
         }
 
-        private void cargaFiltros()
+        private void cargaInicialGrilla()
         {
             try
             {
-                List<Filtro> filtrosI = new List<Filtro>();
-                filtrosI.Add(new FiltroComboBox("Tipo", "IdTipo", "=", "0", obtenerTiposPublicacion(), "id", "descripcion"));
-                filtrosI.Add(new FiltroComboBox("Estado", "IdEstado", "=", "0", obtenerEstados(), "IdEstado", "Descripcion"));
-                /*  List<Control> filtrosD = new List<Control>();
-                  filtrosD.Add(new FiltroIgual());
-                  filtrosD.Add(new FiltroLike());
-                */
-                this.ctrlABM1.cargarFiltros(filtrosI, null);
+                aplicarFiltro("");
             }
             catch (Exception ex)
             {
                 throw new Exception("Error " + ex.Message);
             }
 
+
         }
+
+        private void cargaFiltros()
+        {
+            try
+            {
+                List<Filtro> filtrosI = new List<Filtro>();
+                filtrosI.Add(new FiltroComboBox("Tipo", "Tipo", "=", "", obtenerTiposPublicacion(), "descripcion", "descripcion"));
+                filtrosI.Add(new FiltroComboBox("Estado", "IdEstado", "=", "0", obtenerEstados(), "IdEstado", "Descripcion"));
+               
+
+                List<Filtro> filtrosD = new List<Filtro>();
+                filtrosD.Add(new FiltroComboBox("Visibilidad", "IdVisibilidad", "=", "0", obtenerVisibilidadHabilitadas(), "IdVisibilidad", "Descripcion"));
+
+
+                //filtrosI.Add(new FiltroFecha());
+               // filtrosI.Add(new FiltroTextBox("Descripcion", "Descripcion", "LIKE", ""));
+
+                this.ctrlABM1.cargarFiltros(filtrosI, filtrosD);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error " + ex.Message + ex.Source);
+            }
+
+        }
+
 
 
         private DataTable obtenerTiposPublicacion()
@@ -94,12 +115,17 @@ namespace FrbaCommerce.Generar_Publicacion
 
         private DataTable obtenerEstados()
         {
+            DataRow fila;
             try
             {
-
                 String script = "SELECT * FROM vadem.estado ";
 
-                DataTable listaEstados = EstadoPublicacionDAO.obtenerEstados(script);
+                DataTable listaEstados = PublicacionDAO.obtenerEstados(script);
+                fila = listaEstados.NewRow();
+                fila["IdEstado"] = 0;
+                fila["Descripcion"] = "";
+                listaEstados.Rows.InsertAt(fila, 0);
+
                 return listaEstados;
             }
             catch (Exception ex)
@@ -109,5 +135,51 @@ namespace FrbaCommerce.Generar_Publicacion
 
 
         }
+
+
+        private DataTable obtenerVisibilidadHabilitadas()
+        {
+            DataRow fila;
+            try
+            {
+
+                String script = "SELECT IdVisibilidad, Descripcion FROM vadem.visibilidad WHERE Habilitado = 1";
+
+                DataTable listaVisibilidad = PublicacionDAO.obtenerVisualizacion(script);
+
+                fila = listaVisibilidad.NewRow();
+                fila["IdVisibilidad"] = 0;
+                fila["Descripcion"] = "";
+                listaVisibilidad.Rows.InsertAt(fila, 0);
+
+                return listaVisibilidad;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error " + ex.Message);
+            }
+        }
+
+
+
+        public override void aplicarFiltro(String clausulaWhere)
+        {
+            try
+            {
+                String script = "SELECT * FROM vadem.publicacion ";
+                script += clausulaWhere;
+
+                Object listaPublicaciones = (Object)PublicacionDAO.obtenerPublicaciones(script);
+
+
+                this.ctrlABM1.cargarGrilla(listaPublicaciones);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error " + ex.Message);
+            }
+        }
+
     }
 }

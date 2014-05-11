@@ -111,10 +111,11 @@ namespace FrbaCommerce.Componentes_Comunes
                     {
                         clausulaWhere += filtro.obtenerCampo() + " = '" + filtro.obtenerValor() + "'";
                     }
+                    clausulaWhere += " AND ";
                     aplicaWhere = true;
                 }
             }
-
+            clausulaWhere = clausulaWhere.Substring(0, clausulaWhere.Length - 5);
             return aplicaWhere ? clausulaWhere : "";
         }
 

@@ -46,12 +46,12 @@
             this.dgvDatos.Name = "dgvDatos";
             this.dgvDatos.ReadOnly = true;
             this.dgvDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDatos.Size = new System.Drawing.Size(309, 150);
+            this.dgvDatos.Size = new System.Drawing.Size(748, 151);
             this.dgvDatos.TabIndex = 7;
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(283, 103);
+            this.btnBuscar.Location = new System.Drawing.Point(722, 122);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(75, 23);
             this.btnBuscar.TabIndex = 6;
@@ -61,7 +61,7 @@
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(49, 103);
+            this.btnLimpiar.Location = new System.Drawing.Point(49, 122);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
             this.btnLimpiar.TabIndex = 8;
@@ -71,7 +71,7 @@
             // 
             // btnAlta
             // 
-            this.btnAlta.Location = new System.Drawing.Point(168, 333);
+            this.btnAlta.Location = new System.Drawing.Point(722, 335);
             this.btnAlta.Name = "btnAlta";
             this.btnAlta.Size = new System.Drawing.Size(75, 23);
             this.btnAlta.TabIndex = 9;
@@ -88,7 +88,7 @@
             this.Controls.Add(this.dgvDatos);
             this.Controls.Add(this.btnBuscar);
             this.Name = "ctrlABM";
-            this.Size = new System.Drawing.Size(407, 378);
+            this.Size = new System.Drawing.Size(881, 412);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).EndInit();
             this.ResumeLayout(false);
 
