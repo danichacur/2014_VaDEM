@@ -112,3 +112,6 @@ C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerc
 C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Login.UserControl2.resources
 C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Properties.Resources.resources
 C:\Users\Matias\Dropbox\Facultad\Gestion De Datos\Versiones Nuestras\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.csproj.GenerateResource.Cache
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\FrbaCommerce.exe.config
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.exe
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.pdb

@@ -89,6 +89,7 @@ namespace FrbaCommerce.Generar_Publicacion
             {
                 throw new Exception("Error " + ex.Message);
             }
+
         }
 
         private DataTable obtenerEstados()
