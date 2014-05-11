@@ -20,6 +20,7 @@ namespace FrbaCommerce.Datos
                 //estados = new List<EstadoPublicacion>();
 
 
+
                 return AccesoDatos.Instance.EjecutarScript(script);
 
                 //foreach (DataRow row in tbl.Rows)
