@@ -10,6 +10,11 @@ namespace FrbaCommerce.Datos
 {
     class ClienteDAO
     {
+        /// <summary>
+        /// obtiene los clientes en base a un script que recibe por parámetro.
+        /// </summary>
+        /// <param name="script"></param>
+        /// <returns></returns>
         public static List<Cliente> obtenerClientes(String script)
         {
             Cliente cliente;
@@ -18,8 +23,7 @@ namespace FrbaCommerce.Datos
             try
             {
                 clientes = new List<Cliente>();
-                
-
+            
                 tbl = AccesoDatos.Instance.EjecutarScript(script);
 
                 foreach (DataRow row in tbl.Rows) {
@@ -38,9 +42,6 @@ namespace FrbaCommerce.Datos
                                     (DateTime)row["FechaNacimiento"],
                                     (long)Convert.ToDouble(row["CUIL"])
                                   );
-                   
-
-
                     clientes.Add(cliente);
                 }
 
@@ -48,7 +49,7 @@ namespace FrbaCommerce.Datos
             }
             catch (Exception ex)
             {
-                throw new Exception("Error " + ex.Message);
+                throw ex;
             }
         }
     }

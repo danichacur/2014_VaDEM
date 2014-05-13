@@ -11,6 +11,11 @@ namespace FrbaCommerce.Datos
     class FuncionalidadDAO
     {
 
+        /// <summary>
+        /// obtiene todas las funcionalidades.
+        /// </summary>
+        /// <param name="script"></param>
+        /// <returns></returns>
         public static List<Funcionalidad> obtenerFuncionalidades()
         {
 
@@ -39,7 +44,7 @@ namespace FrbaCommerce.Datos
             }
             catch (Exception ex)
             {
-                throw new Exception("Error " + ex.Message);
+                throw ex;
             }
         }
     }

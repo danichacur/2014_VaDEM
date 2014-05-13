@@ -10,6 +10,11 @@ namespace FrbaCommerce.Datos
 {
     class RolDAO
     {
+        /// <summary>
+        /// obtiene los roles en base a un script que recibe por parámetro.
+        /// </summary>
+        /// <param name="script"></param>
+        /// <returns></returns>
         public static List<Rol> obtenerRoles(String script)
         {
             Rol rol;
@@ -35,10 +40,14 @@ namespace FrbaCommerce.Datos
             }
             catch (Exception ex)
             {
-                throw new Exception("Error " + ex.Message);
+                throw ex;
             }
         }
 
+        /// <summary>
+        /// Ejecuta el script parámetro.
+        /// </summary>
+        /// <param name="script"></param>
         public static void ejecutar(String script)
         {
             try
@@ -47,42 +56,9 @@ namespace FrbaCommerce.Datos
             }
             catch (Exception ex)
             {
-                throw new Exception("Error " + ex.Message);
+                throw ex;
             }
         }
     }
 }
-        /*
-        public static DataTable obtenerRoles(int idRol, String descripcion, int habilitado)
-        {
-            SqlParameter sqlParamIdRol;
-            SqlParameter sqlParamDescripcion;
-            SqlParameter sqlParamHabilitado;
-
-            try
-            {
-                sqlParamIdRol = new SqlParameter("@IdRol", SqlDbType.Int);
-                sqlParamIdRol.Value = idRol;
-
-                sqlParamDescripcion = new SqlParameter("@Descripcion", SqlDbType.VarChar);
-                sqlParamDescripcion.Size = 255;
-                sqlParamDescripcion.Value = descripcion;
-
-                sqlParamHabilitado = new SqlParameter("@habilitado", SqlDbType.Int);
-                sqlParamHabilitado.Value = habilitado;
-
-                SqlParameter[] parametros = new SqlParameter[3];
-                parametros[0] = sqlParamIdRol;
-                parametros[1] = sqlParamDescripcion;
-                parametros[2] = sqlParamHabilitado;
-
-                DataTable tbl = AccesoDatos.Instance.ObtenerDatosComoDataTable("spObtenerRoles", parametros);
-                return tbl;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error " + ex.Message);
-            }
-        }
-        */
-        
+       

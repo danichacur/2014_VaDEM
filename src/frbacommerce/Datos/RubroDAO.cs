@@ -10,6 +10,11 @@ namespace FrbaCommerce.Datos
 {
     class RubroDAO
     {
+        /// <summary>
+        /// Obtiene los rubros en base a un script que recibe por parámetro
+        /// </summary>
+        /// <param name="script"></param>
+        /// <returns></returns>
         public static List<Rubro> obtenerRubros(String script)
         {
             Rubro rol;
@@ -35,38 +40,8 @@ namespace FrbaCommerce.Datos
             }
             catch (Exception ex)
             {
-                throw new Exception("Error " + ex.Message);
+                throw ex;
             }
         }
-       
-
-        /*
-        public static DataTable obtenerRubros(int idRubro, String descripcion)
-        {
-            SqlParameter sqlParamIdRubro;
-            SqlParameter sqlParamDescripcion;
-        
-            try
-            {
-                sqlParamIdRubro = new SqlParameter("@IdRubro", SqlDbType.Int);
-                sqlParamIdRubro.Value = idRubro;
-
-                sqlParamDescripcion = new SqlParameter("@Descripcion", SqlDbType.VarChar);
-                sqlParamDescripcion.Size = 255;
-                sqlParamDescripcion.Value = descripcion;
-
-                SqlParameter[] parametros = new SqlParameter[2];
-                parametros[0] = sqlParamIdRubro;
-                parametros[1] = sqlParamDescripcion;
-
-                DataTable tbl = AccesoDatos.Instance.ObtenerDatosComoDataTable("spObtenerRubros", parametros);
-                return tbl;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error " + ex.Message);
-            }
-        }
-        */
     }
 }

@@ -12,13 +12,80 @@ namespace FrbaCommerce.Componentes_Comunes
 {
     public partial class ctrlABM : UserControl
     {
+        #region VariablesDeClase
+
         List<Filtro> filtrosEnPantalla;
 
+        #endregion
+
+        #region Eventos
+
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
         public ctrlABM()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Evento click del boton Buscar. Delega el buscar en el método buscar
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                buscar();
+            }
+            catch (Exception ex)
+            {
+                Metodos_Comunes.MostrarMensajeError(ex);
+            }
+
+        }
+
+        /// <summary>
+        /// Vuelve todos los campos al valor nulo.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (Filtro filtro in filtrosEnPantalla)
+                {
+                    filtro.LimpiarContenido();
+                }
+            }
+            catch (Exception ex)
+            {
+                Metodos_Comunes.MostrarMensajeError(ex);
+            }
+        }
+
+        /// <summary>
+        /// Evento del boton Aceptar. Delega la funcionalidad.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAlta_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ((ABM)this.ParentForm).btnAlta_Click();
+            }
+            catch (Exception)
+            {
+            }
+
+        }
+
+        #endregion
+
+        #region MetodosGenerales
 
         /// <summary>
         /// Método que hace la carga de los filtros que recibe como parametro en las columnas
@@ -59,78 +126,100 @@ namespace FrbaCommerce.Componentes_Comunes
                         filtrosEnPantalla.Add(filtro);
                     }
                 }
-
-
             }
             catch (Exception ex)
             {
-                throw new Exception("Error " + ex.Message);
+                throw ex;
             }
 
         }
 
         /// <summary>
-        /// Carga la grilla con la tabla que recibe como parámetro
+        /// Carga la grilla con la lista que recibe como parámetro y con la estructura de las columnas que recibe
         /// </summary>
         /// <param name="tbl"></param>
         public DataGridView cargarGrilla(Object lista, DataGridViewColumn[] columnas)
         {
-            dgvDatos.Columns.Clear();
-            if (dgvDatos.Columns.Count == 0)
+            try
             {
-                dgvDatos.Columns.AddRange(columnas);
-                dgvDatos.AutoGenerateColumns = false;
-            }
-            cargarGrilla(lista);
+                dgvDatos.Columns.Clear();
+                if (dgvDatos.Columns.Count == 0)
+                {
+                    dgvDatos.Columns.AddRange(columnas);
+                    dgvDatos.AutoGenerateColumns = false;
+                }
+                cargarGrilla(lista);
 
-            return dgvDatos;
+                return dgvDatos;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
 
+        /// <summary>
+        /// Carga la grilla con la lista que recibe como parámetro 
+        /// </summary>
+        /// <param name="lista"></param>
         public void cargarGrilla(Object lista)
         {
-            Object listDatos = lista;
-            dgvDatos.DataSource = null;
-            dgvDatos.DataSource = listDatos;
+            try
+            {
+                Object listDatos = lista;
+                dgvDatos.DataSource = null;
+                dgvDatos.DataSource = listDatos;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
 
+        /// <summary>
+        /// Recorre los filtros seleccionados y arma la clausula where para el script del SELECT 
+        /// </summary>
+        /// <returns></returns>
         private String armarClausuraWhere()
         {
-
-            String clausulaWhere = "WHERE ";
-            bool aplicaWhere = false;
-
-            foreach (Filtro filtro in filtrosEnPantalla)
+            try
             {
-                if (filtro.obtenerValor() != filtro.obtenerValorNulo())
+                String clausulaWhere = "WHERE ";
+                bool aplicaWhere = false;
+
+                foreach (Filtro filtro in filtrosEnPantalla)
                 {
-                    if (filtro.obtenerModoComparacion() == "LIKE")
+                    if (filtro.obtenerValor() != filtro.obtenerValorNulo())
                     {
-                        clausulaWhere += filtro.obtenerCampo() + " LIKE '%" + filtro.obtenerValor() + "%'";
+                        if (filtro.obtenerModoComparacion() == "LIKE")
+                        {
+                            clausulaWhere += filtro.obtenerCampo() + " LIKE '%" + filtro.obtenerValor() + "%'";
+                        }
+                        else
+                        {
+                            clausulaWhere += filtro.obtenerCampo() + " = '" + filtro.obtenerValor() + "'";
+                        }
+                        clausulaWhere += " AND ";
+                        aplicaWhere = true;
                     }
-                    else
-                    {
-                        clausulaWhere += filtro.obtenerCampo() + " = '" + filtro.obtenerValor() + "'";
-                    }
-                    clausulaWhere += " AND ";
-                    aplicaWhere = true;
                 }
+                clausulaWhere = clausulaWhere.Substring(0, clausulaWhere.Length - 5);
+                return aplicaWhere ? clausulaWhere : "";
             }
-            clausulaWhere = clausulaWhere.Substring(0, clausulaWhere.Length - 5);
-            return aplicaWhere ? clausulaWhere : "";
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
-
-
 
         /// <summary>
         /// Carga la grilla filtrando por los parametros seleccionados
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnBuscar_Click(object sender, EventArgs e)
-        {
-            buscar();
-        }
-
         public void buscar()
         {
             try
@@ -138,50 +227,15 @@ namespace FrbaCommerce.Componentes_Comunes
                 String clausulaWhere = armarClausuraWhere();
                 ((ABM)this.ParentForm).aplicarFiltro(clausulaWhere);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
         }
 
-        private void btnLimpiar_Click(object sender, EventArgs e)
-        {
-            foreach (Filtro filtro in filtrosEnPantalla)
-            {
-                filtro.LimpiarContenido();
-            }
-        }
+        #endregion
 
-        private void btnAlta_Click(object sender, EventArgs e)
-        {
-            ((ABM)this.ParentForm).btnAlta_Click();
-        }
-
-        private void btnBaja_Click(object sender, EventArgs e)
-        {
-            if (dgvDatos.SelectedCells.Count > 0)
-            {
-                if (MessageBox.Show("Está seguro que desea dar de baja el registro seleccionado", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    MessageBox.Show("Se borra //IMPLEMENTAR CODIGO");
-                }
-            }
-            else
-            {
-                MessageBox.Show("Debe seleccionar una fila para dar de baja");
-            }
-        }
-
-        private void btnModificacion_Click(object sender, EventArgs e)
-        {
-            if (dgvDatos.SelectedCells.Count > 0)
-            {
-                MessageBox.Show("Se abre ventana para modificar //IMPLEMENTAR CODIGO");
-            }
-            else
-            {
-                MessageBox.Show("Debe seleccionar una fila para modificar");
-            }
-        }
+        #region MetodosAuxiliares
+        #endregion
     }
 }

@@ -11,6 +11,21 @@ namespace FrbaCommerce.Componentes_Comunes
 {
     public partial class FiltroTextBox : Filtro
     {
+        #region VariablesDeClase
+        #endregion
+
+        #region Eventos
+
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
+        /// <param name="textolbl"></param>
+        /// <param name="pCampo"></param>
+        /// <param name="pModoComparacion"></param>
+        /// <param name="pValorNulo"></param>
+        /// <param name="itemsCombo"></param>
+        /// <param name="value"></param>
+        /// <param name="display"></param>
         public FiltroTextBox(String textolbl, String pCampo, String pModoComparacion, String pValorNulo)
         {
             InitializeComponent();
@@ -22,20 +37,64 @@ namespace FrbaCommerce.Componentes_Comunes
             setlblFiltroBase(this.lblFiltro, textolbl);
         }
 
+        #endregion
+
+        #region MetodosGenerales
+
+        /// <summary>
+        /// Obligatorio de Implementar
+        /// Obtiene el valor seleccionado del combobox (El valor, no el texto)
+        /// </summary>
+        /// <returns></returns>
         public override String obtenerValor()
         {
-            return txtFiltro.Text;
+            try
+            {
+                return txtFiltro.Text;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
+        /// <summary>
+        /// Obligatorio de Implementar
+        /// Vuelvo el combo a la primer posicion (posicion vacia)
+        /// </summary>
         public override void LimpiarContenido()
         {
-            txtFiltro.Text = "";
+            try
+            {
+                txtFiltro.Text = "";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
+
+        /// <summary>
+        /// Obligatorio de Implementar
+        /// Selecciono el valor del combo que coincide con el valor recibido por parámetro.
+        /// </summary>
+        /// <param name="texto"></param>
         public override void colocarValor(Object texto)
         {
-            txtFiltro.Text = Convert.ToString(texto);
+            try
+            {
+                txtFiltro.Text = Convert.ToString(texto);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
-      
+
+        #endregion
+
+        #region MetodosAuxiliares
+        #endregion
     }
 }

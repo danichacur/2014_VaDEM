@@ -9,17 +9,15 @@ using System.Data.Common;
 
 namespace FrbaCommerce.Datos
 {
-
     public sealed class AccesoDatos
     {
-        private const String NombreModulo = "BaseDatos";
+        #region VariablesDeClase
 
         private String mConnectionString;
         private SqlConnection mSqlCnn;
         private SqlTransaction mSqlTran;
 
         private static AccesoDatos _instance;
-        //static readonly AccesoDatos _instance = new AccesoDatos();
         public static AccesoDatos Instance
         {
             get
@@ -29,18 +27,39 @@ namespace FrbaCommerce.Datos
                 return _instance;
             }
         }
+
+        #endregion
+
+        #region Eventos
+
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
         AccesoDatos()
         {
+            try
+            {
+                String cstr = ConfigurationManager.AppSettings["conexionBD"];
+                mConnectionString = cstr;
+                mSqlCnn = new SqlConnection(mConnectionString);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
-            
-            //String cstr = ConfigurationManager.ConnectionStrings["FrbaCommerce.Properties.Settings.conexionBD"].ToString();
-            String cstr = ConfigurationManager.AppSettings["conexionBD"];
-            mConnectionString = cstr;
-            mSqlCnn = new SqlConnection(mConnectionString);
 
         }
 
+        #endregion
 
+        #region MetodosGenerales
+
+        /// <summary>
+        /// Recibe un script, lo ejecuta con la conexión abierta, y devuelve el resultado en un datatable
+        /// </summary>
+        /// <param name="script"></param>
+        /// <returns></returns>
         public DataTable EjecutarScript(String script)
         {
             SqlCommand sqlCmd;
@@ -67,7 +86,7 @@ namespace FrbaCommerce.Datos
             }
             catch (Exception ex)
             {
-                throw new Exception(NombreModulo + ".EjecutarScript " + ex.Source + " " + ex.Message, ex);
+                throw ex;
             }
             finally
             {
@@ -88,212 +107,11 @@ namespace FrbaCommerce.Datos
             }
         }
 
+        #endregion
+
+        #region MetodosAuxiliares
+        #endregion
     }
 }
 
-        /*
-        public DataTable ObtenerDatosComoDataTable(String NombreProcedimientoAlmacenado)
-        {
-            SqlCommand sqlCmd;
-            SqlDataAdapter sqlAdp;
-            DataTable sqlTbl;
-            sqlCmd = new SqlCommand();
-            sqlAdp = new SqlDataAdapter(sqlCmd);
-
-            try
-            {
-                if (this.mSqlCnn != null)
-                {
-                    this.mSqlCnn.Open();
-                }
-
-                sqlCmd.CommandText = NombreProcedimientoAlmacenado;
-                sqlCmd.Connection = this.mSqlCnn;
-                sqlCmd.CommandType = CommandType.StoredProcedure;
-
-                sqlTbl = new DataTable();
-                sqlAdp.Fill(sqlTbl);
-
-                return sqlTbl;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(NombreModulo + ".ObtenerDatosComoDataTable " + ex.Source + " " + ex.Message, ex);
-            }
-            finally
-            {
-                if (this.mSqlCnn != null && this.mSqlCnn.State == ConnectionState.Open)
-                {
-                    this.mSqlCnn.Close();
-                }
-
-                if (sqlCmd != null)
-                {
-                    sqlCmd.Dispose();
-                }
-
-                if (sqlAdp != null)
-                {
-                    sqlAdp.Dispose();
-                }
-            }
-        }
-
-        public DataTable ObtenerDatosComoDataTable(String NombreProcedimientoAlmacenado, SqlParameter[] Parametros)
-        {
-            SqlCommand sqlCmd;
-            SqlDataAdapter sqlAdp;
-            DataTable sqlTbl;
-            sqlCmd = new SqlCommand();
-            sqlAdp = new SqlDataAdapter(sqlCmd);
-
-            try
-            {
-                if (this.mSqlCnn != null)
-                {
-                    this.mSqlCnn.Open();
-                }
-
-                sqlCmd.CommandText = NombreProcedimientoAlmacenado;
-                sqlCmd.Connection = this.mSqlCnn;
-                sqlCmd.CommandType = CommandType.StoredProcedure;
-
-                sqlCmd.Parameters.AddRange(Parametros);
-
-                sqlTbl = new DataTable();
-                sqlAdp.Fill(sqlTbl);
-
-                return sqlTbl;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(NombreModulo + ".ObtenerDatosComoDataTable " + ex.Source + " " + ex.Message, ex);
-            }
-            finally
-            {
-                if (this.mSqlCnn != null && this.mSqlCnn.State == ConnectionState.Open)
-                {
-                    this.mSqlCnn.Close();
-                }
-
-                if (sqlCmd != null)
-                {
-                    sqlCmd.Dispose();
-                }
-
-                if (sqlAdp != null)
-                {
-                    sqlAdp.Dispose();
-                }
-            }
-        }
-
-    }
-    
-    public static class Datos
-    {
-        Const NombreModulo = "BaseDatos";
-
-        private String mConnectionString;
-        private SqlConnection mSqlCnn;
-        private SqlTransaction mSqlTran;
-
-        public Datos(String ConnectionString)
-        {
-            try
-            {
-                mConnectionString = ConnectionString;
-                mSqlCnn = new SqlConnection(mConnectionString);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(NombreModulo & ".Datos " & ex.Source & " " & ex.Message, ex);
-            }            
-        }
-
-        public DataTable ObtenerDatosComoDataTable(String NombreProcedimientoAlmacenado)
-        {
-            SqlCommand sqlCmd;
-            SqlDataAdapter sqlAdp;
-            DataTable sqlTbl;
-            sqlCmd = new SqlCommand();
-            sqlAdp = new SqlDataAdapter(sqlCmd);
-
-            try{
-                if (this.mSqlCnn != null){
-                    this.mSqlCnn.Open();
-                }
-
-                sqlCmd.CommandText = NombreProcedimientoAlmacenado;
-                sqlCmd.Connection = this.mSqlCnn;
-                sqlCmd.CommandType = CommandType.StoredProcedure;
-
-                sqlTbl = new DataTable();
-                sqlAdp.Fill(sqlTbl);
-
-                return sqlTbl;
-            }
-            catch (Exception ex){
-                throw new Exception(NombreModulo & ".ObtenerDatosComoDataTable " & ex.Source & " " & ex.Message, ex);
-            }
-            finally{
-                if(this.mSqlCnn != null && this.mSqlCnn.State == ConnectionState.Open){
-                    this.mSqlCnn.Close();
-                }
-                    
-                if (sqlCmd != null){
-                    sqlCmd.Dispose();
-                }
-                
-                if (sqlAdp != null){
-                    sqlAdp.Dispose();
-                }
-            }
-        }
-
-        public DataTable ObtenerDatosComoDataTable(String NombreProcedimientoAlmacenado, SqlParameter[] Parametros)
-        {
-            SqlCommand sqlCmd;
-            SqlDataAdapter sqlAdp;
-            DataTable sqlTbl;
-            sqlCmd = new SqlCommand();
-            sqlAdp = new SqlDataAdapter(sqlCmd);
-
-            try{
-                if (this.mSqlCnn != null){
-                    this.mSqlCnn.Open();
-                }
-
-                sqlCmd.CommandText = NombreProcedimientoAlmacenado;
-                sqlCmd.Connection = this.mSqlCnn;
-                sqlCmd.CommandType = CommandType.StoredProcedure;
-
-                sqlCmd.Parameters.AddRange(Parametros);
-
-                sqlTbl = new DataTable();
-                sqlAdp.Fill(sqlTbl);
-
-                return sqlTbl;
-            }
-            catch (Exception ex){
-                throw new Exception(NombreModulo & ".ObtenerDatosComoDataTable " & ex.Source & " " & ex.Message, ex);
-            }
-            finally{
-                if(this.mSqlCnn != null && this.mSqlCnn.State == ConnectionState.Open){
-                    this.mSqlCnn.Close();
-                }
-                    
-                if (sqlCmd != null){
-                    sqlCmd.Dispose();
-                }
-                
-                if (sqlAdp != null){
-                    sqlAdp.Dispose();
-                }
-            }
-        }
-
-        
-
-      
-    }*/
+       
