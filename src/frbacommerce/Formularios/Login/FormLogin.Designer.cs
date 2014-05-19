@@ -34,19 +34,22 @@
             // 
             // btnUsuarioNuevo
             // 
-            this.btnUsuarioNuevo.Location = new System.Drawing.Point(142, 164);
+            this.btnUsuarioNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUsuarioNuevo.Location = new System.Drawing.Point(135, 98);
             this.btnUsuarioNuevo.Name = "btnUsuarioNuevo";
             this.btnUsuarioNuevo.Size = new System.Drawing.Size(104, 23);
-            this.btnUsuarioNuevo.TabIndex = 3;
+            this.btnUsuarioNuevo.TabIndex = 4;
             this.btnUsuarioNuevo.Text = "Nuevo Usuario";
             this.btnUsuarioNuevo.UseVisualStyleBackColor = true;
+            this.btnUsuarioNuevo.Click += new System.EventHandler(this.btnUsuarioNuevo_Click);
             // 
             // btnEntrar
             // 
-            this.btnEntrar.Location = new System.Drawing.Point(32, 164);
+            this.btnEntrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEntrar.Location = new System.Drawing.Point(25, 98);
             this.btnEntrar.Name = "btnEntrar";
             this.btnEntrar.Size = new System.Drawing.Size(104, 23);
-            this.btnEntrar.TabIndex = 2;
+            this.btnEntrar.TabIndex = 3;
             this.btnEntrar.Text = "Entrar";
             this.btnEntrar.UseVisualStyleBackColor = true;
             this.btnEntrar.Click += new System.EventHandler(this.btnEntrar_Click);
@@ -55,11 +58,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 201);
+            this.ClientSize = new System.Drawing.Size(262, 133);
             this.Controls.Add(this.btnUsuarioNuevo);
             this.Controls.Add(this.btnEntrar);
             this.Name = "FormLogin";
-            this.Text = "Login2";
+            this.Text = "LOGIN";
             this.Load += new System.EventHandler(this.FormLogin_Load);
             this.ResumeLayout(false);
 

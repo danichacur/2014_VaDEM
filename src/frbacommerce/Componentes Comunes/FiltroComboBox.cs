@@ -40,9 +40,9 @@ namespace FrbaCommerce.Componentes_Comunes
 
                 cargarCombo(itemsCombo, value, display);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -55,15 +55,15 @@ namespace FrbaCommerce.Componentes_Comunes
         /// Obtiene el valor seleccionado del combobox (El valor, no el texto)
         /// </summary>
         /// <returns></returns>
-        public override String obtenerValor()
+        public override Object obtenerValor()
         {
             try
             {
                 return cboFiltro.SelectedValue.ToString();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -78,9 +78,9 @@ namespace FrbaCommerce.Componentes_Comunes
                 //cboFiltro.Text = "";
                 cboFiltro.SelectedIndex = 0;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -96,9 +96,9 @@ namespace FrbaCommerce.Componentes_Comunes
             {
                 cboFiltro.SelectedValue = texto;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -108,7 +108,7 @@ namespace FrbaCommerce.Componentes_Comunes
         /// <param name="itemsCombo"></param>
         /// <param name="value"></param>
         /// <param name="display"></param>
-        private void cargarCombo(DataTable itemsCombo, String value, String display)
+        public void cargarCombo(DataTable itemsCombo, String value, String display)
         {
             try
             {
@@ -116,9 +116,9 @@ namespace FrbaCommerce.Componentes_Comunes
                 cboFiltro.DisplayMember = display;
                 cboFiltro.ValueMember = value;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 

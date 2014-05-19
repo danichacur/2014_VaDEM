@@ -19,9 +19,9 @@ namespace FrbaCommerce.Componentes_Comunes
 
         #region Getters
 
-        public virtual String obtenerValor()
+        public virtual Object obtenerValor()
         {
-            return "";
+            return null;
         }
 
         public String obtenerCampo()
@@ -72,6 +72,10 @@ namespace FrbaCommerce.Componentes_Comunes
         /// Delega la funcionalidad en la implementacion
         /// </summary>
         public virtual void colocarValor(object texto)
+        {
+        }
+
+        public virtual void agregarEventoKeyPress(System.Windows.Forms.KeyPressEventHandler evento)
         {
         }
 

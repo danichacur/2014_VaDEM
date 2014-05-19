@@ -70,7 +70,7 @@ namespace FrbaCommerce.Formularios.ABM_Rol
             {
                 List<Filtro> campos = obtenerCamposEnPantalla();
                 rol.Id = Convert.ToInt32(campos[0].obtenerValor());
-                rol.Descripcion = campos[1].obtenerValor();
+                rol.Descripcion = campos[1].obtenerValor().ToString(); ;
                 rol.Habilitado = (campos[2].obtenerValor() == "1" ? true : false);
                 rol.modificar();
 
@@ -99,9 +99,9 @@ namespace FrbaCommerce.Formularios.ABM_Rol
                 campos[1].Enabled = true;
                 campos[2].Enabled = true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -118,11 +118,13 @@ namespace FrbaCommerce.Formularios.ABM_Rol
                     campos[0].colocarValor(rol.Id);
                     campos[1].colocarValor(rol.Descripcion);
                     campos[2].colocarValor((rol.Habilitado ? 1 : 0));
+                    campos[3].colocarValor(rol.obtenerFuncionalidadesComoString());
+
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 

@@ -15,7 +15,7 @@ namespace FrbaCommerce.Datos
 
         private String mConnectionString;
         private SqlConnection mSqlCnn;
-        private SqlTransaction mSqlTran;
+        //private SqlTransaction mSqlTran;
 
         private static AccesoDatos _instance;
         public static AccesoDatos Instance
@@ -43,9 +43,9 @@ namespace FrbaCommerce.Datos
                 mConnectionString = cstr;
                 mSqlCnn = new SqlConnection(mConnectionString);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
 
 
@@ -84,9 +84,9 @@ namespace FrbaCommerce.Datos
 
                 return sqlTbl;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
             finally
             {

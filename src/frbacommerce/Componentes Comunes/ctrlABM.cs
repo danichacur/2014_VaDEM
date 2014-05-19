@@ -127,9 +127,9 @@ namespace FrbaCommerce.Componentes_Comunes
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
 
         }
@@ -152,9 +152,9 @@ namespace FrbaCommerce.Componentes_Comunes
 
                 return dgvDatos;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
 
         }
@@ -171,9 +171,9 @@ namespace FrbaCommerce.Componentes_Comunes
                 dgvDatos.DataSource = null;
                 dgvDatos.DataSource = listDatos;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
 
         }
@@ -208,11 +208,10 @@ namespace FrbaCommerce.Componentes_Comunes
                 clausulaWhere = clausulaWhere.Substring(0, clausulaWhere.Length - 5);
                 return aplicaWhere ? clausulaWhere : "";
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
-
         }
 
         /// <summary>
@@ -227,9 +226,9 @@ namespace FrbaCommerce.Componentes_Comunes
                 String clausulaWhere = armarClausuraWhere();
                 ((ABM)this.ParentForm).aplicarFiltro(clausulaWhere);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 

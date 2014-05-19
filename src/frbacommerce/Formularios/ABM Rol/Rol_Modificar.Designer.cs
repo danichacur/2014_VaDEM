@@ -34,7 +34,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(291, 96);
+            this.ClientSize = new System.Drawing.Size(352, 96);
             this.Name = "Rol_Modificar";
             this.Text = "Rol_Modificar";
             this.Load += new System.EventHandler(this.Rol_Modificar_Load);

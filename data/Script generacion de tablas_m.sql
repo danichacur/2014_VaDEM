@@ -157,7 +157,7 @@ GO
 CREATE TABLE [vadem].[usuario](
 	[IdUsuario] [int] NOT NULL IDENTITY(1,1),
 	[Username] [varchar](50) NOT NULL,
-	[Password] [nchar](10) NOT NULL,
+	[Password] [nvarchar](255) NOT NULL,
 	[IdRol] [int] NOT NULL,
 	[IntentosFallidos] [int] NOT NULL,
 	[Bloqueado] [bit] NOT NULL,

@@ -30,21 +30,23 @@
         {
             this.dgv = new System.Windows.Forms.DataGridView();
             this.check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.FuncionalidadDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblFiltro = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
             // 
             // dgv
             // 
+            this.dgv.AllowUserToAddRows = false;
+            this.dgv.AllowUserToDeleteRows = false;
+            this.dgv.AllowUserToResizeRows = false;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.check,
-            this.FuncionalidadDesc});
-            this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv.Location = new System.Drawing.Point(0, 0);
+            this.check});
+            this.dgv.Dock = System.Windows.Forms.DockStyle.Right;
+            this.dgv.Location = new System.Drawing.Point(74, 0);
             this.dgv.Name = "dgv";
-            this.dgv.Size = new System.Drawing.Size(229, 58);
-            this.dgv.TabIndex = 0;
+            this.dgv.Size = new System.Drawing.Size(218, 142);
+            this.dgv.TabIndex = 2;
             // 
             // check
             // 
@@ -53,19 +55,22 @@
             this.check.Name = "check";
             this.check.Width = 30;
             // 
-            // FuncionalidadDesc
+            // lblFiltro
             // 
-            this.FuncionalidadDesc.Frozen = true;
-            this.FuncionalidadDesc.HeaderText = "Funcionalidad";
-            this.FuncionalidadDesc.Name = "FuncionalidadDesc";
+            this.lblFiltro.Location = new System.Drawing.Point(3, 0);
+            this.lblFiltro.Name = "lblFiltro";
+            this.lblFiltro.Size = new System.Drawing.Size(75, 18);
+            this.lblFiltro.TabIndex = 1;
+            this.lblFiltro.Text = "label1";
             // 
-            // dgvCheck
+            // FiltroDgvCheck
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dgv);
-            this.Name = "dgvCheck";
-            this.Size = new System.Drawing.Size(229, 58);
+            this.Controls.Add(this.lblFiltro);
+            this.Name = "FiltroDgvCheck";
+            this.Size = new System.Drawing.Size(292, 142);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.ResumeLayout(false);
 
@@ -74,7 +79,7 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgv;
+        private System.Windows.Forms.Label lblFiltro;
         private System.Windows.Forms.DataGridViewCheckBoxColumn check;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FuncionalidadDesc;
     }
 }

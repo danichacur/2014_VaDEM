@@ -15,32 +15,88 @@ namespace FrbaCommerce.Datos
         /// </summary>
         /// <param name="script"></param>
         /// <returns></returns>
-        public static List<Rol> obtenerRoles(String script)
+        public static List<Rol> obtenerRoles(String clausulaWhere)
         {
             Rol rol;
             List<Rol> roles;
-            DataTable tbl;
+            DataTable tblRoles, tblFuncionalidades;
+            List<Funcionalidad> listaFuncionalidades;
             try
             {
+
+                String script = "SELECT * FROM vadem.rol ";
+                script += clausulaWhere;
+
                 roles = new List<Rol>();
                 
 
-                tbl = AccesoDatos.Instance.EjecutarScript(script);
+                tblRoles = AccesoDatos.Instance.EjecutarScript(script);
 
-                foreach (DataRow row in tbl.Rows) {
+                foreach (DataRow datosRol in tblRoles.Rows) {
+
+                    script = "SELECT * FROM vadem.funcionalidad F LEFT JOIN vadem.rolPorFuncionalidad RF ON ";
+                    script += "RF.IdFuncion = F.IdFuncion ";
+                    script += "WHERE IdRol = " + datosRol["IdRol"];
+                    tblFuncionalidades = AccesoDatos.Instance.EjecutarScript(script);
+                    listaFuncionalidades = new List<Funcionalidad>();
+                    foreach (DataRow datosFuncionalidad in tblFuncionalidades.Rows)
+                    {
+                        listaFuncionalidades.Add(new Funcionalidad(Convert.ToInt16(datosFuncionalidad["IdFuncion"]), 
+                            (String)datosFuncionalidad["Descripcion"]));
+                    }
+
+                    
                      rol = new Rol(  
-                                    Convert.ToInt32(row["IdRol"]),
-                                    (String)row["Descripcion"],
-                                    Convert.ToInt32(row["Habilitado"]) == 1 ? true : false
+                                    Convert.ToInt32(datosRol["IdRol"]),
+                                    (String)datosRol["Descripcion"],
+                                    Convert.ToInt32(datosRol["Habilitado"]) == 1 ? true : false,
+                                    listaFuncionalidades
                                   );
                      roles.Add(rol);
                 }
 
                 return roles;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// obtiene todos los roles habilitados 
+        /// </summary>
+        /// <param name="script"></param>
+        /// <returns></returns>
+        public static List<Rol> obtenerRolesHabilitados()
+        {
+            String script;
+            Rol rol;
+            List<Rol> roles;
+            DataTable tbl;
+            try
+            {
+                roles = new List<Rol>();
+
+                script = "SELECT * FROM vadem.rol WHERE Habilitado = 1";
+
+                tbl = AccesoDatos.Instance.EjecutarScript(script);
+
+                foreach (DataRow row in tbl.Rows)
+                {
+                    rol = new Rol(
+                                   Convert.ToInt32(row["IdRol"]),
+                                   (String)row["Descripcion"],
+                                   Convert.ToInt32(row["Habilitado"]) == 1 ? true : false
+                                 );
+                    roles.Add(rol);
+                }
+
+                return roles;
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
 
@@ -54,9 +110,9 @@ namespace FrbaCommerce.Datos
             {
                 AccesoDatos.Instance.EjecutarScript(script);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
     }

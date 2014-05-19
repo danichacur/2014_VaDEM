@@ -6,179 +6,224 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using FrbaCommerce.Componentes_Comunes;
+using FrbaCommerce.Entidades;
+using FrbaCommerce.Datos;
 
 
 namespace FrbaCommerce
 {
     public partial class Menu : Form
     {
+        #region VariablesDeClase
 
-        Form abmRol, abmRubro, abmCliente, abmPublicacion, abmFacturacion, formCompras, formHistorial, formCalificar, formResponder, formEstadisticas;
+        Point posicionBoton = new Point(0, 0);
+
+        #endregion
+
+        #region Eventos
 
         public Menu()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Evento load del formulario.
+        /// Obtengo las funcionalidades del usuario Loggeado, y en base a estas creo los botones y redefino el tamaño
+        /// de la pantalla.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Menu_Load(object sender, EventArgs e)
         {
+            List<Funcionalidad> funcionalidades;
             try
             {
-                if (abmRol == null)
-                {
-                    abmRol = new ABM_Rol.Rol_Listar();
-                }
-                abmRol.ShowDialog();
-            }
-            catch (Exception ex) {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (abmRubro == null)
-                {
-                    abmRubro = new Abm_Rubro.Abm_Rubro();
-                }
-                abmRubro.ShowDialog();
-            }
-            catch (Exception ex){
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void btnClientes_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (abmCliente == null)
-                {
-                    abmCliente = new Abm_Cliente.ABM_Cliente();
-                }
-                abmCliente.ShowDialog();
+                funcionalidades = obtenerFuncionalidadesPorUsuarioLogueado();
+                generarBotonesPorFuncionalidades(funcionalidades);
+                redefinirTamanioPantalla(funcionalidades.Count());
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                Metodos_Comunes.MostrarMensajeError(ex);
+            }
+            finally
+            {
+                funcionalidades = null;
             }
         }
 
-        private void btn_Publicacion_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Evento de los botones que redirijen a los respectivos AMB. El AMB correspondiente se encuentra en la variable
+        /// tag del boton.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnRedirigir_click(object sender, EventArgs e)
         {
             try
             {
-                if (abmPublicacion == null)
-                {
-                    abmPublicacion = new Generar_Publicacion.Listado();
-                }
-                abmPublicacion.ShowDialog();
+                ABM abm = (ABM)((Button)sender).Tag;
+                abm.ShowDialog();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                Metodos_Comunes.MostrarMensajeError(ex);
             }
         }
 
-        private void btnEstadisticas_Click(object sender, EventArgs e)
+        #endregion
+
+        #region MetodosGenerales
+
+        /// <summary>
+        /// En base a la lista de funcionalidades por el Rol del usuario loggeado, se crean dinámicamente los botones
+        /// para acceder a cada una de esas funcionalidades. Se guarda en el tag de cada boton el objeto AMB que le corresponde
+        /// </summary>
+        /// <param name="funcionalidades"></param>
+        private void generarBotonesPorFuncionalidades(List<Funcionalidad> funcionalidades)
+        {
+            Button boton;
+            try
+            {
+                foreach (Funcionalidad funcionalidad in funcionalidades)
+                {
+
+                    ABM pantalla = agregarFuncionalidadAListaDeABMs(funcionalidad);
+
+                    if (posicionBoton == new Point(0, 0))
+                    {
+                        posicionBoton = new Point(20, 60);
+                    }
+                    else
+                    {
+                        posicionBoton = new Point(posicionBoton.X, posicionBoton.Y + 30);
+                    }
+
+
+                    boton = new Button();
+                    boton.Size = new System.Drawing.Size(300, boton.Size.Height);
+                    boton.Text = funcionalidad.Descripcion;
+                    boton.Location = posicionBoton;
+                    boton.Tag = pantalla;
+                    boton.Click += btnRedirigir_click;
+                    this.Controls.Add(boton);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// De acuerdo a la funcionalidad parámetro (que dependia del Rol) creo una instancia del AMB correspondiente y lo
+        /// retorno para que sea vinculada al click de cada boton.
+        /// </summary>
+        /// <param name="func"></param>
+        /// <returns></returns>
+        private ABM agregarFuncionalidadAListaDeABMs(Funcionalidad func)
+        {
+            ABM pantalla = new ABM();
+            try
+            {
+                switch (func.Descripcion)
+                {
+                    case "AMB_ROLES":
+                        pantalla = new ABM_Rol.Rol_Listar();
+                        break;
+                    //case "REGISTRO_USUARIO":
+                    //    pantalla = new ;
+                    //    break;
+                    case "ABM_CLIENTE":
+                        pantalla = new Abm_Cliente.ABM_Cliente();
+                        break;
+                    //case "AMB_EMPRESA":
+                    //    listaABMs.Add(new ABM_Rol.Rol_Listar());
+                    //    break;
+                    case "AMB_RUBRO":
+                        pantalla = new Abm_Rubro.Abm_Rubro();
+                        break;
+
+                    //case "AMB_VISIBILIDAD":
+                    //    pantalla = new ;
+                    //    break;
+                    case "GENERA_PUBLICACION":
+                        pantalla = new Generar_Publicacion.Listado();
+                        break;
+                    //case "EDITA_PUBLICACION":
+                    //    pantalla = new ;
+                    //    break;
+                    //case "GESTIONA_PREGUNTAS":
+                    //    pantalla = new ;
+                    //    break;
+                    //case "COMPRA_OFERTA":
+                    //    pantalla = new ;
+                    //    break;
+                    //case "HISTORIA_CLIENTE":
+                    //    pantalla = new ;
+                    //    break;
+                    //case "CALIFICAR":
+                    //    pantalla = new ;
+                    //    break;
+                    //case "FACTURAR":
+                    //    pantalla = new ;
+                    //    break;
+                    //case "LISTADO_ESTADISTICO":
+                    //    pantalla = new ;
+                    //    break;
+                    default:
+                        //Metodos_Comunes.MostrarMensajeError("Existe una funcionalidad (" + func.Descripcion + ") en la base de datos que no está definida en el código");
+                        break;
+                }
+
+                return pantalla;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        #endregion
+
+        #region MetodosAuxiliares
+
+        /// <summary>
+        /// Obtiene y devuelve la lista de funcionalidades por el rol del usuario loggeado
+        /// </summary>
+        /// <returns></returns>
+        private List<Funcionalidad> obtenerFuncionalidadesPorUsuarioLogueado()
         {
             try
             {
-                if (formEstadisticas == null)
-                {
-                    formEstadisticas = new Listado_Estadistico.Form1();
-                }
-                formEstadisticas.ShowDialog();
+                return FuncionalidadDAO.obtenerFuncionalidadesPorRol(Session.IdRol);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show(ex.Message);
+                throw;
             }
         }
 
-        private void btnFacturar_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Cambia el tamaño de la pantalla de acuerdo a la cantidad de botones que contiene.
+        /// </summary>
+        /// <param name="cantidadBotones"></param>
+        private void redefinirTamanioPantalla(int cantidadBotones)
         {
             try
             {
-                if (abmFacturacion == null)
-                {
-                    abmFacturacion = new Facturar_Publicaciones.Form1();
-                }
-                abmFacturacion.ShowDialog();
+                int alto = 98 + 30 * cantidadBotones;
+                this.Size = new System.Drawing.Size(this.Size.Width, alto);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show(ex.Message);
+                throw;
             }
         }
 
 
-        private void btnResponder_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (formResponder == null)
-                {
-                    formResponder = new Gestion_de_Preguntas.Form1();
-                }
-                formResponder.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void btnCalificar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (formCalificar == null)
-                {
-                    formCalificar = new Calificar_Vendedor.Form1();
-                }
-                formCalificar.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void btnHistorial_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (formHistorial == null)
-                {
-                    formHistorial = new Historial_Cliente.Form1();
-                }
-                formHistorial.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void btnComprar_Ofertar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (formCompras == null)
-                {
-                    formCompras = new Comprar_Ofertar.Form1();
-                }
-                formCompras.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        
+        #endregion        
     }
 }

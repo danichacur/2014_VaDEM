@@ -16,7 +16,7 @@ namespace FrbaCommerce.Componentes_Comunes
             InitializeComponent();
         }
 
-        public override String obtenerValor()
+        public override Object obtenerValor()
         {
             return "";
         }

@@ -159,7 +159,7 @@ namespace FrbaCommerce.ABM_Rol
                 List<Filtro> filtrosI = new List<Filtro>();
                 filtrosI.Add(new FiltroTextBox("Rol", "IdRol", "=", ""));
                 filtrosI.Add(new FiltroTextBox("Descripcion", "Descripcion", "LIKE", ""));
-                filtrosI.Add(new FiltroComboBox("Habilitado", "Habilitado", "=", "-1", Metodos_Comunes.obtenerTablaComboHabilitado(), "id", "descripcion"));
+                filtrosI.Add(new FiltroComboBox("Habilitado", "Habilitado", "=", "-1", Metodos_Comunes.obtenerTablaComboHabilitadoConVacio(), "id", "descripcion"));
 
                 /*  List<Control> filtrosD = new List<Control>();
                   filtrosD.Add(new FiltroIgual());
@@ -167,9 +167,9 @@ namespace FrbaCommerce.ABM_Rol
                 */
                 this.ctrlABM1.cargarFiltros(filtrosI, null);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -183,9 +183,9 @@ namespace FrbaCommerce.ABM_Rol
                 aplicarFiltro("");
                 dgv.CellClick += new DataGridViewCellEventHandler(dgv_CellClick);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
 
         }
@@ -198,19 +198,16 @@ namespace FrbaCommerce.ABM_Rol
         {
             try
             {
-                String script = "SELECT * FROM vadem.rol ";
-                script += clausulaWhere;
-
-                Object listaRoles = (Object)RolDAO.obtenerRoles(script);
+                Object listaRoles = (Object)RolDAO.obtenerRoles(clausulaWhere);
 
                 DataGridViewColumn[] columnas = obtenerDisenoColumnasGrilla();
 
                 dgv = this.ctrlABM1.cargarGrilla(listaRoles, columnas);
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
         #endregion
@@ -257,13 +254,12 @@ namespace FrbaCommerce.ABM_Rol
 
                 return columnas;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
         #endregion
-
     }
 }

@@ -68,7 +68,9 @@ GO
 
 /************************/ SELECT 'USUARIOS TIPO CLIENTE' /************************/
 INSERT INTO vadem.usuario 
-	SELECT  CONVERT(VARCHAR,cli_dni) + '-' + Cli_Apeliido, 123,2,0,0,1,0
+	SELECT  CONVERT(VARCHAR,cli_dni) + '-' + Cli_Apeliido, 
+	'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3',
+	2,0,0,1,0
 	FROM 	(SELECT DISTINCT TOP 100 Cli_Dni, Cli_Apeliido
 		FROM         gd_esquema.Maestra
 		WHERE     (Cli_Dni IS NOT NULL)

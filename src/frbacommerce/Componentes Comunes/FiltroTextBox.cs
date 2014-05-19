@@ -17,24 +17,38 @@ namespace FrbaCommerce.Componentes_Comunes
         #region Eventos
 
         /// <summary>
+        /// Constructor vacio de la clase
+        /// </summary>
+        public FiltroTextBox()
+        {
+            
+        }
+
+        /// <summary>
         /// Constructor de la clase
         /// </summary>
         /// <param name="textolbl"></param>
         /// <param name="pCampo"></param>
         /// <param name="pModoComparacion"></param>
         /// <param name="pValorNulo"></param>
-        /// <param name="itemsCombo"></param>
-        /// <param name="value"></param>
-        /// <param name="display"></param>
         public FiltroTextBox(String textolbl, String pCampo, String pModoComparacion, String pValorNulo)
         {
             InitializeComponent();
 
+            this.Name = pCampo;
             campo = pCampo;
             modoComparacion = pModoComparacion;
             valorNulo = pValorNulo;
 
             setlblFiltroBase(this.lblFiltro, textolbl);
+        }
+
+        /// <summary>
+        /// devuelve el control txtFiltro
+        /// </summary>
+        /// <returns></returns>
+        public TextBox getTxtFiltro(){
+            return this.txtFiltro;
         }
 
         #endregion
@@ -46,15 +60,15 @@ namespace FrbaCommerce.Componentes_Comunes
         /// Obtiene el valor seleccionado del combobox (El valor, no el texto)
         /// </summary>
         /// <returns></returns>
-        public override String obtenerValor()
+        public override Object obtenerValor()
         {
             try
             {
                 return txtFiltro.Text;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -68,9 +82,9 @@ namespace FrbaCommerce.Componentes_Comunes
             {
                 txtFiltro.Text = "";
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -86,9 +100,9 @@ namespace FrbaCommerce.Componentes_Comunes
             {
                 txtFiltro.Text = Convert.ToString(texto);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 

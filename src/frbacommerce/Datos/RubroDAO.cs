@@ -38,9 +38,9 @@ namespace FrbaCommerce.Datos
 
                 return rubros;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
     }

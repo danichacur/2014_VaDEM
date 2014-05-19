@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Data;
+using System.Security.Cryptography;
 
 namespace FrbaCommerce.Componentes_Comunes
 {
@@ -29,6 +30,24 @@ namespace FrbaCommerce.Componentes_Comunes
         }
 
 
+        /// <summary>
+        /// Recibe un texto y encapsulo el comportamiento para que me muestre el mensaje de error de la siguiente forma
+        /// </summary>
+        /// <param name="ex"></param>
+        public static void MostrarMensajeError(String mensaje)
+        {
+            MessageBox.Show(mensaje, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        /// <summary>
+        /// Recibe un texto y encapsulo el comportamiento para que me muestre el mensaje de error de la siguiente forma
+        /// </summary>
+        /// <param name="mensaje"></param>
+        public static void MostrarMensaje(String mensaje)
+        {
+            MessageBox.Show(mensaje, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
 
         /// <summary>
         /// Armo y devuelvo manualmente el contenido del Combo Habilitado ya que no lo obtengo de la BD
@@ -53,10 +72,6 @@ namespace FrbaCommerce.Componentes_Comunes
                 tbl.Columns.Add(column);
 
                 row = tbl.NewRow();
-                row["id"] = -1; row["descripcion"] = "";
-                tbl.Rows.Add(row);
-
-                row = tbl.NewRow();
                 row["id"] = 0; row["descripcion"] = "Deshabilitado";
                 tbl.Rows.Add(row);
 
@@ -66,11 +81,74 @@ namespace FrbaCommerce.Componentes_Comunes
 
                 return tbl;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
 
+        }
+
+        /// <summary>
+        /// Armo y devuelvo manualmente el contenido del Combo Habilitado ya que no lo obtengo de la BD con
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable obtenerTablaComboHabilitadoConVacio()
+        {
+            DataTable tbl;
+            try
+            {
+                tbl = obtenerTablaComboHabilitado();
+
+                InsertarVacioEnPrimerRegistro(ref tbl);
+
+                return tbl;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// recibo una tabla y la modifico insertandole un registro vacio
+        /// </summary>
+        /// <returns></returns>
+        public static void InsertarVacioEnPrimerRegistro(ref DataTable tbl)
+        {
+            DataRow row;
+            try
+            {
+                tbl = obtenerTablaComboHabilitado();
+
+                row = tbl.NewRow();
+                row["id"] = -1; row["descripcion"] = "";
+                tbl.Rows.InsertAt(row, 0);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Devuelve el string parámetro encriptado en sha 256
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static String sha256_hash(String value)
+        {
+            StringBuilder Sb = new StringBuilder();
+
+            using (SHA256 hash = SHA256Managed.Create())
+            {
+                Encoding enc = Encoding.UTF8;
+                Byte[] result = hash.ComputeHash(enc.GetBytes(value));
+
+                foreach (Byte b in result)
+                    Sb.Append(b.ToString("x2"));
+            }
+
+            return Sb.ToString();
         }
     }
 }

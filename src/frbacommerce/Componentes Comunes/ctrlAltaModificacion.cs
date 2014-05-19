@@ -103,9 +103,9 @@ namespace FrbaCommerce.Componentes_Comunes
                     ((Form)this.ParentForm).Height = ((Form)this.ParentForm).Height + 30 * contador;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 

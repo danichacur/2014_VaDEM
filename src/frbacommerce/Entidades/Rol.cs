@@ -12,6 +12,7 @@ namespace FrbaCommerce.Entidades
         public int Id { get; set; }
         public string Descripcion { get; set; }
         public bool Habilitado { get; set; }
+        public List<Funcionalidad> Funcionalidades { get; set; }
 
         public Rol()
         {
@@ -25,6 +26,14 @@ namespace FrbaCommerce.Entidades
             Id = id;
             Descripcion = descripcion;
             Habilitado = habilitado;
+        }
+
+        public Rol(int id, string descripcion, bool habilitado, List<Funcionalidad> funcionalidades)
+        {
+            Id = id;
+            Descripcion = descripcion;
+            Habilitado = habilitado;
+            Funcionalidades = funcionalidades;
         }
 
         /// <summary>
@@ -44,9 +53,9 @@ namespace FrbaCommerce.Entidades
 
                 RolDAO.ejecutar(query);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
 
         }
@@ -66,9 +75,9 @@ namespace FrbaCommerce.Entidades
 
                 RolDAO.ejecutar(query);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -79,17 +88,44 @@ namespace FrbaCommerce.Entidades
         {
             try
             {
+                //Si se da de baja un rol se deben borrar las referencias.
+                //TODO
+
                 //Modificar esto, la baja tiene que ser lógica
                 String query = "DELETE FROM vadem.rol ";
                 query += " WHERE IdRol = " + Id;
 
                 RolDAO.ejecutar(query);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
 
+        }
+
+        /// <summary>
+        /// Retorna la lista de ids de funcionalidades separadas por coma en un String
+        /// </summary>
+        /// <returns></returns>
+        public String obtenerFuncionalidadesComoString()
+        {
+            String lista;
+            try
+            {
+                lista = "";
+
+                foreach (Funcionalidad func in this.Funcionalidades)
+                {
+                    lista += func.Id.ToString() + ",";
+                }
+                lista = lista.Substring(0, lista.Length - 1);
+                return lista;
+            }
+            catch (Exception)
+            {   
+                throw;
+            }
         }
     }
 }

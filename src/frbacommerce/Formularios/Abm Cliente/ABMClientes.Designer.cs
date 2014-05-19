@@ -36,7 +36,7 @@
             // 
             this.ctrlABM1.Location = new System.Drawing.Point(0, 50);
             this.ctrlABM1.Name = "ctrlABM1";
-            this.ctrlABM1.Size = new System.Drawing.Size(407, 371);
+            this.ctrlABM1.Size = new System.Drawing.Size(818, 371);
             this.ctrlABM1.TabIndex = 0;
             // 
             // label1
@@ -49,14 +49,14 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "AMB DE CLIENTES";
             // 
-            // ABM_Rol
+            // ABM_Cliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(399, 432);
+            this.ClientSize = new System.Drawing.Size(831, 432);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ctrlABM1);
-            this.Name = "ABM_Rol";
+            this.Name = "ABM_Cliente";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.ABM_Cliente_Load);
             this.ResumeLayout(false);

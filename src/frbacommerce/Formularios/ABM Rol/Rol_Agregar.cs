@@ -41,6 +41,7 @@ namespace FrbaCommerce.Formularios.ABM_Rol
             {
                 rol = new Rol();
                 generarCampos();
+                redefinirTamanioVentana();
             }
             catch (Exception ex)
             {
@@ -61,8 +62,8 @@ namespace FrbaCommerce.Formularios.ABM_Rol
             {
                 List<Filtro> campos = obtenerCamposEnPantalla();
                 rol.Id = Convert.ToInt32(campos[0].obtenerValor());
-                rol.Descripcion = campos[1].obtenerValor();
-                rol.Habilitado = (campos[2].obtenerValor() == "1" ? true : false);
+                rol.Descripcion = campos[1].obtenerValor().ToString();
+                rol.Habilitado = (campos[2].obtenerValor().ToString() == "1" ? true : false);
                 rol.insertar();
 
                 DialogResult = System.Windows.Forms.DialogResult.OK;
@@ -116,13 +117,14 @@ namespace FrbaCommerce.Formularios.ABM_Rol
                 List<Filtro> filtros = new List<Filtro>();
                 filtros.Add(new FiltroTextBox("Rol", "IdRol", "=", ""));
                 filtros.Add(new FiltroTextBox("Descripcion", "Descripcion", "LIKE", ""));
-                filtros.Add(new FiltroDgvCheck(obtenerListaFuncionalidades()));
+                filtros.Add(new FiltroComboBox("Habilitado", "Habilitado", "=", "-1", Metodos_Comunes.obtenerTablaComboHabilitado(), "id", "descripcion"));
+                filtros.Add(new FiltroDgvCheck("Funcionalidades","funcionalidades","",obtenerListaFuncionalidades(),obtenerFormatoColumnas()));
 
                 this.ctrlAltaModificacion1.cargarFiltros(filtros);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -136,9 +138,22 @@ namespace FrbaCommerce.Formularios.ABM_Rol
             {
                 return ctrlAltaModificacion1.obtenerCamposEnPantalla();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
+            }
+        }
+
+
+        private void redefinirTamanioVentana() 
+        {
+            try
+            {
+                this.Size = new System.Drawing.Size(this.Size.Width, 225 + this.Controls.Find("funcionalidades",true)[0].Size.Height);
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
 
@@ -150,17 +165,55 @@ namespace FrbaCommerce.Formularios.ABM_Rol
         /// Obtiene una lista de Funcionalidades desde la base de datos.
         /// </summary>
         /// <returns></returns>
-        private List<Funcionalidad> obtenerListaFuncionalidades()
+        private List<Object> obtenerListaFuncionalidades()
         {
+            List<Object> lista;
             try
             {
-                return FuncionalidadDAO.obtenerFuncionalidades();
+                lista = new List<Object>();
+                foreach (Funcionalidad func in FuncionalidadDAO.obtenerFuncionalidades())
+                {
+                    lista.Add((Object)func);
+                }
+                return lista;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
+
+
+        private DataGridViewColumn[] obtenerFormatoColumnas()
+        {
+            DataGridViewColumn[] columnas;
+            try
+            {
+                columnas = new DataGridViewColumn[2];
+
+                DataGridViewTextBoxColumn colFuncionalidadId = new DataGridViewTextBoxColumn();
+                colFuncionalidadId.DataPropertyName = "Id";
+                colFuncionalidadId.Name = "Id";
+                colFuncionalidadId.HeaderText = "ID";
+                colFuncionalidadId.Visible = false;
+                columnas[0] = colFuncionalidadId;
+
+                DataGridViewTextBoxColumn colFuncionalidadDescripcion = new DataGridViewTextBoxColumn();
+                colFuncionalidadDescripcion.DataPropertyName = "Descripcion"; 
+                colFuncionalidadDescripcion.Name = "Descripcion";
+                colFuncionalidadDescripcion.HeaderText = "Funcionalidad";
+                colFuncionalidadDescripcion.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                colFuncionalidadDescripcion.ReadOnly = true;
+                columnas[1] = colFuncionalidadDescripcion;
+
+                return columnas;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
 
         #endregion
     }
