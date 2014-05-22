@@ -52,9 +52,22 @@ namespace FrbaCommerce.Entidades
                 query += ")";
 
                 RolDAO.ejecutar(query);
+
+                foreach (Funcionalidad func in Funcionalidades)
+                {
+                    query = "INSERT INTO vadem.rolPorFuncionalidad VALUES(";
+                    query += Id;
+                    query += ",";
+                    query += func.Id;
+                    query += ")";
+
+                    RolDAO.ejecutar(query);
+                }
+                
             }
             catch (Exception)
             {
+                eliminar();
                 throw;
             }
 
@@ -65,12 +78,47 @@ namespace FrbaCommerce.Entidades
         /// </summary>
         public void modificar()
         {
+            String query;
             try
             {
-                String query = "UPDATE vadem.rol SET ";
+                query = "UPDATE vadem.rol SET ";
                 query += "Descripcion ='" + Descripcion + "'";
                 query += ",";
                 query += "Habilitado = " + (Habilitado ? 1 : 0);
+                query += " WHERE IdRol = " + Id;
+
+                RolDAO.ejecutar(query);
+
+                query = "DELETE vadem.rolPorFuncionalidad WHERE IdRol = " + Id;
+                RolDAO.ejecutar(query);
+
+                foreach (Funcionalidad func in Funcionalidades)
+                {
+                    query = "INSERT INTO vadem.rolPorFuncionalidad VALUES(";
+                    query += Id;
+                    query += ",";
+                    query += func.Id;
+                    query += ")";
+
+                    RolDAO.ejecutar(query);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Genera la eliminacion del rol de la base de datos. La baja es física
+        /// Antes se eliminan los registros de la tabla rolPorFuncionalidad que tienen referencia a este Id
+        /// </summary>
+        public void eliminar()
+        {
+            String query;
+            try
+            {
+                query = "DELETE FROM vadem.rol ";
                 query += " WHERE IdRol = " + Id;
 
                 RolDAO.ejecutar(query);
@@ -81,18 +129,13 @@ namespace FrbaCommerce.Entidades
             }
         }
 
-        /// <summary>
-        /// Genera la baja del rol de la base de datos. La baja es lógica.
-        /// </summary>
-        public void eliminar()
+        public void bajaLogica()
         {
+            String query;
             try
             {
-                //Si se da de baja un rol se deben borrar las referencias.
-                //TODO
-
-                //Modificar esto, la baja tiene que ser lógica
-                String query = "DELETE FROM vadem.rol ";
+                query = "UPDATE vadem.rol ";
+                query += " SET Habilitado = 0 ";
                 query += " WHERE IdRol = " + Id;
 
                 RolDAO.ejecutar(query);
@@ -101,7 +144,6 @@ namespace FrbaCommerce.Entidades
             {
                 throw;
             }
-
         }
 
         /// <summary>
@@ -121,6 +163,31 @@ namespace FrbaCommerce.Entidades
                 }
                 lista = lista.Substring(0, lista.Length - 1);
                 return lista;
+            }
+            catch (Exception)
+            {   
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Recibo una lista de ids de funcionalidades y los inserto en la lista de funcionalidades, pero sin descripcion
+        /// </summary>
+        /// <param name="idsFuncionalidad"></param>
+        public void AgregarFuncionalidades(String idsFuncionalidad)
+        {
+            //System.Windows.Forms.DataGridViewRow row;
+            //int idx;
+            Funcionalidad func;
+            try
+            {
+                Funcionalidades = new List<Funcionalidad>();
+                //Por cada id  que viene en el texto parámetro, activo el check correspondiente
+                foreach (String id in ((String)idsFuncionalidad).Split(new Char [] {','}))
+                {
+                    func = new Funcionalidad(Convert.ToInt16(id), "");
+                    Funcionalidades.Add(func);
+                }
             }
             catch (Exception)
             {   

@@ -1,0 +1,58 @@
+﻿namespace FrbaCommerce.Formularios.Abm_Cliente
+{
+    partial class Cliente_Agregar
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.ctrlAltaModificacion1 = new FrbaCommerce.Componentes_Comunes.ctrlAltaModificacion();
+            this.SuspendLayout();
+            // 
+            // ctrlAltaModificacion1
+            // 
+            this.ctrlAltaModificacion1.Location = new System.Drawing.Point(99, 13);
+            this.ctrlAltaModificacion1.Name = "ctrlAltaModificacion1";
+            this.ctrlAltaModificacion1.Size = new System.Drawing.Size(321, 111);
+            this.ctrlAltaModificacion1.TabIndex = 0;
+            // 
+            // Cliente_Agregar
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(606, 43);
+            this.Controls.Add(this.ctrlAltaModificacion1);
+            this.Name = "Cliente_Agregar";
+            this.Text = "Cliente_Agregar";
+            this.Load += new System.EventHandler(this.Cliente_Agregar_Load);
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private FrbaCommerce.Componentes_Comunes.ctrlAltaModificacion ctrlAltaModificacion1;
+    }
+}

@@ -112,7 +112,7 @@ namespace FrbaCommerce.ABM_Rol
             try
             {
                 Rol rol = (Rol)dgv.Rows[e.RowIndex].DataBoundItem;
-                rol.eliminar();
+                rol.bajaLogica();
                 ctrlABM1.buscar();
             }
             catch (Exception ex)
@@ -210,6 +210,7 @@ namespace FrbaCommerce.ABM_Rol
                 throw;
             }
         }
+
         #endregion
 
         #region MetodosAuxiliares

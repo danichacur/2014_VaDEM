@@ -97,6 +97,12 @@
     <Compile Include="Componentes Comunes\FiltroTextBoxPassword.Designer.cs">
       <DependentUpon>FiltroTextBoxPassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="Componentes Comunes\Form_Agregar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Componentes Comunes\Form_Agregar.Designer.cs">
+      <DependentUpon>Form_Agregar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Componentes Comunes\Metodos_Comunes.cs" />
     <Compile Include="Datos\ClienteDAO.cs" />
     <Compile Include="Datos\Datos.cs" />
@@ -107,23 +113,43 @@
     <Compile Include="Datos\RolDAO.cs" />
     <Compile Include="Datos\RubroDAO.cs" />
     <Compile Include="Datos\UsuarioDAO.cs" />
+    <Compile Include="Datos\VisibilidadDAO.cs" />
     <Compile Include="Entidades\Cliente.cs" />
     <Compile Include="Entidades\Empresa.cs" />
     <Compile Include="Entidades\Funcionalidad.cs" />
     <Compile Include="Entidades\Rubro.cs" />
     <Compile Include="Entidades\Rol.cs" />
     <Compile Include="Entidades\Usuario.cs" />
-    <Compile Include="Formularios\Abm Cliente\Form1.cs">
+    <Compile Include="Entidades\Visibilidad.cs" />
+    <Compile Include="Formularios\Abm Cliente\Cliente_Agregar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formularios\Abm Cliente\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Formularios\Abm Cliente\Cliente_Agregar.Designer.cs">
+      <DependentUpon>Cliente_Agregar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\Abm Empresa\Form1.cs">
+    <Compile Include="Formularios\Abm Cliente\Cliente_Modificar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formularios\Abm Empresa\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Formularios\Abm Cliente\Cliente_Modificar.Designer.cs">
+      <DependentUpon>Cliente_Modificar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Abm Empresa\Empresa_Agregar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Abm Empresa\Empresa_Agregar.Designer.cs">
+      <DependentUpon>Empresa_Agregar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Abm Empresa\Empresa_Listar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Abm Empresa\Empresa_Listar.Designer.cs">
+      <DependentUpon>Empresa_Listar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Abm Empresa\Empresa_Modificar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Abm Empresa\Empresa_Modificar.Designer.cs">
+      <DependentUpon>Empresa_Modificar.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\ABM Rol\Rol_Listar.cs">
       <SubType>Form</SubType>
@@ -131,11 +157,11 @@
     <Compile Include="Formularios\ABM Rol\Rol_Listar.Designer.cs">
       <DependentUpon>Rol_Listar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\Abm Cliente\ABMClientes.cs">
+    <Compile Include="Formularios\Abm Cliente\Cliente_Listar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formularios\Abm Cliente\ABMClientes.Designer.cs">
-      <DependentUpon>ABMClientes.cs</DependentUpon>
+    <Compile Include="Formularios\Abm Cliente\Cliente_Listar.Designer.cs">
+      <DependentUpon>Cliente_Listar.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\ABM Rol\Rol_Agregar.cs">
       <SubType>Form</SubType>
@@ -155,11 +181,23 @@
     <Compile Include="Formularios\Abm Rubro\AMBRubros.Designer.cs">
       <DependentUpon>AMBRubros.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\Abm Visibilidad\Form1.cs">
+    <Compile Include="Formularios\Abm Visibilidad\Visibilidad_Agregar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formularios\Abm Visibilidad\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Formularios\Abm Visibilidad\Visibilidad_Agregar.Designer.cs">
+      <DependentUpon>Visibilidad_Agregar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Abm Visibilidad\Visibilidad_Listar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Abm Visibilidad\Visibilidad_Listar.Designer.cs">
+      <DependentUpon>Visibilidad_Listar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Abm Visibilidad\Visibilidad_Modificar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Abm Visibilidad\Visibilidad_Modificar.Designer.cs">
+      <DependentUpon>Visibilidad_Modificar.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Calificar Vendedor\Form1.cs">
       <SubType>Form</SubType>
@@ -259,14 +297,35 @@
     <EmbeddedResource Include="Componentes Comunes\FiltroTextBox.resx">
       <DependentUpon>FiltroTextBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\Abm Cliente\ABMClientes.resx">
-      <DependentUpon>ABMClientes.cs</DependentUpon>
+    <EmbeddedResource Include="Componentes Comunes\Form_Agregar.resx">
+      <DependentUpon>Form_Agregar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Abm Cliente\Cliente_Agregar.resx">
+      <DependentUpon>Cliente_Agregar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Abm Cliente\Cliente_Listar.resx">
+      <DependentUpon>Cliente_Listar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Abm Empresa\Empresa_Agregar.resx">
+      <DependentUpon>Empresa_Agregar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Abm Empresa\Empresa_Listar.resx">
+      <DependentUpon>Empresa_Listar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\ABM Rol\Rol_Agregar.resx">
       <DependentUpon>Rol_Agregar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\ABM Rol\Rol_Modificar.resx">
       <DependentUpon>Rol_Modificar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Abm Visibilidad\Visibilidad_Agregar.resx">
+      <DependentUpon>Visibilidad_Agregar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Abm Visibilidad\Visibilidad_Listar.resx">
+      <DependentUpon>Visibilidad_Listar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Abm Visibilidad\Visibilidad_Modificar.resx">
+      <DependentUpon>Visibilidad_Modificar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Generar Publicacion\Listado.resx">
       <DependentUpon>Listado.cs</DependentUpon>

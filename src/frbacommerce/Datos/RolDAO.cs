@@ -63,6 +63,31 @@ namespace FrbaCommerce.Datos
             }
         }
 
+        public static Rol obtenerRol(int idRol)
+        {
+            String script;
+            DataTable tblRoles;
+            try
+            {
+                script = "SELECT * FROM vadem.rol WHERE IdRol = " + idRol;
+                tblRoles = AccesoDatos.Instance.EjecutarScript(script);
+
+                if (tblRoles.Rows.Count > 0)
+                    return new Rol(
+                                        Convert.ToInt32(tblRoles.Rows[0]["IdRol"]),
+                                        (String)tblRoles.Rows[0]["Descripcion"],
+                                        Convert.ToInt32(tblRoles.Rows[0]["Habilitado"]) == 1 ? true : false
+                                      );
+                else
+                    return null;
+
+            }
+            catch (Exception)
+            {   
+                throw;
+            }
+        }
+
         /// <summary>
         /// obtiene todos los roles habilitados 
         /// </summary>

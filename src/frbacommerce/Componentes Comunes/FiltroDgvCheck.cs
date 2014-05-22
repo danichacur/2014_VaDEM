@@ -57,13 +57,42 @@ namespace FrbaCommerce.Componentes_Comunes
                         }
                         idx++;
                     }
-
-                   
-
                 }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
-                
-                
+        /// <summary>
+        /// Obligatorio de Implementar
+        /// Obtiene el valor seleccionado del combobox (El valor, no el texto)
+        /// </summary>
+        /// <returns></returns>
+        public override Object obtenerValor()
+        {
+            DataGridViewRow row;
+            int idx;
+            String valor;
+            try
+            {
+                idx = 0;
+                valor = "";
+                while (idx <= dgv.RowCount - 1)
+                {
+                    row = dgv.Rows[idx];
+                    if (row.Cells["check"].Value != null)
+                    {
+                        if ((bool)row.Cells["check"].Value)
+                        {
+                            valor += row.Cells["id"].Value.ToString() + ",";
+                        }
+                    }
+                    idx++;
+                }
+                valor = valor.Substring(0, valor.Length - 1);
+                return valor;
             }
             catch (Exception)
             {

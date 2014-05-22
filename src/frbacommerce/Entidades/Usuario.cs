@@ -43,10 +43,23 @@ namespace FrbaCommerce.Entidades
             
         }
 
-        public Usuario insertar() {
+        public Usuario insertar()
+        {
             try
             {
                 return UsuarioDAO.insertar(this);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public Usuario modificar()
+        {
+            try
+            {
+                return UsuarioDAO.modificar(this);
             }
             catch (Exception)
             {
@@ -62,6 +75,64 @@ namespace FrbaCommerce.Entidades
             }
             catch (Exception)
             {
+                throw;
+            }
+        }
+
+        public void aumentarIntentosFallidos()
+        {
+            try
+            {
+                IntentosFallidos += 1;
+
+                if (excedeIntentos())
+                {
+                    bloquear();
+                }
+
+                modificar();
+            }
+            catch (Exception)
+            {   
+                throw;
+            }
+        }
+
+
+        public Boolean excedeIntentos() {
+            try
+            {
+                return IntentosFallidos >= 3;
+            }
+            catch (Exception)
+            {   
+                throw;
+            }
+        }
+
+        public void bloquear()
+        {
+            try
+            {
+                Bloqueado = true;
+            }
+            catch (Exception)
+            {   
+                throw;
+            }
+        }
+
+        public void loggeoSatisfactorio() 
+        {
+            try
+            {
+                IntentosFallidos = 0;
+                Bloqueado = false;
+
+                modificar();
+            }
+            catch (Exception)
+            {   
                 throw;
             }
         }

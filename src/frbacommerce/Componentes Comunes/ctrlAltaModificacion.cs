@@ -6,7 +6,6 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using FrbaCommerce.Formularios.ABM_Rol;
 
 namespace FrbaCommerce.Componentes_Comunes
 {
@@ -47,7 +46,7 @@ namespace FrbaCommerce.Componentes_Comunes
         {
             try
             {
-                ((Rol_Agregar)this.ParentForm).btnAceptar_Click(sender, e);
+                ((Form_Agregar)this.ParentForm).btnAceptar_Click(sender, e);
             }
             catch (Exception ex)
             {
@@ -64,7 +63,7 @@ namespace FrbaCommerce.Componentes_Comunes
         {
             try
             {
-                ((Rol_Agregar)this.ParentForm).btnCancelar_Click(sender, e);
+                ((Form_Agregar)this.ParentForm).btnCancelar_Click(sender, e);
             }
             catch (Exception ex)
             {

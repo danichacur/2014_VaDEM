@@ -34,6 +34,8 @@ namespace FrbaCommerce.Datos
             }
         }
 
+
+
         public static Empresa obtenerEmpresa(int IdUsuario)
         {
             String script;
@@ -88,6 +90,11 @@ namespace FrbaCommerce.Datos
             {
                 throw;
             }
+        }
+
+        internal static object obtenerEmpresas(string clausulaWhere)
+        {
+            throw new NotImplementedException();
         }
     }
 }

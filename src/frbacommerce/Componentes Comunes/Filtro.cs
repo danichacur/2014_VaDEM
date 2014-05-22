@@ -79,6 +79,23 @@ namespace FrbaCommerce.Componentes_Comunes
         {
         }
 
+        /// <summary>
+        /// <summary>
+        /// Retorna el String del Label
+        /// </summary>
+        /// <returns></returns>
+        public  String obtenerLabel()
+        {
+            try
+            {
+                return this.Name;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         #endregion
 
         #region MetodosAuxiliares

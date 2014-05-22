@@ -14,11 +14,6 @@ namespace FrbaCommerce.Registro_de_Usuario
 {
     public partial class registroUsuario : Form
     {
-        #region Enum
-        enum enumRoles {    Cliente = 1, 
-                            Empresa = 2};
-        #endregion
-
         #region VariablesDeClase
 
         Control registroCliente, registroEmpresa;
@@ -91,7 +86,24 @@ namespace FrbaCommerce.Registro_de_Usuario
                 }
             }
         }
-        
+
+        /// <summary>
+        /// Cierro la ventana sin hacer nada
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult = System.Windows.Forms.DialogResult.Abort;
+            }
+            catch (Exception ex)
+            {   
+                Metodos_Comunes.MostrarMensajeError(ex);
+            }
+        }
+
         /// <summary>
         /// Evento index changed del combo de roles
         /// si es Cliente o Empresa, muestro el control correspondiente, en caso contrario los oculto y ajusto el
@@ -103,13 +115,13 @@ namespace FrbaCommerce.Registro_de_Usuario
         {
             try
             {
-                if (cboRol.SelectedIndex == (int)enumRoles.Cliente)
+                if (cboRol.Text == "Cliente")
                 {
                     this.Size = new System.Drawing.Size(this.Size.Width, 540);
                     this.Controls.Remove(registroEmpresa);
                     this.Controls.Add(registroCliente);
                 }
-                else if (cboRol.SelectedIndex == (int)enumRoles.Empresa)
+                else if (cboRol.Text == "Empresa")
                 {
                     this.Size = new System.Drawing.Size(this.Size.Width, 510);
                     this.Controls.Remove(registroCliente);
@@ -332,7 +344,7 @@ namespace FrbaCommerce.Registro_de_Usuario
         {
             try
             {
-                return (cboRol.SelectedIndex == (int)enumRoles.Cliente);
+                return (cboRol.Text == "Cliente");
             }
             catch (Exception)
             {
@@ -348,7 +360,7 @@ namespace FrbaCommerce.Registro_de_Usuario
         {
             try
             {
-                return (cboRol.SelectedIndex == (int)enumRoles.Empresa);
+                return (cboRol.Text == "Empresa");
             }
             catch (Exception)
             {

@@ -15,13 +15,17 @@ namespace FrbaCommerce.Datos
         /// </summary>
         /// <param name="script"></param>
         /// <returns></returns>
-        public static List<Cliente> obtenerClientes(String script)
+        public static List<Cliente> obtenerClientes(String clausulaWhere)
         {
             Cliente cliente;
             List<Cliente> clientes;
             DataTable tbl;
             try
             {
+
+                String script = "SELECT * FROM vadem.cliente ";
+                script += clausulaWhere;
+
                 clientes = new List<Cliente>();
             
                 tbl = AccesoDatos.Instance.EjecutarScript(script);
@@ -59,7 +63,7 @@ namespace FrbaCommerce.Datos
             String script;
             try
             { // " + cliente + "
-                script = "INSERT INTO vadem.cliente VALUES (" + cliente.IdUsuario + "," + cliente.Dni;
+                script = "INSERT INTO vadem.cliente VALUES (" + cliente.IdUsuario + "," + cliente.Documento;
                 script += ",'" + cliente.TipoDocumento + "','" + cliente.Nombre + "','" + cliente.Apellido;
                 script += "','" + cliente.Email + "','" + cliente.Telefono + "','" + cliente.Direccion + "', " + cliente.Numero;
                 script += "," + (cliente.Piso == "" ? "NULL" : cliente.Piso) + "," + (cliente.Departamento == "" ? "NULL" : "'" + cliente.Departamento + "'") + ",'" + cliente.Localidad + "','" + cliente.CodigoPostal;

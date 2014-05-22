@@ -6,9 +6,9 @@ using FrbaCommerce.Datos;
 
 namespace FrbaCommerce.Entidades
 {
-    class Cliente : Usuario
+    public class Cliente : Usuario
     {
-        public long Dni { get; set; }
+        public long Documento { get; set; }
         public String TipoDocumento { get; set; }
         public String Nombre { get; set; }
         public String Apellido { get; set; }
@@ -40,10 +40,10 @@ namespace FrbaCommerce.Entidades
             Reputacion = pReputacion;
         }
 
-        public Cliente(long pDni, String pTipoDocumento, String pNombre, String pApellido, String pEmail, String pTelefono, String pDireccion, int pNumero, String pPiso, String pDepartamento, String pLocalidad, int pCodigoPostal, DateTime pFechaNacimiento, long pCuil)
+        public Cliente(long pDocumento, String pTipoDocumento, String pNombre, String pApellido, String pEmail, String pTelefono, String pDireccion, int pNumero, String pPiso, String pDepartamento, String pLocalidad, int pCodigoPostal, DateTime pFechaNacimiento, long pCuil)
         {
             //Datos de Cliente
-            Dni = pDni;
+            Documento = pDocumento;
             TipoDocumento = pTipoDocumento;
             Nombre = pNombre;
             Apellido = pApellido;
@@ -60,7 +60,7 @@ namespace FrbaCommerce.Entidades
         }
 
         public Cliente(int pIdUsuario, string pUsername, int pIdRol, String pDescRol, bool pRolHabil, int pIntentosFallidos, bool pBloqueado, bool pHabilitado, float pReputacion,
-           long pDni, String pTipoDocumento, String pNombre, String pApellido, String pEmail, String pTelefono, String pDireccion, int pNumero, String pPiso, String pDepartamento, String pLocalidad, int pCodigoPostal, DateTime pFechaNacimiento, long pCuil)
+           long pDocumento, String pTipoDocumento, String pNombre, String pApellido, String pEmail, String pTelefono, String pDireccion, int pNumero, String pPiso, String pDepartamento, String pLocalidad, int pCodigoPostal, DateTime pFechaNacimiento, long pCuil)
         {
             //Datos de Usuario
             IdUsuario = pIdUsuario;
@@ -72,7 +72,7 @@ namespace FrbaCommerce.Entidades
             Reputacion = pReputacion;
 
             //Datos de Cliente
-            Dni = pDni;
+            Documento = pDocumento;
             TipoDocumento = pTipoDocumento;
             Nombre = pNombre;
             Apellido = pApellido;
@@ -93,6 +93,18 @@ namespace FrbaCommerce.Entidades
             try
             {
                 return ClienteDAO.insertar(this);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void bajaLogica()
+        {
+            try
+            {
+             
             }
             catch (Exception)
             {

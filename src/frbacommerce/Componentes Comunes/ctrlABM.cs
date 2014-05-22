@@ -191,7 +191,7 @@ namespace FrbaCommerce.Componentes_Comunes
 
                 foreach (Filtro filtro in filtrosEnPantalla)
                 {
-                    if (filtro.obtenerValor() != filtro.obtenerValorNulo())
+                    if (filtro.obtenerValor().ToString() != filtro.obtenerValorNulo().ToString())
                     {
                         if (filtro.obtenerModoComparacion() == "LIKE")
                         {

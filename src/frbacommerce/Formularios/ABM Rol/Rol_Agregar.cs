@@ -12,11 +12,11 @@ using FrbaCommerce.Datos;
 
 namespace FrbaCommerce.Formularios.ABM_Rol
 {
-    public partial class Rol_Agregar : Form
+    public partial class Rol_Agregar : Form_Agregar
     {
         #region VariablesDeClase
 
-        Rol rol;
+        public Rol rol;
         
         #endregion
         
@@ -39,13 +39,16 @@ namespace FrbaCommerce.Formularios.ABM_Rol
         {
             try
             {
-                rol = new Rol();
+                if (rol == null)
+                {
+                    rol = new Rol();
+                }
                 generarCampos();
                 redefinirTamanioVentana();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                Metodos_Comunes.MostrarMensajeError(ex);
             }
         }
 
@@ -56,27 +59,28 @@ namespace FrbaCommerce.Formularios.ABM_Rol
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public virtual void btnAceptar_Click(object sender, EventArgs e)
+        public override void btnAceptar_Click(object sender, EventArgs e)
         {
+            String camposConErrores;
             try
             {
-                List<Filtro> campos = obtenerCamposEnPantalla();
-                rol.Id = Convert.ToInt32(campos[0].obtenerValor());
-                rol.Descripcion = campos[1].obtenerValor().ToString();
-                rol.Habilitado = (campos[2].obtenerValor().ToString() == "1" ? true : false);
-                rol.insertar();
+                validarIdNoEnUso();
+                camposConErrores = obtenerCamposConErrores();
+                if (camposConErrores == "")
+                {
+                    armarRolConCampos();
+                    rol.insertar();
 
-                DialogResult = System.Windows.Forms.DialogResult.OK;
+                    DialogResult = System.Windows.Forms.DialogResult.OK;
+                }
+                else { 
+                    Metodos_Comunes.MostrarMensaje("Debe completar todos los campos. Los campos incompletos son: " + camposConErrores);
+                }
 
             }
             catch (Exception ex)
             {
-                DialogResult = System.Windows.Forms.DialogResult.Abort;
-                MessageBox.Show(ex.Message);
-            }
-            finally 
-            {
-                this.Close();
+                Metodos_Comunes.MostrarMensajeError(ex);
             }
         }
 
@@ -86,7 +90,7 @@ namespace FrbaCommerce.Formularios.ABM_Rol
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public virtual void btnCancelar_Click(object sender, EventArgs e)
+        public override void btnCancelar_Click(object sender, EventArgs e)
         {
             try
             {
@@ -94,13 +98,23 @@ namespace FrbaCommerce.Formularios.ABM_Rol
             }
             catch (Exception ex)
             {
-                DialogResult = System.Windows.Forms.DialogResult.Abort;
-                MessageBox.Show(ex.Message);
+                //DialogResult = System.Windows.Forms.DialogResult.Abort;
+                Metodos_Comunes.MostrarMensajeError(ex);
             }
             finally
             {
                 this.Close();
             }
+        }
+
+        /// <summary>
+        /// Evento keyPress. Solo habilita números
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void numerico_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsNumber(e.KeyChar) && !Char.IsControl(e.KeyChar)) { e.Handled = true; }
         }
 
         #endregion
@@ -112,10 +126,15 @@ namespace FrbaCommerce.Formularios.ABM_Rol
         /// </summary>
         private void generarCampos()
         {
+            FiltroTextBox filtroTxt;
             try
             {
                 List<Filtro> filtros = new List<Filtro>();
-                filtros.Add(new FiltroTextBox("Rol", "IdRol", "=", ""));
+                
+                filtroTxt = new FiltroTextBox("Id", "IdRol", "=", "");
+                ((TextBox)filtroTxt.getTxtFiltro()).KeyPress += (new System.Windows.Forms.KeyPressEventHandler(this.numerico_KeyPress));
+                filtros.Add(filtroTxt);
+             
                 filtros.Add(new FiltroTextBox("Descripcion", "Descripcion", "LIKE", ""));
                 filtros.Add(new FiltroComboBox("Habilitado", "Habilitado", "=", "-1", Metodos_Comunes.obtenerTablaComboHabilitado(), "id", "descripcion"));
                 filtros.Add(new FiltroDgvCheck("Funcionalidades","funcionalidades","",obtenerListaFuncionalidades(),obtenerFormatoColumnas()));
@@ -144,12 +163,18 @@ namespace FrbaCommerce.Formularios.ABM_Rol
             }
         }
 
-
-        private void redefinirTamanioVentana() 
+        /// <summary>
+        /// Setea en el rol de la variable de la clase con los campos ingresados por el usuario.
+        /// </summary>
+        public void armarRolConCampos()
         {
             try
             {
-                this.Size = new System.Drawing.Size(this.Size.Width, 225 + this.Controls.Find("funcionalidades",true)[0].Size.Height);
+                List<Filtro> campos = obtenerCamposEnPantalla();
+                rol.Id = Convert.ToInt32(campos[0].obtenerValor());
+                rol.Descripcion = campos[1].obtenerValor().ToString();
+                rol.Habilitado = (campos[2].obtenerValor().ToString() == "1" ? true : false);
+                rol.AgregarFuncionalidades(campos[3].obtenerValor().ToString());
             }
             catch (Exception)
             {
@@ -183,7 +208,10 @@ namespace FrbaCommerce.Formularios.ABM_Rol
             }
         }
 
-
+        /// <summary>
+        /// revuelve el formato de las columnas de la grilla de Funcionalidades
+        /// </summary>
+        /// <returns></returns>
         private DataGridViewColumn[] obtenerFormatoColumnas()
         {
             DataGridViewColumn[] columnas;
@@ -214,6 +242,66 @@ namespace FrbaCommerce.Formularios.ABM_Rol
             }
         }
 
+        /// <summary>
+        /// recorre todos los campos y devuelve un String con los campos con errores separados por coma
+        /// </summary>
+        /// <returns></returns>
+        public String obtenerCamposConErrores()
+        {
+            String errores;
+            try
+            {
+                errores = "";
+                List<Filtro> campos = obtenerCamposEnPantalla();
+
+                foreach (Filtro campo in campos) {
+                    if (campo.obtenerValor().ToString() == "") errores += campo.obtenerLabel() + ", ";
+                }
+
+                if (errores.Length > 0)
+                    errores = errores.Substring(0, errores.Length - 2);
+
+                return errores;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// En caso de que el Id de usuario esté en uso lanzo una excepción e interrumpo.
+        /// </summary>
+        private void validarIdNoEnUso() {
+            try
+            {
+                List<Filtro> campos = obtenerCamposEnPantalla();
+
+                if (RolDAO.obtenerRol(Convert.ToInt16(campos[0].obtenerValor())) != null)
+                {
+                    throw new Exception("El Id del Rol ingresado ya está en uso.");
+                }
+            }
+            catch (Exception)
+            {   
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// cambia el tamaño de la pantalla de acuerdo a la cantidad de registros de la grilla de funcionalidades
+        /// </summary>
+        private void redefinirTamanioVentana()
+        {
+            try
+            {
+                this.Size = new System.Drawing.Size(this.Size.Width, 225 + this.Controls.Find("funcionalidades",true)[0].Size.Height);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
         #endregion
     }

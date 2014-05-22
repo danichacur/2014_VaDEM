@@ -85,41 +85,10 @@ namespace FrbaCommerce.Formularios.Login
         /// <param name="e"></param>
         private void btnEntrar_Click(object sender, EventArgs e)
         {
-            Usuario usr;
             try
             {
-                FiltroTextBox txtUsername = (FiltroTextBox)this.Controls.Find("Username", false)[0];
-                FiltroTextBoxPassword txtPassword = (FiltroTextBoxPassword)this.Controls.Find("Password", false)[0];
-                if (txtUsername.obtenerValor() == "" && txtPassword.obtenerValor() == "")
-                {
-                    Metodos_Comunes.MostrarMensajeError("El usuario y contraseña son campos obligatorios");
-                    return;
-                }
-                else if (txtUsername.obtenerValor() == "")
-                {
-                    Metodos_Comunes.MostrarMensajeError("El usuario es campo obligatorio");
-                    return;
-                }
-                else if (txtPassword.obtenerValor() == "")
-                {
-                    Metodos_Comunes.MostrarMensajeError("El password es campo obligatorio");
-                    return;
-                }
-
-
-                if (LoginDAO.validaUsuarioPassword(txtUsername.obtenerValor().ToString(), Metodos_Comunes.sha256_hash(txtPassword.obtenerValor().ToString())))
-                {
-                    usr = UsuarioDAO.obtenerUsuarioPorUsername(txtUsername.obtenerValor().ToString());
-                    Session.IdUsuario = usr.IdUsuario;
-                    Session.IdRol = usr.Rol.Id;
-
-                    DialogResult = DialogResult.OK;
-                    return;
-                }
-                else
-                {
-                    Metodos_Comunes.MostrarMensajeError("El usuario o contraseña son inválidos");
-                }
+                validarIngreso();
+               
             }
             catch (Exception ex)
             {
@@ -148,6 +117,93 @@ namespace FrbaCommerce.Formularios.Login
         #endregion
 
         #region MetodosGenerales
+
+        private void validarIngreso() 
+        {
+            Usuario usr;
+            try
+            {
+                FiltroTextBox txtUsername = (FiltroTextBox)this.Controls.Find("Username", false)[0];
+                FiltroTextBoxPassword txtPassword = (FiltroTextBoxPassword)this.Controls.Find("Password", false)[0];
+
+                validarCamposCompletos(txtUsername, txtPassword);
+                usr = UsuarioDAO.obtenerUsuarioPorUsername(txtUsername.obtenerValor().ToString());
+                if (usr == null)
+                {
+                    Metodos_Comunes.MostrarMensajeError("El usuario ingresado no existe");
+                    return;
+                }
+                
+                if (usr.Bloqueado)
+                {
+                    Metodos_Comunes.MostrarMensajeError("El usuario ingresado está bloqueado");
+                    return;
+                }
+
+                if (!LoginDAO.validaUsuarioPassword(txtUsername.obtenerValor().ToString(), Metodos_Comunes.sha256_hash(txtPassword.obtenerValor().ToString())))
+                {
+                    aumentarIntentosFallidos(usr);
+                    Metodos_Comunes.MostrarMensajeError("La contraseña no coincide con el usuario");
+                }
+                else
+                {
+                    Session.IdUsuario = usr.IdUsuario;
+                    Session.IdRol = usr.Rol.Id;
+
+                    usr.loggeoSatisfactorio();
+
+                    DialogResult = DialogResult.OK;
+                    return;
+                }
+                
+
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        private void validarCamposCompletos(FiltroTextBox txtUsername, FiltroTextBoxPassword txtPassword) 
+        {
+            try
+            {
+                if (txtUsername.obtenerValor() == "" && txtPassword.obtenerValor() == "")
+                {
+                    Metodos_Comunes.MostrarMensajeError("El usuario y contraseña son campos obligatorios");
+                    return;
+                }
+                else if (txtUsername.obtenerValor() == "")
+                {
+                    Metodos_Comunes.MostrarMensajeError("El usuario es campo obligatorio");
+                    return;
+                }
+                else if (txtPassword.obtenerValor() == "")
+                {
+                    Metodos_Comunes.MostrarMensajeError("El password es campo obligatorio");
+                    return;
+                }
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        private void aumentarIntentosFallidos(Usuario usr)
+        {
+            try
+            {
+                usr.aumentarIntentosFallidos();
+            }
+            catch (Exception)
+            {   
+                throw;
+            }
+        }
+
         #endregion
 
         #region MetodosAuxiliares

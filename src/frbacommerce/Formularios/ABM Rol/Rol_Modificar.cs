@@ -15,7 +15,7 @@ namespace FrbaCommerce.Formularios.ABM_Rol
     {
         #region VariablesDeClase
 
-        private Rol rol;
+        //private Rol rol;
 
         #endregion
 
@@ -66,16 +66,22 @@ namespace FrbaCommerce.Formularios.ABM_Rol
         /// <param name="e"></param>
         public override void btnAceptar_Click(object sender, EventArgs e)
         {
+            String camposConErrores;
             try
             {
-                List<Filtro> campos = obtenerCamposEnPantalla();
-                rol.Id = Convert.ToInt32(campos[0].obtenerValor());
-                rol.Descripcion = campos[1].obtenerValor().ToString(); ;
-                rol.Habilitado = (campos[2].obtenerValor() == "1" ? true : false);
-                rol.modificar();
+                camposConErrores = obtenerCamposConErrores();
+                if (camposConErrores == "")
+                {
+                    armarRolConCampos();
+                    rol.modificar();
 
-                DialogResult = System.Windows.Forms.DialogResult.OK;
-                this.Close();
+                    DialogResult = System.Windows.Forms.DialogResult.OK;
+                }
+                else
+                {
+                    Metodos_Comunes.MostrarMensaje("Debe completar todos los campos. Los campos incompletos son: " + camposConErrores);
+                }
+
             }
             catch (Exception ex)
             {

@@ -6,7 +6,7 @@ using FrbaCommerce.Datos;
 
 namespace FrbaCommerce.Entidades
 {
-    class Empresa : Usuario
+    public class Empresa : Usuario
     {
         public String RazonSocial { get; set; }
         public long Cuit { get; set; }
@@ -98,6 +98,18 @@ namespace FrbaCommerce.Entidades
             }
         }
 
+        public void bajaLogica()
+        {
+            try
+            {
+         
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        
     }
 
     
