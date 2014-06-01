@@ -21,7 +21,7 @@ namespace FrbaCommerce.Componentes_Comunes
         /// </summary>
         public FiltroTextBox()
         {
-            
+            InitializeComponent();
         }
 
         /// <summary>
@@ -35,13 +35,39 @@ namespace FrbaCommerce.Componentes_Comunes
         {
             InitializeComponent();
 
-            this.Name = pCampo;
-            campo = pCampo;
-            modoComparacion = pModoComparacion;
-            valorNulo = pValorNulo;
+            try
+            {
+                this.Name = pCampo;
+                campo = pCampo;
+                modoComparacion = pModoComparacion;
+                valorNulo = pValorNulo;
 
-            setlblFiltroBase(this.lblFiltro, textolbl);
+                setlblFiltroBase(this.lblFiltro, textolbl);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
+
+
+        public void setearParametros(String textolbl, String pCampo, String pModoComparacion, String pValorNulo)
+        {
+            try
+            {
+                this.Name = pCampo;
+                campo = pCampo;
+                modoComparacion = pModoComparacion;
+                valorNulo = pValorNulo;
+
+                setlblFiltroBase(this.lblFiltro, textolbl);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
 
         /// <summary>
         /// devuelve el control txtFiltro

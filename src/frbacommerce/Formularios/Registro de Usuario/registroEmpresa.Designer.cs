@@ -87,6 +87,7 @@
             // txtCuit
             // 
             this.txtCuit.Location = new System.Drawing.Point(119, 29);
+            this.txtCuit.MaxLength = 11;
             this.txtCuit.Name = "txtCuit";
             this.txtCuit.Size = new System.Drawing.Size(121, 20);
             this.txtCuit.TabIndex = 4;
@@ -222,6 +223,7 @@
             // txtCodigoPostal
             // 
             this.txtCodigoPostal.Location = new System.Drawing.Point(119, 211);
+            this.txtCodigoPostal.MaxLength = 4;
             this.txtCodigoPostal.Name = "txtCodigoPostal";
             this.txtCodigoPostal.Size = new System.Drawing.Size(121, 20);
             this.txtCodigoPostal.TabIndex = 11;
@@ -268,6 +270,7 @@
             // txtPiso
             // 
             this.txtPiso.Location = new System.Drawing.Point(119, 133);
+            this.txtPiso.MaxLength = 2;
             this.txtPiso.Name = "txtPiso";
             this.txtPiso.Size = new System.Drawing.Size(121, 20);
             this.txtPiso.TabIndex = 8;
@@ -284,6 +287,7 @@
             // txtNumero
             // 
             this.txtNumero.Location = new System.Drawing.Point(119, 107);
+            this.txtNumero.MaxLength = 5;
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(121, 20);
             this.txtNumero.TabIndex = 7;
@@ -315,6 +319,7 @@
             // txtTelefono
             // 
             this.txtTelefono.Location = new System.Drawing.Point(119, 55);
+            this.txtTelefono.MaxLength = 10;
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(121, 20);
             this.txtTelefono.TabIndex = 5;

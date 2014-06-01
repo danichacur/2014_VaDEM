@@ -137,11 +137,11 @@ namespace FrbaCommerce
                     //    pantalla = new ;
                     //    break;
                     case "ABM_CLIENTE":
-                        pantalla = new Abm_Cliente.ABM_Cliente();
+                        pantalla = new Abm_Cliente.Cliente_Listar();
                         break;
-                    //case "AMB_EMPRESA":
-                    //    listaABMs.Add(new ABM_Rol.Rol_Listar());
-                    //    break;
+                    case "AMB_EMPRESA":
+                        pantalla = new Formularios.Abm_Empresa.Empresa_Listar();
+                        break;
                     case "AMB_RUBRO":
                         pantalla = new Abm_Rubro.Abm_Rubro();
                         break;

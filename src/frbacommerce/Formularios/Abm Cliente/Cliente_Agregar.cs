@@ -122,10 +122,10 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
         /// </summary>
         private void generarCampos()
         {
-            FiltroTextBox filtroTxt;
+            //FiltroTextBox filtroTxt;
             try
             {
-                List<Filtro> filtros = new List<Filtro>();
+              //  List<Filtro> filtros = new List<Filtro>();
 
                 /*filtroTxt = new FiltroTextBox("Id", "IdRol", "=", "");
                 ((TextBox)filtroTxt.getTxtFiltro()).KeyPress += (new System.Windows.Forms.KeyPressEventHandler(this.numerico_KeyPress));
@@ -135,7 +135,7 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
                 filtros.Add(new FiltroComboBox("Habilitado", "Habilitado", "=", "-1", Metodos_Comunes.obtenerTablaComboHabilitado(), "id", "descripcion"));
                 filtros.Add(new FiltroDgvCheck("Funcionalidades", "funcionalidades", "", obtenerListaFuncionalidades(), obtenerFormatoColumnas()));
                 */
-                this.ctrlAltaModificacion1.cargarFiltros(filtros);
+                this.ctrlAltaModificacion1.cargarControlFiltros(new Formularios.Registro_de_Usuario.registroEmpresa());
             }
             catch (Exception)
             {

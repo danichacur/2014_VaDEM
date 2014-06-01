@@ -73,6 +73,7 @@
             // txtDocumento
             // 
             this.txtDocumento.Location = new System.Drawing.Point(119, 30);
+            this.txtDocumento.MaxLength = 8;
             this.txtDocumento.Name = "txtDocumento";
             this.txtDocumento.Size = new System.Drawing.Size(121, 20);
             this.txtDocumento.TabIndex = 5;
@@ -151,6 +152,7 @@
             // txtTelefono
             // 
             this.txtTelefono.Location = new System.Drawing.Point(119, 134);
+            this.txtTelefono.MaxLength = 10;
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(121, 20);
             this.txtTelefono.TabIndex = 13;
@@ -182,6 +184,7 @@
             // txtNumero
             // 
             this.txtNumero.Location = new System.Drawing.Point(119, 186);
+            this.txtNumero.MaxLength = 5;
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(121, 20);
             this.txtNumero.TabIndex = 17;
@@ -198,6 +201,7 @@
             // txtPiso
             // 
             this.txtPiso.Location = new System.Drawing.Point(119, 212);
+            this.txtPiso.MaxLength = 2;
             this.txtPiso.Name = "txtPiso";
             this.txtPiso.Size = new System.Drawing.Size(121, 20);
             this.txtPiso.TabIndex = 19;
@@ -244,6 +248,7 @@
             // txtCodigoPostal
             // 
             this.txtCodigoPostal.Location = new System.Drawing.Point(119, 290);
+            this.txtCodigoPostal.MaxLength = 4;
             this.txtCodigoPostal.Name = "txtCodigoPostal";
             this.txtCodigoPostal.Size = new System.Drawing.Size(121, 20);
             this.txtCodigoPostal.TabIndex = 25;
@@ -278,6 +283,7 @@
             // txtCuil
             // 
             this.txtCuil.Location = new System.Drawing.Point(119, 342);
+            this.txtCuil.MaxLength = 11;
             this.txtCuil.Name = "txtCuil";
             this.txtCuil.Size = new System.Drawing.Size(121, 20);
             this.txtCuil.TabIndex = 29;

@@ -53,8 +53,9 @@ namespace FrbaCommerce.Componentes_Comunes
             // Filtro
             // 
             this.Name = "Filtro";
-            this.Size = new System.Drawing.Size(152, 186);
+            this.Size = new System.Drawing.Size(578, 28);
             this.ResumeLayout(false);
+
         }
 
         #endregion

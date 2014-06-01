@@ -12,7 +12,7 @@ using FrbaCommerce.Entidades;
 
 namespace FrbaCommerce.Abm_Cliente
 {
-    public partial class ABM_Cliente : ABM
+    public partial class Cliente_Listar : ABM
     {
         #region VariablesDeClase
         
@@ -26,7 +26,7 @@ namespace FrbaCommerce.Abm_Cliente
         /// <summary>
         /// Constructor de la clase
         /// </summary>
-        public ABM_Cliente()
+        public Cliente_Listar()
         {
             InitializeComponent();
         }
@@ -229,41 +229,81 @@ namespace FrbaCommerce.Abm_Cliente
             try
             {
 
-                DataGridViewColumn[] columnas = new DataGridViewColumn[3];
+                DataGridViewColumn[] columnas = new DataGridViewColumn[16];
 
-                DataGridViewTextBoxColumn colDNI = new DataGridViewTextBoxColumn();
-                colDNI.DataPropertyName = "Dni";
-                colDNI.Name = "Dni";
-                colDNI.HeaderText = "El DNI";
-                columnas[0] = colDNI;
+                DataGridViewTextBoxColumn colTipoDocumento = new DataGridViewTextBoxColumn();
+                colTipoDocumento.DataPropertyName = "TipoDocumento"; colTipoDocumento.Name = "TipoDocumento";
+                colTipoDocumento.HeaderText = "Tipo Documento";
+                columnas[0] = colTipoDocumento;
 
-                //AGREGAR LAS QUE CORRESPONDAN
-                //DataGridViewTextBoxColumn colIdRol = new DataGridViewTextBoxColumn();
-                //colIdRol.DataPropertyName = "Id"; colIdRol.Name = "Id"; colIdRol.HeaderText = "Id";
-                //columnas[0] = colIdRol;
+                DataGridViewTextBoxColumn colDocumento = new DataGridViewTextBoxColumn();
+                colDocumento.DataPropertyName = "Documento";colDocumento.Name = "Documento";colDocumento.HeaderText = "Documento";
+                columnas[1] = colDocumento;
 
-                //DataGridViewTextBoxColumn colDesc = new DataGridViewTextBoxColumn();
-                //colDesc.DataPropertyName = "Descripcion"; colDesc.Name = "Descripcion"; colDesc.HeaderText = "Descripcion";
-                //columnas[1] = colDesc;
+                DataGridViewTextBoxColumn colNombre = new DataGridViewTextBoxColumn();
+                colNombre.DataPropertyName = "Nombre"; colNombre.Name = "Nombre"; colNombre.HeaderText = "Nombre";
+                columnas[2] = colNombre;
 
-                //DataGridViewCheckBoxColumn colHabilitado = new DataGridViewCheckBoxColumn();
-                //colHabilitado.DataPropertyName = "Habilitado"; colHabilitado.Name = "Habilitado"; colHabilitado.HeaderText = "Habilitado";
-                //colHabilitado.FalseValue = "0"; colHabilitado.TrueValue = "1";
-                //columnas[2] = colHabilitado;
+                DataGridViewTextBoxColumn colApellido = new DataGridViewTextBoxColumn();
+                colApellido.DataPropertyName = "Apellido"; colApellido.Name = "Apellido"; colApellido.HeaderText = "Apellido";
+                columnas[3] = colApellido;
+
+                DataGridViewTextBoxColumn colMail = new DataGridViewTextBoxColumn();
+                colMail.DataPropertyName = "Email"; colMail.Name = "E-Mail"; colMail.HeaderText = "E-Mail";
+                columnas[4] = colMail;
+
+                DataGridViewTextBoxColumn colTelefono = new DataGridViewTextBoxColumn();
+                colTelefono.DataPropertyName = "Telefono"; colTelefono.Name = "Telefono"; colTelefono.HeaderText = "Teléfono";
+                columnas[5] = colTelefono;
+
+                DataGridViewTextBoxColumn colDireccion = new DataGridViewTextBoxColumn();
+                colDireccion.DataPropertyName = "Direccion"; colDireccion.Name = "Direccion"; colDireccion.HeaderText = "Dirección";
+                columnas[6] = colDireccion;
+
+                DataGridViewTextBoxColumn colNumero = new DataGridViewTextBoxColumn();
+                colNumero.DataPropertyName = "Numero"; colNumero.Name = "Numero"; colNumero.HeaderText = "Número";
+                columnas[7] = colNumero;
+
+                DataGridViewTextBoxColumn colPiso = new DataGridViewTextBoxColumn();
+                colPiso.DataPropertyName = "Piso"; colPiso.Name = "Piso"; colPiso.HeaderText = "Piso";
+                columnas[8] = colPiso;
+
+                DataGridViewTextBoxColumn colDepartamento = new DataGridViewTextBoxColumn();
+                colDepartamento.DataPropertyName = "Departamento"; colDepartamento.Name = "Departamento";
+                colDepartamento.HeaderText = "Departamento";
+                columnas[9] = colDepartamento;
+
+                DataGridViewTextBoxColumn colLocalidad = new DataGridViewTextBoxColumn();
+                colLocalidad.DataPropertyName = "Localidad"; colLocalidad.Name = "Localidad"; colLocalidad.HeaderText = "Localidad";
+                columnas[10] = colLocalidad;
+
+                DataGridViewTextBoxColumn colCodPostal = new DataGridViewTextBoxColumn();
+                colCodPostal.DataPropertyName = "CodigoPostal"; colCodPostal.Name = "CodigoPostal"; 
+                colCodPostal.HeaderText = "Código Postal";
+                columnas[11] = colCodPostal;
+
+                DataGridViewTextBoxColumn colFechaNacimiento = new DataGridViewTextBoxColumn();
+                colFechaNacimiento.DataPropertyName = "FechaNacimiento"; colFechaNacimiento.Name = "FechaNacimiento";
+                colFechaNacimiento.HeaderText = "Fecha Nacimiento";
+                columnas[12] = colFechaNacimiento;
+
+                DataGridViewTextBoxColumn colCUIL = new DataGridViewTextBoxColumn();
+                colCUIL.DataPropertyName = "Cuil"; colCUIL.Name = "Cuil"; colCUIL.HeaderText = "CUIL";
+                columnas[13] = colCUIL;
 
                 DataGridViewButtonColumn colModif = new DataGridViewButtonColumn();
                 colModif.Width = 60;
                 colModif.Text = "Modificar";
                 colModif.Name = "Modificar";
                 colModif.UseColumnTextForButtonValue = true;
-                columnas[1] = colModif;
+                columnas[14] = colModif;
 
                 DataGridViewButtonColumn colElim = new DataGridViewButtonColumn();
                 colElim.Width = 60;
                 colElim.Text = "Eliminar";
                 colElim.Name = "Eliminar";
                 colElim.UseColumnTextForButtonValue = true;
-                columnas[2] = colElim;
+                columnas[15] = colElim;
 
                 return columnas;
             }

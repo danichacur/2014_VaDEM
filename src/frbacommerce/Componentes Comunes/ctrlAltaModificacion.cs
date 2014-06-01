@@ -108,6 +108,44 @@ namespace FrbaCommerce.Componentes_Comunes
             }
         }
 
+
+        /// <summary>
+        /// Método que hace la carga de los filtros que recibe como parametro 
+        /// que son del tipo Filtro.
+        /// </summary>
+        /// <param name="filtros"></param>
+        public void cargarControlFiltros(UserControl ctrl)
+        {
+            try
+            {
+                int contador;
+
+                camposEnPantalla = new List<Filtro>();
+
+                this.Controls.Add(ctrl);
+
+                if (ctrl != null)
+                {
+                    contador = 0;
+                    foreach (Control control in ctrl.Controls)
+                    {
+                        if (control.GetType().Name != "Label")
+                        {
+                            Filtro filtro = (Filtro)control;
+                            contador += 1;
+                            camposEnPantalla.Add(filtro);
+                        }
+                    }
+
+                    ((Form)this.ParentForm).Height = ((Form)this.ParentForm).Height + 30 * contador;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         #endregion
 
    }

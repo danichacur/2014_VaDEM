@@ -23,6 +23,11 @@ namespace FrbaCommerce.Entidades
         public DateTime fechaCreacion { get; set; }
 
 
+        public Empresa()
+        {  
+        }
+
+
         public Empresa(int pIdUsuario, string pUsername, int pIdRol, String pDescRol, bool pRolHabil, int pIntentosFallidos, bool pBloqueado, bool pHabilitado, float pReputacion)
         {
             //Datos de Usuario

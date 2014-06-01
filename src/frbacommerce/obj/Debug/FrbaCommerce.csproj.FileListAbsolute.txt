@@ -76,7 +76,6 @@ D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\Fr
 D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.Filtro.resources
 D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.FiltroComboBox.resources
 D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.FiltroTextBox.resources
-D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Abm_Cliente.ABM_Cliente.resources
 D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.ABM_Rol.Rol_Agregar.resources
 D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.ABM_Rol.Rol_Modificar.resources
 D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Menu.resources
@@ -145,3 +144,11 @@ D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\Fr
 D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Abm_Cliente.Cliente_Agregar.resources
 D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Abm_Empresa.Empresa_Agregar.resources
 D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Abm_Empresa.Empresa_Listar.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Abm_Cliente.Cliente_Listar.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\bin\Debug\LibreriaControlesVB.dll
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce_20140530_backup\frbacommerce\FrbaCommerce\bin\Debug\FrbaCommerce.exe.config
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce_20140530_backup\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.exe
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce_20140530_backup\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.pdb
+C:\Users\Matias\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\FrbaCommerce.exe.config
+C:\Users\Matias\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.exe
+C:\Users\Matias\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.pdb

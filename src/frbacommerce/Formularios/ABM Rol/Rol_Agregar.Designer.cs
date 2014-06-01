@@ -36,14 +36,14 @@
             this.ctrlAltaModificacion1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlAltaModificacion1.Location = new System.Drawing.Point(0, 0);
             this.ctrlAltaModificacion1.Name = "ctrlAltaModificacion1";
-            this.ctrlAltaModificacion1.Size = new System.Drawing.Size(352, 96);
+            this.ctrlAltaModificacion1.Size = new System.Drawing.Size(352, 97);
             this.ctrlAltaModificacion1.TabIndex = 0;
             // 
             // Rol_Agregar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(352, 96);
+            this.ClientSize = new System.Drawing.Size(352, 97);
             this.Controls.Add(this.ctrlAltaModificacion1);
             this.Name = "Rol_Agregar";
             this.Text = "AltaModif_Rol";

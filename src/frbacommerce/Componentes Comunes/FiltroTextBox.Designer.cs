@@ -38,7 +38,7 @@
             this.lblFiltro.Name = "lblFiltro";
             this.lblFiltro.Size = new System.Drawing.Size(100, 18);
             this.lblFiltro.TabIndex = 0;
-            this.lblFiltro.Text = "label1";
+            this.lblFiltro.Text = "FiltroTextBox";
             // 
             // txtFiltro
             // 

@@ -42,7 +42,7 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
             {
                 if (empresa == null)
                 {
-                    //empresa = new Empresa();
+                    empresa = new Empresa();
                 }
                 generarCampos();
             }
@@ -119,20 +119,18 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
         /// </summary>
         private void generarCampos()
         {
-            FiltroTextBox filtroTxt;
+           // FiltroTextBox filtroTxt;
             try
             {
-                List<Filtro> filtros = new List<Filtro>();
+             //   List<Filtro> filtros = new List<Filtro>();
 
-                /*filtroTxt = new FiltroTextBox("Id", "IdRol", "=", "");
-                ((TextBox)filtroTxt.getTxtFiltro()).KeyPress += (new System.Windows.Forms.KeyPressEventHandler(this.numerico_KeyPress));
-                filtros.Add(filtroTxt);
-
-                filtros.Add(new FiltroTextBox("Descripcion", "Descripcion", "LIKE", ""));
-                filtros.Add(new FiltroComboBox("Habilitado", "Habilitado", "=", "-1", Metodos_Comunes.obtenerTablaComboHabilitado(), "id", "descripcion"));
-                filtros.Add(new FiltroDgvCheck("Funcionalidades", "funcionalidades", "", obtenerListaFuncionalidades(), obtenerFormatoColumnas()));
-                */
-                this.ctrlAltaModificacion1.cargarFiltros(filtros);
+                //filtros.Add(new FiltroTextBox("Razón Social", "RazonSocial", "LIKE", ""));
+                //filtros.Add(new FiltroTextBox("Direc Calle", "Direccion", "LIKE", ""));
+                //filtros.Add(new FiltroTextBox("Departamento", "Dpto", "=", ""));
+                //filtros.Add(new FiltroTextBox("Telefono", "Telefono", "=", ""));
+                //filtros.Add(new FiltroTextBox("Piso", "Piso", "=", ""));
+                
+                this.ctrlAltaModificacion1.cargarControlFiltros(new Registro_de_Usuario.registroEmpresa());
             }
             catch (Exception)
             {

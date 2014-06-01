@@ -31,7 +31,6 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
             InitializeComponent();
         }
 
-        #endregion
 
         /// <summary>
         /// Load de la clase. Cargo los filtros y la grilla con todos los datos sin filtrar.
@@ -146,6 +145,7 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
             }
         }
 
+        #endregion
 
         #region MetodosGenerales
 
@@ -158,17 +158,14 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
             try
             {
                 List<Filtro> filtrosI = new List<Filtro>();
-                filtrosI.Add(new FiltroTextBox("Documento", "Documento", "=", ""));
-                filtrosI.Add(new FiltroTextBox("Apellido", "Apellido", "LIKE", ""));
+                filtrosI.Add(new FiltroTextBox("Razón Social", "RazonSocial", "LIKE", ""));
                 filtrosI.Add(new FiltroTextBox("Direc Calle", "Direccion", "LIKE", ""));
                 filtrosI.Add(new FiltroTextBox("Departamento", "Dpto", "=", ""));
 
                 List<Filtro> filtrosD = new List<Filtro>();
-                filtrosD.Add(new FiltroTextBox("Nombre", "Nombre", "LIKE", ""));
                 filtrosD.Add(new FiltroTextBox("Telefono", "Telefono", "=", ""));
                 filtrosD.Add(new FiltroTextBox("Piso", "Piso", "=", ""));
-                //filtrosD.Add(new FiltroFecha("Piso", "Piso", "=", ""));
-
+           
 
                 this.ctrlABM1.cargarFiltros(filtrosI, filtrosD);
             }
@@ -231,41 +228,79 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
             try
             {
 
-                DataGridViewColumn[] columnas = new DataGridViewColumn[3];
+                DataGridViewColumn[] columnas = new DataGridViewColumn[15];
 
-                DataGridViewTextBoxColumn colDNI = new DataGridViewTextBoxColumn();
-                colDNI.DataPropertyName = "Dni";
-                colDNI.Name = "Dni";
-                colDNI.HeaderText = "El DNI";
-                columnas[0] = colDNI;
+                DataGridViewTextBoxColumn colRazonSocial = new DataGridViewTextBoxColumn();
+                colRazonSocial.DataPropertyName = "RazonSocial"; colRazonSocial.Name = "RazonSocial";
+                colRazonSocial.HeaderText = "Razón Social";
+                columnas[0] = colRazonSocial;
 
-                //AGREGAR LAS QUE CORRESPONDAN
-                //DataGridViewTextBoxColumn colIdRol = new DataGridViewTextBoxColumn();
-                //colIdRol.DataPropertyName = "Id"; colIdRol.Name = "Id"; colIdRol.HeaderText = "Id";
-                //columnas[0] = colIdRol;
+                DataGridViewTextBoxColumn colCuit = new DataGridViewTextBoxColumn();
+                colCuit.DataPropertyName = "Cuit"; colCuit.Name = "Cuit"; colCuit.HeaderText = "CUIT";
+                columnas[1] = colCuit;
 
-                //DataGridViewTextBoxColumn colDesc = new DataGridViewTextBoxColumn();
-                //colDesc.DataPropertyName = "Descripcion"; colDesc.Name = "Descripcion"; colDesc.HeaderText = "Descripcion";
-                //columnas[1] = colDesc;
+                DataGridViewTextBoxColumn colTelefono = new DataGridViewTextBoxColumn();
+                colTelefono.DataPropertyName = "Telefono"; colTelefono.Name = "Telefono"; colTelefono.HeaderText = "Teléfono";
+                columnas[2] = colTelefono;
 
-                //DataGridViewCheckBoxColumn colHabilitado = new DataGridViewCheckBoxColumn();
-                //colHabilitado.DataPropertyName = "Habilitado"; colHabilitado.Name = "Habilitado"; colHabilitado.HeaderText = "Habilitado";
-                //colHabilitado.FalseValue = "0"; colHabilitado.TrueValue = "1";
-                //columnas[2] = colHabilitado;
+               DataGridViewTextBoxColumn colDireccion = new DataGridViewTextBoxColumn();
+                colDireccion.DataPropertyName = "Direccion"; colDireccion.Name = "Direccion"; colDireccion.HeaderText = "Dirección";
+                columnas[3] = colDireccion;
+
+                DataGridViewTextBoxColumn colNumero = new DataGridViewTextBoxColumn();
+                colNumero.DataPropertyName = "Numero"; colNumero.Name = "Numero"; colNumero.HeaderText = "Número";
+                columnas[4] = colNumero;
+
+                DataGridViewTextBoxColumn colPiso = new DataGridViewTextBoxColumn();
+                colPiso.DataPropertyName = "Piso"; colPiso.Name = "Piso"; colPiso.HeaderText = "Piso";
+                columnas[5] = colPiso;
+
+                DataGridViewTextBoxColumn colDepartamento = new DataGridViewTextBoxColumn();
+                colDepartamento.DataPropertyName = "Departamento"; colDepartamento.Name = "Departamento";
+                colDepartamento.HeaderText = "Departamento";
+                columnas[6] = colDepartamento;
+
+                DataGridViewTextBoxColumn colLocalidad = new DataGridViewTextBoxColumn();
+                colLocalidad.DataPropertyName = "Localidad"; colLocalidad.Name = "Localidad"; colLocalidad.HeaderText = "Localidad";
+                columnas[7] = colLocalidad;
+
+                DataGridViewTextBoxColumn colCodPostal = new DataGridViewTextBoxColumn();
+                colCodPostal.DataPropertyName = "CodigoPostal"; colCodPostal.Name = "CodigoPostal";
+                colCodPostal.HeaderText = "Código Postal";
+                columnas[8] = colCodPostal;
+
+                DataGridViewTextBoxColumn colCuidad = new DataGridViewTextBoxColumn();
+                colCuidad.DataPropertyName = "Cuidad"; colCuidad.Name = "Cuidad";
+                colCuidad.HeaderText = "Cuidad";
+                columnas[9] = colCuidad;
+
+                DataGridViewTextBoxColumn colMail = new DataGridViewTextBoxColumn();
+                colMail.DataPropertyName = "Email"; colMail.Name = "E-Mail"; colMail.HeaderText = "E-Mail";
+                columnas[10] = colMail;
+
+                DataGridViewTextBoxColumn colNombreContacto = new DataGridViewTextBoxColumn();
+                colNombreContacto.DataPropertyName = "NombreContacto"; colNombreContacto.Name = "NombreContacto";
+                colNombreContacto.HeaderText = "Nombre Contacto";
+                columnas[11] = colNombreContacto;
+
+                DataGridViewTextBoxColumn colFechaCreacion = new DataGridViewTextBoxColumn();
+                colFechaCreacion.DataPropertyName = "fechaCreacion"; colFechaCreacion.Name = "fechaCreacion";
+                colFechaCreacion.HeaderText = "Fecha Creación";
+                columnas[12] = colFechaCreacion;
 
                 DataGridViewButtonColumn colModif = new DataGridViewButtonColumn();
                 colModif.Width = 60;
                 colModif.Text = "Modificar";
                 colModif.Name = "Modificar";
                 colModif.UseColumnTextForButtonValue = true;
-                columnas[1] = colModif;
+                columnas[13] = colModif;
 
                 DataGridViewButtonColumn colElim = new DataGridViewButtonColumn();
                 colElim.Width = 60;
                 colElim.Text = "Eliminar";
                 colElim.Name = "Eliminar";
                 colElim.UseColumnTextForButtonValue = true;
-                columnas[2] = colElim;
+                columnas[14] = colElim;
 
                 return columnas;
             }

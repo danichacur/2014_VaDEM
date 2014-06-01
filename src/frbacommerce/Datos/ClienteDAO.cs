@@ -32,7 +32,7 @@ namespace FrbaCommerce.Datos
 
                 foreach (DataRow row in tbl.Rows) {
                     cliente = new Cliente(
-                                    (long)Convert.ToDouble(row["DNI"]),
+                                    (long)Convert.ToDouble(row["Documento"]),
                                     (String)row["TipoDocumento"],
                                     (String)row["Nombre"],
                                     (String)row["Apellido"],
@@ -40,7 +40,7 @@ namespace FrbaCommerce.Datos
                                     (String)row["Telefono"],
                                     (String)row["Direccion"],
                                     Convert.ToInt32(row["Numero"]),
-                                    (String)((row["Piso"] == DBNull.Value) ? "": row["Piso"]),
+                                    (String)((row["Piso"] == DBNull.Value) ? "": row["Piso"].ToString()),
                                     (String)((row["Dpto"] == DBNull.Value) ? "" : row["Dpto"]),
                                     (String)row["Localidad"],
                                     Convert.ToInt32(row["CodPostal"]),

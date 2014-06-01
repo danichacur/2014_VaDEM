@@ -92,9 +92,54 @@ namespace FrbaCommerce.Datos
             }
         }
 
-        internal static object obtenerEmpresas(string clausulaWhere)
+        public static List<Empresa> obtenerEmpresas(string clausulaWhere)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Empresa empresa;
+                List<Empresa> empresas;
+                DataTable tbl;
+                try
+                {
+
+                    String script = "SELECT * FROM vadem.empresa ";
+                    script += clausulaWhere;
+
+                    empresas = new List<Empresa>();
+
+                    tbl = AccesoDatos.Instance.EjecutarScript(script);
+
+                    foreach (DataRow row in tbl.Rows)
+                    {
+                        empresa = new Empresa(
+                                        (String)row["RazonSocial"],
+                                        (long)Convert.ToDouble(row["CUIT"]),
+                                        Convert.ToString(row["Telefono"]),
+                                        (String)row["Direccion"],
+                                        Convert.ToInt32(row["Numero"]),
+                                        Convert.ToString(((row["Piso"] == DBNull.Value) ? "" : row["Piso"])),
+                                        (String)((row["Dpto"] == DBNull.Value) ? "" : row["Dpto"]),
+                                        (String)row["Localidad"],
+                                        Convert.ToInt32(row["CodPostal"]),
+                                        (String)row["Ciudad"],
+                                        (String)row["Mail"],
+                                        (String)((row["NombreContacto"] == DBNull.Value) ? "" : row["NombreContacto"]),
+                                        (DateTime)row["FechaCreacion"]
+                                      );
+                        empresas.Add(empresa);
+                    }
+
+                    return empresas;
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+            catch (Exception)
+            {   
+                throw;
+            }
         }
     }
 }
