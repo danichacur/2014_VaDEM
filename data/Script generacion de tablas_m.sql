@@ -1,10 +1,33 @@
+
+/*
+drop table vadem.empresa
+drop table vadem.factura
+drop table vadem.itemFactura
+drop table vadem.ofertas
+drop table vadem.pregunta
+drop table vadem.rolesPorUsuario
+drop table vadem.rolPorFuncionalidad
+drop table vadem.rubrosPublicacion
+drop table vadem.tipoVisualizacionPorUsuario
+drop table vadem.calificacion
+drop table vadem.cliente
+drop table vadem.compras
+drop table vadem.publicacion
+drop table vadem.rol
+drop table vadem.rubro
+drop table vadem.estado
+drop table vadem.funcionalidad
+drop table vadem.usuario
+drop table vadem.visibilidad
+*/
+
 -- BEGIN TRANSACTION
 
 USE [GD1C2014]
 GO
 
-CREATE SCHEMA [vadem] AUTHORIZATION [gd]
-GO
+--CREATE SCHEMA [vadem] AUTHORIZATION [gd]
+--GO
 
 /****** Object:  Table [vadem].[rol]    Script Date: 04/21/2014 23:30:23 ******/
 SET ANSI_NULLS ON
@@ -158,11 +181,12 @@ CREATE TABLE [vadem].[usuario](
 	[IdUsuario] [int] NOT NULL IDENTITY(1,1),
 	[Username] [varchar](50) NOT NULL,
 	[Password] [nvarchar](255) NOT NULL,
-	[IdRol] [int] NOT NULL,
+	--[IdRol] [int] NOT NULL,
 	[IntentosFallidos] [int] NOT NULL,
 	[Bloqueado] [bit] NOT NULL,
 	[Habilitado] [bit] NOT NULL,
 	[Reputacion] [numeric](3, 2) NOT NULL,
+	[ComprasPorRendir] [int] NULL, -- cambio de Junio
  CONSTRAINT [PK_usuario] PRIMARY KEY CLUSTERED 
 (
 	[IdUsuario] ASC
@@ -170,6 +194,21 @@ CREATE TABLE [vadem].[usuario](
 ) ON [PRIMARY]
 GO
 SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [vadem].[rolesPorUsuario]    Script Date: 04/21/2014 23:30:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [vadem].[rolesPorUsuario](
+	[IdUsuario] [int] NOT NULL,
+	[IdRol] [int] NOT NULL,
+ CONSTRAINT [PK_rolesPorUsuario] PRIMARY KEY CLUSTERED 
+(
+	[IdUsuario] ASC,
+	[IdRol] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
 GO
 /****** Object:  Table [vadem].[tipoVisualizacionPorUsuario]    Script Date: 04/21/2014 23:30:23 ******/
 SET ANSI_NULLS ON
@@ -322,8 +361,7 @@ CREATE TABLE [vadem].[ofertas](
 	[Importe] [numeric] (18,2)  NOT NULL,
  CONSTRAINT [PK_ofertas] PRIMARY KEY CLUSTERED 
 (
-	[IdOferta] ASC,
-	[IdPublicacion] ASC
+	[IdOferta] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
@@ -339,35 +377,13 @@ CREATE TABLE [vadem].[itemFactura](
 	--[Fecha] [smalldatetime] NOT NULL,
 	[Costo] [numeric] (18,2) NOT NULL,
 	[Cantidad] [numeric] (18,0) NOT NULL,
-	[EsCompra] [bit] NOT NULL,
+	--[EsCompra] [bit] NOT NULL, --lo sacamos porque agregamos el campo ComprasPorRendir en Usuarios
 	[IdFactura] [int] NULL,
  CONSTRAINT [PK_itemFactura] PRIMARY KEY CLUSTERED 
 (
 	[IdItem] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
-GO
-/****** Object:  Table [vadem].[calificacion]    Script Date: 04/21/2014 23:30:23 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-SET ANSI_PADDING ON
-GO
-CREATE TABLE [vadem].[calificacion](
-	[IdCalificacion] [numeric] (18,0) NOT NULL,
-	[IdPublicacion] [numeric] (18,0) NOT NULL,
-	[IdVendedor] [int] NOT NULL,
-	[IdCalificador] [int] NOT NULL,
-	[Estrellas] [numeric](18, 0) NOT NULL,
-	[Detalle] [nvarchar](255) NULL,
- CONSTRAINT [PK_calificacion] PRIMARY KEY CLUSTERED 
-(
-	[IdCalificacion] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET ANSI_PADDING OFF
 GO
 /****** Object:  Table [vadem].[compras]    Script Date: 04/21/2014 23:30:23 ******/
 SET ANSI_NULLS ON
@@ -387,11 +403,28 @@ CREATE TABLE [vadem].[compras](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  ForeignKey [FK_calificacion_publicacion]    Script Date: 04/21/2014 23:30:23 ******/
-ALTER TABLE [vadem].[calificacion]  WITH CHECK ADD  CONSTRAINT [FK_calificacion_publicacion] FOREIGN KEY([IdPublicacion])
-REFERENCES [vadem].[publicacion] ([IdPublicacion])
+/****** Object:  Table [vadem].[calificacion]    Script Date: 04/21/2014 23:30:23 ******/
+SET ANSI_NULLS ON
 GO
-ALTER TABLE [vadem].[calificacion] CHECK CONSTRAINT [FK_calificacion_publicacion]
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [vadem].[calificacion](
+	[IdCalificacion] [numeric] (18,0) NOT NULL,
+	[IdCompra] [int] NOT NULL, -- Para que se linkee con las compras
+	[IdVendedor] [int] NOT NULL,
+	[IdCalificador] [int] NOT NULL,
+	[Estrellas] [numeric](18, 0) NOT NULL,
+	[Detalle] [nvarchar](255) NULL,
+ CONSTRAINT [PK_calificacion] PRIMARY KEY CLUSTERED 
+(
+	[IdCalificacion] ASC,
+	[IdCompra] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
 GO
 /****** Object:  ForeignKey [FK_calificacion_cliente]    Script Date: 04/21/2014 23:30:23 ******/
 ALTER TABLE [vadem].[calificacion]  WITH CHECK ADD  CONSTRAINT [FK_calificacion_cliente] FOREIGN KEY([IdCalificador])
@@ -422,6 +455,12 @@ ALTER TABLE [vadem].[compras]  WITH CHECK ADD  CONSTRAINT [FK_compras_usuario] F
 REFERENCES [vadem].[usuario] ([IdUsuario])
 GO
 ALTER TABLE [vadem].[compras] CHECK CONSTRAINT [FK_compras_usuario]
+GO
+/****** Object:  ForeignKey [FK_calificacion_compra]    Script Date: 04/21/2014 23:30:23 ******/ -- actualiza la FK con compras en vez de publicacion
+ALTER TABLE [vadem].[calificacion]  WITH CHECK ADD  CONSTRAINT [FK_calificacion_compra] FOREIGN KEY([IdCompra])
+REFERENCES [vadem].[compras] ([IdCompra])
+GO
+ALTER TABLE [vadem].[calificacion] CHECK CONSTRAINT [FK_calificacion_compra]
 GO
 /****** Object:  ForeignKey [FK_factura_usuario]    Script Date: 04/21/2014 23:30:23 ******/
 ALTER TABLE [vadem].[factura]  WITH CHECK ADD  CONSTRAINT [FK_factura_usuario] FOREIGN KEY([IdVendedor])
@@ -488,7 +527,7 @@ REFERENCES [vadem].[publicacion] ([IdPublicacion])
 GO
 ALTER TABLE [vadem].[rubrosPublicacion] CHECK CONSTRAINT [FK_rubrosPublicacion_publicacion]
 GO
-/****** Object:  ForeignKey [FK_rubrosPublicacion_publicacion]    Script Date: 04/21/2014 23:30:23 ******/
+/****** Object:  ForeignKey [FK_rubrosPublicacion_rubro]    Script Date: 04/21/2014 23:30:23 ******/
 ALTER TABLE [vadem].[rubrosPublicacion]  WITH CHECK ADD  CONSTRAINT [FK_rubrosPublicacion_rubro] FOREIGN KEY([IdRubro])
 REFERENCES [vadem].[rubro] ([IdRubro])
 GO
@@ -525,12 +564,16 @@ GO
 ALTER TABLE [vadem].[empresa] CHECK CONSTRAINT [FK_empresa_usuario]
 GO
 /****** Object:  ForeignKey [FK_usuario_rol]    Script Date: 04/21/2014 23:30:23 ******/
-ALTER TABLE [vadem].[usuario]  WITH CHECK ADD  CONSTRAINT [FK_usuario_rol] FOREIGN KEY([IdRol])
+ALTER TABLE [vadem].[rolesPorUsuario]  WITH CHECK ADD  CONSTRAINT [FK_rolesPorUsuario_rol] FOREIGN KEY([IdRol])
 REFERENCES [vadem].[rol] ([IdRol])
 GO
-ALTER TABLE [vadem].[usuario] CHECK CONSTRAINT [FK_usuario_rol]
+ALTER TABLE [vadem].[rolesPorUsuario] CHECK CONSTRAINT [FK_rolesPorUsuario_rol]
+GO
+/****** Object:  ForeignKey [FK_usuario_rol]    Script Date: 04/21/2014 23:30:23 ******/
+ALTER TABLE [vadem].[rolesPorUsuario]  WITH CHECK ADD  CONSTRAINT [FK_rolesPorUsuario_usuario] FOREIGN KEY([IdUsuario])
+REFERENCES [vadem].[usuario] ([IdUsuario])
+GO
+ALTER TABLE [vadem].[rolesPorUsuario] CHECK CONSTRAINT [FK_rolesPorUsuario_usuario]
 GO
 
 
---rollback
---commit

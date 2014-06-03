@@ -4,31 +4,24 @@ USE [GD1C2014]
 GO
 
 /*
-
-orden de carga
-
-1) Rol ---> *
-2) Funcionalidad --> *
-3) RolxFuncionalidad --> *
-
-4) usuario --> *
-5) cliente --> tenemos datos
-6) empresa --> DISTINCT en publicaciones 
-
-7) factura
-8) estado
-9) visibilidad
-10) tipo_visibilidad por usuario
-11) rubros
-
-12) publicaciones
-13) rubrosPublicacion
-14) preguntas
-15) calificaciones
-16) ofertas
-17) compras
-18) itemFactura
-
+DELETE FROM vadem.rubro
+DELETE FROM vadem.pregunta
+DELETE FROM vadem.compras
+DELETE FROM vadem.ofertas
+DELETE FROM vadem.calificacion
+DELETE FROM vadem.itemFactura
+DELETE FROM vadem.publicacion
+DELETE FROM vadem.rubrosPublicacion
+DELETE FROM vadem.estado	
+DELETE FROM vadem.tipoVisualizacionPorUsuario
+DELETE FROM vadem.factura
+DELETE FROM vadem.visibilidad
+DELETE FROM vadem.cliente
+DELETE FROM vadem.empresa
+DELETE FROM vadem.usuario
+DELETE FROM vadem.rolPorFuncionalidad
+DELETE FROM vadem.rol
+DELETE FROM vadem.funcionalidad
 */
 
 
@@ -37,7 +30,8 @@ SELECT 'COMIENZO'
 /************************/ SELECT 'ROLES' /************************/
 INSERT INTO vadem.rol VALUES(1,'Administrador',1),
 							(2,'Cliente',1),
-							(3,'Empresa',1)
+							(3,'Empresa',1),
+							(4,'Administrativo',1)
 GO
 
 
@@ -65,12 +59,14 @@ INSERT INTO vadem.rolPorFuncionalidad VALUES(1,1),(1,2),(1,3),(1,4),(1,5),(1,6),
 											(2,3), (3,8), (3,9)
 GO
 
+/************************/ SELECT 'USUARIO ADMINISTRADOR' /************************/
+INSERT INTO vadem.usuario 
+	VALUES ('admin', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7',0,0,1,0,NULL) -- campo ComprasPorRendir	
+GO
 
 /************************/ SELECT 'USUARIOS TIPO CLIENTE' /************************/
 INSERT INTO vadem.usuario 
-	SELECT  CONVERT(VARCHAR,cli_dni) + '-' + Cli_Apeliido, 
-	'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3',
-	2,0,0,1,0
+	SELECT  CONVERT(VARCHAR,cli_dni) + '-' + Cli_Apeliido, 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3',0,0,1,0,0 -- campo ComprasPorRendir
 	FROM 	(SELECT DISTINCT TOP 100 Cli_Dni, Cli_Apeliido
 		FROM         gd_esquema.Maestra
 		WHERE     (Cli_Dni IS NOT NULL)
@@ -93,7 +89,7 @@ GO
 
 /************************/ SELECT 'USUARIOS TIPO EMPRESA' /************************/
 INSERT INTO vadem.usuario 
-	SELECT  Publ_Empresa_Cuit, 123,3,0,0,1,0
+	SELECT  Publ_Empresa_Cuit, 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3',0,0,1,0,NULL -- Campo ComprasPorRendir
 	FROM (	SELECT DISTINCT TOP 100 Publ_Empresa_Cuit
 			FROM         gd_esquema.Maestra
 			WHERE     (Publ_Empresa_Cuit IS NOT NULL)
@@ -113,6 +109,31 @@ INSERT INTO vadem.empresa
 			WHERE     (Publ_Empresa_Cuit IS NOT NULL)
 			ORDER BY Publ_Empresa_Cuit) E
 GO
+
+/************************/ SELECT 'ROLES POR USUARIO' /************************/
+-- carga los roles empresa --
+INSERT INTO vadem.rolesPorUsuario
+	SELECT (SELECT IdUsuario FROM vadem.usuario U WHERE U.username = E.Publ_Empresa_Cuit), 3
+	FROM (SELECT DISTINCT TOP 100 Publ_Empresa_Cuit	
+			FROM   gd_esquema.Maestra
+			WHERE  (Publ_Empresa_Cuit IS NOT NULL)
+			ORDER BY Publ_Empresa_Cuit) E
+
+-- carga los roles usuario -- 
+INSERT INTO vadem.rolesPorUsuario
+	SELECT (SELECT IdUsuario FROM vadem.usuario U WHERE U.username = CONVERT(VARCHAR,E.cli_dni) + '-' + E.Cli_Apeliido), 2
+	FROM (	SELECT DISTINCT TOP 100 Cli_Dni, Cli_Apeliido
+			FROM         gd_esquema.Maestra
+			WHERE     (Cli_Dni IS NOT NULL)
+			ORDER BY Cli_Dni
+		  ) E
+
+-- carga el rol administrador -- 
+INSERT INTO vadem.rolesPorUsuario
+	SELECT IdUsuario, 1 FROM vadem.usuario U 
+	WHERE Username = 'admin'
+GO
+
 
 
 /************************/ SELECT 'FACTURAS' /************************/
@@ -175,20 +196,12 @@ GO
 
 /************************/ SELECT 'RUBROS PUBLICACION' /************************/
 INSERT INTO vadem.rubrosPublicacion
-	SELECT	1,IdPublicacion
-	FROM vadem.publicacion
-GO
-
-
-/************************/ SELECT 'CALIFICACIONES' /************************/
-INSERT INTO vadem.calificacion
-	SELECT	DISTINCT Calificacion_Codigo, Publicacion_Cod, U1.IdUsuario, U2.IdUsuario,Calificacion_Cant_Estrellas, Calificacion_Descripcion
+	SELECT	R.IdRubro, E.Publicacion_Cod
 	FROM gd_esquema.Maestra E
-	LEFT JOIN vadem.usuario U1
-		ON U1.Username = (ISNULL(E.Publ_Empresa_Cuit, CONVERT(VARCHAR,E.Publ_Cli_DNI) + '-' + E.Publ_Cli_Apeliido))
-	LEFT JOIN vadem.usuario U2
-		ON U2.Username = CONVERT(VARCHAR,E.Cli_Dni) + '-' + E.Cli_Apeliido
-	WHERE Calificacion_Codigo IS NOT NULL
+	LEFT JOIN vadem.rubro R
+		ON R.Descripcion = E.Publicacion_Rubro_Descripcion
+	GROUP BY R.IdRubro, E.Publicacion_Cod
+	ORDER BY R.IdRubro, E.Publicacion_Cod
 GO
 
 
@@ -204,9 +217,7 @@ GO
 
 /************************/ SELECT 'COMPRAS' /************************/
 INSERT INTO vadem.compras
-	SELECT  Publicacion_Cod, U.IdUsuario, Compra_Fecha, Compra_Cantidad, 
-		(SELECT COUNT(1) FROM vadem.calificacion C 
-			WHERE C.IdPublicacion = Publicacion_Cod AND C.IdCalificador = U.IdUsuario) AS calificada
+	SELECT  Publicacion_Cod, U.IdUsuario, Compra_Fecha, Compra_Cantidad, 1 AS calificada
 	FROM gd_esquema.Maestra E
 	LEFT JOIN vadem.usuario U
 	ON U.Username = CONVERT(VARCHAR,E.Cli_Dni) + '-' + E.Cli_Apeliido
@@ -214,61 +225,36 @@ INSERT INTO vadem.compras
 		AND Calificacion_Codigo IS NULL
 GO
 
-
-/************************/ SELECT 'ITEM FACTURA' /************************/
-
-
--- Carga Item de Publicaciones que no son gratuitas -- 56028
-INSERT INTO vadem.itemFactura
-SELECT DISTINCT Publicacion_Cod, U.IdUsuario,  Item_Factura_Monto, Item_Factura_Cantidad, 0 ,Factura_Nro
-FROM gd_esquema.Maestra E
-LEFT JOIN vadem.usuario U
-	ON U.Username = (ISNULL(E.Publ_Empresa_Cuit, CONVERT(VARCHAR,E.Publ_Cli_DNI) + '-' + E.Publ_Cli_Apeliido))
-WHERE Item_Factura_Cantidad IS NOT NULL
-	AND Item_Factura_Monto = Publicacion_Visibilidad_Precio 
-	AND Item_Factura_Cantidad = 1	
-GO	
-
-
--- Carga Item de Compras Seguras (no son gratuitas y las gratuitas con cantidad > 1) -- 81681
-INSERT INTO vadem.itemFactura
-SELECT Publicacion_Cod, U.IdUsuario,  Item_Factura_Monto, Item_Factura_Cantidad, 1 ,Factura_Nro
-FROM gd_esquema.Maestra E
-LEFT JOIN vadem.usuario U
-	ON U.Username = (ISNULL(E.Publ_Empresa_Cuit, CONVERT(VARCHAR,E.Publ_Cli_DNI) + '-' + E.Publ_Cli_Apeliido))
-WHERE Item_Factura_Cantidad IS NOT NULL
-	AND (Item_Factura_Monto <> Publicacion_Visibilidad_Precio OR 
-					(Item_Factura_Monto = 0.00 AND Item_Factura_Cantidad <> 1))
+/************************/ SELECT 'CALIFICACIONES' /************************/
+INSERT INTO vadem.calificacion
+	SELECT	DISTINCT Calificacion_Codigo, C.IdCompra, U1.IdUsuario, U2.IdUsuario,Calificacion_Cant_Estrellas, Calificacion_Descripcion
+	FROM gd_esquema.Maestra E
+	LEFT JOIN vadem.usuario U1
+		ON U1.Username = (ISNULL(E.Publ_Empresa_Cuit, CONVERT(VARCHAR,E.Publ_Cli_DNI) + '-' + E.Publ_Cli_Apeliido))
+	LEFT JOIN vadem.usuario U2
+		ON U2.Username = CONVERT(VARCHAR,E.Cli_Dni) + '-' + E.Cli_Apeliido
+	LEFT JOIN vadem.compras C
+		ON C.IdPublicacion = E.Publicacion_Cod
+	WHERE Calificacion_Codigo IS NOT NULL
 GO
 
 
--- Faltan 11069 compras -- Son las que son gratuitas y cantidad = 1 (registros duplicados)
+/************************/ SELECT 'ITEM FACTURA' /************************/
+INSERT INTO vadem.itemFactura
+	SELECT DISTINCT Publicacion_Cod, U.IdUsuario,  Item_Factura_Monto, Item_Factura_Cantidad, Factura_Nro
+	FROM gd_esquema.Maestra E
+	LEFT JOIN vadem.usuario U
+		ON U.Username = (ISNULL(E.Publ_Empresa_Cuit, CONVERT(VARCHAR,E.Publ_Cli_DNI) + '-' + E.Publ_Cli_Apeliido))
+	WHERE Item_Factura_Cantidad IS NOT NULL
+GO	
+
+--COMMIT
 
 
---commit
-
-/*
-
-
-DELETE FROM vadem.rubro
-DELETE FROM vadem.pregunta
-DELETE FROM vadem.compras
-DELETE FROM vadem.ofertas
-DELETE FROM vadem.calificacion
-DELETE FROM vadem.itemFactura
-DELETE FROM vadem.publicacion
-DELETE FROM vadem.rubrosPublicacion
-DELETE FROM vadem.estado	
-DELETE FROM vadem.tipoVisualizacionPorUsuario
-DELETE FROM vadem.factura
-DELETE FROM vadem.visibilidad
-DELETE FROM vadem.cliente
-DELETE FROM vadem.empresa
-DELETE FROM vadem.usuario
-DELETE FROM vadem.rolPorFuncionalidad
-DELETE FROM vadem.rol
-DELETE FROM vadem.funcionalidad
+-- preguntar por este problema!! porque es cero?
+--SELECT * from gd_esquema.Maestra
+--where Publicacion_Cod = 35038
 
 
 
-*/
+
