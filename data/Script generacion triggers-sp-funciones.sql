@@ -10,14 +10,11 @@ ON [vadem].[rol]
 FOR UPDATE
 AS
 BEGIN
-	DECLARE @Habilitado AS BIT
-	SELECT @Habilitado = Habilitado FROM INSERTED
+
+	DELETE RU FROM vadem.rolesPorUsuario RU
+	LEFT JOIN INSERTED I ON RU.IdRol = I.IdRol
+	WHERE I.Habilitado = 0
 	
-	IF(@Habilitado = 0)
-	BEGIN
-		DELETE FROM vadem.rolesPorUsuario
-		WHERE IdRol = (SELECT IdRol FROM INSERTED)
-	END
 END
 
 
@@ -33,10 +30,11 @@ AS
 BEGIN
 
      DELETE FROM vadem.rolPorFuncionalidad
-     WHERE IdRol = (SELECT IdRol FROM DELETED)
+     WHERE IdRol IN (SELECT IdRol FROM DELETED)
 
      DELETE vadem.rol
-     WHERE IdRol = (SELECT IdRol FROM DELETED)
+     WHERE IdRol IN (SELECT IdRol FROM DELETED)
+	 
 END
 
 --rollback

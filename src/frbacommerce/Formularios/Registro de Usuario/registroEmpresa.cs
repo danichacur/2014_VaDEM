@@ -100,8 +100,8 @@ namespace FrbaCommerce.Formularios.Registro_de_Usuario
                 empresa = new Empresa(usr.IdUsuario, usr.Username, usr.Rol.Id, usr.Rol.Descripcion, usr.Rol.Habilitado, usr.IntentosFallidos,
                     usr.Bloqueado, usr.Habilitado, usr.Reputacion,
                     txtRazonSocial.Text, (long)Convert.ToDouble(txtCuit.Text), txtTelefono.Text,
-                    txtDireccion.Text, Convert.ToInt16(txtNumero.Text), txtPiso.Text, txtDepartamento.Text, txtLocalidad.Text,
-                    Convert.ToInt16(txtCodigoPostal.Text), txtCiudad.Text, txtMail.Text, txtNombreContacto.Text,
+                    txtDireccion.Text, Convert.ToInt32(txtNumero.Text), txtPiso.Text, txtDepartamento.Text, txtLocalidad.Text,
+                    Convert.ToInt32(txtCodigoPostal.Text), txtCiudad.Text, txtMail.Text, txtNombreContacto.Text,
                     dtpFechaNacimiento.Value);
                 empresa.insertar();
             }

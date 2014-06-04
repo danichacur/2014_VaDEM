@@ -28,10 +28,41 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.lblFiltro = new System.Windows.Forms.Label();
+            this.dtpFecha = new System.Windows.Forms.DateTimePicker();
+            this.SuspendLayout();
+            // 
+            // lblFiltro
+            // 
+            this.lblFiltro.Location = new System.Drawing.Point(3, 0);
+            this.lblFiltro.Name = "lblFiltro";
+            this.lblFiltro.Size = new System.Drawing.Size(100, 18);
+            this.lblFiltro.TabIndex = 1;
+            this.lblFiltro.Text = "FiltroTextBox";
+            // 
+            // dtpFecha
+            // 
+            this.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFecha.Location = new System.Drawing.Point(72, 0);
+            this.dtpFecha.Name = "dtpFecha";
+            this.dtpFecha.Size = new System.Drawing.Size(121, 20);
+            this.dtpFecha.TabIndex = 2;
+            // 
+            // FiltroFecha
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.dtpFecha);
+            this.Controls.Add(this.lblFiltro);
+            this.Name = "FiltroFecha";
+            this.Size = new System.Drawing.Size(195, 21);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Label lblFiltro;
+        private System.Windows.Forms.DateTimePicker dtpFecha;
     }
 }

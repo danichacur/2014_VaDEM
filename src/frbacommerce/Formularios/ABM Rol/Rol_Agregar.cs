@@ -107,16 +107,6 @@ namespace FrbaCommerce.Formularios.ABM_Rol
             }
         }
 
-        /// <summary>
-        /// Evento keyPress. Solo habilita números
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void numerico_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!Char.IsNumber(e.KeyChar) && !Char.IsControl(e.KeyChar)) { e.Handled = true; }
-        }
-
         #endregion
 
         #region MetodosGenerales
@@ -132,7 +122,7 @@ namespace FrbaCommerce.Formularios.ABM_Rol
                 List<Filtro> filtros = new List<Filtro>();
                 
                 filtroTxt = new FiltroTextBox("Id", "IdRol", "=", "");
-                ((TextBox)filtroTxt.getTxtFiltro()).KeyPress += (new System.Windows.Forms.KeyPressEventHandler(this.numerico_KeyPress));
+                filtroTxt.setTipoTextoIngresado(FiltroTextBox.TipoTexto.Numerico);
                 filtros.Add(filtroTxt);
              
                 filtros.Add(new FiltroTextBox("Descripcion", "Descripcion", "LIKE", ""));

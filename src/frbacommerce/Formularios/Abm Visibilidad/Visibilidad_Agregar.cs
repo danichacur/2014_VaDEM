@@ -105,26 +105,6 @@ namespace FrbaCommerce.Formularios.Abm_Visibilidad
             }
         }
 
-        /// <summary>
-        /// Evento keyPress. Solo habilita números
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void numerico_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!Char.IsNumber(e.KeyChar) && !Char.IsControl(e.KeyChar)) { e.Handled = true; }
-        }
-
-        /// <summary>
-        /// Evento keyPress. Solo habilita números y la coma
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void numericoConComa_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!Char.IsNumber(e.KeyChar) && !Char.IsControl(e.KeyChar) && (e.KeyChar != ',')) { e.Handled = true; }
-        }
-
         #endregion
 
         #region MetodosGenerales
@@ -139,25 +119,25 @@ namespace FrbaCommerce.Formularios.Abm_Visibilidad
             {
                 List<Filtro> filtros = new List<Filtro>();
                 filtroTxt = new FiltroTextBox("Id", "IdVisibilidad", "=", "");
-                ((TextBox)filtroTxt.getTxtFiltro()).KeyPress += (new System.Windows.Forms.KeyPressEventHandler(this.numerico_KeyPress));
+                filtroTxt.setTipoTextoIngresado(FiltroTextBox.TipoTexto.Numerico);
                 filtros.Add(filtroTxt);
 
                 filtros.Add(new FiltroTextBox("Descripcion", "Descripcion", "LIKE", ""));
 
                 filtroTxt = new FiltroTextBox("Costo Fijo", "CostoFijo", "=", "");
-                ((TextBox)filtroTxt.getTxtFiltro()).KeyPress += (new System.Windows.Forms.KeyPressEventHandler(this.numericoConComa_KeyPress));
+                filtroTxt.setTipoTextoIngresado(FiltroTextBox.TipoTexto.NumericoConComa);
                 filtros.Add(filtroTxt);
 
                 filtroTxt = new FiltroTextBox("Comision", "Comision", "=", "");
-                ((TextBox)filtroTxt.getTxtFiltro()).KeyPress += (new System.Windows.Forms.KeyPressEventHandler(this.numericoConComa_KeyPress));
+                filtroTxt.setTipoTextoIngresado(FiltroTextBox.TipoTexto.NumericoConComa);
                 filtros.Add(filtroTxt);
 
                 filtroTxt = new FiltroTextBox("Limite Sin Bonificar", "LimiteSinBonificar", "=", "");
-                ((TextBox)filtroTxt.getTxtFiltro()).KeyPress += (new System.Windows.Forms.KeyPressEventHandler(this.numerico_KeyPress));
+                filtroTxt.setTipoTextoIngresado(FiltroTextBox.TipoTexto.Numerico);
                 filtros.Add(filtroTxt);
 
                 filtroTxt = new FiltroTextBox("Dias Vigencia", "DiasVigencia", "=", "");
-                ((TextBox)filtroTxt.getTxtFiltro()).KeyPress += (new System.Windows.Forms.KeyPressEventHandler(this.numerico_KeyPress));
+                filtroTxt.setTipoTextoIngresado(FiltroTextBox.TipoTexto.Numerico);
                 filtros.Add(filtroTxt);
                 
                 filtros.Add(new FiltroComboBox("Habilitado", "Habilitado", "=", "-1", Metodos_Comunes.obtenerTablaComboHabilitado(), "id", "descripcion"));

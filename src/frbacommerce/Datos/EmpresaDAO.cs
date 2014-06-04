@@ -45,7 +45,8 @@ namespace FrbaCommerce.Datos
             {
                 script = "SELECT *, U.Habilitado AS UsuarioHabilitado, R.Habilitado AS RolHabilitado FROM vadem.empresa E ";
                 script += "LEFT JOIN vadem.usuario U ON E.IdEmpresa = U.IdUsuario ";
-                script += "LEFT JOIN vadem.rol R ON R.IdRol = U.IdRol ";
+                script += "LEFT JOIN vadem.rolesPorUsuario RU ON RU.IdUsuario = U.IdUsuario ";
+                script += "LEFT JOIN vadem.rol R ON R.IdRol = RU.IdRol ";
                 script += "WHERE IdEmpresa = " + IdUsuario;
                 tbl = AccesoDatos.Instance.EjecutarScript(script);
 

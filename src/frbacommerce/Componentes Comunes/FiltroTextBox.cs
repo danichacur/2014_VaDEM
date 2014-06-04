@@ -12,6 +12,9 @@ namespace FrbaCommerce.Componentes_Comunes
     public partial class FiltroTextBox : Filtro
     {
         #region VariablesDeClase
+
+        public enum TipoTexto { Numerico, NumericoConComa };
+
         #endregion
 
         #region Eventos
@@ -50,7 +53,39 @@ namespace FrbaCommerce.Componentes_Comunes
             }
         }
 
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
+        /// <param name="textolbl"></param>
+        /// <param name="pCampo"></param>
+        public FiltroTextBox(String textolbl, String pCampo)
+        {
+            InitializeComponent();
 
+            try
+            {
+                this.Name = pCampo;
+                campo = pCampo;
+                
+                setlblFiltroBase(this.lblFiltro, textolbl);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        #endregion
+
+        #region MetodosGenerales
+
+        /// <summary>
+        /// Recibe los parámetros necesarios a ser seteados
+        /// </summary>
+        /// <param name="textolbl"></param>
+        /// <param name="pCampo"></param>
+        /// <param name="pModoComparacion"></param>
+        /// <param name="pValorNulo"></param>
         public void setearParametros(String textolbl, String pCampo, String pModoComparacion, String pValorNulo)
         {
             try
@@ -73,13 +108,10 @@ namespace FrbaCommerce.Componentes_Comunes
         /// devuelve el control txtFiltro
         /// </summary>
         /// <returns></returns>
-        public TextBox getTxtFiltro(){
+        public TextBox getTxtFiltro()
+        {
             return this.txtFiltro;
         }
-
-        #endregion
-
-        #region MetodosGenerales
 
         /// <summary>
         /// Obligatorio de Implementar
@@ -130,6 +162,47 @@ namespace FrbaCommerce.Componentes_Comunes
             {
                 throw;
             }
+        }
+
+        public void setTipoTextoIngresado(TipoTexto tipo)
+        {
+            try
+            {
+                switch (tipo) {
+                    case TipoTexto.Numerico:
+                        txtFiltro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(numerico_KeyPress);
+                        break;
+                    case TipoTexto.NumericoConComa:
+                        txtFiltro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(numericoConComa_KeyPress);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Evento keyPress. Solo habilita números
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void numerico_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsNumber(e.KeyChar) && !Char.IsControl(e.KeyChar)) { e.Handled = true; }
+        }
+
+        /// <summary>
+        /// Evento keyPress. Solo habilita números y la coma
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void numericoConComa_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsNumber(e.KeyChar) && !Char.IsControl(e.KeyChar) && (e.KeyChar != ',')) { e.Handled = true; }
         }
 
         #endregion

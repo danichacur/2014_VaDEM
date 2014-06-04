@@ -17,6 +17,7 @@ namespace FrbaCommerce.Entidades
         public bool Bloqueado { get; set; }
         public bool Habilitado { get; set; }
         public float Reputacion { get; set; }
+        public float CantComprasPorRendir { get; set; }
 
         public Usuario() { 
         }
@@ -34,13 +35,30 @@ namespace FrbaCommerce.Entidades
             Reputacion = pReputacion;
         }
 
+        public Usuario(int pIdUsuario, string pUsername, int pIdRol, String pDescRol, bool pRolHabil, int pIntentosFallidos, bool pBloqueado, bool pHabilitado, float pReputacion, float pCantComprasPorRendir)
+        {
+            IdUsuario = pIdUsuario;
+            Username = pUsername;
+            PasswordEncriptada = "";
+            PasswordDesencriptada = "";
+            this.Rol = new Rol(pIdRol, pDescRol, pRolHabil);
+            IntentosFallidos = pIntentosFallidos;
+            Bloqueado = pBloqueado;
+            Habilitado = pHabilitado;
+            Reputacion = pReputacion;
+            CantComprasPorRendir = pCantComprasPorRendir;
+        }
+
         public Usuario(string pUsername, string pPassDesencriptada, int pIdRol)
         {
             Username = pUsername;
             PasswordDesencriptada = pPassDesencriptada;
             PasswordEncriptada = FrbaCommerce.Componentes_Comunes.Metodos_Comunes.sha256_hash(pPassDesencriptada);
             this.Rol = new Rol(pIdRol, "", false);
-            
+            Habilitado = true;
+            Bloqueado = false;
+            Reputacion = 0;
+            CantComprasPorRendir = 0;
         }
 
         public Usuario insertar()

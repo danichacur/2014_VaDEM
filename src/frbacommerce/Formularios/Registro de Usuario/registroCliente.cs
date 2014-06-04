@@ -153,7 +153,7 @@ namespace FrbaCommerce.Formularios.Registro_de_Usuario
                 row["id"] = 1; row["descripcion"] = "L.C.";
                 tbl.Rows.Add(row);
 
-                cboTipoDocumento.DataSource = tbl;
+                cboTipoDocumento.DataSource = Metodos_Comunes.obtenerTablaComboTipoDocumento();
                 cboTipoDocumento.DisplayMember = "descripcion";
                 cboTipoDocumento.ValueMember = "id";
             }

@@ -69,6 +69,23 @@ namespace FrbaCommerce.Componentes_Comunes
 
         /// <summary>
         /// Obligatorio de Implementar
+        /// Obtiene el valor seleccionado del combobox (El valor, no el texto)
+        /// </summary>
+        /// <returns></returns>
+        public String obtenerValorText()
+        {
+            try
+            {
+                return cboFiltro.SelectedText;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Obligatorio de Implementar
         /// Vuelvo el combo a la primer posicion (posicion vacia)
         /// </summary>
         public override void LimpiarContenido()

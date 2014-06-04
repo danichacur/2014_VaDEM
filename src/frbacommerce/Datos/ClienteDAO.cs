@@ -5,6 +5,7 @@ using System.Text;
 using System.Data;
 using FrbaCommerce.Entidades;
 using System.Data.SqlClient;
+using FrbaCommerce.Componentes_Comunes;
 
 namespace FrbaCommerce.Datos
 {
@@ -68,8 +69,7 @@ namespace FrbaCommerce.Datos
                 script += "','" + cliente.Email + "','" + cliente.Telefono + "','" + cliente.Direccion + "', " + cliente.Numero;
                 script += "," + (cliente.Piso == "" ? "NULL" : cliente.Piso) + "," + (cliente.Departamento == "" ? "NULL" : "'" + cliente.Departamento + "'") + ",'" + cliente.Localidad + "','" + cliente.CodigoPostal;
                 script += "','" + cliente.FechaNacimiento + "','" + cliente.Cuil + "')";
-
-
+                
                 AccesoDatos.Instance.EjecutarScript(script);
 
                 return obtenerCliente(cliente.IdUsuario);
@@ -87,7 +87,8 @@ namespace FrbaCommerce.Datos
             Cliente cliente;
             try
             {
-                script = "SELECT * FROM vadem.cliente C LEFT JOIN vadem.usuario U ON C.IdCliente = U.IdUsuario WHERE IdCliente = " + IdUsuario;
+                script = "SELECT * FROM vadem.cliente C LEFT JOIN vadem.usuario U ON C.IdCliente = U.IdUsuario ";
+                script += "LEFT JOIN vadem.rolesPorUsuario RU ON RU.IdUsuario = U.IdUsuario WHERE IdCliente = " + IdUsuario;
                 tbl = AccesoDatos.Instance.EjecutarScript(script);
 
                 if (tbl.Rows.Count > 0)

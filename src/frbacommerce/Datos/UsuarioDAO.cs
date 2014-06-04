@@ -59,7 +59,8 @@ namespace FrbaCommerce.Datos
             try
             {
                 script = "INSERT INTO vadem.usuario VALUES ( '" + usr.Username + "', '";
-                script += usr.PasswordEncriptada + "',0,1,0,0)";
+                script += usr.PasswordEncriptada + "'," + usr.IntentosFallidos + "," + (usr.Bloqueado ? 1 : 0);
+                script += "," + (usr.Habilitado ? 1 : 0) + "," + usr.Reputacion + "," + usr.CantComprasPorRendir + ")";
                 AccesoDatos.Instance.EjecutarScript(script);
 
                 usrBD = obtenerUsuarioPorUsername(usr.Username);

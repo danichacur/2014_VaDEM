@@ -11,6 +11,8 @@ namespace FrbaCommerce.Componentes_Comunes
     class Metodos_Comunes
     {
 
+        //public enum EnumRoles { Administrador = 1, Cliente, Empresa }
+
         /// <summary>
         /// Recibe la excepcion y encapsulo el comportamiento para que me muestre el mensaje de error de la siguiente forma
         /// </summary>
@@ -149,6 +151,43 @@ namespace FrbaCommerce.Componentes_Comunes
             }
 
             return Sb.ToString();
+        }
+
+        /// <summary>
+        /// Lleno el combo de tipo de Documento con los posibles valores. No los obtengo de la BD
+        /// </summary>
+        public static DataTable obtenerTablaComboTipoDocumento()
+        {
+            try
+            {
+                DataTable tbl;
+                DataRow row;
+                DataColumn column;
+
+                tbl = new DataTable("id", "descripcion");
+
+                column = new DataColumn();
+                column.ColumnName = "id";
+                tbl.Columns.Add(column);
+
+                column = new DataColumn();
+                column.ColumnName = "descripcion";
+                tbl.Columns.Add(column);
+
+                row = tbl.NewRow();
+                row["id"] = 0; row["descripcion"] = "DNI";
+                tbl.Rows.Add(row);
+
+                row = tbl.NewRow();
+                row["id"] = 1; row["descripcion"] = "L.C.";
+                tbl.Rows.Add(row);
+
+                return tbl;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

@@ -299,6 +299,9 @@
     <EmbeddedResource Include="Componentes Comunes\FiltroComboBox.resx">
       <DependentUpon>FiltroComboBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Componentes Comunes\FiltroFecha.resx">
+      <DependentUpon>FiltroFecha.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Componentes Comunes\FiltroTextBox.resx">
       <DependentUpon>FiltroTextBox.cs</DependentUpon>
     </EmbeddedResource>
