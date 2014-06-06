@@ -45,6 +45,7 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
                     empresa = new Empresa();
                 }
                 generarCampos();
+                redefinirTamanioVentana();
             }
             catch (Exception ex)
             {
@@ -226,11 +227,24 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
             }
         }
 
+        /// <summary>
+        /// cambia el tamaño de la pantalla de acuerdo a la cantidad de registros de la grilla de funcionalidades
+        /// </summary>
+        private void redefinirTamanioVentana()
+        {
+            int alto;
+            try
+            {
+                alto = 225;
+                this.Size = new System.Drawing.Size(this.Size.Width, alto);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         #endregion
-
-
-        
-
        
     }
 }

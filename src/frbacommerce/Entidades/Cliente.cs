@@ -100,15 +100,53 @@ namespace FrbaCommerce.Entidades
             }
         }
 
-        public void bajaLogica()
+        public Cliente modificar()
         {
             try
             {
-             
+                base.modificar();
+                return ClienteDAO.modificar(this);
             }
             catch (Exception)
             {
                 throw;
+            }
+        }
+
+        public void bajaLogica()
+        {
+            try
+            {
+                Habilitado = false;
+                modificar();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void completarDatosDeUsuario()
+        {
+            Usuario usr;
+            try
+            {
+                usr = ClienteDAO.obtenerDatosUsuarioDesdeCliente(this);
+                this.IdUsuario = usr.IdUsuario;
+                this.Username = usr.Username;
+                this.IntentosFallidos = usr.IntentosFallidos;
+                this.Bloqueado = usr.Bloqueado;
+                this.Habilitado = usr.Habilitado;
+                this.Reputacion = usr.Reputacion;
+                this.CantComprasPorRendir = usr.CantComprasPorRendir;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                usr = null;
             }
         }
     }

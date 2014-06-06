@@ -185,6 +185,7 @@ namespace FrbaCommerce.Abm_Cliente
             try
             {
                 aplicarFiltro("");
+                dgv.CellClick -= new DataGridViewCellEventHandler(dgv_CellClick);
                 dgv.CellClick += new DataGridViewCellEventHandler(dgv_CellClick);
             }
             catch (Exception)
@@ -229,7 +230,7 @@ namespace FrbaCommerce.Abm_Cliente
             try
             {
 
-                DataGridViewColumn[] columnas = new DataGridViewColumn[16];
+                DataGridViewColumn[] columnas = new DataGridViewColumn[17];
 
                 DataGridViewTextBoxColumn colTipoDocumento = new DataGridViewTextBoxColumn();
                 colTipoDocumento.DataPropertyName = "TipoDocumento"; colTipoDocumento.Name = "TipoDocumento";
@@ -291,19 +292,24 @@ namespace FrbaCommerce.Abm_Cliente
                 colCUIL.DataPropertyName = "Cuil"; colCUIL.Name = "Cuil"; colCUIL.HeaderText = "CUIL";
                 columnas[13] = colCUIL;
 
+                DataGridViewCheckBoxColumn colHabilitado = new DataGridViewCheckBoxColumn();
+                colHabilitado.DataPropertyName = "Habilitado"; colHabilitado.Name = "Habilitado"; colHabilitado.HeaderText = "Habilitado";
+                colHabilitado.FalseValue = "0"; colHabilitado.TrueValue = "1";
+                columnas[14] = colHabilitado;
+
                 DataGridViewButtonColumn colModif = new DataGridViewButtonColumn();
                 colModif.Width = 60;
                 colModif.Text = "Modificar";
                 colModif.Name = "Modificar";
                 colModif.UseColumnTextForButtonValue = true;
-                columnas[14] = colModif;
+                columnas[15] = colModif;
 
                 DataGridViewButtonColumn colElim = new DataGridViewButtonColumn();
                 colElim.Width = 60;
                 colElim.Text = "Eliminar";
                 colElim.Name = "Eliminar";
                 colElim.UseColumnTextForButtonValue = true;
-                columnas[15] = colElim;
+                columnas[16] = colElim;
 
                 return columnas;
             }

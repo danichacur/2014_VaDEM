@@ -83,7 +83,9 @@ namespace FrbaCommerce.Componentes_Comunes
         {
             try
             {
-                int contador;
+                int contador = 0;
+
+                eliminarFiltrosCargados();
 
                 camposEnPantalla = new List<Filtro>();
 
@@ -142,6 +144,40 @@ namespace FrbaCommerce.Componentes_Comunes
             }
             catch (Exception)
             {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// recorre la lista de controles, y en caso de ser filtros, los elimina
+        /// </summary>
+        private void eliminarFiltrosCargados()
+        {
+            int i, j, cantTotal;
+            Control control;
+            try
+            {
+
+
+                i = 0;
+                j = 0;
+                cantTotal = Controls.Count;
+                while (i < cantTotal)
+	            {
+                    control = Controls[j];
+            	    if (control.GetType().Name.Contains("Filtro"))
+                        Controls.Remove(control);
+                    else 
+                        j = j + 1 ;
+                   
+                    i = i + 1;
+	            }
+
+
+            }
+            catch (Exception)
+            {
+
                 throw;
             }
         }

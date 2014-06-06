@@ -183,10 +183,12 @@ namespace FrbaCommerce.Formularios.ABM_Rol
         private List<Object> obtenerListaFuncionalidades()
         {
             List<Object> lista;
+            List<Funcionalidad> listaFunc;
             try
             {
                 lista = new List<Object>();
-                foreach (Funcionalidad func in FuncionalidadDAO.obtenerFuncionalidades())
+                listaFunc = FuncionalidadDAO.obtenerFuncionalidades();
+                foreach (Funcionalidad func in listaFunc)
                 {
                     lista.Add((Object)func);
                 }

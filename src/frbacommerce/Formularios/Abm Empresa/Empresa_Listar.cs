@@ -183,6 +183,7 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
             try
             {
                 aplicarFiltro("");
+                dgv.CellClick -= new DataGridViewCellEventHandler(dgv_CellClick);
                 dgv.CellClick += new DataGridViewCellEventHandler(dgv_CellClick);
             }
             catch (Exception)

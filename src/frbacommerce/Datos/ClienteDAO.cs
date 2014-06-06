@@ -24,7 +24,8 @@ namespace FrbaCommerce.Datos
             try
             {
 
-                String script = "SELECT * FROM vadem.cliente ";
+                String script = "SELECT * FROM vadem.cliente C LEFT JOIN vadem.usuario U ON C.IdCliente = U.IdUsuario ";
+                script += "LEFT JOIN vadem.rolesPorUsuario RU ON RU.IdUsuario = U.IdUsuario ";
                 script += clausulaWhere;
 
                 clientes = new List<Cliente>();
@@ -33,6 +34,15 @@ namespace FrbaCommerce.Datos
 
                 foreach (DataRow row in tbl.Rows) {
                     cliente = new Cliente(
+                                    Convert.ToInt32(row["IdUsuario"]),
+                                    (String)row["Username"],
+                                    Convert.ToInt32(row["IdRol"]),
+                                    "",
+                                    true,
+                                    Convert.ToInt32(row["IntentosFallidos"]),
+                                    Convert.ToInt32(row["Bloqueado"]) == 1 ? true : false,
+                                    Convert.ToInt32(row["Habilitado"]) == 1 ? true : false,
+                                    (float)Convert.ToDecimal(row["Reputacion"]),
                                     (long)Convert.ToDouble(row["Documento"]),
                                     (String)row["TipoDocumento"],
                                     (String)row["Nombre"],
@@ -41,7 +51,7 @@ namespace FrbaCommerce.Datos
                                     (String)row["Telefono"],
                                     (String)row["Direccion"],
                                     Convert.ToInt32(row["Numero"]),
-                                    (String)((row["Piso"] == DBNull.Value) ? "": row["Piso"].ToString()),
+                                    Convert.ToString(((row["Piso"] == DBNull.Value) ? "" : row["Piso"])),
                                     (String)((row["Dpto"] == DBNull.Value) ? "" : row["Dpto"]),
                                     (String)row["Localidad"],
                                     Convert.ToInt32(row["CodPostal"]),
@@ -70,6 +80,39 @@ namespace FrbaCommerce.Datos
                 script += "," + (cliente.Piso == "" ? "NULL" : cliente.Piso) + "," + (cliente.Departamento == "" ? "NULL" : "'" + cliente.Departamento + "'") + ",'" + cliente.Localidad + "','" + cliente.CodigoPostal;
                 script += "','" + cliente.FechaNacimiento + "','" + cliente.Cuil + "')";
                 
+                AccesoDatos.Instance.EjecutarScript(script);
+
+                return obtenerCliente(cliente.IdUsuario);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static Cliente modificar(Cliente cliente)
+        {
+            String script;
+            try
+            { // " + cliente + "
+                script = "UPDATE vadem.cliente ";
+                script += "SET [Documento] = " + cliente.Documento + " ";
+                script += ",[TipoDocumento] = '" + cliente.TipoDocumento + "' ";
+                script += ",[Nombre] = '" + cliente.Nombre + "' ";
+                script += ",[Apellido] = '" + cliente.Apellido + "' ";
+                script += ",[Mail] = '" + cliente.Email + "' ";
+                script += ",[Telefono] = " + cliente.Telefono + " ";
+                script += ",[Direccion] = '" + cliente.Direccion + "' ";
+                script += ",[Numero] = " + cliente.Numero + " ";
+                script += ",[Piso] = " + (cliente.Piso == "" ? "NULL" : cliente.Piso) + " ";
+                script += ",[Dpto] = " + (cliente.Departamento == "" ? "NULL" : "'" + cliente.Departamento + "'") + " ";
+                script += ",[Localidad] = '" + cliente.Localidad + "' ";
+                script += ",[CodPostal] = '" + cliente.CodigoPostal + "' ";
+                script += ",[FechaNacimiento] = '" + cliente.FechaNacimiento + "' ";
+                script += ",[CUIL] = " + cliente.Cuil + " ";
+                script += "WHERE [IdCliente] = " + cliente.IdUsuario;
+
+
                 AccesoDatos.Instance.EjecutarScript(script);
 
                 return obtenerCliente(cliente.IdUsuario);
@@ -121,6 +164,45 @@ namespace FrbaCommerce.Datos
                                     (long)Convert.ToDouble(row["CUIL"])
                                   );
                     return cliente;
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static Usuario obtenerDatosUsuarioDesdeCliente(Cliente cliente)
+        {
+            String script;
+            DataTable tbl;
+            Usuario usr;
+            try
+            {
+                script = "SELECT U.* FROM vadem.usuario U";
+                script += " LEFT JOIN vadem.cliente C";
+                script += " ON C.IdCliente = U.IdUsuario";
+                script += " WHERE C.TipoDocumento = '" + cliente.TipoDocumento + "'";
+                script += " AND C.Documento = " + cliente.Documento;
+
+                tbl = AccesoDatos.Instance.EjecutarScript(script);
+
+                if (tbl.Rows.Count > 0)
+                {
+                    usr = new Usuario(Convert.ToInt32(tbl.Rows[0]["IdUsuario"]),
+                                        (String)tbl.Rows[0]["Username"],
+                                        Convert.ToInt32(tbl.Rows[0]["IntentosFallidos"]),
+                                        Convert.ToInt32(tbl.Rows[0]["Bloqueado"]) == 1 ? true : false,
+                                        Convert.ToInt32(tbl.Rows[0]["Habilitado"]) == 1 ? true : false,
+                                        (float)Convert.ToDecimal(tbl.Rows[0]["Reputacion"])
+                                        );
+
+                    return usr;
                 }
                 else
                 {

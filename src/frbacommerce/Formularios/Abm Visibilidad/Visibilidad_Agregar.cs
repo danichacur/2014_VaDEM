@@ -41,6 +41,7 @@ namespace FrbaCommerce.Formularios.Abm_Visibilidad
                     visibilidad = new Visibilidad();
                 }
                 generarCampos();
+                redefinirTamanioVentana();
             }
             catch (Exception ex)
             {
@@ -250,6 +251,23 @@ namespace FrbaCommerce.Formularios.Abm_Visibilidad
             }
         }
 
+         /// <summary>
+        /// cambia el tamaño de la pantalla de acuerdo a la cantidad de registros de la grilla de funcionalidades
+        /// </summary>
+        private void redefinirTamanioVentana()
+        {
+            int alto;
+            try
+            {
+                alto = 338;
+                this.Size = new System.Drawing.Size(this.Size.Width, alto);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        
         #endregion
     }
 }

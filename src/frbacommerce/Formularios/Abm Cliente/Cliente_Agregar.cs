@@ -45,6 +45,7 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
                     cliente = new Cliente();
                 }
                 generarCampos();
+                redefinirTamanioVentana();
             }
             catch (Exception ex)
             {
@@ -154,28 +155,45 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
         private void generarCampos()
         {
             FiltroTextBox filtroTxt;
+            FiltroComboBox filtroCbo;
+            FiltroFecha filtroDtp;
             try
             {
                 List<Filtro> filtros = new List<Filtro>();
 
-                filtros.Add(new FiltroComboBox("Tipo Doc", "TipoDocumento", "", "", Metodos_Comunes.obtenerTablaComboTipoDocumento(), "id", "descripcion"));
+                filtroCbo = new FiltroComboBox("Tipo Doc", "TipoDocumento", "", "", Metodos_Comunes.obtenerTablaComboTipoDocumento(), "id", "descripcion");
+                filtroCbo.setObligatorio(true);
+                filtros.Add(filtroCbo);
 
                 filtroTxt = new FiltroTextBox("Documento", "Documento");
-                filtroTxt.setTipoTextoIngresado(FiltroTextBox.TipoTexto.Numerico); 
+                filtroTxt.setTipoTextoIngresado(FiltroTextBox.TipoTexto.Numerico);
+                filtroTxt.setObligatorio(true);
                 filtros.Add(filtroTxt);
 
-                filtros.Add(new FiltroTextBox("Nombre", "Nombre"));
-                filtros.Add(new FiltroTextBox("Apellido", "Apellido"));
-                filtros.Add(new FiltroTextBox("Mail", "Email"));
+                filtroTxt = new FiltroTextBox("Nombre", "Nombre");
+                filtroTxt.setObligatorio(true);
+                filtros.Add(filtroTxt);
 
+                filtroTxt = new FiltroTextBox("Apellido", "Apellido");
+                filtroTxt.setObligatorio(true);
+                filtros.Add(filtroTxt);
+
+                filtroTxt = new FiltroTextBox("Mail", "Email");
+                filtroTxt.setObligatorio(true);
+                filtros.Add(filtroTxt);
+               
                 filtroTxt = new FiltroTextBox("Teléfono", "Telefono");
                 filtroTxt.setTipoTextoIngresado(FiltroTextBox.TipoTexto.Numerico);
+                filtroTxt.setObligatorio(true);
                 filtros.Add(filtroTxt);
 
-                filtros.Add(new FiltroTextBox("Dirección", "Direccion"));
+                filtroTxt = new FiltroTextBox("Dirección", "Direccion");
+                filtroTxt.setObligatorio(true);
+                filtros.Add(filtroTxt);
 
                 filtroTxt = new FiltroTextBox("Número", "Numero");
                 filtroTxt.setTipoTextoIngresado(FiltroTextBox.TipoTexto.Numerico);
+                filtroTxt.setObligatorio(true);
                 filtros.Add(filtroTxt);
 
                 filtroTxt = new FiltroTextBox("Piso", "Piso");
@@ -183,16 +201,23 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
                 filtros.Add(filtroTxt);
 
                 filtros.Add(new FiltroTextBox("Depto", "Dpto"));
-                filtros.Add(new FiltroTextBox("Localidad", "Localidad"));
+
+                filtroTxt = new FiltroTextBox("Localidad", "Localidad");
+                filtroTxt.setObligatorio(true);
+                filtros.Add(filtroTxt);
 
                 filtroTxt = new FiltroTextBox("Cod. Postal", "CodPostal");
                 filtroTxt.setTipoTextoIngresado(FiltroTextBox.TipoTexto.Numerico);
+                filtroTxt.setObligatorio(true);
                 filtros.Add(filtroTxt);
 
-                filtros.Add(new FiltroFecha("Fecha Nac.", "FechaNacimiento"));
+                filtroDtp = new FiltroFecha("Fecha Nac.", "FechaNacimiento");
+                filtroDtp.setObligatorio(true);
+                filtros.Add(filtroDtp);
 
                 filtroTxt = new FiltroTextBox("CUIL", "CUIL");
                 filtroTxt.setTipoTextoIngresado(FiltroTextBox.TipoTexto.Numerico);
+                filtroTxt.setObligatorio(true);
                 filtros.Add(filtroTxt);
 
                 this.ctrlAltaModificacion1.cargarFiltros(filtros);
@@ -241,6 +266,7 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
                 cliente.CodigoPostal = Convert.ToInt32(campos[11].obtenerValor());
                 cliente.FechaNacimiento = Convert.ToDateTime(campos[12].obtenerValor());
                 cliente.Cuil = (long)Convert.ToDouble(campos[13].obtenerValor());
+                cliente.Habilitado = (campos[14].obtenerValor().ToString() == "1" ? true: false);
             }
             catch (Exception)
             {
@@ -248,6 +274,23 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
             }
         }
 
+        /// <summary>
+        /// Agrega el filtro parámetro en la pantalla
+        /// </summary>
+        /// <param name="filtro"></param>
+        public void agregarACamposEnPantalla(Filtro filtro) {
+            try
+            {
+                List<Filtro> filtros = obtenerCamposEnPantalla();
+                filtros.Add(filtro);
+
+                this.ctrlAltaModificacion1.cargarFiltros(filtros);
+            }
+            catch (Exception)
+            {   
+                throw;
+            }
+        }
         #endregion
 
         #region MetodosAuxiliares
@@ -266,7 +309,9 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
 
                 foreach (Filtro campo in campos)
                 {
-                    if (campo.obtenerValor().ToString() == "") errores += campo.obtenerLabel() + ", ";
+                    if (campo.obtenerObligatorio())
+                        if (campo.obtenerValor().ToString() == "") 
+                            errores += campo.obtenerLabel() + ", ";
                 }
 
                 if (errores.Length > 0)
@@ -311,6 +356,23 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
             }
             catch (Exception)
             {   
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// cambia el tamaño de la pantalla de acuerdo a la cantidad de registros de la grilla de funcionalidades
+        /// </summary>
+        private void redefinirTamanioVentana()
+        {
+            int alto;
+            try
+            {
+                alto = 544;
+                this.Size = new System.Drawing.Size(this.Size.Width, alto);
+            }
+            catch (Exception)
+            {
                 throw;
             }
         }

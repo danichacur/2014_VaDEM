@@ -36,6 +36,8 @@ namespace FrbaCommerce.Componentes_Comunes
                 modoComparacion = pModoComparacion;
                 valorNulo = pValorNulo;
 
+                cboFiltro.DropDownStyle = ComboBoxStyle.DropDownList;
+
                 setlblFiltroBase(this.lblFiltro, textolbl);
 
                 cargarCombo(itemsCombo, value, display);
@@ -76,7 +78,7 @@ namespace FrbaCommerce.Componentes_Comunes
         {
             try
             {
-                return cboFiltro.SelectedText;
+                return cboFiltro.Text;
             }
             catch (Exception)
             {
@@ -112,6 +114,23 @@ namespace FrbaCommerce.Componentes_Comunes
             try
             {
                 cboFiltro.SelectedValue = texto;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Obligatorio de Implementar
+        /// Selecciono el valor del combo que coincide con el valor recibido por parámetro.
+        /// </summary>
+        /// <param name="texto"></param>
+        public void colocarValorTexto(String texto)
+        {
+            try
+            {
+                cboFiltro.Text = texto;
             }
             catch (Exception)
             {

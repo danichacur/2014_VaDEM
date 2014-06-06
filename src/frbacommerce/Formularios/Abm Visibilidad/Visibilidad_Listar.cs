@@ -177,6 +177,7 @@ namespace FrbaCommerce.Formularios.Abm_Visibilidad
             try
             {
                 aplicarFiltro("");
+                dgv.CellClick -= new DataGridViewCellEventHandler(dgv_CellClick);
                 dgv.CellClick += new DataGridViewCellEventHandler(dgv_CellClick);
             }
             catch (Exception)

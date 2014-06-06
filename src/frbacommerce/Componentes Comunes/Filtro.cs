@@ -14,6 +14,7 @@ namespace FrbaCommerce.Componentes_Comunes
         protected String campo;
         protected String modoComparacion;
         protected String valorNulo;
+        protected Boolean obligatorio = false;
 
         #endregion
 
@@ -37,6 +38,11 @@ namespace FrbaCommerce.Componentes_Comunes
         public String obtenerValorNulo()
         {
             return valorNulo;
+        }
+
+        public Boolean obtenerObligatorio()
+        {
+            return obligatorio;
         }
 
         #endregion
@@ -74,6 +80,21 @@ namespace FrbaCommerce.Componentes_Comunes
         /// </summary>
         public virtual void colocarValor(object texto)
         {
+        }
+
+        /// <summary>
+        /// Setteo si es obligatorio o no completar el campo para seguir
+        /// </summary>
+        public virtual void setObligatorio(Boolean esObligatorio)
+        {
+            try
+            {
+                obligatorio = esObligatorio;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public virtual void agregarEventoKeyPress(System.Windows.Forms.KeyPressEventHandler evento)

@@ -61,6 +61,18 @@ namespace FrbaCommerce.Entidades
             CantComprasPorRendir = 0;
         }
 
+        public Usuario(int pIdUsuario, string pUsername, int pIntentosFallidos, bool pBloqueado, bool pHabilitado, float pReputacion)
+        {
+            IdUsuario = pIdUsuario;
+            Username = pUsername;
+            PasswordEncriptada = "";
+            PasswordDesencriptada = "";
+            IntentosFallidos = pIntentosFallidos;
+            Bloqueado = pBloqueado;
+            Habilitado = pHabilitado;
+            Reputacion = pReputacion;
+        }
+
         public Usuario insertar()
         {
             try

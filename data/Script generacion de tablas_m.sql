@@ -258,7 +258,7 @@ GO
 CREATE TABLE [vadem].[cliente](
 	[IdCliente] [int] NOT NULL,
 	[Documento] [numeric](18, 0) NOT NULL,
-	[TipoDocumento] [nchar](10) NOT NULL,
+	[TipoDocumento] [nvarchar](10) NOT NULL,
 	[Nombre] [nvarchar](255) NOT NULL,
 	[Apellido] [nvarchar](255) NOT NULL,
 	[Mail] [nvarchar](255) NOT NULL,

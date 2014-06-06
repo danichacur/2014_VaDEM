@@ -181,6 +181,7 @@ namespace FrbaCommerce.ABM_Rol
             try
             {
                 aplicarFiltro("");
+                dgv.CellClick -= new DataGridViewCellEventHandler(dgv_CellClick);
                 dgv.CellClick += new DataGridViewCellEventHandler(dgv_CellClick);
             }
             catch (Exception)

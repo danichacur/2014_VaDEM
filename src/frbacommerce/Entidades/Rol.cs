@@ -156,12 +156,14 @@ namespace FrbaCommerce.Entidades
             try
             {
                 lista = "";
-
-                foreach (Funcionalidad func in this.Funcionalidades)
+                if (this.Funcionalidades.Count > 0)
                 {
-                    lista += func.Id.ToString() + ",";
+                    foreach (Funcionalidad func in this.Funcionalidades)
+                    {
+                        lista += func.Id.ToString() + ",";
+                    }
+                    lista = lista.Substring(0, lista.Length - 1);
                 }
-                lista = lista.Substring(0, lista.Length - 1);
                 return lista;
             }
             catch (Exception)

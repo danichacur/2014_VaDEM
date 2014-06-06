@@ -185,6 +185,8 @@ namespace FrbaCommerce.Componentes_Comunes
             }
         }
 
+       
+
         /// <summary>
         /// Evento keyPress. Solo habilita números
         /// </summary>

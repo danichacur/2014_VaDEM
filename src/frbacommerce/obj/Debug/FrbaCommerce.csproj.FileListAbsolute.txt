@@ -182,4 +182,4 @@ C:\Users\Matias\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaComme
 C:\Users\Matias\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Properties.Resources.resources
 C:\Users\Matias\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.csproj.GenerateResource.Cache
 D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.FiltroFecha.resources
-C:\Users\Matias\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.FiltroFecha.resources
+D:\UTN\Facultad\Gestion de datos\aplicacion desktop\frbacommerce\frbacommerce\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Abm_Cliente.Cliente_Modificar.resources

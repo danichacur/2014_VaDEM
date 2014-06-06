@@ -314,6 +314,9 @@
     <EmbeddedResource Include="Formularios\Abm Cliente\Cliente_Listar.resx">
       <DependentUpon>Cliente_Listar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Abm Cliente\Cliente_Modificar.resx">
+      <DependentUpon>Cliente_Modificar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Abm Empresa\Empresa_Agregar.resx">
       <DependentUpon>Empresa_Agregar.cs</DependentUpon>
     </EmbeddedResource>
