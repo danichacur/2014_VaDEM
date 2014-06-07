@@ -110,6 +110,7 @@
     </Compile>
     <Compile Include="Componentes Comunes\Metodos_Comunes.cs" />
     <Compile Include="Datos\ClienteDAO.cs" />
+    <Compile Include="Datos\ComprasDAO.cs" />
     <Compile Include="Datos\Datos.cs" />
     <Compile Include="Datos\EmpresaDAO.cs" />
     <Compile Include="Datos\LoginDAO.cs" />
@@ -120,8 +121,10 @@
     <Compile Include="Datos\UsuarioDAO.cs" />
     <Compile Include="Datos\VisibilidadDAO.cs" />
     <Compile Include="Entidades\Cliente.cs" />
+    <Compile Include="Entidades\Compra.cs" />
     <Compile Include="Entidades\Empresa.cs" />
     <Compile Include="Entidades\Funcionalidad.cs" />
+    <Compile Include="Entidades\Publicacion.cs" />
     <Compile Include="Entidades\Rubro.cs" />
     <Compile Include="Entidades\Rol.cs" />
     <Compile Include="Entidades\Usuario.cs" />
@@ -203,6 +206,18 @@
     </Compile>
     <Compile Include="Formularios\Abm Visibilidad\Visibilidad_Modificar.Designer.cs">
       <DependentUpon>Visibilidad_Modificar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Calificar Vendedor\Calificar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Calificar Vendedor\Calificar.Designer.cs">
+      <DependentUpon>Calificar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Calificar Vendedor\Calificar_Listar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Calificar Vendedor\Calificar_Listar.Designer.cs">
+      <DependentUpon>Calificar_Listar.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Calificar Vendedor\Form1.cs">
       <SubType>Form</SubType>
@@ -337,6 +352,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Abm Visibilidad\Visibilidad_Modificar.resx">
       <DependentUpon>Visibilidad_Modificar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Calificar Vendedor\Calificar_Listar.resx">
+      <DependentUpon>Calificar_Listar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Generar Publicacion\Listado.resx">
       <DependentUpon>Listado.cs</DependentUpon>

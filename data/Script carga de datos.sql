@@ -78,7 +78,7 @@ GO
 /************************/ SELECT 'CLIENTES' /************************/
 INSERT INTO vadem.cliente
 	SELECT (SELECT IdUsuario FROM vadem.usuario U WHERE U.username = CONVERT(VARCHAR,E.cli_dni) + '-' + E.Cli_Apeliido),
-		E.cli_dni,'DNI',E.Cli_Nombre,E.Cli_Apeliido, E.Cli_Mail, NULL, E.Cli_Dom_Calle, E.Cli_Nro_Calle, E.Cli_Piso, E.Cli_Depto, NULL, E.Cli_Cod_Postal, E.Cli_Fecha_Nac,NULL
+		E.cli_dni,'DNI',E.Cli_Nombre,E.Cli_Apeliido, E.Cli_Mail, '', E.Cli_Dom_Calle, E.Cli_Nro_Calle, E.Cli_Piso, E.Cli_Depto, '', E.Cli_Cod_Postal, E.Cli_Fecha_Nac,''
 	FROM (	SELECT DISTINCT TOP 100 Cli_Dni, Cli_Apeliido, Cli_Nombre, Cli_Fecha_Nac, Cli_Mail, Cli_Dom_Calle, Cli_Nro_Calle, Cli_Piso, Cli_Depto, Cli_Cod_Postal
 			FROM         gd_esquema.Maestra
 			WHERE     (Cli_Dni IS NOT NULL)
