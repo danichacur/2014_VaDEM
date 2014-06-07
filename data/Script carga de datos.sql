@@ -147,10 +147,9 @@ GO
 
 
 /************************/ SELECT 'ESTADOS' /************************/
-INSERT INTO vadem.estado
-	SELECT DISTINCT Publicacion_Estado
-	FROM gd_esquema.Maestra
+INSERT INTO vadem.estado VALUES (1, 'Borrador') , (2, 'Publicada'), (3, 'Pausada'), (4, 'Finalizada')
 GO
+
 
 /************************/ SELECT 'VISIBILIDAD' /************************/
 INSERT INTO vadem.visibilidad
@@ -168,12 +167,10 @@ GO
 
 /************************/ SELECT 'TIPO VISIBILIDAD POR USUARIO' /************************/
 INSERT INTO vadem.tipoVisualizacionPorUsuario
-	SELECT U.IdUsuario,E.Publicacion_Visibilidad_Cod,COUNT(1) AS Cant
+	SELECT DISTINCT U.IdUsuario,E.Publicacion_Visibilidad_Cod,0
 	FROM gd_esquema.Maestra E
 	LEFT JOIN vadem.usuario U
 		ON U.Username = (ISNULL(E.Publ_Empresa_Cuit, CONVERT(VARCHAR,E.Publ_Cli_DNI) + '-' + E.Publ_Cli_Apeliido))
-	GROUP BY U.IdUsuario,E.Publicacion_Visibilidad_Cod
-	ORDER BY U.IdUsuario,E.Publicacion_Visibilidad_Cod
 GO
 
 
@@ -186,7 +183,7 @@ GO
 
 /************************/ SELECT 'PUBLICACION' /************************/
 INSERT INTO vadem.publicacion
-	SELECT DISTINCT Publicacion_Cod, Publicacion_Stock, 1, Publicacion_Descripcion, Publicacion_Visibilidad_Cod, Publicacion_Fecha,
+	SELECT DISTINCT Publicacion_Cod, Publicacion_Stock, 4, Publicacion_Descripcion, Publicacion_Visibilidad_Cod, Publicacion_Fecha,
 			Publicacion_Fecha_Venc, Publicacion_Precio, U.IdUsuario, Publicacion_Tipo, 1
 	FROM gd_esquema.Maestra E
 	LEFT JOIN vadem.usuario U
@@ -196,12 +193,12 @@ GO
 
 /************************/ SELECT 'RUBROS PUBLICACION' /************************/
 INSERT INTO vadem.rubrosPublicacion
-	SELECT	R.IdRubro, E.Publicacion_Cod
+	SELECT	E.Publicacion_Cod, R.IdRubro
 	FROM gd_esquema.Maestra E
 	LEFT JOIN vadem.rubro R
 		ON R.Descripcion = E.Publicacion_Rubro_Descripcion
 	GROUP BY R.IdRubro, E.Publicacion_Cod
-	ORDER BY R.IdRubro, E.Publicacion_Cod
+	ORDER BY E.Publicacion_Cod, R.IdRubro
 GO
 
 
@@ -212,6 +209,7 @@ INSERT INTO vadem.ofertas
 		LEFT JOIN vadem.usuario U
 		ON U.Username = CONVERT(VARCHAR,E.Cli_Dni) + '-' + E.Cli_Apeliido
 	WHERE Oferta_Fecha IS NOT NULL
+	ORDER BY Publicacion_Cod, Oferta_Fecha
 GO
 
 
@@ -248,12 +246,17 @@ INSERT INTO vadem.itemFactura
 	WHERE Item_Factura_Cantidad IS NOT NULL
 GO	
 
+
+/************************/ SELECT 'REPUTACION POR USUARIO' /************************/
+BEGIN TRAN
+UPDATE vadem.usuario 
+	SET Reputacion = (SELECT ISNULL (AVG(C.Estrellas),0)
+						FROM vadem.calificacion C 
+						WHERE C.IdVendedor = IdUsuario)
+GO
 --COMMIT
 
 
--- preguntar por este problema!! porque es cero?
---SELECT * from gd_esquema.Maestra
---where Publicacion_Cod = 35038
 
 
 

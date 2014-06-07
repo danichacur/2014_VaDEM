@@ -218,7 +218,7 @@ GO
 CREATE TABLE [vadem].[tipoVisualizacionPorUsuario](
 	[IdUsuario] [int] NOT NULL,
 	[IdVisibilidad] [numeric] (18,0) NOT NULL,
-	[CantComprasAcumuladas] [int] NOT NULL,
+	[CantPublicacionesAcumuladas] [int] NOT NULL,
  CONSTRAINT [PK_tipoVisualizacionPorUsuario] PRIMARY KEY CLUSTERED 
 (
 	[IdUsuario] ASC,
@@ -314,8 +314,8 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [vadem].[rubrosPublicacion](
-	[IdRubro] [int] NOT NULL,
 	[IdPublicacion] [numeric] (18,0) NOT NULL,
+	[IdRubro] [int] NOT NULL,
 CONSTRAINT [PK_rubrosPublicacion] PRIMARY KEY CLUSTERED 
 (
 	[IdPublicacion] ASC
