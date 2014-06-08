@@ -101,7 +101,7 @@ namespace FrbaCommerce.Datos
                 script += ",[Nombre] = '" + cliente.Nombre + "' ";
                 script += ",[Apellido] = '" + cliente.Apellido + "' ";
                 script += ",[Mail] = '" + cliente.Email + "' ";
-                script += ",[Telefono] = " + cliente.Telefono + " ";
+                script += ",[Telefono] = '" + cliente.Telefono + "' ";
                 script += ",[Direccion] = '" + cliente.Direccion + "' ";
                 script += ",[Numero] = " + cliente.Numero + " ";
                 script += ",[Piso] = " + (cliente.Piso == "" ? "NULL" : cliente.Piso) + " ";
