@@ -4,6 +4,7 @@ USE [GD1C2014]
 GO
 
 /*
+DELETE FROM vadem.rubrosPublicacion
 DELETE FROM vadem.rubro
 DELETE FROM vadem.pregunta
 DELETE FROM vadem.compras
@@ -11,13 +12,13 @@ DELETE FROM vadem.ofertas
 DELETE FROM vadem.calificacion
 DELETE FROM vadem.itemFactura
 DELETE FROM vadem.publicacion
-DELETE FROM vadem.rubrosPublicacion
 DELETE FROM vadem.estado	
 DELETE FROM vadem.tipoVisualizacionPorUsuario
 DELETE FROM vadem.factura
 DELETE FROM vadem.visibilidad
 DELETE FROM vadem.cliente
 DELETE FROM vadem.empresa
+DELETE FROM vadem.rolesPorUsuario
 DELETE FROM vadem.usuario
 DELETE FROM vadem.rolPorFuncionalidad
 DELETE FROM vadem.rol
@@ -78,7 +79,7 @@ GO
 /************************/ SELECT 'CLIENTES' /************************/
 INSERT INTO vadem.cliente
 	SELECT (SELECT IdUsuario FROM vadem.usuario U WHERE U.username = CONVERT(VARCHAR,E.cli_dni) + '-' + E.Cli_Apeliido),
-		E.cli_dni,'DNI',E.Cli_Nombre,E.Cli_Apeliido, E.Cli_Mail, '', E.Cli_Dom_Calle, E.Cli_Nro_Calle, E.Cli_Piso, E.Cli_Depto, '', E.Cli_Cod_Postal, E.Cli_Fecha_Nac,''
+		E.cli_dni,'DNI',E.Cli_Nombre,E.Cli_Apeliido, E.Cli_Mail, '', E.Cli_Dom_Calle, E.Cli_Nro_Calle, E.Cli_Piso, E.Cli_Depto, '', E.Cli_Cod_Postal, E.Cli_Fecha_Nac,0
 	FROM (	SELECT DISTINCT TOP 100 Cli_Dni, Cli_Apeliido, Cli_Nombre, Cli_Fecha_Nac, Cli_Mail, Cli_Dom_Calle, Cli_Nro_Calle, Cli_Piso, Cli_Depto, Cli_Cod_Postal
 			FROM         gd_esquema.Maestra
 			WHERE     (Cli_Dni IS NOT NULL)
@@ -147,7 +148,7 @@ GO
 
 
 /************************/ SELECT 'ESTADOS' /************************/
-INSERT INTO vadem.estado VALUES (1, 'Borrador') , (2, 'Publicada'), (3, 'Pausada'), (4, 'Finalizada')
+INSERT INTO vadem.estado VALUES ('Borrador') , ('Publicada'), ('Pausada'), ('Finalizada')
 GO
 
 
@@ -248,12 +249,12 @@ GO
 
 
 /************************/ SELECT 'REPUTACION POR USUARIO' /************************/
-BEGIN TRAN
 UPDATE vadem.usuario 
 	SET Reputacion = (SELECT ISNULL (AVG(C.Estrellas),0)
 						FROM vadem.calificacion C 
 						WHERE C.IdVendedor = IdUsuario)
 GO
+
 --COMMIT
 
 
