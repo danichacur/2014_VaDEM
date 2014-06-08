@@ -66,7 +66,7 @@ namespace FrbaCommerce.Datos
                                     (bool)row["UsuarioHabilitado"],
                                     (float)Convert.ToDecimal(row["Reputacion"]),
                                     (String)row["RazonSocial"],
-                                    (long)Convert.ToDouble(row["CUIT"]),
+                                    (String)row["CUIT"],
                                     Convert.ToString(row["Telefono"]),
                                     (String)row["Direccion"],
                                     Convert.ToInt32(row["Numero"]),
@@ -100,9 +100,7 @@ namespace FrbaCommerce.Datos
                 Empresa empresa;
                 List<Empresa> empresas;
                 DataTable tbl;
-                try
-                {
-
+       
                     String script = "SELECT * FROM vadem.empresa ";
                     script += clausulaWhere;
 
@@ -114,15 +112,15 @@ namespace FrbaCommerce.Datos
                     {
                         empresa = new Empresa(
                                         (String)row["RazonSocial"],
-                                        (long)Convert.ToDouble(row["CUIT"]),
+                                        (String)row["CUIT"],
                                         Convert.ToString(row["Telefono"]),
                                         (String)row["Direccion"],
                                         Convert.ToInt32(row["Numero"]),
                                         Convert.ToString(((row["Piso"] == DBNull.Value) ? "" : row["Piso"])),
                                         (String)((row["Dpto"] == DBNull.Value) ? "" : row["Dpto"]),
-                                        (String)row["Localidad"],
-                                        Convert.ToInt32(row["CodPostal"]),
-                                        (String)row["Ciudad"],
+                                         (String)((row["Localidad"] == DBNull.Value) ? "" : row["Localidad"]),
+                                       Convert.ToInt32(row["CodPostal"]),
+                                        (String)((row["Ciudad"] == DBNull.Value) ? "" : row["Ciudad"]),
                                         (String)row["Mail"],
                                         (String)((row["NombreContacto"] == DBNull.Value) ? "" : row["NombreContacto"]),
                                         (DateTime)row["FechaCreacion"]
@@ -131,12 +129,7 @@ namespace FrbaCommerce.Datos
                     }
 
                     return empresas;
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-            }
+           }
             catch (Exception)
             {   
                 throw;

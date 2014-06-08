@@ -190,83 +190,30 @@ namespace FrbaCommerce.Componentes_Comunes
             }
         }
 
-
         /// <summary>
-        /// Lleno el combo de tipo de Publicacion con los posibles valores. No los obtengo de la BD
+        /// Convierte la fecha parámetro en una fecha que entiende SQL
         /// </summary>
-        public static DataTable obtenerTablaComboTiposPublicacion()
-        {
+        /// <param name="fechaHora"></param>
+        /// <returns></returns>
+        public static String localDateToSQLDate(DateTime fechaHora) {
+            String fechaHoraSQL;
             try
             {
-                DataTable tbl;
-                DataRow row;
-                DataColumn column;
+                fechaHoraSQL = "";
+                fechaHoraSQL += fechaHora.Year;
+                fechaHoraSQL += "/";
+                fechaHoraSQL += fechaHora.Month;
+                fechaHoraSQL += "/";
+                fechaHoraSQL += fechaHora.Day;
+                fechaHoraSQL += " ";
+                fechaHoraSQL += fechaHora.Hour;
+                fechaHoraSQL += ":";
+                fechaHoraSQL += fechaHora.Minute;
+                fechaHoraSQL += ":";
+                fechaHoraSQL += fechaHora.Second;
 
-                tbl = new DataTable("id", "descripcion");
+                return fechaHoraSQL;
 
-                column = new DataColumn();
-                column.ColumnName = "id";
-                tbl.Columns.Add(column);
-
-                column = new DataColumn();
-                column.ColumnName = "descripcion";
-                tbl.Columns.Add(column);
-
-                row = tbl.NewRow();
-                row["id"] = 0; row["descripcion"] = "";
-                tbl.Rows.Add(row);
-
-                row = tbl.NewRow();
-                row["id"] = 1; row["descripcion"] = "Compra Inmediata";
-                tbl.Rows.Add(row);
-
-                row = tbl.NewRow();
-                row["id"] = 2; row["descripcion"] = "Subasta";
-                tbl.Rows.Add(row);
-
-                return tbl;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-
-        /// <summary>
-        /// Lleno el combo de admitir preguntas. No los obtengo de la BD
-        /// </summary>
-        public static DataTable obtenerTablaComboPreguntas()
-        {
-            try
-            {
-                DataTable tbl;
-                DataRow row;
-                DataColumn column;
-
-                tbl = new DataTable("id", "descripcion");
-
-                column = new DataColumn();
-                column.ColumnName = "id";
-                tbl.Columns.Add(column);
-
-                column = new DataColumn();
-                column.ColumnName = "descripcion";
-                tbl.Columns.Add(column);
-
-                row = tbl.NewRow();
-                row["id"] = 0; row["descripcion"] = "";
-                tbl.Rows.Add(row);
-
-                row = tbl.NewRow();
-                row["id"] = 1; row["descripcion"] = "Admite";
-                tbl.Rows.Add(row);
-
-                row = tbl.NewRow();
-                row["id"] = 2; row["descripcion"] = "No admite";
-                tbl.Rows.Add(row);
-
-                return tbl;
             }
             catch (Exception)
             {
