@@ -23,9 +23,9 @@ namespace FrbaCommerce.Datos
             try
             {
 
-                String script = "SELECT * FROM vadem.compras " ;
-                script += "WHERE IdComprador = " + Session.IdUsuario + " ";
-                script += "AND Calificada = 0";
+                String script = "SELECT * FROM vadem.compras C left join vadem.publicacion P on C.IdPublicacion = P.IdPublicacion ";
+                script += "WHERE C.IdComprador = " + Session.IdUsuario + " ";
+                //script += "AND Calificada = 0";
                 //script += clausulaWhere;
 
                 compras = new List<Compra>();
@@ -36,7 +36,8 @@ namespace FrbaCommerce.Datos
                 {
                     compra = new Compra(
                                 Convert.ToInt32(row["IdCompra"]),
-                                new Publicacion(),
+                                new Publicacion(Convert.ToInt32(row["IdPublicacion"]),
+                                                (String)row["Descripcion"]),
                                 new Cliente(),
                                 (DateTime)row["Fecha"],
                                 Convert.ToInt32(row["Cantidad"]),

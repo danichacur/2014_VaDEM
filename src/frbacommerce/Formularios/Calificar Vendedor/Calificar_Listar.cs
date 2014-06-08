@@ -186,7 +186,7 @@ namespace FrbaCommerce.Formularios.Calificar_Vendedor
                 columnas[0] = colIdCompra;
 
                 DataGridViewTextBoxColumn colIdPublicacion = new DataGridViewTextBoxColumn();
-                colIdPublicacion.DataPropertyName = "Publicacion.Id"; colIdPublicacion.Name = "IdPublicacion"; 
+                colIdPublicacion.DataPropertyName = "Publicacion.Descripcion"; colIdPublicacion.Name = "IdPublicacion"; 
                 colIdPublicacion.HeaderText = "Id Publicación";
                 columnas[1] = colIdPublicacion;
 
