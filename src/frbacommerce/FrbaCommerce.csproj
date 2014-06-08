@@ -237,11 +237,23 @@
     <Compile Include="Formularios\Facturar Publicaciones\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\Generar Publicacion\Listado.cs">
+    <Compile Include="Formularios\Generar Publicacion\Publicacion_Listar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formularios\Generar Publicacion\Listado.Designer.cs">
-      <DependentUpon>Listado.cs</DependentUpon>
+    <Compile Include="Formularios\Generar Publicacion\Publicacion_Listar.Designer.cs">
+      <DependentUpon>Publicacion_Listar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Generar Publicacion\Publicacion_Editar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Generar Publicacion\Publicacion_Editar.Designer.cs">
+      <DependentUpon>Publicacion_Editar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Generar Publicacion\Publicacion_Alta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Generar Publicacion\Publicacion_Alta.Designer.cs">
+      <DependentUpon>Publicacion_Alta.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Login\FormLogin.cs">
       <SubType>Form</SubType>
@@ -341,11 +353,17 @@
     <EmbeddedResource Include="Formularios\Abm Visibilidad\Visibilidad_Modificar.resx">
       <DependentUpon>Visibilidad_Modificar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Calificar Vendedor\Calificar.resx">
+      <DependentUpon>Calificar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Calificar Vendedor\Calificar_Listar.resx">
       <DependentUpon>Calificar_Listar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\Generar Publicacion\Listado.resx">
-      <DependentUpon>Listado.cs</DependentUpon>
+    <EmbeddedResource Include="Formularios\Generar Publicacion\Publicacion_Listar.resx">
+      <DependentUpon>Publicacion_Listar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Generar Publicacion\Publicacion_Alta.resx">
+      <DependentUpon>Publicacion_Alta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Login\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>

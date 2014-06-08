@@ -40,9 +40,6 @@ namespace FrbaCommerce.Datos
             }
         }
 
-
-
-
         public static DataTable obtenerVisualizacion(string script)
         {
             try
@@ -74,6 +71,32 @@ namespace FrbaCommerce.Datos
                 throw new Exception("Error " + ex.Message);
             }
        
+        }
+
+        public static Publicacion insertar(Publicacion publicacion)
+        {
+            String script;
+            try
+            { // " + publicacion + "
+                script = "INSERT INTO vadem.publicacion VALUES (" + publicacion.Id + "," + publicacion.Cantidad;
+                script += "," + publicacion.Estado + ",'" + publicacion.Descripcion + "'," + publicacion.Visibilidad;
+                script += ",'" + publicacion.FechaInicio + "','" + publicacion.FechaFin + "'," + publicacion.Precio + ", " + publicacion.Vendedor;
+                script += ",'" + publicacion.Tipo + "'," + publicacion.AdmitePreguntas + ")";
+
+                AccesoDatos.Instance.EjecutarScript(script);
+
+                return obtenerPublicacion(Session.IdUsuario);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        private static Publicacion obtenerPublicacion(int p)
+        {
+            //throw new NotImplementedException();
+            return null;
         }
     }
 }

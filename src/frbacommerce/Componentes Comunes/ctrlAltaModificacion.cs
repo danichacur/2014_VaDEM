@@ -110,6 +110,52 @@ namespace FrbaCommerce.Componentes_Comunes
             }
         }
 
+        /// <summary>
+        /// Método que hace la carga de los filtros que recibe como parametro en las columnas
+        /// Izquiera y Derecha, que son del tipo Filtro.
+        /// </summary>
+        /// <param name="filtrosIzquierda"></param>
+        /// <param name="filtrosDerecha"></param>
+        public void cargarFiltros(List<Filtro> filtrosIzquierda, List<Filtro> filtrosDerecha)
+        {
+            try
+            {
+                int contador;
+
+                camposEnPantalla = new List<Filtro>();
+
+                if (filtrosIzquierda != null)
+                {
+                    contador = 0;
+                    foreach (Filtro filtro in filtrosIzquierda)
+                    {
+                        filtro.Location = new Point(0, 30 * contador); ;
+                        this.Controls.Add(filtro);
+                        contador += 1;
+
+                        camposEnPantalla.Add(filtro);
+                    }
+                }
+
+                if (filtrosDerecha != null)
+                {
+                    contador = 0;
+                    foreach (Filtro filtro in filtrosDerecha)
+                    {
+                        filtro.Location = new Point(200, 30 * contador); ;
+                        this.Controls.Add(filtro);
+                        contador += 1;
+
+                        camposEnPantalla.Add(filtro);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
 
         /// <summary>
         /// Método que hace la carga de los filtros que recibe como parametro 

@@ -9,21 +9,20 @@ using System.Windows.Forms;
 using FrbaCommerce.Componentes_Comunes;
 using FrbaCommerce.Datos;
 using FrbaCommerce.Entidades;
-using FrbaCommerce.Formularios;
+
 
 namespace FrbaCommerce.Generar_Publicacion
 {
-    public partial class Listado : ABM
+    public partial class Publicacion_Listar : ABM
     {
 
-        private DataGridView dgv;
-
-        public Listado()
+        #region Eventos
+        public Publicacion_Listar()
         {
             InitializeComponent();
         }
 
-        private void Listado_Load(object sender, EventArgs e)
+        private void Publicacion_Listar_Load(object sender, EventArgs e)
         {
             try
             {
@@ -36,6 +35,35 @@ namespace FrbaCommerce.Generar_Publicacion
             }
         }
 
+
+        /// <summary>
+        /// Evento del boton Alta. Se abre la ventana de alta. Al regresar de la ventana
+        /// valida que el resultado sea satisfactorio, en ese caso refresca la pantalla
+        /// </summary>
+        public override void btnAlta_Click()
+        {
+            System.Windows.Forms.DialogResult result;
+            try
+            {
+                Formularios.Generar_Publicacion.Publicacion_Alta formAlta = new Formularios.Generar_Publicacion.Publicacion_Alta();
+                result = formAlta.ShowDialog();
+
+                if (result == System.Windows.Forms.DialogResult.OK)
+                {
+                    ctrlABM1.buscar();
+                }
+            }
+            catch (Exception ex)
+            {
+                Metodos_Comunes.MostrarMensajeError(ex);
+            }
+        }
+
+        #endregion
+
+        #region MetodosGenerales
+
+
         private void cargaInicialGrilla()
         {
             try
@@ -46,8 +74,6 @@ namespace FrbaCommerce.Generar_Publicacion
             {
                 throw new Exception("Error " + ex.Message);
             }
-
-
         }
 
         private void cargaFiltros()
@@ -75,7 +101,28 @@ namespace FrbaCommerce.Generar_Publicacion
 
         }
 
+        public override void aplicarFiltro(String clausulaWhere)
+        {
+            try
+            {
+                String script = "SELECT * FROM vadem.publicacion ";
+                script += clausulaWhere;
 
+                Object listaPublicaciones = (Object)PublicacionDAO.obtenerPublicaciones(script);
+
+
+                this.ctrlABM1.cargarGrilla(listaPublicaciones);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error " + ex.Message);
+            }
+        }
+
+        #endregion
+
+        #region MetodosAuxiliares
 
         private DataTable obtenerTiposPublicacion()
         {
@@ -163,102 +210,6 @@ namespace FrbaCommerce.Generar_Publicacion
             }
         }
 
-
-
-        public override void aplicarFiltro(String clausulaWhere)
-        {
-            try
-            {
-                String script = "SELECT * FROM vadem.publicacion ";
-                script += clausulaWhere;
-
-                Object listaPublicaciones = (Object)PublicacionDAO.obtenerPublicaciones(script);
-
-
-                DataGridViewColumn[] columnas = obtenerDisenoColumnasGrilla();
-
-                dgv = this.ctrlABM1.cargarGrilla(listaPublicaciones, columnas);
-
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error " + ex.Message);
-            }
-        }
-
-        private DataGridViewColumn[] obtenerDisenoColumnasGrilla()
-        {
-
-            try
-            {
-                DataGridViewColumn[] columnas = new DataGridViewColumn[5];
-                //Adaptarlo a lo mio =)
-                DataGridViewTextBoxColumn colIdRol = new DataGridViewTextBoxColumn();
-                colIdRol.DataPropertyName = "Id"; colIdRol.Name = "Id"; colIdRol.HeaderText = "Id";
-                columnas[0] = colIdRol;
-
-                DataGridViewTextBoxColumn colDesc = new DataGridViewTextBoxColumn();
-                colDesc.DataPropertyName = "Descripcion"; colDesc.Name = "Descripcion"; colDesc.HeaderText = "Descripcion";
-                columnas[1] = colDesc;
-
-                DataGridViewCheckBoxColumn colHabilitado = new DataGridViewCheckBoxColumn();
-                colHabilitado.DataPropertyName = "Habilitado"; colHabilitado.Name = "Habilitado"; colHabilitado.HeaderText = "Habilitado";
-                colHabilitado.FalseValue = "0"; colHabilitado.TrueValue = "1";
-                columnas[2] = colHabilitado;
-
-                DataGridViewButtonColumn colModif = new DataGridViewButtonColumn();
-                colModif.Width = 60;
-                colModif.Text = "Modificar";
-                colModif.Name = "Modificar";
-                colModif.UseColumnTextForButtonValue = true;
-                columnas[3] = colModif;
-
-                DataGridViewButtonColumn colElim = new DataGridViewButtonColumn();
-                colElim.Width = 60;
-                colElim.Text = "Eliminar";
-                colElim.Name = "Eliminar";
-                colElim.UseColumnTextForButtonValue = true;
-                columnas[4] = colElim;
-
-                return columnas;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-
-
-
-
-
-
-
-        }
-
-
-
-        public override void btnAlta_Click()
-        {
-               System.Windows.Forms.DialogResult result;
-            Formularios.Generar_Publicacion.Publicacion_Alta formAlta;
-            try
-            {
-                formAlta = new Formularios.Generar_Publicacion.Publicacion_Alta();
-                result = formAlta.ShowDialog();
-
-                if (result == System.Windows.Forms.DialogResult.OK)
-                {
-                    ctrlABM1.buscar();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally {
-                formAlta = null;
-            }
-        }
-
+        #endregion
     }
 }
