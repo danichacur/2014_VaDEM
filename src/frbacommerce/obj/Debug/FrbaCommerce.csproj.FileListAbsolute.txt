@@ -218,3 +218,4 @@ C:\Users\Vani\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerc
 C:\Users\Vani\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Properties.Resources.resources
 C:\Users\Vani\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.csproj.GenerateResource.Cache
 C:\Users\Vani\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Calificar_Vendedor.Calificar_Listar.resources
+C:\Users\Vani\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Calificar_Vendedor.Calificar.resources

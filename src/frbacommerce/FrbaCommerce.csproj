@@ -231,12 +231,6 @@
     <Compile Include="Formularios\Comprar-Ofertar\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\Editar Publicacion\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Formularios\Editar Publicacion\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Formularios\Facturar Publicaciones\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -347,6 +341,9 @@
     <EmbeddedResource Include="Formularios\Abm Visibilidad\Visibilidad_Modificar.resx">
       <DependentUpon>Visibilidad_Modificar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Calificar Vendedor\Calificar.resx">
+      <DependentUpon>Calificar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Calificar Vendedor\Calificar_Listar.resx">
       <DependentUpon>Calificar_Listar.cs</DependentUpon>
     </EmbeddedResource>
@@ -402,6 +399,7 @@
     <Compile Include="Session.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Formularios\Editar Publicacion\" />
     <Folder Include="Negocio\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
