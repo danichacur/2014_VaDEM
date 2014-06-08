@@ -18,10 +18,10 @@ namespace FrbaCommerce.Datos
             { // " + empresa + "
                 script = "INSERT INTO vadem.empresa VALUES (" + empresa.IdUsuario + ",'" + empresa.RazonSocial;
                 script += "','" + empresa.Cuit + "','" + empresa.Telefono + "','" + empresa.Direccion + "', ";
-                script += empresa.Numero + "," + (empresa.Piso == "" ? "NULL" : empresa.Piso) + ",";
+                script += empresa.Numero + "," + (empresa.Piso == "" ? "NULL" : "'" +empresa.Piso + "'") + ",";
                 script += (empresa.Departamento == "" ? "NULL" : "'" + empresa.Departamento + "'") + ",'" + empresa.Localidad;
                 script +=  "','" + empresa.CodigoPostal + "','" + empresa.Cuidad + "','" + empresa.Email;
-                script += "'," + (empresa.NombreContacto == "" ? "NULL" : "'" + empresa.NombreContacto + "'") + ",'" + empresa.fechaCreacion + "')";
+                script += "'," + (empresa.NombreContacto == "" ? "NULL" : "'" + empresa.NombreContacto + "'") + ",'" + Componentes_Comunes.Metodos_Comunes.localDateToSQLDate(empresa.fechaCreacion) + "')";
 
 
                 AccesoDatos.Instance.EjecutarScript(script);

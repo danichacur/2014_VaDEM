@@ -120,18 +120,68 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
         /// </summary>
         private void generarCampos()
         {
-           // FiltroTextBox filtroTxt;
+            FiltroTextBox filtroTxt;
+            FiltroFecha filtroDtp;
+            List<Filtro> filtros;
             try
             {
-             //   List<Filtro> filtros = new List<Filtro>();
+                filtros = new List<Filtro>();
 
-                //filtros.Add(new FiltroTextBox("Razón Social", "RazonSocial", "LIKE", ""));
-                //filtros.Add(new FiltroTextBox("Direc Calle", "Direccion", "LIKE", ""));
-                //filtros.Add(new FiltroTextBox("Departamento", "Dpto", "=", ""));
-                //filtros.Add(new FiltroTextBox("Telefono", "Telefono", "=", ""));
-                //filtros.Add(new FiltroTextBox("Piso", "Piso", "=", ""));
-                
-                this.ctrlAltaModificacion1.cargarControlFiltros(new Registro_de_Usuario.registroEmpresa());
+                filtroTxt = new FiltroTextBox("Razón Social", "RazonSocial", "LIKE", "");
+                filtroTxt.setObligatorio(true);
+                filtros.Add(filtroTxt);
+
+                filtroTxt = new FiltroTextBox("CUIL", "CUIL");
+                filtroTxt.setTipoTextoIngresado(FiltroTextBox.TipoTexto.Numerico);
+                filtroTxt.setObligatorio(true);
+                filtros.Add(filtroTxt);
+
+                filtroTxt = new FiltroTextBox("Teléfono", "Telefono");
+                filtroTxt.setTipoTextoIngresado(FiltroTextBox.TipoTexto.Numerico);
+                filtroTxt.setObligatorio(true);
+                filtros.Add(filtroTxt);
+
+                filtroTxt = new FiltroTextBox("Dirección", "Direccion");
+                filtroTxt.setObligatorio(true);
+                filtros.Add(filtroTxt);
+
+                filtroTxt = new FiltroTextBox("Número", "Numero");
+                filtroTxt.setTipoTextoIngresado(FiltroTextBox.TipoTexto.Numerico);
+                filtroTxt.setObligatorio(true);
+                filtros.Add(filtroTxt);
+
+                filtroTxt = new FiltroTextBox("Piso", "Piso");
+                filtroTxt.setTipoTextoIngresado(FiltroTextBox.TipoTexto.Numerico);
+                filtros.Add(filtroTxt);
+
+                filtros.Add(new FiltroTextBox("Depto", "Dpto"));
+
+                filtroTxt = new FiltroTextBox("Localidad", "Localidad");
+                filtroTxt.setObligatorio(true);
+                filtros.Add(filtroTxt);
+
+                filtroTxt = new FiltroTextBox("Cod. Postal", "CodPostal");
+                filtroTxt.setTipoTextoIngresado(FiltroTextBox.TipoTexto.Numerico);
+                filtroTxt.setObligatorio(true);
+                filtros.Add(filtroTxt);
+
+                filtroTxt = new FiltroTextBox("Ciudad", "Ciudad");
+                filtroTxt.setObligatorio(true);
+                filtros.Add(filtroTxt);
+
+                filtroTxt = new FiltroTextBox("Mail", "Email");
+                filtroTxt.setObligatorio(true);
+                filtros.Add(filtroTxt);
+
+                filtroTxt = new FiltroTextBox("Nom. Contacto", "NombreContacto");
+                filtroTxt.setObligatorio(true);
+                filtros.Add(filtroTxt);
+
+                filtroDtp = new FiltroFecha("Fecha Creación.", "FechaCreacion");
+                filtroDtp.setObligatorio(true);
+                filtros.Add(filtroDtp);
+
+                this.ctrlAltaModificacion1.cargarFiltros(filtros);
             }
             catch (Exception)
             {
@@ -163,11 +213,11 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
             try
             {
                 List<Filtro> campos = obtenerCamposEnPantalla();
-                /*empresa.Id = Convert.ToInt32(campos[0].obtenerValor());
+                /*empresa. = Convert.ToInt32(campos[0].obtenerValor());
                 empresa.Descripcion = campos[1].obtenerValor().ToString();
                 empresa.Habilitado = (campos[2].obtenerValor().ToString() == "1" ? true : false);
                 empresa.AgregarFuncionalidades(campos[3].obtenerValor().ToString());
-                 * */
+                */
             }
             catch (Exception)
             {
