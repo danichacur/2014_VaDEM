@@ -1,6 +1,6 @@
 ﻿namespace FrbaCommerce.Generar_Publicacion
 {
-    partial class Listado
+    partial class Publicacion_Listar
     {
         /// <summary>
         /// Required designer variable.
@@ -38,15 +38,15 @@
             this.ctrlABM1.Size = new System.Drawing.Size(805, 371);
             this.ctrlABM1.TabIndex = 1;
             // 
-            // Listado
+            // Publicacion_Listar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(922, 379);
             this.Controls.Add(this.ctrlABM1);
-            this.Name = "Listado";
-            this.Text = "Listado";
-            this.Load += new System.EventHandler(this.Listado_Load);
+            this.Name = "Publicacion_Listar";
+            this.Text = "Publicacion_Listar";
+            this.Load += new System.EventHandler(this.Publicacion_Listar_Load);
             this.ResumeLayout(false);
 
         }
