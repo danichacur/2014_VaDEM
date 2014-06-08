@@ -9,7 +9,7 @@ namespace FrbaCommerce.Entidades
     public class Empresa : Usuario
     {
         public String RazonSocial { get; set; }
-        public long Cuit { get; set; }
+        public String Cuit { get; set; }
         public String Telefono { get; set; }
         public String Direccion { get; set; }
         public int Numero { get; set; }
@@ -40,7 +40,7 @@ namespace FrbaCommerce.Entidades
             Reputacion = pReputacion;
         }
 
-        public Empresa(String pRazonSocial, long pCuit, String pTelefono, String pDireccion, int pNumero, String pPiso,
+        public Empresa(String pRazonSocial, String pCuit, String pTelefono, String pDireccion, int pNumero, String pPiso,
             String pDepartamento, String pLocalidad,
             int pCodigoPostal, String pCuidad, String pEmail, String pNombreContacto, DateTime pFechaCreacion)
         {
@@ -61,7 +61,7 @@ namespace FrbaCommerce.Entidades
         }
 
         public Empresa(int pIdUsuario, string pUsername, int pIdRol, String pDescRol, bool pRolHabil, int pIntentosFallidos, bool pBloqueado, bool pHabilitado, float pReputacion,
-           String pRazonSocial, long pCuit, String pTelefono, String pDireccion, int pNumero, String pPiso,
+           String pRazonSocial, String pCuit, String pTelefono, String pDireccion, int pNumero, String pPiso,
             String pDepartamento, String pLocalidad,
             int pCodigoPostal, String pCuidad, String pEmail, String pNombreContacto, DateTime pFechaCreacion)
         {

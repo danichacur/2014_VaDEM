@@ -84,7 +84,7 @@ namespace FrbaCommerce.Datos
             {
                 script = "UPDATE vadem.usuario SET ";
                 script += "IntentosFallidos = " + usr.IntentosFallidos + ", Bloqueado = ";
-                script += (usr.Bloqueado ? "1" : "0") + ", Habilitado = " + (usr.Habilitado ? "1" : "0") + ", Reputacion = " + usr.Reputacion;
+                script += (usr.Bloqueado ? "1" : "0") + ", Habilitado = " + (usr.Habilitado ? "1" : "0") + ", Reputacion = " + usr.Reputacion.ToString().Replace(",",".");
                 script += " WHERE IdUsuario = " + usr.IdUsuario;
                 AccesoDatos.Instance.EjecutarScript(script);
 

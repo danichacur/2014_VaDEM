@@ -189,5 +189,36 @@ namespace FrbaCommerce.Componentes_Comunes
                 throw;
             }
         }
+
+        /// <summary>
+        /// Convierte la fecha parámetro en una fecha que entiende SQL
+        /// </summary>
+        /// <param name="fechaHora"></param>
+        /// <returns></returns>
+        public static String localDateToSQLDate(DateTime fechaHora) {
+            String fechaHoraSQL;
+            try
+            {
+                fechaHoraSQL = "";
+                fechaHoraSQL += fechaHora.Year;
+                fechaHoraSQL += "/";
+                fechaHoraSQL += fechaHora.Month;
+                fechaHoraSQL += "/";
+                fechaHoraSQL += fechaHora.Day;
+                fechaHoraSQL += " ";
+                fechaHoraSQL += fechaHora.Hour;
+                fechaHoraSQL += ":";
+                fechaHoraSQL += fechaHora.Minute;
+                fechaHoraSQL += ":";
+                fechaHoraSQL += fechaHora.Second;
+
+                return fechaHoraSQL;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

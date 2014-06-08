@@ -146,6 +146,7 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
                     campos[11].colocarValor(cliente.CodigoPostal);
                     campos[12].colocarValor(cliente.FechaNacimiento);
                     campos[13].colocarValor(cliente.Cuil);
+                    campos[14].colocarValor((cliente.Habilitado?"1":"0"));
                 }
             }
             catch (Exception)

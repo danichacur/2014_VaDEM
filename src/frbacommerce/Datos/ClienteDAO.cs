@@ -101,14 +101,14 @@ namespace FrbaCommerce.Datos
                 script += ",[Nombre] = '" + cliente.Nombre + "' ";
                 script += ",[Apellido] = '" + cliente.Apellido + "' ";
                 script += ",[Mail] = '" + cliente.Email + "' ";
-                script += ",[Telefono] = " + cliente.Telefono + " ";
+                script += ",[Telefono] = '" + cliente.Telefono + "' ";
                 script += ",[Direccion] = '" + cliente.Direccion + "' ";
                 script += ",[Numero] = " + cliente.Numero + " ";
                 script += ",[Piso] = " + (cliente.Piso == "" ? "NULL" : cliente.Piso) + " ";
                 script += ",[Dpto] = " + (cliente.Departamento == "" ? "NULL" : "'" + cliente.Departamento + "'") + " ";
                 script += ",[Localidad] = '" + cliente.Localidad + "' ";
                 script += ",[CodPostal] = '" + cliente.CodigoPostal + "' ";
-                script += ",[FechaNacimiento] = '" + cliente.FechaNacimiento + "' ";
+                script += ",[FechaNacimiento] = '" + Componentes_Comunes.Metodos_Comunes.localDateToSQLDate(cliente.FechaNacimiento) + "' ";
                 script += ",[CUIL] = " + cliente.Cuil + " ";
                 script += "WHERE [IdCliente] = " + cliente.IdUsuario;
 

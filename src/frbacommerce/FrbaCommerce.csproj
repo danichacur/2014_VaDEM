@@ -219,12 +219,6 @@
     <Compile Include="Formularios\Calificar Vendedor\Calificar_Listar.Designer.cs">
       <DependentUpon>Calificar_Listar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\Calificar Vendedor\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Formularios\Calificar Vendedor\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Componentes Comunes\FiltroTextBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
