@@ -102,7 +102,8 @@ namespace FrbaCommerce.Datos
                 List<Empresa> empresas;
                 DataTable tbl;
        
-                    String script = "SELECT * FROM vadem.empresa ";
+                    String script = "SELECT * FROM vadem.empresa E LEFT JOIN vadem.usuario U ON E.IdEmpresa = U.IdUsuario ";
+                script += "LEFT JOIN vadem.rolesPorUsuario RU ON RU.IdUsuario = U.IdUsuario ";
                     script += clausulaWhere;
 
                     empresas = new List<Empresa>();
@@ -112,6 +113,15 @@ namespace FrbaCommerce.Datos
                     foreach (DataRow row in tbl.Rows)
                     {
                         empresa = new Empresa(
+                                        Convert.ToInt32(row["IdUsuario"]),
+                                        (String)row["Username"],
+                                        Convert.ToInt32(row["IdRol"]),
+                                        "",
+                                        true,
+                                        Convert.ToInt32(row["IntentosFallidos"]),
+                                        (bool)row["Bloqueado"],
+                                        (bool)row["Habilitado"],
+                                        (float)Convert.ToDecimal(row["Reputacion"]),
                                         (String)row["RazonSocial"],
                                         (String)row["CUIT"],
                                         Convert.ToString(row["Telefono"]),
@@ -119,11 +129,11 @@ namespace FrbaCommerce.Datos
                                         Convert.ToInt32(row["Numero"]),
                                         Convert.ToString(((row["Piso"] == DBNull.Value) ? "" : row["Piso"])),
                                         (String)((row["Dpto"] == DBNull.Value) ? "" : row["Dpto"]),
-                                         (String)((row["Localidad"] == DBNull.Value) ? "" : row["Localidad"]),
-                                       Convert.ToInt32(row["CodPostal"]),
-                                        (String)((row["Ciudad"] == DBNull.Value) ? "" : row["Ciudad"]),
+                                        Convert.ToString(((row["Localidad"] == DBNull.Value) ? "" : row["Localidad"])),
+                                        Convert.ToInt32(row["CodPostal"]),
+                                        Convert.ToString(((row["Ciudad"] == DBNull.Value) ? "" : row["Ciudad"])),
                                         (String)row["Mail"],
-                                        (String)((row["NombreContacto"] == DBNull.Value) ? "" : row["NombreContacto"]),
+                                        Convert.ToString(((row["NombreContacto"] == DBNull.Value) ? "" : row["NombreContacto"])),
                                         (DateTime)row["FechaCreacion"]
                                       );
                         empresas.Add(empresa);
@@ -156,7 +166,7 @@ namespace FrbaCommerce.Datos
                 script += ",[Ciudad] = '" + empresa.Cuidad + "' ";
                 script += ",[Mail] = '" + empresa.Email+ "' ";
                 script += ",[NombreContacto] = '" + empresa.NombreContacto+ "' ";
-                script += ",[FechaCreacion] = " + Metodos_Comunes.localDateToSQLDate(empresa.fechaCreacion) + " ";
+                script += ",[FechaCreacion] = '" + Metodos_Comunes.localDateToSQLDate(empresa.fechaCreacion) + "' ";
                 script += "WHERE [IdEmpresa] = '" + empresa.IdUsuario+ "' ";
 
                 AccesoDatos.Instance.EjecutarScript(script);

@@ -258,6 +258,7 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
                 empresa.Email = campos[10].obtenerValor().ToString();
                 empresa.NombreContacto = campos[11].obtenerValor().ToString();
                 empresa.fechaCreacion = Convert.ToDateTime(campos[12].obtenerValor());
+                empresa.Habilitado = (campos[13].obtenerValor().ToString() == "1" ? true : false);
             }
             catch (Exception)
             {

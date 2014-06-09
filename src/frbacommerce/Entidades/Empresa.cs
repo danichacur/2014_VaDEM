@@ -121,7 +121,8 @@ namespace FrbaCommerce.Entidades
         {
             try
             {
-         
+                Habilitado = false;
+                modificar();
             }
             catch (Exception)
             {

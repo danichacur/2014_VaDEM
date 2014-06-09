@@ -77,7 +77,7 @@ CREATE TABLE [vadem].[empresa](
 	[IdEmpresa] [int] NOT NULL,
 	[RazonSocial] [nvarchar](255) NOT NULL,
 	[CUIT] [nvarchar](50) NOT NULL,
-	[Telefono] [numeric](18, 0) NULL,
+	[Telefono] [nchar](10) NULL,
 	[Direccion] [nvarchar](100) NOT NULL,
 	[Numero] [numeric](18, 0) NOT NULL,
 	[Piso] [numeric](18, 0) NULL,
