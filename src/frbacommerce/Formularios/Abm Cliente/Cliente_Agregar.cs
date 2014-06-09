@@ -128,11 +128,11 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
             {
                 if (validarUserNameNoEnUso())
                 {
-                    username = cliente.Documento + "-" + cliente.Apellido;
+                    username = obtenerUsernameDeCliente();
                 }
                 else 
                 {
-                    username = cliente.Documento + "-" + cliente.Apellido + "2";
+                    username = obtenerUsernameDeCliente() + "2";
                 }
                 
                 usr = new Usuario(username, cliente.Apellido, 2); //2 = Rol Cliente
@@ -336,7 +336,7 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
                 valida = true;
                 //List<Filtro> campos = obtenerCamposEnPantalla();
 
-                if (UsuarioDAO.obtenerUsuarioPorUsername(obtenerIdUsuarioDeCliente()) != null)
+                if (UsuarioDAO.obtenerUsuarioPorUsername(obtenerUsernameDeCliente()) != null)
                     valida = false;
                 
                 return valida;
@@ -347,8 +347,11 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
             }
         }
 
-
-        private String obtenerIdUsuarioDeCliente() 
+        /// <summary>
+        /// Retorna el username default de un cliente
+        /// </summary>
+        /// <returns></returns>
+        private String obtenerUsernameDeCliente() 
         {
             try
             {

@@ -103,6 +103,20 @@ namespace FrbaCommerce.Entidades
             }
         }
 
+
+        public Empresa modificar()
+        {
+            try
+            {
+                base.modificar();
+                return EmpresaDAO.modificar(this);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public void bajaLogica()
         {
             try

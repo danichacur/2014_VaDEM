@@ -69,9 +69,9 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
                 camposConErrores = obtenerCamposConErrores();
                 if (camposConErrores == "")
                 {
-                    validarIdNoEnUso();
                     
                     armarEmpresaConCampos();
+                    insertarUsuarioDefault();
                     empresa.insertar();
 
                     DialogResult = System.Windows.Forms.DialogResult.OK;
@@ -114,6 +114,38 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
         #endregion
 
         #region MetodosGenerales
+
+        /// <summary>
+        /// Inserta un usuario con datos calculados automáticamente (username y pass)
+        /// </summary>
+        private void insertarUsuarioDefault()
+        {
+            Usuario usr;
+            String username;
+            try
+            {
+                if (validarUserNameNoEnUso())
+                {
+                    username = obtenerUsernameDeEmpresa();
+                }
+                else
+                {
+                    username = obtenerUsernameDeEmpresa() + "2";
+                }
+
+                usr = new Usuario(username, empresa.Cuit, 3); //3 = Rol Empresa
+                usr.insertar();
+
+                usr = UsuarioDAO.obtenerUsuarioPorUsername(username);
+
+                empresa.IdUsuario = usr.IdUsuario;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
 
         /// <summary>
         /// Crea una lista de campos (tipo filtro) y los agrega dinámicamente en el control AltaModificacion.
@@ -213,11 +245,39 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
             try
             {
                 List<Filtro> campos = obtenerCamposEnPantalla();
-                /*empresa. = Convert.ToInt32(campos[0].obtenerValor());
-                empresa.Descripcion = campos[1].obtenerValor().ToString();
-                empresa.Habilitado = (campos[2].obtenerValor().ToString() == "1" ? true : false);
-                empresa.AgregarFuncionalidades(campos[3].obtenerValor().ToString());
-                */
+                empresa.RazonSocial = campos[0].obtenerValor().ToString();
+                empresa.Cuit = campos[1].obtenerValor().ToString();
+                empresa.Telefono = campos[2].obtenerValor().ToString();
+                empresa.Direccion = campos[3].obtenerValor().ToString();
+                empresa.Numero = Convert.ToInt32(campos[4].obtenerValor());
+                empresa.Piso = campos[5].obtenerValor().ToString();
+                empresa.Departamento = campos[6].obtenerValor().ToString();
+                empresa.Localidad = campos[7].obtenerValor().ToString();
+                empresa.CodigoPostal = Convert.ToInt32(campos[8].obtenerValor());
+                empresa.Cuidad = campos[9].obtenerValor().ToString();
+                empresa.Email = campos[10].obtenerValor().ToString();
+                empresa.NombreContacto = campos[11].obtenerValor().ToString();
+                empresa.fechaCreacion = Convert.ToDateTime(campos[12].obtenerValor());
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
+        /// <summary>
+        /// Agrega el filtro parámetro en la pantalla
+        /// </summary>
+        /// <param name="filtro"></param>
+        public void agregarACamposEnPantalla(Filtro filtro)
+        {
+            try
+            {
+                List<Filtro> filtros = obtenerCamposEnPantalla();
+                filtros.Add(filtro);
+
+                this.ctrlAltaModificacion1.cargarFiltros(filtros);
             }
             catch (Exception)
             {
@@ -260,13 +320,35 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
         /// <summary>
         /// En caso de que el Id de usuario esté en uso lanzo una excepción e interrumpo.
         /// </summary>
-        private void validarIdNoEnUso()
+        private Boolean validarUserNameNoEnUso()
+        {
+            Boolean valida;
+            try
+            {
+                valida = true;
+                //List<Filtro> campos = obtenerCamposEnPantalla();
+
+                if (UsuarioDAO.obtenerUsuarioPorUsername(obtenerUsernameDeEmpresa()) != null)
+                    valida = false;
+
+                return valida;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// En caso de que el Id de usuario esté en uso lanzo una excepción e interrumpo.
+        /// </summary>
+        private void validarUsernameNoEnUso()
         {
             try
             {
                 List<Filtro> campos = obtenerCamposEnPantalla();
 
-                if (EmpresaDAO.obtenerEmpresa(Convert.ToInt16(campos[0].obtenerValor())) != null)
+                if (UsuarioDAO.obtenerUsuarioPorUsername(obtenerUsernameDeEmpresa()) != null)
                 {
                     throw new Exception("El Id Empresa ingresado ya está en uso.");
                 }
@@ -278,6 +360,23 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
         }
 
         /// <summary>
+        /// Retorna el username default de un cliente
+        /// </summary>
+        /// <returns></returns>
+        private String obtenerUsernameDeEmpresa()
+        {
+            try
+            {
+                return empresa.RazonSocial + "-" + empresa.Cuit;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
+        /// <summary>
         /// cambia el tamaño de la pantalla de acuerdo a la cantidad de registros de la grilla de funcionalidades
         /// </summary>
         private void redefinirTamanioVentana()
@@ -285,7 +384,7 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
             int alto;
             try
             {
-                alto = 225;
+                alto = 544;
                 this.Size = new System.Drawing.Size(this.Size.Width, alto);
             }
             catch (Exception)

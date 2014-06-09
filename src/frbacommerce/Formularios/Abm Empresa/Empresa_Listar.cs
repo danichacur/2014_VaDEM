@@ -229,7 +229,7 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
             try
             {
 
-                DataGridViewColumn[] columnas = new DataGridViewColumn[15];
+                DataGridViewColumn[] columnas = new DataGridViewColumn[16];
 
                 DataGridViewTextBoxColumn colRazonSocial = new DataGridViewTextBoxColumn();
                 colRazonSocial.DataPropertyName = "RazonSocial"; colRazonSocial.Name = "RazonSocial";
@@ -289,19 +289,24 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
                 colFechaCreacion.HeaderText = "Fecha Creación";
                 columnas[12] = colFechaCreacion;
 
+                DataGridViewCheckBoxColumn colHabilitado = new DataGridViewCheckBoxColumn();
+                colHabilitado.DataPropertyName = "Habilitado"; colHabilitado.Name = "Habilitado"; colHabilitado.HeaderText = "Habilitado";
+                colHabilitado.FalseValue = "0"; colHabilitado.TrueValue = "1";
+                columnas[13] = colHabilitado;
+
                 DataGridViewButtonColumn colModif = new DataGridViewButtonColumn();
                 colModif.Width = 60;
                 colModif.Text = "Modificar";
                 colModif.Name = "Modificar";
                 colModif.UseColumnTextForButtonValue = true;
-                columnas[13] = colModif;
+                columnas[14] = colModif;
 
                 DataGridViewButtonColumn colElim = new DataGridViewButtonColumn();
                 colElim.Width = 60;
                 colElim.Text = "Eliminar";
                 colElim.Name = "Eliminar";
                 colElim.UseColumnTextForButtonValue = true;
-                columnas[14] = colElim;
+                columnas[15] = colElim;
 
                 return columnas;
             }

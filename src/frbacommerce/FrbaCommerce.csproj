@@ -338,6 +338,9 @@
     <EmbeddedResource Include="Formularios\Abm Empresa\Empresa_Listar.resx">
       <DependentUpon>Empresa_Listar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Abm Empresa\Empresa_Modificar.resx">
+      <DependentUpon>Empresa_Modificar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\ABM Rol\Rol_Agregar.resx">
       <DependentUpon>Rol_Agregar.cs</DependentUpon>
     </EmbeddedResource>

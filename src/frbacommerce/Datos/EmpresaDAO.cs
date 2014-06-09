@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using FrbaCommerce.Entidades;
 using System.Data;
+using FrbaCommerce.Componentes_Comunes;
 
 namespace FrbaCommerce.Datos
 {
@@ -132,6 +133,38 @@ namespace FrbaCommerce.Datos
            }
             catch (Exception)
             {   
+                throw;
+            }
+        }
+
+        public static Empresa modificar(Empresa empresa)
+        {
+            String script;
+            try
+            { // " + empresa + "
+
+                script = "UPDATE vadem.empresa ";
+                script += "SET [RazonSocial] = '" + empresa.RazonSocial + "' ";
+                script += ",[CUIT] = '" + empresa.Cuit+ "' ";
+                script += ",[Telefono] = '" + empresa.Telefono+ "' ";
+                script += ",[Direccion] = '" + empresa.Direccion+ "' ";
+                script += ",[Numero] = '" + empresa.Numero+ "' ";
+                script += ",[Piso] = '" + empresa.Piso + "' ";
+                script += ",[Dpto] = '" + empresa.Departamento+ "' ";
+                script += ",[Localidad] = '" + empresa.Localidad+ "' ";
+                script += ",[CodPostal] = '" + empresa.CodigoPostal+ "' ";
+                script += ",[Ciudad] = '" + empresa.Cuidad + "' ";
+                script += ",[Mail] = '" + empresa.Email+ "' ";
+                script += ",[NombreContacto] = '" + empresa.NombreContacto+ "' ";
+                script += ",[FechaCreacion] = " + Metodos_Comunes.localDateToSQLDate(empresa.fechaCreacion) + " ";
+                script += "WHERE [IdEmpresa] = '" + empresa.IdUsuario+ "' ";
+
+                AccesoDatos.Instance.EjecutarScript(script);
+
+                return obtenerEmpresa(empresa.IdUsuario);
+            }
+            catch (Exception)
+            {
                 throw;
             }
         }
