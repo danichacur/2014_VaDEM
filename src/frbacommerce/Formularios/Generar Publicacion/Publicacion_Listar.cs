@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using FrbaCommerce.Componentes_Comunes;
 using FrbaCommerce.Datos;
 using FrbaCommerce.Entidades;
+using FrbaCommerce.Formularios;
 
 
 namespace FrbaCommerce.Generar_Publicacion
