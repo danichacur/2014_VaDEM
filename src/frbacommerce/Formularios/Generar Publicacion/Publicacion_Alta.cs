@@ -345,11 +345,11 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
                     if (campo.obtenerObligatorio())
                         if (campo.obtenerValor().ToString() == "")
                             errores += campo.obtenerLabel() + ", ";
-                        else
+                        /*else
                         {
                             if (Convert.ToInt32(campo.obtenerValor()) == 0)
                                 errores += campo.obtenerLabel() + ", ";
-                        }
+                        }*/
                 }
 
                 if (errores.Length > 0)

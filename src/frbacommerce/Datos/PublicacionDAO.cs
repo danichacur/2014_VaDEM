@@ -73,6 +73,8 @@ namespace FrbaCommerce.Datos
        
         }
 
+
+
         public static Publicacion insertar(Publicacion publicacion)
         {
             String script;
@@ -85,7 +87,11 @@ namespace FrbaCommerce.Datos
 
                 AccesoDatos.Instance.EjecutarScript(script);
 
+                //String scr = "SELECT * FROM vadem.publicacion WHERE IdPublicacion = " + publicacion.Id;
                 return obtenerPublicacion(Session.IdUsuario);
+
+                // PublicacionDAO.insertarRubros(rubr, Id);
+
             }
             catch (Exception)
             {
@@ -95,8 +101,31 @@ namespace FrbaCommerce.Datos
 
         private static Publicacion obtenerPublicacion(int p)
         {
-            //throw new NotImplementedException();
-            return null;
+            throw new NotImplementedException();
         }
+
+        public static object insertarRubros(List<Rubro> rubros, int idPublicacion)
+        {
+               
+            try
+            {
+                String script = "";
+             foreach( Rubro miRubro in rubros)
+             {
+                 script += "INSERT INTO vadem.rubrosPublicacion VALUES (" + idPublicacion + " , " + miRubro + ")";
+             }
+              
+              return AccesoDatos.Instance.EjecutarScript(script);
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+
+        }
+
+
     }
 }

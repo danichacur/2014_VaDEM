@@ -16,7 +16,7 @@ namespace FrbaCommerce.Entidades
         public int Precio { get; set; }
         public int Cantidad { get; set; }
         public bool AdmitePreguntas { get; set; }
-        public List<Funcionalidad> Rubros { get; set; }
+        public List<Rubro> Rubros { get; set; }
         public DateTime FechaInicio { get; set; }
         public DateTime FechaFin { get; set; }
         public int Visibilidad { get; set; }
@@ -28,6 +28,11 @@ namespace FrbaCommerce.Entidades
             Descripcion = "";
             Vendedor = Session.IdUsuario;
             Estado = 1;
+            Tipo = "";
+            Precio = 0;
+            Cantidad = 0;
+            AdmitePreguntas = true;
+            Visibilidad = 0;
         }
 
         public Publicacion(int id, string descripcion)
@@ -60,24 +65,23 @@ namespace FrbaCommerce.Entidades
         /// <param name="idsRubro"></param>
         public void AgregarRubros(String idsRubro)
         {
-            throw new NotImplementedException();
-          /*  //System.Windows.Forms.DataGridViewRow row;
-            //int idx;
-            Rubro rubr;
+            //System.Windows.Forms.DataGridViewRow row;
+            Rubro rb;
             try
             {
-                rubr = new List<Rubro>();
+                Rubros = new List<Rubro>();
                 //Por cada id  que viene en el texto parámetro, activo el check correspondiente
                 foreach (String id in ((String)idsRubro).Split(new Char[] { ',' }))
                 {
-                    rubr = new Rubro(Convert.ToInt16(id), "");
-                    Rubro.Add(rubr);
+                    rb = new Rubro(Convert.ToInt16(id), "");
+                    Rubros.Add(rb);
                 }
+              
             }
             catch (Exception)
             {
                 throw;
-            }*/
+            }
         }
     }
 }

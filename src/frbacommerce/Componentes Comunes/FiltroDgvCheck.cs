@@ -91,7 +91,9 @@ namespace FrbaCommerce.Componentes_Comunes
                     }
                     idx++;
                 }
-                valor = valor.Substring(0, valor.Length - 1);
+                if (valor.Length != 0)
+                    valor = valor.Substring(0, valor.Length - 1);
+
                 return valor;
             }
             catch (Exception)
