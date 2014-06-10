@@ -126,6 +126,43 @@ namespace FrbaCommerce.Datos
         }
 
         /// <summary>
+        /// obtiene todos los roles habilitados 
+        /// </summary>
+        /// <param name="script"></param>
+        /// <returns></returns>
+        public static List<Rol> obtenerRolesHabilitadosClienteEmpresa()
+        {
+            String script;
+            Rol rol;
+            List<Rol> roles;
+            DataTable tbl;
+            try
+            {
+                roles = new List<Rol>();
+
+                script = "SELECT * FROM vadem.rol WHERE Habilitado = 1 AND IdRol IN (2,3)";
+
+                tbl = AccesoDatos.Instance.EjecutarScript(script);
+
+                foreach (DataRow row in tbl.Rows)
+                {
+                    rol = new Rol(
+                                   Convert.ToInt32(row["IdRol"]),
+                                   (String)row["Descripcion"],
+                                   Convert.ToInt32(row["Habilitado"]) == 1 ? true : false
+                                 );
+                    roles.Add(rol);
+                }
+
+                return roles;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
         /// Ejecuta el script parámetro.
         /// </summary>
         /// <param name="script"></param>
@@ -134,6 +171,32 @@ namespace FrbaCommerce.Datos
             try
             {
                 AccesoDatos.Instance.EjecutarScript(script);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Busca en la base cual es el próximo Id a insertar
+        /// </summary>
+        /// <returns></returns>
+        public static int obtenerProximoIdRol()
+        {
+            String script;
+            //Rol rol;
+            //List<Rol> roles;
+            DataTable tbl;
+            try
+            {
+                script = "SELECT MAX(IdRol) + 1 AS ProximoId FROM vadem.rol";
+
+                tbl = AccesoDatos.Instance.EjecutarScript(script);
+
+            
+
+                return Convert.ToInt32(tbl.Rows[0]["ProximoId"]);
             }
             catch (Exception)
             {

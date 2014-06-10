@@ -63,12 +63,9 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
         /// <param name="e"></param>
         public override void btnAceptar_Click(object sender, EventArgs e)
         {
-            String camposConErrores;
             try
             {
-                
-                camposConErrores = obtenerCamposConErrores();
-                if (camposConErrores == "")
+                if( pasaValidacionesVarias())
                 {
                     armarClienteConCampos();
                     insertarUsuarioDefault();
@@ -76,11 +73,6 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
 
                     DialogResult = System.Windows.Forms.DialogResult.OK;
                 }
-                else
-                {
-                    Metodos_Comunes.MostrarMensaje("Debe completar todos los campos. Los campos incompletos son: " + camposConErrores);
-                }
-
             }
             catch (Exception ex)
             {
@@ -266,7 +258,7 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
                 cliente.CodigoPostal = Convert.ToInt32(campos[11].obtenerValor());
                 cliente.FechaNacimiento = Convert.ToDateTime(campos[12].obtenerValor());
                 cliente.Cuil = (long)Convert.ToDouble(campos[13].obtenerValor());
-                cliente.Habilitado = (campos[14].obtenerValor().ToString() == "1" ? true: false);
+                //cliente.Habilitado = (campos[14].obtenerValor().ToString() == "1" ? true: false);
             }
             catch (Exception)
             {
@@ -274,23 +266,46 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
             }
         }
 
-        /// <summary>
-        /// Agrega el filtro parámetro en la pantalla
-        /// </summary>
-        /// <param name="filtro"></param>
-        public void agregarACamposEnPantalla(Filtro filtro) {
+
+        public Boolean pasaValidacionesVarias() {
+            Boolean valida;
             try
             {
-                List<Filtro> filtros = obtenerCamposEnPantalla();
-                filtros.Add(filtro);
+                valida = false;
+                String camposConErrores;
+                camposConErrores = obtenerCamposConErrores();
+                if (camposConErrores == "")
+                {
+                    if (validarTipoYNumeroDeDocumento())
+                    {
+                        if (validaTelefono())
+                        {
+                            valida = true;
+                        }
+                        else
+                        {
+                            Metodos_Comunes.MostrarMensaje("El teléfono ingresado ya está en uso.");
+                        }
+                    }
+                    else
+                    {
+                        Metodos_Comunes.MostrarMensaje("El Tipo y Número de Documento ingresados ya están en uso.");
+                    }
+                }
+                else
+                {
+                    Metodos_Comunes.MostrarMensaje("Debe completar todos los campos. Los campos incompletos son: " + camposConErrores);
+                }
 
-                this.ctrlAltaModificacion1.cargarFiltros(filtros);
+                return valida;
             }
             catch (Exception)
-            {   
+            {
+                
                 throw;
             }
         }
+
         #endregion
 
         #region MetodosAuxiliares
@@ -381,7 +396,65 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
         }
         #endregion
 
+        /// <summary>
+        /// Agrega el filtro parámetro en la pantalla
+        /// </summary>
+        /// <param name="filtro"></param>
+        public void agregarACamposEnPantalla(Filtro filtro)
+        {
+            try
+            {
+                List<Filtro> filtros = obtenerCamposEnPantalla();
+                filtros.Add(filtro);
 
+                this.ctrlAltaModificacion1.cargarFiltros(filtros);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Verifica que el tipo y número de documento ingresado no se encuentre ya registrado en un cliente 
+        /// </summary>
+        /// <returns></returns>
+        public Boolean validarTipoYNumeroDeDocumento()
+        {
+            String tipoDocumentoIngresado, nroDocumentoIngresado;
+            List<Filtro> campos;
+            try
+            {
+                campos = obtenerCamposEnPantalla();
+                tipoDocumentoIngresado = ((FiltroComboBox)campos[0]).obtenerValorText();
+                nroDocumentoIngresado = (String)(campos[1].obtenerValor());
+
+                return ClienteDAO.verificarTipoYNumeroDeDocumento(tipoDocumentoIngresado, nroDocumentoIngresado, cliente.IdUsuario);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Verifica que el teléfono ingresado no se encuentre ya registrado en un cliente o empresa
+        /// </summary>
+        /// <returns></returns>
+        public Boolean validaTelefono() {
+            String telefonoIngresado;
+            List<Filtro> campos;
+            try
+            {    campos = obtenerCamposEnPantalla();
+                 telefonoIngresado = campos[5].obtenerValor().ToString();
+
+                 return ClienteDAO.verificarTelefonoNoEnUso(telefonoIngresado, cliente.IdUsuario);
+            }
+            catch (Exception)
+            {   
+                throw;
+            }
+        }
         
     }
 }

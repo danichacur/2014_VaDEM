@@ -91,7 +91,7 @@ namespace FrbaCommerce.Entidades
         }
 
 
-        public Empresa insertar()
+        new public Empresa insertar()
         {
             try
             {
@@ -104,7 +104,7 @@ namespace FrbaCommerce.Entidades
         }
 
 
-        public Empresa modificar()
+        new public Empresa modificar()
         {
             try
             {

@@ -40,8 +40,16 @@ namespace FrbaCommerce.Abm_Cliente
         {
             try
             {
-                cargaFiltros();
-                cargaInicialGrilla();
+                if (validaRolHabilitado())
+                {
+                    cargaFiltros();
+                    cargaInicialGrilla();
+                }
+                else
+                {
+                    Metodos_Comunes.MostrarMensaje("El Rol Cliente se encuentra inhabilitado.");
+                    DialogResult = System.Windows.Forms.DialogResult.Abort;
+                }
             }
             catch (Exception ex)
             {
@@ -158,17 +166,15 @@ namespace FrbaCommerce.Abm_Cliente
             {
                 List<Filtro> filtrosI = new List<Filtro>();
                 filtrosI.Add(new FiltroTextBox("Documento", "Documento", "=", ""));
-                filtrosI.Add(new FiltroTextBox("Apellido", "Apellido", "LIKE", ""));
-                filtrosI.Add(new FiltroTextBox("Direc Calle", "Direccion", "LIKE", ""));
-                filtrosI.Add(new FiltroTextBox("Departamento", "Dpto", "=", ""));
-          
+                filtrosI.Add(new FiltroTextBox("Nombre", "Nombre", "LIKE", ""));
+                filtrosI.Add(new FiltroTextBox("Telefono", "Telefono", "=", ""));
+                
                 List<Filtro> filtrosD = new List<Filtro>();
-                filtrosD.Add(new FiltroTextBox("Nombre", "Nombre", "LIKE", ""));
-                filtrosD.Add(new FiltroTextBox("Telefono", "Telefono", "=", ""));
-                filtrosD.Add(new FiltroTextBox("Piso", "Piso", "=", ""));
-                //filtrosD.Add(new FiltroFecha("Piso", "Piso", "=", ""));
-
-
+                DataTable tbl = Metodos_Comunes.obtenerTablaComboTipoDocumento();
+                Metodos_Comunes.InsertarVacioEnPrimerRegistro(ref tbl);
+                filtrosD.Add(new FiltroComboBox("Tipo Doc", "TipoDocumento", "", "-1", tbl, "id", "descripcion"));
+                filtrosD.Add(new FiltroTextBox("Apellido", "Apellido", "LIKE", ""));
+                
                 this.ctrlABM1.cargarFiltros(filtrosI, filtrosD);
             }
             catch (Exception)
@@ -203,6 +209,14 @@ namespace FrbaCommerce.Abm_Cliente
         {
             try
             {
+                if (clausulaWhere != "")
+                {
+                    clausulaWhere = clausulaWhere.Replace("WHERE", "AND");
+                    clausulaWhere = clausulaWhere.Replace("TipoDocumento = '0'", "TipoDocumento = 'DNI'");
+                    clausulaWhere = clausulaWhere.Replace("TipoDocumento = '1'", "TipoDocumento = 'L.C.'");
+                }
+                
+
                 Object listaClientes = (Object)ClienteDAO.obtenerClientes(clausulaWhere);
 
                 DataGridViewColumn[] columnas = obtenerDisenoColumnasGrilla();
@@ -315,6 +329,21 @@ namespace FrbaCommerce.Abm_Cliente
             }
             catch (Exception)
             {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Verifica que el rol se encuentre Habilitado en la base de datos
+        /// </summary>
+        /// <returns></returns>
+        private Boolean validaRolHabilitado() {
+            try
+            {
+                return ClienteDAO.RolHabilitado();
+            }
+            catch (Exception)
+            {   
                 throw;
             }
         }

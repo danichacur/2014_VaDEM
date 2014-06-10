@@ -18,7 +18,7 @@ namespace FrbaCommerce.Entidades
         {
             Id = 0;
             Descripcion = "";
-            Habilitado = false;
+            Habilitado = true;
         }
 
         public Rol(int id, string descripcion, bool habilitado)
@@ -41,10 +41,13 @@ namespace FrbaCommerce.Entidades
         /// </summary>
         public void insertar()
         {
+            String query;
             try
             {
-                String query = "INSERT INTO vadem.rol VALUES(";
-                query += Id;
+                Id = RolDAO.obtenerProximoIdRol();
+
+                query = "INSERT INTO vadem.rol VALUES(";
+                query += Id ;
                 query += ",";
                 query += "'" + Descripcion + "'";
                 query += ",";

@@ -116,17 +116,17 @@ namespace FrbaCommerce.Formularios.ABM_Rol
         /// </summary>
         private void generarCampos()
         {
-            FiltroTextBox filtroTxt;
+            //FiltroTextBox filtroTxt;
             try
             {
                 List<Filtro> filtros = new List<Filtro>();
                 
-                filtroTxt = new FiltroTextBox("Id", "IdRol", "=", "");
-                filtroTxt.setTipoTextoIngresado(FiltroTextBox.TipoTexto.Numerico);
-                filtros.Add(filtroTxt);
+                //filtroTxt = new FiltroTextBox("Id", "IdRol", "=", "");
+                //filtroTxt.setTipoTextoIngresado(FiltroTextBox.TipoTexto.Numerico);
+                //filtros.Add(filtroTxt);
              
                 filtros.Add(new FiltroTextBox("Descripcion", "Descripcion", "LIKE", ""));
-                filtros.Add(new FiltroComboBox("Habilitado", "Habilitado", "=", "-1", Metodos_Comunes.obtenerTablaComboHabilitado(), "id", "descripcion"));
+                //filtros.Add(new FiltroComboBox("Habilitado", "Habilitado", "=", "-1", Metodos_Comunes.obtenerTablaComboHabilitado(), "id", "descripcion"));
                 filtros.Add(new FiltroDgvCheck("Funcionalidades","funcionalidades","",obtenerListaFuncionalidades(),obtenerFormatoColumnas()));
 
                 this.ctrlAltaModificacion1.cargarFiltros(filtros);
@@ -161,10 +161,8 @@ namespace FrbaCommerce.Formularios.ABM_Rol
             try
             {
                 List<Filtro> campos = obtenerCamposEnPantalla();
-                rol.Id = Convert.ToInt32(campos[0].obtenerValor());
-                rol.Descripcion = campos[1].obtenerValor().ToString();
-                rol.Habilitado = (campos[2].obtenerValor().ToString() == "1" ? true : false);
-                rol.AgregarFuncionalidades(campos[3].obtenerValor().ToString());
+                rol.Descripcion = campos[0].obtenerValor().ToString();
+                rol.AgregarFuncionalidades(campos[1].obtenerValor().ToString());
             }
             catch (Exception)
             {
@@ -288,6 +286,30 @@ namespace FrbaCommerce.Formularios.ABM_Rol
             try
             {
                 this.Size = new System.Drawing.Size(this.Size.Width, 225 + this.Controls.Find("funcionalidades",true)[0].Size.Height);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Agrega el filtro parámetro en la pantalla
+        /// </summary>
+        /// <param name="filtro"></param>
+        public void agregarACamposEnPantalla(Filtro filtro)
+        {
+            List<Filtro> filtros, filtrosOrdenados;
+            try
+            {
+                filtros = obtenerCamposEnPantalla();
+
+                filtrosOrdenados = new List<Filtro>();
+                filtrosOrdenados.Add(filtros[0]);
+                filtrosOrdenados.Add(filtro);
+                filtrosOrdenados.Add(filtros[1]);
+
+                this.ctrlAltaModificacion1.cargarFiltros(filtrosOrdenados);
             }
             catch (Exception)
             {

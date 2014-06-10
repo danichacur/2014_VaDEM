@@ -120,7 +120,7 @@ namespace FrbaCommerce.Componentes_Comunes
             DataRow row;
             try
             {
-                tbl = obtenerTablaComboHabilitado();
+               // tbl = obtenerTablaComboHabilitado();
 
                 row = tbl.NewRow();
                 row["id"] = -1; row["descripcion"] = "";

@@ -48,6 +48,7 @@ namespace FrbaCommerce.Formularios.ABM_Rol
         {
             try
             {
+                ponerCamposNuevos();
                 llenarCampos();
                 habilitaCamposParaModificacion();
             }
@@ -101,7 +102,7 @@ namespace FrbaCommerce.Formularios.ABM_Rol
             try
             {
                 List<Filtro> campos = obtenerCamposEnPantalla();
-                campos[0].Enabled = false;
+                campos[0].Enabled = true;
                 campos[1].Enabled = true;
                 campos[2].Enabled = true;
             }
@@ -121,12 +122,49 @@ namespace FrbaCommerce.Formularios.ABM_Rol
                 if (rol != null)
                 {
                     List<Filtro> campos = obtenerCamposEnPantalla();
-                    campos[0].colocarValor(rol.Id);
-                    campos[1].colocarValor(rol.Descripcion);
-                    campos[2].colocarValor((rol.Habilitado ? 1 : 0));
-                    campos[3].colocarValor(rol.obtenerFuncionalidadesComoString());
-
+                    campos[0].colocarValor(rol.Descripcion);
+                    campos[1].colocarValor((rol.Habilitado ? 1 : 0));
+                    campos[2].colocarValor(rol.obtenerFuncionalidadesComoString());
+                    
                 }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Se agregan a la pantalla los campos que no se necesitaban para el alta pero sí para la modificación
+        /// </summary>
+        private void ponerCamposNuevos()
+        {
+            FiltroComboBox filtroCbo;
+            try
+            {
+                filtroCbo = new FiltroComboBox("Habilitado", "Habilitado", "=", "-1", Metodos_Comunes.obtenerTablaComboHabilitado(), "id", "descripcion");
+                filtroCbo.setObligatorio(true);
+
+                this.Height = 225 + this.Controls.Find("funcionalidades", true)[0].Size.Height;
+                agregarACamposEnPantalla(filtroCbo);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Setea en el rol de la variable de la clase con los campos ingresados por el usuario.
+        /// </summary>
+        new public void armarRolConCampos()
+        {
+            try
+            {
+                List<Filtro> campos = obtenerCamposEnPantalla();
+                rol.Descripcion = campos[0].obtenerValor().ToString();
+                rol.Habilitado = (campos[1].obtenerValor().ToString() == "1" ? true : false);
+                rol.AgregarFuncionalidades(campos[2].obtenerValor().ToString());
             }
             catch (Exception)
             {

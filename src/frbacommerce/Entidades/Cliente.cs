@@ -88,7 +88,7 @@ namespace FrbaCommerce.Entidades
             Cuil = pCuil;
         }
 
-        public Cliente insertar()
+        new public Cliente insertar()
         {
             try
             {
@@ -100,7 +100,7 @@ namespace FrbaCommerce.Entidades
             }
         }
 
-        public Cliente modificar()
+        new public Cliente modificar()
         {
             try
             {

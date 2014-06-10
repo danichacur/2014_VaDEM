@@ -187,6 +187,7 @@ CREATE TABLE [vadem].[usuario](
 	[Habilitado] [bit] NOT NULL,
 	[Reputacion] [numeric](3, 2) NOT NULL,
 	[ComprasPorRendir] [int] NULL, -- cambio de Junio
+	[CantidadLoggeos] [int] NULL, 
  CONSTRAINT [PK_usuario] PRIMARY KEY CLUSTERED 
 (
 	[IdUsuario] ASC

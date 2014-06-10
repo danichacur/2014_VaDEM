@@ -9,21 +9,18 @@ using System.Windows.Forms;
 using FrbaCommerce.Componentes_Comunes;
 using FrbaCommerce.Datos;
 using FrbaCommerce.Entidades;
-using FrbaCommerce.Formularios;
 
 
 namespace FrbaCommerce.Generar_Publicacion
 {
-    public partial class Publicacion_Listar : ABM
+    public partial class Listado : ABM
     {
-
-        #region Eventos
-        public Publicacion_Listar()
+        public Listado()
         {
             InitializeComponent();
         }
 
-        private void Publicacion_Listar_Load(object sender, EventArgs e)
+        private void Listado_Load(object sender, EventArgs e)
         {
             try
             {
@@ -36,35 +33,6 @@ namespace FrbaCommerce.Generar_Publicacion
             }
         }
 
-
-        /// <summary>
-        /// Evento del boton Alta. Se abre la ventana de alta. Al regresar de la ventana
-        /// valida que el resultado sea satisfactorio, en ese caso refresca la pantalla
-        /// </summary>
-        public override void btnAlta_Click()
-        {
-            System.Windows.Forms.DialogResult result;
-            try
-            {
-                Formularios.Generar_Publicacion.Publicacion_Alta formAlta = new Formularios.Generar_Publicacion.Publicacion_Alta();
-                result = formAlta.ShowDialog();
-
-                if (result == System.Windows.Forms.DialogResult.OK)
-                {
-                    ctrlABM1.buscar();
-                }
-            }
-            catch (Exception ex)
-            {
-                Metodos_Comunes.MostrarMensajeError(ex);
-            }
-        }
-
-        #endregion
-
-        #region MetodosGenerales
-
-
         private void cargaInicialGrilla()
         {
             try
@@ -75,6 +43,8 @@ namespace FrbaCommerce.Generar_Publicacion
             {
                 throw new Exception("Error " + ex.Message);
             }
+
+
         }
 
         private void cargaFiltros()
@@ -84,14 +54,14 @@ namespace FrbaCommerce.Generar_Publicacion
                 List<Filtro> filtrosI = new List<Filtro>();
                 filtrosI.Add(new FiltroComboBox("Tipo", "Tipo", "=", "", obtenerTiposPublicacion(), "descripcion", "descripcion"));
                 filtrosI.Add(new FiltroComboBox("Estado", "IdEstado", "=", "0", obtenerEstados(), "IdEstado", "Descripcion"));
-
+               
 
                 List<Filtro> filtrosD = new List<Filtro>();
                 filtrosD.Add(new FiltroComboBox("Visibilidad", "IdVisibilidad", "=", "0", obtenerVisibilidadHabilitadas(), "IdVisibilidad", "Descripcion"));
 
 
                 //filtrosI.Add(new FiltroFecha());
-                // filtrosI.Add(new FiltroTextBox("Descripcion", "Descripcion", "LIKE", ""));
+               // filtrosI.Add(new FiltroTextBox("Descripcion", "Descripcion", "LIKE", ""));
 
                 this.ctrlABM1.cargarFiltros(filtrosI, filtrosD);
             }
@@ -102,28 +72,7 @@ namespace FrbaCommerce.Generar_Publicacion
 
         }
 
-        public override void aplicarFiltro(String clausulaWhere)
-        {
-            try
-            {
-                String script = "SELECT * FROM vadem.publicacion ";
-                script += clausulaWhere;
 
-                Object listaPublicaciones = (Object)PublicacionDAO.obtenerPublicaciones(script);
-
-
-                this.ctrlABM1.cargarGrilla(listaPublicaciones);
-
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error " + ex.Message);
-            }
-        }
-
-        #endregion
-
-        #region MetodosAuxiliares
 
         private DataTable obtenerTiposPublicacion()
         {
@@ -211,6 +160,26 @@ namespace FrbaCommerce.Generar_Publicacion
             }
         }
 
-        #endregion
+
+
+        public override void aplicarFiltro(String clausulaWhere)
+        {
+            try
+            {
+                String script = "SELECT * FROM vadem.publicacion ";
+                script += clausulaWhere;
+
+                Object listaPublicaciones = (Object)PublicacionDAO.obtenerPublicaciones(script);
+
+
+                this.ctrlABM1.cargarGrilla(listaPublicaciones);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error " + ex.Message);
+            }
+        }
+
     }
 }

@@ -185,6 +185,7 @@ namespace FrbaCommerce.Registro_de_Usuario
 
                 if (txtUsername.Text == "") camposErroneos += "Username, ";
                 if (txtPassword.Text == "") camposErroneos += "Password, ";
+                if (cboRol.Text == "") camposErroneos += "Rol, ";
 
                 //Valido que el username no coincida con uno ya existente en la BD
                 if (txtUsername.Text != "")
@@ -251,6 +252,7 @@ namespace FrbaCommerce.Registro_de_Usuario
                                     txtPassword.Text,
                                     Convert.ToInt16(cboRol.SelectedValue));
                 usr = usr.insertar();
+                usr.aumentarCantidadLoggeosSatisfactorios();
 
                 return usr;
             }
@@ -300,12 +302,16 @@ namespace FrbaCommerce.Registro_de_Usuario
         /// </summary>
         private void CargaComboRol()
         {
-            List<Rol> itemsCombo;
+            List<Rol> itemsCombo, listaRolesConVacio;
             try
             {
-                itemsCombo = RolDAO.obtenerRolesHabilitados();
+                itemsCombo = RolDAO.obtenerRolesHabilitadosClienteEmpresa();
 
-                cboRol.DataSource = itemsCombo;
+                listaRolesConVacio = new List<Rol>();
+                listaRolesConVacio.Add(new Rol());
+                foreach (Rol rol in itemsCombo) { listaRolesConVacio.Add(rol); }
+
+                cboRol.DataSource = listaRolesConVacio;
                 cboRol.DisplayMember = "Descripcion";
                 cboRol.ValueMember = "Id";
             }

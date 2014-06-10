@@ -60,7 +60,7 @@ namespace FrbaCommerce.Datos
             {
                 script = "INSERT INTO vadem.usuario VALUES ( '" + usr.Username + "', '";
                 script += usr.PasswordEncriptada + "'," + usr.IntentosFallidos + "," + (usr.Bloqueado ? 1 : 0);
-                script += "," + (usr.Habilitado ? 1 : 0) + "," + usr.Reputacion + "," + usr.CantComprasPorRendir + ")";
+                script += "," + (usr.Habilitado ? 1 : 0) + "," + usr.Reputacion + "," + usr.CantComprasPorRendir + ",0)";
                 AccesoDatos.Instance.EjecutarScript(script);
 
                 usrBD = obtenerUsuarioPorUsername(usr.Username);
@@ -102,6 +102,27 @@ namespace FrbaCommerce.Datos
             }
         }
 
+        public static Usuario modificarPassword(Usuario usr)
+        {
+            String script;
+            Usuario usrBD;
+            try
+            {
+                script = "UPDATE vadem.usuario SET ";
+                script += "Password = '" + usr.PasswordEncriptada + "'";
+                script += " WHERE IdUsuario = " + usr.IdUsuario;
+                AccesoDatos.Instance.EjecutarScript(script);
+
+                usrBD = obtenerUsuarioPorUsername(usr.Username);
+
+                return usrBD;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         /// <summary>
         /// Se utiliza este método cuando se tiene que hacer un rollback. No se debe usar para las bajas lógicas
         /// </summary>
@@ -113,6 +134,20 @@ namespace FrbaCommerce.Datos
             {
                 script = "DELETE FROM vadem.usuario WHERE IdUsuario = " + usr.IdUsuario;
                 
+                AccesoDatos.Instance.EjecutarScript(script);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static void aumentaCantidadLoggeosSatisfactorios(Usuario usr)
+        {
+            String script;
+            try
+            {
+                script = "UPDATE vadem.usuario SET cantidadloggeos = cantidadloggeos + 1 WHERE IdUsuario = " + usr.IdUsuario;
                 AccesoDatos.Instance.EjecutarScript(script);
             }
             catch (Exception)

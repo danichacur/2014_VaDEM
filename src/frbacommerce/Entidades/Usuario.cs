@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using FrbaCommerce.Datos;
+using FrbaCommerce.Componentes_Comunes;
 
 namespace FrbaCommerce.Entidades
 {
@@ -97,6 +98,18 @@ namespace FrbaCommerce.Entidades
             }
         }
 
+        public Usuario modificarPassword()
+        {
+            try
+            {
+                return UsuarioDAO.modificarPassword(this);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public void eliminar()
         {
             try
@@ -121,6 +134,7 @@ namespace FrbaCommerce.Entidades
                 }
 
                 modificar();
+
             }
             catch (Exception)
             {   
@@ -144,6 +158,7 @@ namespace FrbaCommerce.Entidades
         {
             try
             {
+                Metodos_Comunes.MostrarMensaje("El usuario " + Username + " fue bloqueado");
                 Bloqueado = true;
             }
             catch (Exception)
@@ -158,14 +173,33 @@ namespace FrbaCommerce.Entidades
             {
                 IntentosFallidos = 0;
                 Bloqueado = false;
-
+                
                 modificar();
+                aumentarCantidadLoggeosSatisfactorios();
             }
             catch (Exception)
             {   
                 throw;
             }
         }
-        
+
+
+        public void setPasswordDesencriptada(string passDesencriptada)
+        {
+            try
+            {
+                PasswordDesencriptada = passDesencriptada;
+                PasswordEncriptada = Metodos_Comunes.sha256_hash(passDesencriptada);
+            }
+            catch (Exception)
+            {   
+                throw;
+            }
+        }
+
+        public void aumentarCantidadLoggeosSatisfactorios() 
+        {
+            UsuarioDAO.aumentaCantidadLoggeosSatisfactorios(this);
+        }
     }
 }

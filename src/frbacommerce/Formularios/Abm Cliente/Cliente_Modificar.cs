@@ -65,22 +65,15 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
         /// <param name="e"></param>
         public override void btnAceptar_Click(object sender, EventArgs e)
         {
-            String camposConErrores;
             try
             {
-                camposConErrores = obtenerCamposConErrores();
-                if (camposConErrores == "")
+                if (pasaValidacionesVarias())
                 {
                     armarClienteConCampos();
                     cliente.modificar();
 
                     DialogResult = System.Windows.Forms.DialogResult.OK;
                 }
-                else
-                {
-                    Metodos_Comunes.MostrarMensaje("Debe completar todos los campos. Los campos incompletos son: " + camposConErrores);
-                }
-
             }
             catch (Exception ex)
             {
@@ -170,6 +163,23 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
             }
             catch (Exception)
             {   
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Setea en el rol de la variable de la clase con los campos ingresados por el usuario.
+        /// </summary>
+        new public void armarClienteConCampos()
+        {
+            try
+            {
+                base.armarClienteConCampos();
+                List<Filtro> campos = obtenerCamposEnPantalla();
+                cliente.Habilitado = (campos[14].obtenerValor().ToString() == "1" ? true : false);
+            }
+            catch (Exception)
+            {
                 throw;
             }
         }

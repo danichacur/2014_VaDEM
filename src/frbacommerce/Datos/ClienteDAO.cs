@@ -25,7 +25,8 @@ namespace FrbaCommerce.Datos
             {
 
                 String script = "SELECT * FROM vadem.cliente C LEFT JOIN vadem.usuario U ON C.IdCliente = U.IdUsuario ";
-                script += "LEFT JOIN vadem.rolesPorUsuario RU ON RU.IdUsuario = U.IdUsuario ";
+                script += "INNER JOIN vadem.rolesPorUsuario RU ON RU.IdUsuario = U.IdUsuario ";
+                script += "WHERE U.IdUsuario IS NOT NULL ";
                 script += clausulaWhere;
 
                 clientes = new List<Cliente>();
@@ -215,5 +216,86 @@ namespace FrbaCommerce.Datos
                 throw;
             }
         }
+
+        public static Boolean RolHabilitado()
+        {
+            String script;
+            DataTable tbl;
+            try
+            {
+                script = "SELECT * FROM vadem.rol ";
+                script += " WHERE IdRol = 2 "; // 2 es Cliente
+                
+                tbl = AccesoDatos.Instance.EjecutarScript(script);
+
+                if (tbl.Rows.Count > 0)
+                {
+                    return Convert.ToInt32(tbl.Rows[0]["Habilitado"]) == 1 ? true : false;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static Boolean verificarTipoYNumeroDeDocumento(string tipoDocumentoIngresado, string nroDocumentoIngresado, int idUsuario)
+        {
+            String script;
+            DataTable tbl;
+            try
+            {
+                script = "SELECT * FROM vadem.cliente WHERE Documento = '" + nroDocumentoIngresado + "'";
+                script += " AND TipoDocumento = '" + tipoDocumentoIngresado + "'";
+                script += " AND IdCliente <> " + idUsuario;
+              
+                tbl = AccesoDatos.Instance.EjecutarScript(script);
+
+                return tbl.Rows.Count == 0;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Verifica que nadie excepto el usuario(IdUsuario) tenga el telefono parámetro
+        /// </summary>
+        /// <param name="telefonoIngresado"></param>
+        /// <param name="idUsuario"></param>
+        /// <returns></returns>
+        public static Boolean verificarTelefonoNoEnUso(string telefonoIngresado, int idUsuario)
+        {
+            String script;
+            DataTable tbl;
+            try
+            {
+                script = "SELECT Telefono FROM vadem.cliente ";
+                script += "WHERE Telefono = '" + telefonoIngresado.PadRight(10,' ') + "' ";
+                script += "AND IdCliente <> " + idUsuario + " ";
+                script += "UNION ";
+                script += "SELECT Telefono FROM vadem.empresa ";
+                script += "WHERE Telefono = '" + telefonoIngresado.PadRight(10, ' ') + "' ";
+                script += "AND IdEmpresa <> " + idUsuario + " ";
+
+                tbl = AccesoDatos.Instance.EjecutarScript(script);
+
+                return tbl.Rows.Count == 0;
+                
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+       
     }
 }

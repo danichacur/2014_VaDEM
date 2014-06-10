@@ -261,6 +261,12 @@
     <Compile Include="Formularios\Login\FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Registro de Usuario\CambiaPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Registro de Usuario\CambiaPassword.Designer.cs">
+      <DependentUpon>CambiaPassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Registro de Usuario\registroCliente.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -370,6 +376,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Login\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Registro de Usuario\CambiaPassword.resx">
+      <DependentUpon>CambiaPassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Registro de Usuario\registroCliente.resx">
       <DependentUpon>registroCliente.cs</DependentUpon>

@@ -63,24 +63,16 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
         /// <param name="e"></param>
         public override void btnAceptar_Click(object sender, EventArgs e)
         {
-            String camposConErrores;
             try
             {
-                camposConErrores = obtenerCamposConErrores();
-                if (camposConErrores == "")
+                if (pasaValidacionesVarias())
                 {
-                    
                     armarEmpresaConCampos();
                     insertarUsuarioDefault();
                     empresa.insertar();
 
                     DialogResult = System.Windows.Forms.DialogResult.OK;
                 }
-                else
-                {
-                    Metodos_Comunes.MostrarMensaje("Debe completar todos los campos. Los campos incompletos son: " + camposConErrores);
-                }
-
             }
             catch (Exception ex)
             {
@@ -258,7 +250,7 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
                 empresa.Email = campos[10].obtenerValor().ToString();
                 empresa.NombreContacto = campos[11].obtenerValor().ToString();
                 empresa.fechaCreacion = Convert.ToDateTime(campos[12].obtenerValor());
-                empresa.Habilitado = (campos[13].obtenerValor().ToString() == "1" ? true : false);
+                //empresa.Habilitado = (campos[13].obtenerValor().ToString() == "1" ? true : false);
             }
             catch (Exception)
             {
@@ -282,6 +274,46 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
             }
             catch (Exception)
             {
+                throw;
+            }
+        }
+
+        public Boolean pasaValidacionesVarias()
+        {
+            Boolean valida;
+            try
+            {
+                valida = false;
+                String camposConErrores;
+                camposConErrores = obtenerCamposConErrores();
+                if (camposConErrores == "")
+                {
+                    if (validarRazonSocialYCuil())
+                    {
+                        if (validaTelefono())
+                        {
+                            valida = true;
+                        }
+                        else
+                        {
+                            Metodos_Comunes.MostrarMensaje("El teléfono ingresado ya está en uso.");
+                        }
+                    }
+                    else
+                    {
+                        Metodos_Comunes.MostrarMensaje("La Razon Social y el Cuit ingresados ya están en uso.");
+                    }
+                }
+                else
+                {
+                    Metodos_Comunes.MostrarMensaje("Debe completar todos los campos. Los campos incompletos son: " + camposConErrores);
+                }
+
+                return valida;
+            }
+            catch (Exception)
+            {
+
                 throw;
             }
         }
@@ -394,6 +426,48 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
             }
         }
 
+        /// <summary>
+        /// Verifica que el tipo y número de documento ingresado no se encuentre ya registrado en un cliente 
+        /// </summary>
+        /// <returns></returns>
+        public Boolean validarRazonSocialYCuil()
+        {
+            String razonSocial, nroCuil;
+            List<Filtro> campos;
+            try
+            {
+                campos = obtenerCamposEnPantalla();
+                razonSocial = (String)(campos[0].obtenerValor());
+                nroCuil = (String)(campos[1].obtenerValor());
+
+                return EmpresaDAO.verificarRazonSocialYCuil(razonSocial, nroCuil, empresa.IdUsuario);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Verifica que el teléfono ingresado no se encuentre ya registrado en un cliente o empresa
+        /// </summary>
+        /// <returns></returns>
+        public Boolean validaTelefono()
+        {
+            String telefonoIngresado;
+            List<Filtro> campos;
+            try
+            {
+                campos = obtenerCamposEnPantalla();
+                telefonoIngresado = campos[2].obtenerValor().ToString();
+
+                return ClienteDAO.verificarTelefonoNoEnUso(telefonoIngresado, empresa.IdUsuario);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
         #endregion
        
     }

@@ -224,8 +224,8 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
                 publicacion.FechaFin = Convert.ToDateTime(campos[6].obtenerValor());;
                 publicacion.AdmitePreguntas = (campos[7].obtenerValor().ToString() == "Admite" ? true : false);
                 publicacion.Visibilidad = Convert.ToInt32(campos[8].obtenerValor());
-                publicacion.Estado = Convert.ToInt32(campos[10].obtenerValor());
-                publicacion.AgregarRubros(campos[9].obtenerValor().ToString());
+                publicacion.AgregarRubros(campos[10].obtenerValor().ToString());
+                publicacion.Estado = Convert.ToInt32(campos[9].obtenerValor());
 
 
             }

@@ -64,22 +64,15 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
         /// <param name="e"></param>
         public override void btnAceptar_Click(object sender, EventArgs e)
         {
-            String camposConErrores;
             try
             {
-                camposConErrores = obtenerCamposConErrores();
-                if (camposConErrores == "")
+                if (pasaValidacionesVarias())
                 {
                     armarEmpresaConCampos();
                     empresa.modificar();
 
                     DialogResult = System.Windows.Forms.DialogResult.OK;
                 }
-                else
-                {
-                    Metodos_Comunes.MostrarMensaje("Debe completar todos los campos. Los campos incompletos son: " + camposConErrores);
-                }
-
             }
             catch (Exception ex)
             {
@@ -88,8 +81,6 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
         }
 
         #endregion
-
-        
 
         #region MetodosGenerales
 
@@ -169,6 +160,23 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
 
                 this.Height = 96 + 30;
                 agregarACamposEnPantalla(filtroCbo);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Setea en el rol de la variable de la clase con los campos ingresados por el usuario.
+        /// </summary>
+        new public void armarEmpresaConCampos()
+        {
+            try
+            {
+                base.armarEmpresaConCampos();
+                List<Filtro> campos = obtenerCamposEnPantalla();
+                empresa.Habilitado = (campos[13].obtenerValor().ToString() == "1" ? true : false);
             }
             catch (Exception)
             {

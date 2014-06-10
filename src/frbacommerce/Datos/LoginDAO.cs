@@ -33,5 +33,25 @@ namespace FrbaCommerce.Datos
                 throw;
             }
         }
+
+        public static bool esPrimerLoggeo(int IdUsuario)
+        {
+            String script;
+            DataTable tbl;
+            try
+            {
+                script = "SELECT TOP 1 * ";
+                script += "FROM vadem.usuario ";
+                script += "WHERE IdUsuario = " + IdUsuario + " ";
+
+                tbl = AccesoDatos.Instance.EjecutarScript(script);
+
+                return Convert.ToInt32(tbl.Rows[0]["CantidadLoggeos"]) == 0;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

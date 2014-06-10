@@ -178,5 +178,54 @@ namespace FrbaCommerce.Datos
                 throw;
             }
         }
+
+        public static Boolean RolHabilitado()
+        {
+            String script;
+            DataTable tbl;
+            try
+            {
+                script = "SELECT * FROM vadem.rol ";
+                script += " WHERE IdRol = 3 "; // 3 es Empresa
+
+                tbl = AccesoDatos.Instance.EjecutarScript(script);
+
+                if (tbl.Rows.Count > 0)
+                {
+                    return Convert.ToInt32(tbl.Rows[0]["Habilitado"]) == 1 ? true : false;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
+        public static Boolean verificarRazonSocialYCuil(string razonSocial, string nroCuit, int idUsuario)
+        {
+            String script;
+            DataTable tbl;
+            try
+            {
+                script = "SELECT * FROM vadem.empresa WHERE RazonSocial = '" + razonSocial + "'";
+                script += " AND CUIT = '" + nroCuit + "'";
+                script += " AND IdEmpresa <> " + idUsuario;
+
+                tbl = AccesoDatos.Instance.EjecutarScript(script);
+
+                return tbl.Rows.Count == 0;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

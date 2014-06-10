@@ -48,9 +48,9 @@ namespace FrbaCommerce.Formularios.Login
                 filtro.TabIndex = 2;
                 this.Controls.Add(filtro);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                Metodos_Comunes.MostrarMensajeError(ex);
             }
         }
 
@@ -128,6 +128,7 @@ namespace FrbaCommerce.Formularios.Login
 
                 validarCamposCompletos(txtUsername, txtPassword);
                 usr = UsuarioDAO.obtenerUsuarioPorUsername(txtUsername.obtenerValor().ToString());
+                
                 if (usr == null)
                 {
                     Metodos_Comunes.MostrarMensajeError("El usuario ingresado no existe");
@@ -142,19 +143,30 @@ namespace FrbaCommerce.Formularios.Login
 
                 if (!LoginDAO.validaUsuarioPassword(txtUsername.obtenerValor().ToString(), Metodos_Comunes.sha256_hash(txtPassword.obtenerValor().ToString())))
                 {
-                    aumentarIntentosFallidos(usr);
                     Metodos_Comunes.MostrarMensajeError("La contraseña no coincide con el usuario");
-                }
-                else
-                {
-                    Session.IdUsuario = usr.IdUsuario;
-                    Session.IdRol = usr.Rol.Id;
-
-                    usr.loggeoSatisfactorio();
-
-                    DialogResult = DialogResult.OK;
+                    aumentarIntentosFallidos(usr);
                     return;
                 }
+
+                if (usr.Rol.Id == 2 || usr.Rol.Id == 3)
+                {
+                    if (LoginDAO.esPrimerLoggeo(usr.IdUsuario))
+                    {
+                        Formularios.Registro_de_Usuario.CambiaPassword cambiaPass = new Formularios.Registro_de_Usuario.CambiaPassword(usr);
+                        cambiaPass.ShowDialog();
+                        usr.aumentarCantidadLoggeosSatisfactorios();
+                        return;
+                    }
+                }
+                
+                Session.IdUsuario = usr.IdUsuario;
+                Session.IdRol = usr.Rol.Id;
+
+                usr.loggeoSatisfactorio();
+
+                DialogResult = DialogResult.OK;
+                return;
+               
                 
 
 
@@ -169,17 +181,17 @@ namespace FrbaCommerce.Formularios.Login
         {
             try
             {
-                if (txtUsername.obtenerValor() == "" && txtPassword.obtenerValor() == "")
+                if (txtUsername.obtenerValor().ToString() == "" && txtPassword.obtenerValor().ToString() == "")
                 {
                     Metodos_Comunes.MostrarMensajeError("El usuario y contraseña son campos obligatorios");
                     return;
                 }
-                else if (txtUsername.obtenerValor() == "")
+                else if (txtUsername.obtenerValor().ToString() == "")
                 {
                     Metodos_Comunes.MostrarMensajeError("El usuario es campo obligatorio");
                     return;
                 }
-                else if (txtPassword.obtenerValor() == "")
+                else if (txtPassword.obtenerValor().ToString() == "")
                 {
                     Metodos_Comunes.MostrarMensajeError("El password es campo obligatorio");
                     return;

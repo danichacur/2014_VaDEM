@@ -41,8 +41,16 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
         {
             try
             {
-                cargaFiltros();
-                cargaInicialGrilla();
+                if (validaRolHabilitado())
+                {
+                    cargaFiltros();
+                    cargaInicialGrilla();
+                }
+                else
+                {
+                    Metodos_Comunes.MostrarMensaje("El Rol Empresa se encuentra inhabilitado.");
+                    DialogResult = System.Windows.Forms.DialogResult.Abort;
+                }
             }
             catch (Exception ex)
             {
@@ -155,19 +163,19 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
         /// </summary>
         private void cargaFiltros()
         {
+            FiltroTextBox filtroTxt;
             try
             {
                 List<Filtro> filtrosI = new List<Filtro>();
                 filtrosI.Add(new FiltroTextBox("Razón Social", "RazonSocial", "LIKE", ""));
-                filtrosI.Add(new FiltroTextBox("Direc Calle", "Direccion", "LIKE", ""));
-                filtrosI.Add(new FiltroTextBox("Departamento", "Dpto", "=", ""));
 
-                List<Filtro> filtrosD = new List<Filtro>();
-                filtrosD.Add(new FiltroTextBox("Telefono", "Telefono", "=", ""));
-                filtrosD.Add(new FiltroTextBox("Piso", "Piso", "=", ""));
-           
+                filtroTxt = new FiltroTextBox("CUIT", "CUIT", "=", "");
+                filtroTxt.setTipoTextoIngresado(FiltroTextBox.TipoTexto.Numerico);
+                filtrosI.Add(filtroTxt);
 
-                this.ctrlABM1.cargarFiltros(filtrosI, filtrosD);
+                filtrosI.Add(new FiltroTextBox("Mail", "Mail", "LIKE", ""));
+
+                this.ctrlABM1.cargarFiltros(filtrosI, null);
             }
             catch (Exception)
             {
@@ -309,6 +317,22 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
                 columnas[15] = colElim;
 
                 return columnas;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Verifica que el rol se encuentre Habilitado en la base de datos
+        /// </summary>
+        /// <returns></returns>
+        private Boolean validaRolHabilitado()
+        {
+            try
+            {
+                return EmpresaDAO.RolHabilitado();
             }
             catch (Exception)
             {
