@@ -106,6 +106,55 @@ namespace FrbaCommerce.Datos
                 }
             }
         }
+		
+		public DataTable EjecutarSp(String script, SqlParameterCollection colParam)
+        {
+            SqlCommand sqlCmd;
+            SqlDataAdapter sqlAdp;
+            DataTable sqlTbl;
+            sqlCmd = new SqlCommand();
+            sqlAdp = new SqlDataAdapter(sqlCmd);
+
+            try
+            {
+                if (this.mSqlCnn != null)
+                {
+                    this.mSqlCnn.Open();
+                }
+
+                sqlCmd.CommandText = script;
+                sqlCmd.Connection = this.mSqlCnn;
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+
+                sqlCmd.Parameters = colParam;
+
+                sqlTbl = new DataTable();
+                sqlAdp.Fill(sqlTbl);
+
+                return sqlTbl;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                if (this.mSqlCnn != null && this.mSqlCnn.State == ConnectionState.Open)
+                {
+                    this.mSqlCnn.Close();
+                }
+
+                if (sqlCmd != null)
+                {
+                    sqlCmd.Dispose();
+                }
+
+                if (sqlAdp != null)
+                {
+                    sqlAdp.Dispose();
+                }
+            }
+        }
 
         #endregion
 
