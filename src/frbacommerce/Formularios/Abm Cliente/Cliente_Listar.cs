@@ -164,18 +164,22 @@ namespace FrbaCommerce.Abm_Cliente
         {
             try
             {
-                List<Filtro> filtrosI = new List<Filtro>();
-                filtrosI.Add(new FiltroTextBox("Documento", "Documento", "=", ""));
-                filtrosI.Add(new FiltroTextBox("Nombre", "Nombre", "LIKE", ""));
-                filtrosI.Add(new FiltroTextBox("Telefono", "Telefono", "=", ""));
-                
-                List<Filtro> filtrosD = new List<Filtro>();
-                DataTable tbl = Metodos_Comunes.obtenerTablaComboTipoDocumento();
-                Metodos_Comunes.InsertarVacioEnPrimerRegistro(ref tbl);
-                filtrosD.Add(new FiltroComboBox("Tipo Doc", "TipoDocumento", "", "-1", tbl, "id", "descripcion"));
-                filtrosD.Add(new FiltroTextBox("Apellido", "Apellido", "LIKE", ""));
-                
-                this.ctrlABM1.cargarFiltros(filtrosI, filtrosD);
+                if (!this.ctrlABM1.existenFiltrosCargados())
+                {
+
+                    List<Filtro> filtrosI = new List<Filtro>();
+                    filtrosI.Add(new FiltroTextBox("Documento", "Documento", "=", ""));
+                    filtrosI.Add(new FiltroTextBox("Nombre", "Nombre", "LIKE", ""));
+                    filtrosI.Add(new FiltroTextBox("Telefono", "Telefono", "=", ""));
+
+                    List<Filtro> filtrosD = new List<Filtro>();
+                    DataTable tbl = Metodos_Comunes.obtenerTablaComboTipoDocumento();
+                    Metodos_Comunes.InsertarVacioEnPrimerRegistro(ref tbl);
+                    filtrosD.Add(new FiltroComboBox("Tipo Doc", "TipoDocumento", "", "-1", tbl, "id", "descripcion"));
+                    filtrosD.Add(new FiltroTextBox("Apellido", "Apellido", "LIKE", ""));
+
+                    this.ctrlABM1.cargarFiltros(filtrosI, filtrosD);
+                }
             }
             catch (Exception)
             {

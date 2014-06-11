@@ -156,12 +156,15 @@ namespace FrbaCommerce.Formularios.Abm_Visibilidad
         {
             try
             {
-                List<Filtro> filtros = new List<Filtro>();
-                filtros.Add(new FiltroTextBox("Id Visibilidad", "IdVisibilidad", "=", ""));
-                filtros.Add(new FiltroTextBox("Descripcion", "Descripcion", "LIKE", ""));
-                filtros.Add(new FiltroComboBox("Habilitado", "Habilitado", "=", "-1", Metodos_Comunes.obtenerTablaComboHabilitadoConVacio(), "id", "descripcion"));
+                if (!this.ctrlABM1.existenFiltrosCargados())
+                {
+                    List<Filtro> filtros = new List<Filtro>();
+                    filtros.Add(new FiltroTextBox("Id Visibilidad", "IdVisibilidad", "=", ""));
+                    filtros.Add(new FiltroTextBox("Descripcion", "Descripcion", "LIKE", ""));
+                    filtros.Add(new FiltroComboBox("Habilitado", "Habilitado", "=", "-1", Metodos_Comunes.obtenerTablaComboHabilitadoConVacio(), "id", "descripcion"));
 
-                this.ctrlABM1.cargarFiltros(filtros, null);
+                    this.ctrlABM1.cargarFiltros(filtros, null);
+                }
             }
             catch (Exception)
             {

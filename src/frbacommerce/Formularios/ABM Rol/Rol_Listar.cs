@@ -156,16 +156,19 @@ namespace FrbaCommerce.ABM_Rol
         {
             try
             {
-                List<Filtro> filtrosI = new List<Filtro>();
-                filtrosI.Add(new FiltroTextBox("Rol", "IdRol", "=", ""));
-                filtrosI.Add(new FiltroTextBox("Descripcion", "Descripcion", "LIKE", ""));
-                filtrosI.Add(new FiltroComboBox("Habilitado", "Habilitado", "=", "-1", Metodos_Comunes.obtenerTablaComboHabilitadoConVacio(), "id", "descripcion"));
+                if (!this.ctrlABM1.existenFiltrosCargados())
+                {
+                    List<Filtro> filtrosI = new List<Filtro>();
+                    filtrosI.Add(new FiltroTextBox("Rol", "IdRol", "=", ""));
+                    filtrosI.Add(new FiltroTextBox("Descripcion", "Descripcion", "LIKE", ""));
+                    filtrosI.Add(new FiltroComboBox("Habilitado", "Habilitado", "=", "-1", Metodos_Comunes.obtenerTablaComboHabilitadoConVacio(), "id", "descripcion"));
 
-                /*  List<Control> filtrosD = new List<Control>();
-                  filtrosD.Add(new FiltroIgual());
-                  filtrosD.Add(new FiltroLike());
-                */
-                this.ctrlABM1.cargarFiltros(filtrosI, null);
+                    /*  List<Control> filtrosD = new List<Control>();
+                      filtrosD.Add(new FiltroIgual());
+                      filtrosD.Add(new FiltroLike());
+                    */
+                    this.ctrlABM1.cargarFiltros(filtrosI, null);
+                }
             }
             catch (Exception)
             {

@@ -166,16 +166,19 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
             FiltroTextBox filtroTxt;
             try
             {
-                List<Filtro> filtrosI = new List<Filtro>();
-                filtrosI.Add(new FiltroTextBox("Razón Social", "RazonSocial", "LIKE", ""));
+                if (!this.ctrlABM1.existenFiltrosCargados())
+                {
+                    List<Filtro> filtrosI = new List<Filtro>();
+                    filtrosI.Add(new FiltroTextBox("Razón Social", "RazonSocial", "LIKE", ""));
 
-                filtroTxt = new FiltroTextBox("CUIT", "CUIT", "=", "");
-                filtroTxt.setTipoTextoIngresado(FiltroTextBox.TipoTexto.Numerico);
-                filtrosI.Add(filtroTxt);
+                    filtroTxt = new FiltroTextBox("CUIT", "CUIT", "=", "");
+                    filtroTxt.setTipoTextoIngresado(FiltroTextBox.TipoTexto.Numerico);
+                    filtrosI.Add(filtroTxt);
 
-                filtrosI.Add(new FiltroTextBox("Mail", "Mail", "LIKE", ""));
+                    filtrosI.Add(new FiltroTextBox("Mail", "Mail", "LIKE", ""));
 
-                this.ctrlABM1.cargarFiltros(filtrosI, null);
+                    this.ctrlABM1.cargarFiltros(filtrosI, null);
+                }
             }
             catch (Exception)
             {

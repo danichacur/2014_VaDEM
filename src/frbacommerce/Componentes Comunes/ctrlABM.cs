@@ -232,6 +232,18 @@ namespace FrbaCommerce.Componentes_Comunes
             }
         }
 
+        public Boolean existenFiltrosCargados() 
+        {
+            try
+            {
+                return filtrosEnPantalla != null;
+            }
+            catch (Exception)
+            {   
+                throw;
+            }
+        }
+
         #endregion
 
         #region MetodosAuxiliares
