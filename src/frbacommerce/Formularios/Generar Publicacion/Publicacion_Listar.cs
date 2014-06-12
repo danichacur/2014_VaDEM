@@ -81,19 +81,22 @@ namespace FrbaCommerce.Generar_Publicacion
         {
             try
             {
-                List<Filtro> filtrosI = new List<Filtro>();
-                filtrosI.Add(new FiltroComboBox("Tipo", "Tipo", "=", "", obtenerTiposPublicacion(), "descripcion", "descripcion"));
-                filtrosI.Add(new FiltroComboBox("Estado", "IdEstado", "=", "0", obtenerEstados(), "IdEstado", "Descripcion"));
+                if (!this.ctrlABM1.existenFiltrosCargados())
+                {
+                    List<Filtro> filtrosI = new List<Filtro>();
+                    filtrosI.Add(new FiltroComboBox("Tipo", "Tipo", "=", "", obtenerTiposPublicacion(), "descripcion", "descripcion"));
+                    filtrosI.Add(new FiltroComboBox("Estado", "IdEstado", "=", "0", obtenerEstados(), "IdEstado", "Descripcion"));
 
 
-                List<Filtro> filtrosD = new List<Filtro>();
-                filtrosD.Add(new FiltroComboBox("Visibilidad", "IdVisibilidad", "=", "0", obtenerVisibilidadHabilitadas(), "IdVisibilidad", "Descripcion"));
+                    List<Filtro> filtrosD = new List<Filtro>();
+                    filtrosD.Add(new FiltroComboBox("Visibilidad", "IdVisibilidad", "=", "0", obtenerVisibilidadHabilitadas(), "IdVisibilidad", "Descripcion"));
 
 
-                //filtrosI.Add(new FiltroFecha());
-                // filtrosI.Add(new FiltroTextBox("Descripcion", "Descripcion", "LIKE", ""));
+                    //filtrosI.Add(new FiltroFecha());
+                    // filtrosI.Add(new FiltroTextBox("Descripcion", "Descripcion", "LIKE", ""));
 
-                this.ctrlABM1.cargarFiltros(filtrosI, filtrosD);
+                    this.ctrlABM1.cargarFiltros(filtrosI, filtrosD);
+                }
             }
             catch (Exception ex)
             {

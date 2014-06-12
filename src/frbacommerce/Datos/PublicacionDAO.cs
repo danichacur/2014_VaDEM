@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using FrbaCommerce.Entidades;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace FrbaCommerce.Datos
 {
@@ -77,17 +78,25 @@ namespace FrbaCommerce.Datos
 
         public static Publicacion insertar(Publicacion publicacion)
         {
-            String script;
+            
             try
             { // " + publicacion + "
-                script = "INSERT INTO vadem.publicacion VALUES (" + publicacion.Id + "," + publicacion.Cantidad;
-                script += "," + publicacion.Estado + ",'" + publicacion.Descripcion + "'," + publicacion.Visibilidad;
-                script += ",'" + publicacion.FechaInicio + "','" + publicacion.FechaFin + "'," + publicacion.Precio + ", " + publicacion.Vendedor;
-                script += ",'" + publicacion.Tipo + "'," + publicacion.AdmitePreguntas + ")";
 
-                AccesoDatos.Instance.EjecutarScript(script);
 
-                //String scr = "SELECT * FROM vadem.publicacion WHERE IdPublicacion = " + publicacion.Id;
+                SqlParameterCollection colparam;// = new SqlParameterCollection();
+                
+                SqlParameter stock = new SqlParameter();
+                stock.ParameterName = "@STOCK";
+                stock.SqlDbType = SqlDbType.Int;
+                stock.Value = publicacion.Cantidad;
+
+
+               // script += "," + publicacion.Estado + ",'" + publicacion.Descripcion + "'," + publicacion.Visibilidad;
+                //script += ",'" + ConfigurationManager.AppSettings["DateTimeNow"] + "'," + publicacion.Precio + ", " + publicacion.Vendedor;
+                //script += ",'" + publicacion.Tipo + "'," + publicacion.AdmitePreguntas + ")";
+
+                //AccesoDatos.Instance.EjecutarScript(script);
+
                 return obtenerPublicacion(Session.IdUsuario);
 
                 // PublicacionDAO.insertarRubros(rubr, Id);
