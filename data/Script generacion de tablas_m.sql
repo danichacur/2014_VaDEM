@@ -416,6 +416,7 @@ CREATE TABLE [vadem].[calificacion](
 	[IdCompra] [int] NOT NULL, -- Para que se linkee con las compras
 	[IdVendedor] [int] NOT NULL,
 	[IdCalificador] [int] NOT NULL,
+	[Fecha] [datetime] NOT NULL,
 	[Estrellas] [numeric](18, 0) NOT NULL,
 	[Detalle] [nvarchar](255) NULL,
  CONSTRAINT [PK_calificacion] PRIMARY KEY CLUSTERED 
