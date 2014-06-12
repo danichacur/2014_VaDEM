@@ -107,7 +107,7 @@ namespace FrbaCommerce.Datos
             }
         }
 		
-		public DataTable EjecutarSp(String script, SqlParameterCollection colParam)
+		public DataTable EjecutarSp(String script, List<SqlParameter> colParam)
         {
             SqlCommand sqlCmd;
             SqlDataAdapter sqlAdp;
@@ -125,8 +125,12 @@ namespace FrbaCommerce.Datos
                 sqlCmd.CommandText = script;
                 sqlCmd.Connection = this.mSqlCnn;
                 sqlCmd.CommandType = CommandType.StoredProcedure;
-
-                sqlCmd.Parameters = colParam;
+                
+                foreach (SqlParameter item in colParam)
+                {
+                    sqlCmd.Parameters.Add(item);    
+                }
+                
 
                 sqlTbl = new DataTable();
                 sqlAdp.Fill(sqlTbl);
