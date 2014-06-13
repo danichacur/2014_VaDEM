@@ -1,4 +1,4 @@
-﻿namespace FrbaCommerce.Historial_Cliente
+﻿namespace FrbaCommerce.Facturar_Publicaciones
 {
     partial class Form1
     {

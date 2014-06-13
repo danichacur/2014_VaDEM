@@ -1,4 +1,4 @@
-﻿namespace FrbaCommerce.Comprar_Ofertar
+﻿namespace FrbaCommerce.Gestion_de_Preguntas
 {
     partial class Form1
     {
