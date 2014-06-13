@@ -226,7 +226,7 @@ GO
 
 /************************/ SELECT 'CALIFICACIONES' /************************/
 INSERT INTO vadem.calificacion
-	SELECT	DISTINCT Calificacion_Codigo, C.IdCompra, U1.IdUsuario, U2.IdUsuario,Calificacion_Cant_Estrellas, Calificacion_Descripcion
+	SELECT	DISTINCT Calificacion_Codigo, C.IdCompra, U1.IdUsuario, U2.IdUsuario,Compra_Fecha,Calificacion_Cant_Estrellas, Calificacion_Descripcion
 	FROM gd_esquema.Maestra E
 	LEFT JOIN vadem.usuario U1
 		ON U1.Username = (ISNULL(E.Publ_Empresa_Cuit, CONVERT(VARCHAR,E.Publ_Cli_DNI) + '-' + E.Publ_Cli_Apeliido))
