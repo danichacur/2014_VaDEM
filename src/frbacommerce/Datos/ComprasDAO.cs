@@ -23,8 +23,9 @@ namespace FrbaCommerce.Datos
             try
             {
                 String script = "SELECT * FROM vadem.compras C left join vadem.publicacion P on C.IdPublicacion = P.IdPublicacion ";
+                script += "left join vadem.usuario u on p.IdVendedor = u.IdUsuario ";
                 script += "WHERE C.IdComprador = " + Session.IdUsuario + " ";
-                //script += "AND Calificada = 0";
+                script += "AND Calificada = 0";
                 //script += "AND " + clausulaWhere;
                 if (clausulaWhere != "")
                     script += "AND " + clausulaWhere;

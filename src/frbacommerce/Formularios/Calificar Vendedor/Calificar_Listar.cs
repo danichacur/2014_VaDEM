@@ -114,8 +114,9 @@ namespace FrbaCommerce.Formularios.Calificar_Vendedor
             {
                 List<Filtro> filtrosI = new List<Filtro>();
               //  filtrosI.Add(new FiltroFecha("Documento", "Documento", "=", ""));
-              //  filtrosI.Add(new FiltroTextBox("Apellido", "Apellido", "LIKE", ""));
-                filtrosI.Add(new FiltroComboBox("Tipo", "Tipo", "=", "", obtenerTiposPublicacion(), "descripcion", "descripcion"));
+                filtrosI.Add(new FiltroTextBox("Producto", "P.Descripcion", "LIKE", ""));
+                filtrosI.Add(new FiltroTextBox("Vendedor", "u.Username", "LIKE", ""));
+                filtrosI.Add(new FiltroTextBox("Id Compra", "IdCompra", "=", ""));
                 //filtrosI.Add(new FiltroComboBox("Estado", "IdEstado", "=", "0", obtenerEstados(), "IdEstado", "Descripcion"));
                 
 
@@ -134,7 +135,7 @@ namespace FrbaCommerce.Formularios.Calificar_Vendedor
         {
             try
             {
-                aplicarFiltro("C.Calificada = 0");
+                aplicarFiltro("");
                 dgv.CellClick -= new DataGridViewCellEventHandler(dgv_CellClick);
                 dgv.CellClick += new DataGridViewCellEventHandler(dgv_CellClick);
             }
@@ -153,7 +154,11 @@ namespace FrbaCommerce.Formularios.Calificar_Vendedor
         {
             try
             {
-         //       clausulaWhere = "P.Tipo = 'Subasta'";
+                if (clausulaWhere != "")
+                    clausulaWhere = clausulaWhere.Replace("WHERE", "");
+
+                //clausulaWhere += " C.Calificada = 0 ";
+
                 Object listaCompras = (Object)ComprasDAO.obtenerCompras(clausulaWhere);
 
                 DataGridViewColumn[] columnas = obtenerDisenoColumnasGrilla();
