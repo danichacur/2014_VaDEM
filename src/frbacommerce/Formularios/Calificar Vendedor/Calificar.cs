@@ -106,5 +106,30 @@ namespace FrbaCommerce.Formularios.Calificar_Vendedor
             }
         }
 
+//        /// <summary>
+//        /// Evento del boton Aceptar. 
+//        /// Cargo en el objeto de la clase los parámetros correspondientes de acuerdo a los campos insertados. Luego persisto en la BD
+//        /// Cierro la ventana devolviendo un OK
+//        /// </summary>
+//        /// <param name="sender"></param>
+//        /// <param name="e"></param>
+//        public override void btnCalificarClick(object sender, EventArgs e)
+//        {
+//            try
+//            {
+//   //             if (pasaValidacionesVarias())
+//   //             {
+//            Calificacion calificacion = new Calificacion(generarId(), compra.id,  Session.IdUsuario, fecha, estrellas, detalle);
+
+//                    DialogResult = System.Windows.Forms.DialogResult.OK;
+//    //            }
+//            }
+//            catch (Exception ex)
+//            {
+//                Metodos_Comunes.MostrarMensajeError(ex);
+//            }
+//        }
+
+
     }
 }

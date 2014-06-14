@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
+using FrbaCommerce.Entidades;
+using System.Data.SqlClient;
+using FrbaCommerce.Componentes_Comunes;
 
 namespace FrbaCommerce.Datos
 {
@@ -31,6 +34,26 @@ namespace FrbaCommerce.Datos
                      "join vadem.publicacion P on P.IdPublicacion = CO.IdPublicacion " +
                      "where C.IdVendedor = " + IdUsuario;
             return AccesoDatos.Instance.EjecutarScript(script);
+        }
+
+
+        public static Calificacion insertar(Calificacion calificacion)
+        {
+            String script;
+            try
+            { // " + calificacion + "
+                script = "INSERT INTO vadem.calificacion VALUES (" + calificacion.Id + "," + calificacion.Compra.Id;
+                script += "','" + calificacion.Vendedor.IdUsuario + "','" + calificacion.Calificador.IdUsuario + "','" + calificacion.Fecha;
+                script += "','" + calificacion.Estrellas + "','" + calificacion.Detalle + "')";
+
+                AccesoDatos.Instance.EjecutarScript(script);
+
+                return calificacion;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

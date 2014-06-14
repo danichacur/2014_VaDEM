@@ -165,6 +165,7 @@
     <Compile Include="Datos\VisibilidadDAO.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Entidades\Calificacion.cs" />
     <Compile Include="Entidades\Cliente.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>

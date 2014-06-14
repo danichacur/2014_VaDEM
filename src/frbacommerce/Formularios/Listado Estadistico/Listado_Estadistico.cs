@@ -24,8 +24,9 @@ namespace FrbaCommerce.Formularios.Listado_Estadistico
 
             try
             {
-                
-                cargarComboTiposEstadisticas();
+
+                cargarComboTrimestre();
+                cargarComboTiposEstadisticas();                
 
 
             }
@@ -49,6 +50,21 @@ namespace FrbaCommerce.Formularios.Listado_Estadistico
                 throw;
             }
         }
+
+        private void cargarComboTrimestre()
+        {
+            try
+            {
+                cboTrimestre.DataSource = Metodos_Comunes.obtenerTablaComboTrimestre();
+                cboTrimestre.DisplayMember = "Descripcion";
+                cboTrimestre.ValueMember = "Id";
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
 
         
     }
