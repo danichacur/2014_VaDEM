@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using FrbaCommerce.Componentes_Comunes;
+using FrbaCommerce.Datos;
+using FrbaCommerce.Entidades;
 
 namespace FrbaCommerce.Formularios.Calificar_Vendedor
 {
@@ -21,11 +23,12 @@ namespace FrbaCommerce.Formularios.Calificar_Vendedor
         {
             try
             {
+           //     Compra compra = sender;
                 cargarComboPuntaje();
                 //cargar descripción publicación
-                cargarDescripcionPublicación();
+                cargarDescripcionPublicación("14021"); //compra.IdPublicacion );
                 //cargar nombre vendedor
-                cargarNombreVendedor();
+                cargarNombreVendedor("14021");
                 //total abonado
                 cargarTotalAbonado();
 
@@ -52,11 +55,18 @@ namespace FrbaCommerce.Formularios.Calificar_Vendedor
             }
         }
 
-        private void cargarDescripcionPublicación()
+        private void cargarDescripcionPublicación(string idcompra)
         {
             try
             {
+                String script = "select p.Descripcion ";
+                script += "from vadem.compras c ";
+                script += "left join vadem.publicacion p on c.IdPublicacion = p.IdPublicacion ";
+                script += "where c.IdCompra = " + idcompra;
 
+                DataTable res = AccesoDatos.Instance.EjecutarScript(script);
+                
+                txtDescripPublic.Text = Convert.ToString(res.Rows[0][0]);
             }
             catch (Exception)
             {
@@ -64,32 +74,19 @@ namespace FrbaCommerce.Formularios.Calificar_Vendedor
             }
         }
 
-        private void cargarNombreVendedor()
-        //{
-        //    DataRow fila;
-        //    try
-        //    {
-        //        String script = "SELECT idUsuario FROM vadem.compras ";
-
-        //        DataTable listaEstados = PublicacionDAO.obtenerEstados(script);
-        //        fila = listaEstados.NewRow();
-        //        fila["IdEstado"] = 0;
-        //        fila["Descripcion"] = "";
-        //        listaEstados.Rows.InsertAt(fila, 0);
-
-        //        return listaEstados;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception("Error " + ex.Message);
-        //    }
-
-
-        //}
+        private void cargarNombreVendedor(string idcompra)
         {
             try
             {
+                String script = "select u.Username ";
+                script += "from vadem.compras c ";
+                script += "left join vadem.publicacion p on c.IdPublicacion = p.IdPublicacion ";
+                script += "left join vadem.usuario u on p.IdVendedor = u.IdUsuario ";
+                script += "where c.IdCompra = " + idcompra;
 
+                DataTable res = AccesoDatos.Instance.EjecutarScript(script);
+
+                txtNombreVendedor.Text = Convert.ToString(res.Rows[0][0]);
             }
             catch (Exception)
             {

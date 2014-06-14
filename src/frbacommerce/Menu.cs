@@ -169,9 +169,9 @@ namespace FrbaCommerce
                     //case "FACTURAR":
                     //    pantalla = new ;
                     //    break;
-                    //case "LISTADO_ESTADISTICO":
-                    //    pantalla = new ;
-                    //    break;
+                    case "LISTADO_ESTADISTICO":
+                        pantalla = new Formularios.Listado_Estadistico.Listado_Estadistico();
+                        break;
                     default:
                         //Metodos_Comunes.MostrarMensajeError("Existe una funcionalidad (" + func.Descripcion + ") en la base de datos que no está definida en el código");
                         break;

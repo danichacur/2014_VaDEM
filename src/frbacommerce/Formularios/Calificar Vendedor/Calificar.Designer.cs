@@ -41,11 +41,13 @@
             // 
             // txtDescripPublic
             // 
+            this.txtDescripPublic.Enabled = false;
             this.txtDescripPublic.Location = new System.Drawing.Point(168, 12);
             this.txtDescripPublic.Name = "txtDescripPublic";
             this.txtDescripPublic.Size = new System.Drawing.Size(156, 60);
             this.txtDescripPublic.TabIndex = 0;
             this.txtDescripPublic.Text = "";
+            this.txtDescripPublic.UseWaitCursor = true;
             // 
             // label1
             // 
@@ -67,6 +69,7 @@
             // 
             // txtNombreVendedor
             // 
+            this.txtNombreVendedor.Enabled = false;
             this.txtNombreVendedor.Location = new System.Drawing.Point(168, 121);
             this.txtNombreVendedor.Name = "txtNombreVendedor";
             this.txtNombreVendedor.Size = new System.Drawing.Size(156, 20);
@@ -109,6 +112,7 @@
             // 
             // txtTotalAbonado
             // 
+            this.txtTotalAbonado.Enabled = false;
             this.txtTotalAbonado.Location = new System.Drawing.Point(168, 168);
             this.txtTotalAbonado.Name = "txtTotalAbonado";
             this.txtTotalAbonado.Size = new System.Drawing.Size(100, 20);
