@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using FrbaCommerce.Entidades;
 using FrbaCommerce.Componentes_Comunes;
+using FrbaCommerce.Datos;
 
 namespace FrbaCommerce.Formularios.Generar_Publicacion
 {
@@ -49,6 +50,7 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
         {
             try
             {
+                publicacion = PublicacionDAO.obtenerPublicacion(publicacion.Id);
                 llenarCampos();
                 habilitaCamposParaModificacion();
             }
@@ -170,7 +172,7 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
                     ((FiltroComboBox)campos[6]).colocarValor(publicacion.AdmitePreguntas);
                     ((FiltroComboBox)campos[7]).colocarValor(publicacion.VisibilidadDesc);
                     ((FiltroComboBox)campos[8]).colocarValor(publicacion.Estado);
-                    campos[9].colocarValor(publicacion.Rubros);
+                    campos[9].colocarValor(publicacion.obtenerRubrosComoString());
                 }
             }
             catch (Exception)
