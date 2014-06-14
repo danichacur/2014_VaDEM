@@ -160,6 +160,7 @@ namespace FrbaCommerce.Datos
                 if (res.Rows[0][0] != null)
                 {
                     publicacion.Id = Convert.ToInt32(res.Rows[0][0]);
+                    publicacion.FechaFin = Convert.ToDateTime(res.Rows[0][1]);
                     PublicacionDAO.insertarRubros(publicacion.Rubros, publicacion.Id);
                 }
                 return publicacion.Id;
@@ -262,17 +263,32 @@ namespace FrbaCommerce.Datos
             String script;
             try
             { // " + publicacion + "
-                script = "UPDATE vadem.publicacion ";
+                script = "SELECT IdEstado FROM vadem.publicacion WHERE IdPublicacion = "+ publicacion.Id;
 
+                        script = "UPDATE vadem.publicacion " +
+                               "     SET [Stock] = " + publicacion.Cantidad +
+                               "   ,[IdEstado] = " + publicacion.Estado +
+                               "   ,[Descripcion] = " + publicacion.Descripcion +
+                               "   ,[IdVisibilidad] = " + publicacion.Visibilidad +
+                               "   ,[FechaInicio] = " + publicacion.FechaInicio +
+                               "   ,[FechaFin] = DATEADD(D,(SELECT DiasVigencia FROM vadem.visibilidad " + 
+					                           "WHERE IdVisibilidad = " + publicacion.Visibilidad + ")," + publicacion.FechaInicio + ")," + 
+                               "   ,[PrecioInicial] = " + publicacion.Precio +
+                               "   ,[Tipo] = " + publicacion.Tipo + 
+                               "   ,[AdmitePreguntas] =  " + publicacion.AdmitePreguntas + 
+                               "WHERE IdPublicacion = " + publicacion.Id;
+                        
+                        AccesoDatos.Instance.EjecutarScript(script);
+                     return obtenerPublicacion(publicacion.Id);
+                
 
-                AccesoDatos.Instance.EjecutarScript(script);
-
-                return obtenerPublicacion(publicacion.Id);
             }
             catch (Exception)
             {
                 throw;
             }
         }
+
+       
     }
 }

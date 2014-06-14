@@ -69,9 +69,12 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
         {
             try
             {
-                    armarPublicacionConCampos();
-                    publicacion.modificar();
 
+                    armarPublicacionConCampos();
+                    if (esValidoElEstado())
+                    {
+                        publicacion.modificar();
+                    }
                     DialogResult = System.Windows.Forms.DialogResult.OK;
             }
             catch (Exception ex)

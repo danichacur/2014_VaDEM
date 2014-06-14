@@ -38,12 +38,17 @@ BEGIN
 END
 
 
+USE [GD1C2014]
+GO
 
-/****** Object:  Procedure [vadem].[insertPublicaciones]    Script Date: 06/11/2014 21:08:58 ******/
+/****** Object:  StoredProcedure [vadem].[insertPublicaciones]    Script Date: 06/14/2014 01:33:56 ******/
 SET ANSI_NULLS ON
 GO
+
 SET QUOTED_IDENTIFIER ON
 GO
+
+
 CREATE PROCEDURE [vadem].[insertPublicaciones]
 
 @STOCK INT,
@@ -72,56 +77,16 @@ SELECT  @PUBLICACION,
 		@STOCK, @ESTADO, @DESCRIPCION, @VISIBILIDAD, @FECHA_INI,
 		DATEADD(D,@VIGENCIA,@FECHA_INI), @PRECIO, @VENDEDOR, @TIPO, @PREGUNTAS
 
+SET @PUBLICACION = (SELECT MAX(IdPublicacion) FROM vadem.publicacion)
 
-SELECT MAX(IdPublicacion) FROM vadem.publicacion
-
-END
-
-GO
-
-
-/****** Object:  Procedure [vadem].[editarActivarPublicaciones]    Script Date: 06/11/2014 21:08:58 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [vadem].[editarActivarPublicaciones]
-
-@PUBLICACION INT,
-@STOCK INT,
-@DESCRIPCION VARCHAR(255),
-@VISIBILIDAD INT,
-@FECHA_INI DATETIME,
-@PRECIO INT,
-@TIPO VARCHAR(20),
-@PREGUNTAS BIT
-
-AS
-DECLARE @VIGENCIA INT
-
-BEGIN
-
-SET @VIGENCIA = (SELECT DiasVigencia FROM vadem.visibilidad
-					WHERE @VISIBILIDAD = IdVisibilidad)
-
-
-UPDATE vadem.publicacion
-SET
-	Stock =	@STOCK, 
-	IdEstado = 2,
-	Descripcion = @DESCRIPCION,
-	IdVisibilidad = @VISIBILIDAD, 
-	FechaInicio = @FECHA_INI,
-	FechaFin = DATEADD(D,@VIGENCIA,@FECHA_INI),
-	PrecioInicial = @PRECIO, 
-	AdmitePreguntas = @PREGUNTAS
-
-
+SELECT @PUBLICACION, FechaFin FROM vadem.publicacion
 WHERE IdPublicacion = @PUBLICACION
 
 END
 
 GO
+
+
 
 --rollback
 --commit
