@@ -70,12 +70,15 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
             try
             {
 
-                    armarPublicacionConCampos();
-                    if (esValidoElEstado())
-                    {
-                        publicacion.modificar();
-                    }
+                armarPublicacionConCampos();
+                if (esValidoElEstado())
+                {
+                    publicacion.modificar();
+
                     DialogResult = System.Windows.Forms.DialogResult.OK;
+                }else
+                    DialogResult = System.Windows.Forms.DialogResult.Cancel;
+
             }
             catch (Exception ex)
             {
@@ -165,7 +168,7 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
                     campos[4].colocarValor(publicacion.FechaInicio);
                     campos[5].colocarValor(publicacion.FechaFin);
                     ((FiltroComboBox)campos[6]).colocarValor(publicacion.AdmitePreguntas);
-                    ((FiltroComboBox)campos[7]).colocarValor(publicacion.Visibilidad);
+                    ((FiltroComboBox)campos[7]).colocarValor(publicacion.VisibilidadDesc);
                     ((FiltroComboBox)campos[8]).colocarValor(publicacion.Estado);
                     campos[9].colocarValor(publicacion.Rubros);
                 }

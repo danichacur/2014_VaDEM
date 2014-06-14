@@ -23,6 +23,7 @@ namespace FrbaCommerce.Entidades
         public int Visibilidad { get; set; }
         public string VisibilidadDesc { get; set; }
         public int Estado { get; set; }
+        public string EstadoDesc { get; set; }
 
         public Publicacion()
         {
@@ -41,6 +42,21 @@ namespace FrbaCommerce.Entidades
         {
             Id = id;
             Descripcion = descripcion;
+        }
+
+        public Publicacion(int id, string descripcion, string estado, string tipo, int precio, int cantidad, bool preguntas, string visibilidad, DateTime fechaI, DateTime fechaF)
+        {
+            Id = id;
+            Descripcion = descripcion;
+            Vendedor = Session.IdUsuario;
+            EstadoDesc = estado;
+            Tipo = tipo;
+            Precio = precio;
+            Cantidad = cantidad;
+            AdmitePreguntas = preguntas;
+            VisibilidadDesc = visibilidad;
+            FechaFin = fechaF;
+            FechaInicio = fechaI;
         }
 
 

@@ -31,8 +31,7 @@ SELECT 'COMIENZO'
 /************************/ SELECT 'ROLES' /************************/
 INSERT INTO vadem.rol VALUES(1,'Administrador',1),
 							(2,'Cliente',1),
-							(3,'Empresa',1),
-							(4,'Administrativo',1)
+							(3,'Empresa',1)
 GO
 
 
@@ -43,14 +42,13 @@ INSERT INTO vadem.funcionalidad VALUES	(1,'AMB_ROLES'),
 										(4,'AMB_EMPRESA'),
 										(5,'AMB_RUBRO'),
 										(6,'AMB_VISIBILIDAD'),
-										(7,'GENERA_PUBLICACION'),
-										(8,'EDITA_PUBLICACION'),
-										(9,'GESTIONA_PREGUNTAS'),
-										(10,'COMPRA_OFERTA'),
-										(11,'HISTORIA_CLIENTE'),
-										(12,'CALIFICAR'),
-										(13,'FACTURAR'),
-										(14,'LISTADO_ESTADISTICO')
+										(7,'PUBLICACIONES'),
+										(8,'GESTIONA_PREGUNTAS'),
+										(9,'COMPRA_OFERTA'),
+										(10,'HISTORIA_CLIENTE'),
+										(11,'CALIFICAR'),
+										(12,'FACTURAR'),
+										(13,'LISTADO_ESTADISTICO')
 GO
 
 
