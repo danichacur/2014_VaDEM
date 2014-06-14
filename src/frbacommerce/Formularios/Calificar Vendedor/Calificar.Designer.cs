@@ -95,6 +95,7 @@
             // 
             // cboPuntaje
             // 
+            this.cboPuntaje.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPuntaje.FormattingEnabled = true;
             this.cboPuntaje.Location = new System.Drawing.Point(168, 206);
             this.cboPuntaje.Name = "cboPuntaje";

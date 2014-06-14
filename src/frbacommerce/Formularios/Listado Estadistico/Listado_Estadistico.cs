@@ -22,6 +22,34 @@ namespace FrbaCommerce.Formularios.Listado_Estadistico
         private void Listado_Estadistico_Load(object sender, EventArgs e)
         {
 
+            try
+            {
+                
+                cargarComboTiposEstadisticas();
+
+
+            }
+            catch (Exception ex)
+            {
+                Metodos_Comunes.MostrarMensajeError(ex);
+            }
+
         }
+
+        private void cargarComboTiposEstadisticas()
+        {
+            try
+            {
+                cboTipoEstadistica.DataSource = Metodos_Comunes.obtenerTablaComboTiposEstadisticas();
+                cboTipoEstadistica.DisplayMember = "Descripcion";
+                cboTipoEstadistica.ValueMember = "Id";
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        
     }
 }

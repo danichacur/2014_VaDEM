@@ -293,6 +293,59 @@ namespace FrbaCommerce.Componentes_Comunes
 
         }
 
+
+
+
+        /// <summary>
+        /// Armo y devuelvo manualmente el contenido del Combo Tipos de Estadísticas posibles.
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable obtenerTablaComboTiposEstadisticas()
+        {
+            try
+            {
+                DataTable tbl;
+                DataRow row;
+                DataColumn column;
+
+                tbl = new DataTable("id", "descripcion");
+
+                column = new DataColumn();
+                column.ColumnName = "id";
+                tbl.Columns.Add(column);
+
+                column = new DataColumn();
+                column.ColumnName = "descripcion";
+                tbl.Columns.Add(column);
+
+                row = tbl.NewRow();
+                row["id"] = 1; row["descripcion"] = "Vendedores con prod no vendidos";
+                tbl.Rows.Add(row);
+
+                row = tbl.NewRow();
+                row["id"] = 2; row["descripcion"] = "Vendedores con mayor facturación";
+                tbl.Rows.Add(row);
+
+                row = tbl.NewRow();
+                row["id"] = 3; row["descripcion"] = "Vendedores con mayores calificaciones";
+                tbl.Rows.Add(row);
+
+                row = tbl.NewRow();
+                row["id"] = 4; row["descripcion"] = "Clientes con publicaciones sin calificar";
+                tbl.Rows.Add(row);
+
+
+                return tbl;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
+        
+        
         /// <summary>
         /// Lleno el combo de tipo de Publicacion con los posibles valores. No los obtengo de la BD
         /// </summary>

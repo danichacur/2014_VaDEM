@@ -54,7 +54,6 @@
             this.lblTrimestre.Size = new System.Drawing.Size(50, 13);
             this.lblTrimestre.TabIndex = 1;
             this.lblTrimestre.Text = "Trimestre";
-            //this.lblTrimestre.Click += new System.EventHandler(this.label2_Click);
             // 
             // lblTipoEstadistica
             // 
@@ -75,6 +74,7 @@
             // 
             // cboTrimestre
             // 
+            this.cboTrimestre.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTrimestre.FormattingEnabled = true;
             this.cboTrimestre.Location = new System.Drawing.Point(123, 56);
             this.cboTrimestre.Name = "cboTrimestre";
@@ -83,26 +83,27 @@
             // 
             // cboTipoEstadistica
             // 
+            this.cboTipoEstadistica.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTipoEstadistica.FormattingEnabled = true;
             this.cboTipoEstadistica.Location = new System.Drawing.Point(123, 88);
             this.cboTipoEstadistica.Name = "cboTipoEstadistica";
-            this.cboTipoEstadistica.Size = new System.Drawing.Size(101, 21);
+            this.cboTipoEstadistica.Size = new System.Drawing.Size(205, 21);
             this.cboTipoEstadistica.TabIndex = 5;
             // 
             // btnGnerarListado
             // 
-            this.btnGnerarListado.Location = new System.Drawing.Point(174, 129);
+            this.btnGnerarListado.Location = new System.Drawing.Point(228, 133);
             this.btnGnerarListado.Name = "btnGnerarListado";
             this.btnGnerarListado.Size = new System.Drawing.Size(100, 29);
             this.btnGnerarListado.TabIndex = 6;
             this.btnGnerarListado.Text = "Generar Listado";
             this.btnGnerarListado.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // Listado_Estadistico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.ClientSize = new System.Drawing.Size(349, 311);
             this.Controls.Add(this.btnGnerarListado);
             this.Controls.Add(this.cboTipoEstadistica);
             this.Controls.Add(this.cboTrimestre);
@@ -110,8 +111,9 @@
             this.Controls.Add(this.lblTipoEstadistica);
             this.Controls.Add(this.lblTrimestre);
             this.Controls.Add(this.lblAnio);
-            this.Name = "Form1";
+            this.Name = "Listado_Estadistico";
             this.Text = "Listados Estadisticos";
+            this.Load += new System.EventHandler(this.Listado_Estadistico_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
