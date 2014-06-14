@@ -22,11 +22,12 @@ namespace FrbaCommerce.Datos
             DataTable tbl;
             try
             {
-
                 String script = "SELECT * FROM vadem.compras C left join vadem.publicacion P on C.IdPublicacion = P.IdPublicacion ";
                 script += "WHERE C.IdComprador = " + Session.IdUsuario + " ";
                 //script += "AND Calificada = 0";
-                //script += clausulaWhere;
+                //script += "AND " + clausulaWhere;
+                if (clausulaWhere != "")
+                    script += "AND " + clausulaWhere;
 
                 compras = new List<Compra>();
 

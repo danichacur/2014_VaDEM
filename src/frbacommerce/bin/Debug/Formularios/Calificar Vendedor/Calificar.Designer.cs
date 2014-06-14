@@ -35,6 +35,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.cboPuntaje = new System.Windows.Forms.ComboBox();
+            this.btnCalificar = new System.Windows.Forms.Button();
+            this.txtTotalAbonado = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtDescripPublic
@@ -93,14 +95,32 @@
             this.cboPuntaje.FormattingEnabled = true;
             this.cboPuntaje.Location = new System.Drawing.Point(168, 206);
             this.cboPuntaje.Name = "cboPuntaje";
-            this.cboPuntaje.Size = new System.Drawing.Size(121, 21);
+            this.cboPuntaje.Size = new System.Drawing.Size(100, 21);
             this.cboPuntaje.TabIndex = 6;
+            // 
+            // btnCalificar
+            // 
+            this.btnCalificar.Location = new System.Drawing.Point(248, 254);
+            this.btnCalificar.Name = "btnCalificar";
+            this.btnCalificar.Size = new System.Drawing.Size(75, 23);
+            this.btnCalificar.TabIndex = 7;
+            this.btnCalificar.Text = "Calificar";
+            this.btnCalificar.UseVisualStyleBackColor = true;
+            // 
+            // txtTotalAbonado
+            // 
+            this.txtTotalAbonado.Location = new System.Drawing.Point(168, 168);
+            this.txtTotalAbonado.Name = "txtTotalAbonado";
+            this.txtTotalAbonado.Size = new System.Drawing.Size(100, 20);
+            this.txtTotalAbonado.TabIndex = 8;
             // 
             // Calificar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(336, 289);
+            this.Controls.Add(this.txtTotalAbonado);
+            this.Controls.Add(this.btnCalificar);
             this.Controls.Add(this.cboPuntaje);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -125,5 +145,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cboPuntaje;
+        private System.Windows.Forms.Button btnCalificar;
+        private System.Windows.Forms.TextBox txtTotalAbonado;
     }
 }
