@@ -22,12 +22,21 @@ namespace FrbaCommerce.Formularios.Calificar_Vendedor
             try
             {
                 cargarComboPuntaje();
+                //cargar descripción publicación
+                cargarDescripcionPublicación();
+                //cargar nombre vendedor
+                cargarNombreVendedor();
+                //total abonado
+                cargarTotalAbonado();
+
             }
             catch (Exception ex)
             {
                Metodos_Comunes.MostrarMensajeError(ex);
             }
         }
+
+
 
         private void cargarComboPuntaje()
         {
@@ -42,5 +51,63 @@ namespace FrbaCommerce.Formularios.Calificar_Vendedor
                 throw;
             }
         }
+
+        private void cargarDescripcionPublicación()
+        {
+            try
+            {
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        private void cargarNombreVendedor()
+        //{
+        //    DataRow fila;
+        //    try
+        //    {
+        //        String script = "SELECT idUsuario FROM vadem.compras ";
+
+        //        DataTable listaEstados = PublicacionDAO.obtenerEstados(script);
+        //        fila = listaEstados.NewRow();
+        //        fila["IdEstado"] = 0;
+        //        fila["Descripcion"] = "";
+        //        listaEstados.Rows.InsertAt(fila, 0);
+
+        //        return listaEstados;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception("Error " + ex.Message);
+        //    }
+
+
+        //}
+        {
+            try
+            {
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        private void cargarTotalAbonado()
+        {
+            try
+            {
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
     }
 }
