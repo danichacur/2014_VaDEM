@@ -86,14 +86,13 @@ namespace FrbaCommerce.Generar_Publicacion
                     List<Filtro> filtrosI = new List<Filtro>();
                     filtrosI.Add(new FiltroComboBox("Tipo", "Tipo", "=", "", obtenerTiposPublicacion(), "descripcion", "descripcion"));
                     filtrosI.Add(new FiltroComboBox("Estado", "IdEstado", "=", "0", obtenerEstados(), "IdEstado", "Descripcion"));
+                    filtrosI.Add(new FiltroTextBox("Descripcion", "Descripcion", "LIKE", ""));
 
 
                     List<Filtro> filtrosD = new List<Filtro>();
                     filtrosD.Add(new FiltroComboBox("Visibilidad", "IdVisibilidad", "=", "0", obtenerVisibilidadHabilitadas(), "IdVisibilidad", "Descripcion"));
+                    filtrosD.Add(new FiltroFecha("Fecha", "FechaFin", "<=", "01/12/9999"));
 
-
-                    //filtrosI.Add(new FiltroFecha());
-                    // filtrosI.Add(new FiltroTextBox("Descripcion", "Descripcion", "LIKE", ""));
 
                     this.ctrlABM1.cargarFiltros(filtrosI, filtrosD);
                 }
@@ -109,11 +108,8 @@ namespace FrbaCommerce.Generar_Publicacion
         {
             try
             {
-                String script = "SELECT * FROM vadem.publicacion ";
-                script += clausulaWhere;
 
-                Object listaPublicaciones = (Object)PublicacionDAO.obtenerPublicaciones(script);
-
+                Object listaPublicaciones = (Object)PublicacionDAO.obtenerPublicaciones(clausulaWhere);
 
                 this.ctrlABM1.cargarGrilla(listaPublicaciones);
 

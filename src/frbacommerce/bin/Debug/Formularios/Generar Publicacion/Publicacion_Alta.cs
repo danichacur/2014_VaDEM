@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using FrbaCommerce.Componentes_Comunes;
 using FrbaCommerce.Entidades;
 using FrbaCommerce.Datos;
+using System.Configuration;
 
 namespace FrbaCommerce.Formularios.Generar_Publicacion
 {
@@ -65,22 +66,43 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
         {
 
             String camposConErrores;
+            String camposEnCero;
+            String campoEstado;
             try
             {
 
                 camposConErrores = obtenerCamposConErrores();
-                if (camposConErrores == "")
+                camposEnCero = obtenerCamposEnCero();
+                campoEstado = obtenerCampoEstado();
+
+
+                if ((camposConErrores == "") || (camposEnCero == "") || (campoEstado == ""))
                 {
                     armarPublicacionConCampos();
                     publicacion.insertar();
+
+                    Metodos_Comunes.MostrarMensaje("Felicidades! Ha creado una nueva publicación para el articulo: "+ publicacion.Descripcion);
 
                     DialogResult = System.Windows.Forms.DialogResult.OK;
                 }
                 else
                 {
-                    Metodos_Comunes.MostrarMensaje("Debe completar todos los campos. Los campos incompletos son: " + camposConErrores);
-                }
+                    if (camposEnCero != "")
+                    {
+                        Metodos_Comunes.MostrarMensaje("El Precio y la Cantidad deben ser mayores a cero");
+                    }
 
+                    if (campoEstado != "")
+                    {
+                        Metodos_Comunes.MostrarMensaje("El estado de la publicacion solo puede ser BORRADOR o ACTIVA");
+
+                    }
+
+                    if (camposConErrores != "")
+                    {
+                        Metodos_Comunes.MostrarMensaje("Debe completar todos los campos. Los campos incompletos son: " + camposConErrores);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -88,6 +110,7 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
             }
 
         }
+
 
 
         /// <summary>
@@ -138,11 +161,11 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
                 filtroCbo.setObligatorio(true);
                 filtrosI.Add(filtroCbo);
 
-                filtroTxt = new FiltroTextBox("Codigo", "IdPublicacion");
+                /*filtroTxt = new FiltroTextBox("Codigo", "IdPublicacion");
                 filtroTxt.setTipoTextoIngresado(FiltroTextBox.TipoTexto.Numerico);
                 filtroTxt.setObligatorio(true);
                 filtrosI.Add(filtroTxt);
-
+                */
                 filtroTxt = new FiltroTextBox("Descripcion", "Descripcion");
                 filtroTxt.setObligatorio(true);
                 filtrosI.Add(filtroTxt);
@@ -160,11 +183,11 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
                 filtroDtp = new FiltroFecha("Fecha Inicio", "FechaInicio");
                 filtroDtp.setObligatorio(true);
                 filtrosI.Add(filtroDtp);
-
+                /*
                 filtroDtp = new FiltroFecha("Fecha Fin", "FechaFin");
                 filtroDtp.setObligatorio(true);
                 filtrosI.Add(filtroDtp);
-
+                */
                 filtroCbo = new FiltroComboBox("Admite Preguntas", "AdmitePreguntas", "=", "", Metodos_Comunes.obtenerTablaComboPreguntas(), "descripcion", "descripcion");
                 filtroCbo.setObligatorio(true);
                 filtrosI.Add(filtroCbo);
@@ -216,16 +239,22 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
             {
                 List<Filtro> campos = obtenerCamposEnPantalla();
                 publicacion.Tipo = ((FiltroComboBox)campos[0]).obtenerValorText();
-                publicacion.Id = Convert.ToInt32(campos[1].obtenerValor());
-                publicacion.Descripcion = campos[2].obtenerValor().ToString();
-                publicacion.Precio = Convert.ToInt32(campos[3].obtenerValor());
-                publicacion.Cantidad = Convert.ToInt32(campos[4].obtenerValor());
-                publicacion.FechaInicio = Convert.ToDateTime(campos[5].obtenerValor());;
-                publicacion.FechaFin = Convert.ToDateTime(campos[6].obtenerValor());;
-                publicacion.AdmitePreguntas = (campos[7].obtenerValor().ToString() == "Admite" ? true : false);
-                publicacion.Visibilidad = Convert.ToInt32(campos[8].obtenerValor());
-                publicacion.AgregarRubros(campos[10].obtenerValor().ToString());
-                publicacion.Estado = Convert.ToInt32(campos[9].obtenerValor());
+                publicacion.Descripcion = campos[1].obtenerValor().ToString();
+                publicacion.Precio = Convert.ToInt32(campos[2].obtenerValor());
+                publicacion.Cantidad = Convert.ToInt32(campos[3].obtenerValor());
+                publicacion.FechaInicio = Convert.ToDateTime(campos[4].obtenerValor());
+                publicacion.FechaFin = Convert.ToDateTime(campos[5].obtenerValor());
+                publicacion.AdmitePreguntas = (campos[6].obtenerValor().ToString() == "Admite" ? true : false);
+                publicacion.Visibilidad = Convert.ToInt32(campos[7].obtenerValor());
+                publicacion.AgregarRubros(campos[9].obtenerValor().ToString());
+                publicacion.Estado = Convert.ToInt32(campos[8].obtenerValor());
+
+
+                DateTime fecha_actual = Convert.ToDateTime(ConfigurationManager.AppSettings["DateTimeNow"]);
+                if (publicacion.FechaInicio < fecha_actual)
+                {
+                    publicacion.FechaInicio = fecha_actual;
+                }
 
 
             }
@@ -235,7 +264,6 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
             }
         }
 
-     
 
         #endregion
 
@@ -328,6 +356,71 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
             }
         }
 
+
+        /// <summary>
+        /// recorre todos los campos y devuelve un String con los campos que se cargaron con ceros
+        /// </summary>
+        /// <returns></returns>
+         public String obtenerCamposEnCero()
+        {
+            String errores = "";
+            try
+            {
+         
+                List<Filtro> campos = obtenerCamposEnPantalla();
+                int precio = Convert.ToInt32(campos[2].obtenerValor());
+                int cantidad = Convert.ToInt32(campos[3].obtenerValor());
+
+                if (precio == 0)
+                {
+                    errores += campos[2].obtenerLabel();
+                }
+                else
+                {
+                    if (cantidad == 0)
+                    {
+                        errores += campos[3].obtenerLabel();
+                    }
+                }
+
+                if (errores.Length > 0)
+                    errores = errores.Substring(0, errores.Length - 2);
+
+                return errores;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
+         /// <summary>
+         /// mira el campo elegido de Estado y valida que sea Borrador o Publicada nada mas
+         /// </summary>
+         /// <returns></returns>
+         public String obtenerCampoEstado()
+         {
+             String errores = "";
+             try
+             {
+          
+                 List<Filtro> campos = obtenerCamposEnPantalla();
+                 int estado = Convert.ToInt32(campos[8].obtenerValor());
+
+                 if (estado != 1 || estado != 2) 
+                 {
+                     errores += campos[8].obtenerLabel();
+                 }
+
+                 return errores;
+             }
+             catch (Exception)
+             {
+                 throw;
+             }
+         }
+
         /// <summary>
         /// recorre todos los campos y devuelve un String con los campos con errores separados por coma
         /// </summary>
@@ -345,11 +438,6 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
                     if (campo.obtenerObligatorio())
                         if (campo.obtenerValor().ToString() == "")
                             errores += campo.obtenerLabel() + ", ";
-                        /*else
-                        {
-                            if (Convert.ToInt32(campo.obtenerValor()) == 0)
-                                errores += campo.obtenerLabel() + ", ";
-                        }*/
                 }
 
                 if (errores.Length > 0)

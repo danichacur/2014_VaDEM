@@ -85,5 +85,17 @@ namespace FrbaCommerce.Entidades
                 throw;
             }
         }
+
+        new public Publicacion modificar()
+        {
+            try
+            {
+                return PublicacionDAO.modificar(this);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

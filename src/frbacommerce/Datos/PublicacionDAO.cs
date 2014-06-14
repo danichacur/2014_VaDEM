@@ -5,6 +5,7 @@ using System.Text;
 using FrbaCommerce.Entidades;
 using System.Data;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace FrbaCommerce.Datos
 {
@@ -58,10 +59,23 @@ namespace FrbaCommerce.Datos
 
         }
 
-        public static object obtenerPublicaciones(string script)
+       // public static object obtenerPublicaciones(int tipo, int estado, int visibilidad, DateTime fecha, string descripcion)
+         public static object obtenerPublicaciones(string clausulaWhere)
+       
         {
             try
             {
+
+                String script = "SELECT(SELECT Descripcion FROM vadem.estado E WHERE E.IdEstado = P.IdEstado) AS 'Estado',";
+                script += "Descripcion, PrecioInicial, Stock, Tipo, ";
+                script += "(SELECT Descripcion FROM vadem.visibilidad V WHERE V.IdVisibilidad = P.IdVisibilidad) AS 'Visibilidad',";
+                script += "CASE WHEN AdmitePreguntas = 1 THEN 'SI' ELSE 'NO' END AS 'Admite Preguntas',";
+                script += "CONVERT (nvarchar(10),FechaInicio,101) AS 'Fecha Inicio', ";
+                script += "CONVERT (nvarchar(10),FechaFin,101) AS 'Fecha Fin' FROM vadem.publicacion P";
+
+              //  script += "WHERE P.Tipo = " + tipo + "AND P.IdEstado = "+ estado;
+              //  script += " AND P.FechaFin <= " + fecha + "AND P.Descripcion = " + descripcion;
+                script += clausulaWhere;
 
                 return AccesoDatos.Instance.EjecutarScript(script);
 
@@ -76,30 +90,79 @@ namespace FrbaCommerce.Datos
 
 
 
-        public static Publicacion insertar(Publicacion publicacion)
+        public static int insertar(Publicacion publicacion)
         {
             
             try
-            { // " + publicacion + "
+            { 
 
-
-                SqlParameterCollection colparam;// = new SqlParameterCollection();
+                String script = "[vadem].[insertPublicaciones]";
+                List<SqlParameter> colparam = new List<SqlParameter>();
                 
                 SqlParameter stock = new SqlParameter();
                 stock.ParameterName = "@STOCK";
                 stock.SqlDbType = SqlDbType.Int;
                 stock.Value = publicacion.Cantidad;
+                colparam.Add(stock);
+
+                SqlParameter estado = new SqlParameter();
+                estado.ParameterName = "@ESTADO";
+                estado.SqlDbType = SqlDbType.Int;
+                estado.Value = publicacion.Estado;
+                colparam.Add(estado);
+
+                SqlParameter descripcion = new SqlParameter();
+                descripcion.ParameterName = "@DESCRIPCION";
+                descripcion.SqlDbType = SqlDbType.VarChar;
+                descripcion.Value = publicacion.Descripcion;
+                colparam.Add(descripcion);
+
+                SqlParameter visibilidad = new SqlParameter();
+                visibilidad.ParameterName = "@VISIBILIDAD";
+                visibilidad.SqlDbType = SqlDbType.Int;
+                visibilidad.Value = publicacion.Visibilidad;
+                colparam.Add(visibilidad);
+
+                SqlParameter fecha = new SqlParameter();
+                fecha.ParameterName = "@FECHA_INI";
+                fecha.SqlDbType = SqlDbType.DateTime;
+                fecha.Value = publicacion.FechaInicio;
+                colparam.Add(fecha);
+
+                SqlParameter precio = new SqlParameter();
+                precio.ParameterName = "@PRECIO";
+                precio.SqlDbType = SqlDbType.Int;
+                precio.Value = publicacion.Precio;
+                colparam.Add(precio);
+
+                SqlParameter vendedor = new SqlParameter();
+                vendedor.ParameterName = "@VENDEDOR";
+                vendedor.SqlDbType = SqlDbType.Int;
+                vendedor.Value = publicacion.Vendedor;
+                colparam.Add(vendedor);
+
+                SqlParameter tipo = new SqlParameter();
+                tipo.ParameterName = "@TIPO";
+                tipo.SqlDbType = SqlDbType.VarChar;
+                tipo.Value = publicacion.Tipo;
+                colparam.Add(tipo);
+
+                SqlParameter preguntas = new SqlParameter();
+                preguntas.ParameterName = "@PREGUNTAS";
+                preguntas.SqlDbType = SqlDbType.Bit;
+                preguntas.Value = publicacion.AdmitePreguntas;
+                colparam.Add(preguntas);
 
 
-               // script += "," + publicacion.Estado + ",'" + publicacion.Descripcion + "'," + publicacion.Visibilidad;
-                //script += ",'" + ConfigurationManager.AppSettings["DateTimeNow"] + "'," + publicacion.Precio + ", " + publicacion.Vendedor;
-                //script += ",'" + publicacion.Tipo + "'," + publicacion.AdmitePreguntas + ")";
 
-                //AccesoDatos.Instance.EjecutarScript(script);
+                DataTable res = AccesoDatos.Instance.EjecutarSp(script,colparam);
 
-                return obtenerPublicacion(Session.IdUsuario);
-
-                // PublicacionDAO.insertarRubros(rubr, Id);
+                if (res.Rows[0][0] != null)
+                {
+                    publicacion.Id = Convert.ToInt32(res.Rows[0][0]);
+                    PublicacionDAO.insertarRubros(publicacion.Rubros, publicacion.Id);
+                }
+                return publicacion.Id;
 
             }
             catch (Exception)
@@ -152,7 +215,7 @@ namespace FrbaCommerce.Datos
                 String script = "";
              foreach( Rubro miRubro in rubros)
              {
-                 script += "INSERT INTO vadem.rubrosPublicacion VALUES (" + idPublicacion + " , " + miRubro + ")";
+                 script += "INSERT INTO vadem.rubrosPublicacion VALUES (" + idPublicacion + " , " + miRubro.Id + ") ";
              }
               
               return AccesoDatos.Instance.EjecutarScript(script);
@@ -193,5 +256,23 @@ namespace FrbaCommerce.Datos
         }
 
 
+
+        public static Publicacion modificar(Publicacion publicacion)
+        {
+            String script;
+            try
+            { // " + publicacion + "
+                script = "UPDATE vadem.publicacion ";
+
+
+                AccesoDatos.Instance.EjecutarScript(script);
+
+                return obtenerPublicacion(publicacion.Id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

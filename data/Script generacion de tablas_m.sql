@@ -319,7 +319,8 @@ CREATE TABLE [vadem].[rubrosPublicacion](
 	[IdRubro] [int] NOT NULL,
 CONSTRAINT [PK_rubrosPublicacion] PRIMARY KEY CLUSTERED 
 (
-	[IdPublicacion] ASC
+	[IdPublicacion] ASC,
+	[IdRubro] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
