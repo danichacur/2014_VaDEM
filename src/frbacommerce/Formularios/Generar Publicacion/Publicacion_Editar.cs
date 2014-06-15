@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using FrbaCommerce.Entidades;
 using FrbaCommerce.Componentes_Comunes;
 using FrbaCommerce.Datos;
+using System.Configuration;
 
 namespace FrbaCommerce.Formularios.Generar_Publicacion
 {
@@ -69,28 +70,90 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
         /// <param name="e"></param>
         public override void btnAceptar_Click(object sender, EventArgs e)
         {
+             String camposConErrores;
+            String camposEnCero;
+            String campoEstado;
+            String campoParaSubasta;
             try
             {
 
-                armarPublicacionConCampos();
-                if (esValidoElEstado())
-                {
-                    publicacion.modificar();
+                camposConErrores = obtenerCamposConErrores();
+                camposEnCero = obtenerCamposEnCero();
+                //campoEstado = obtenerCampoEstado();
+                campoParaSubasta = obtenerCampoSubasta();
 
+                if ((camposConErrores == "") && (camposEnCero == "") && esValidoElEstado() && (campoParaSubasta == ""))
+                {
+                    armarPublicacionConCamposEdicion();
+                    publicacion.modificar();
+                    Metodos_Comunes.MostrarMensaje("La publicación " + publicacion.Descripcion+ " ha sido modificada correctamente");
                     DialogResult = System.Windows.Forms.DialogResult.OK;
-                }else
-                    DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                }
+                else
+                {
+                    if (camposEnCero != "")
+                    {
+                        Metodos_Comunes.MostrarMensaje("El Precio y la Cantidad deben ser mayores a cero");
+                    }
+                    if (camposConErrores != "")
+                    {
+                        Metodos_Comunes.MostrarMensaje("Debe completar todos los campos. Los campos incompletos son: " + camposConErrores);
+                    }
+                }
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Metodos_Comunes.MostrarMensajeError(ex);
+                throw;
             }
         }
 
         #endregion
 
         #region MetodosGenerales
+
+        /// <summary>
+        /// Setea en el rol de la variable de la clase con los campos ingresados por el usuario.
+        /// </summary>
+        public void armarPublicacionConCamposEdicion()
+        {
+            int estado_nuevo;
+            try
+            { 
+
+                List<Filtro> campos = obtenerCamposEnPantalla();
+                estado_nuevo = Convert.ToInt32(campos[8].obtenerValor());
+                if (publicacion.Estado == 1)
+                {
+                    publicacion.Tipo = ((FiltroComboBox)campos[0]).obtenerValorText();
+                    publicacion.Descripcion = campos[1].obtenerValor().ToString();
+                    publicacion.Precio = Convert.ToInt32(campos[2].obtenerValor());
+                    publicacion.Cantidad = Convert.ToInt32(campos[3].obtenerValor());
+                    publicacion.FechaInicio = Convert.ToDateTime(ConfigurationManager.AppSettings["DateTimeNow"]);
+                    publicacion.AdmitePreguntas = (campos[6].obtenerValor().ToString() == "Admite" ? true : false);
+                    publicacion.Visibilidad = Convert.ToInt32(campos[7].obtenerValor());
+                    publicacion.AgregarRubros(campos[9].obtenerValor().ToString());
+                    publicacion.Estado = estado_nuevo;
+                }
+                if (publicacion.Estado == 2)
+                {
+                    publicacion.Descripcion = campos[1].obtenerValor().ToString();
+                    publicacion.Cantidad = Convert.ToInt32(campos[3].obtenerValor());
+                    publicacion.Estado = estado_nuevo;
+                }
+                if (publicacion.Estado == 3)
+                {
+                    publicacion.Estado = estado_nuevo;
+                }
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
 
         /// <summary>
         /// Habilito o deshabilito los campos de acuerdo a los que son editables en la Modificacion.

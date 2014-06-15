@@ -6,6 +6,7 @@ using FrbaCommerce.Entidades;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using FrbaCommerce.Componentes_Comunes;
 
 namespace FrbaCommerce.Datos
 {
@@ -74,6 +75,7 @@ namespace FrbaCommerce.Datos
                 script += "FechaFin AS 'FechaFin' FROM vadem.publicacion P  ";
 
                 script += clausulaWhere;
+                script += " ORDER BY IdPublicacion DESC ";
 
                 return AccesoDatos.Instance.EjecutarScript(script);
 
@@ -124,7 +126,7 @@ namespace FrbaCommerce.Datos
                 SqlParameter fecha = new SqlParameter();
                 fecha.ParameterName = "@FECHA_INI";
                 fecha.SqlDbType = SqlDbType.DateTime;
-                fecha.Value = publicacion.FechaInicio;
+                fecha.Value = Metodos_Comunes.localDateToSQLDate(publicacion.FechaInicio);
                 colparam.Add(fecha);
 
                 SqlParameter precio = new SqlParameter();
@@ -269,24 +271,24 @@ namespace FrbaCommerce.Datos
             String script;
             try
             { // " + publicacion + "
-                script = "SELECT IdEstado FROM vadem.publicacion WHERE IdPublicacion = "+ publicacion.Id;
+               // script = "SELECT IdEstado FROM vadem.publicacion WHERE IdPublicacion = "+ publicacion.Id;
 
                         script = "UPDATE vadem.publicacion " +
                                "     SET [Stock] = " + publicacion.Cantidad +
                                "   ,[IdEstado] = " + publicacion.Estado +
-                               "   ,[Descripcion] = " + publicacion.Descripcion +
+                               "   ,[Descripcion] = '" + publicacion.Descripcion + "'" +
                                "   ,[IdVisibilidad] = " + publicacion.Visibilidad +
-                               "   ,[FechaInicio] = " + publicacion.FechaInicio +
+                               "   ,[FechaInicio] = '" + Metodos_Comunes.localDateToSQLDate(publicacion.FechaInicio) + "'" +
                                "   ,[FechaFin] = DATEADD(D,(SELECT DiasVigencia FROM vadem.visibilidad " + 
-					                           "WHERE IdVisibilidad = " + publicacion.Visibilidad + ")," + publicacion.FechaInicio + ")," + 
+					                           "WHERE IdVisibilidad = " + publicacion.Visibilidad + "),'" + Metodos_Comunes.localDateToSQLDate(publicacion.FechaInicio) + "')" + 
                                "   ,[PrecioInicial] = " + publicacion.Precio +
-                               "   ,[Tipo] = " + publicacion.Tipo + 
-                               "   ,[AdmitePreguntas] =  " + publicacion.AdmitePreguntas + 
-                               "WHERE IdPublicacion = " + publicacion.Id;
+                               "   ,[Tipo] = '" + publicacion.Tipo + "'" +
+                               "   ,[AdmitePreguntas] =  " + (publicacion.AdmitePreguntas == true ? 1 : 0) + 
+                               " WHERE IdPublicacion = " + publicacion.Id;
                         
                         AccesoDatos.Instance.EjecutarScript(script);
-                     return obtenerPublicacion(publicacion.Id);
-                
+                     //return obtenerPublicacion(publicacion.Id);
+                        return publicacion;
 
             }
             catch (Exception)

@@ -68,15 +68,16 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
             String camposConErrores;
             String camposEnCero;
             String campoEstado;
+            String campoParaSubasta;
             try
             {
 
                 camposConErrores = obtenerCamposConErrores();
                 camposEnCero = obtenerCamposEnCero();
                 campoEstado = obtenerCampoEstado();
+                campoParaSubasta = obtenerCampoSubasta();
 
-
-                if ((camposConErrores == "") || (camposEnCero == "") || (campoEstado == ""))
+                if ((camposConErrores == "") && (camposEnCero == "") && (campoEstado == "") && (campoParaSubasta == ""))
                 {
                     armarPublicacionConCampos();
                     publicacion.insertar();
@@ -95,7 +96,6 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
                     if (campoEstado != "")
                     {
                         Metodos_Comunes.MostrarMensaje("El estado de la publicacion solo puede ser BORRADOR o ACTIVA");
-
                     }
 
                     if (camposConErrores != "")
@@ -104,9 +104,9 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Metodos_Comunes.MostrarMensajeError(ex);
+                throw;
             }
 
         }
@@ -179,13 +179,16 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
                 filtroTxt.setTipoTextoIngresado(FiltroTextBox.TipoTexto.Numerico);
                 filtroTxt.setObligatorio(true);
                 filtrosI.Add(filtroTxt);
-
+                
                 filtroDtp = new FiltroFecha("Fecha Inicio", "FechaInicio");
                 filtroDtp.setObligatorio(true);
+                filtroDtp.Enabled = false;
                 filtrosI.Add(filtroDtp);
+
                 
                 filtroDtp = new FiltroFecha("Fecha Fin", "FechaFin");
                 filtroDtp.setObligatorio(true);
+                filtroDtp.Enabled = false;
                 filtrosI.Add(filtroDtp);
                 
                 filtroCbo = new FiltroComboBox("Admite Preguntas", "AdmitePreguntas", "=", "", Metodos_Comunes.obtenerTablaComboPreguntas(), "descripcion", "descripcion");
@@ -242,19 +245,20 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
                 publicacion.Descripcion = campos[1].obtenerValor().ToString();
                 publicacion.Precio = Convert.ToInt32(campos[2].obtenerValor());
                 publicacion.Cantidad = Convert.ToInt32(campos[3].obtenerValor());
-                publicacion.FechaInicio = Convert.ToDateTime(campos[4].obtenerValor());
+                publicacion.FechaInicio = Convert.ToDateTime(ConfigurationManager.AppSettings["DateTimeNow"]);
+                //Convert.ToDateTime(campos[4].obtenerValor());
                 //publicacion.FechaFin = Convert.ToDateTime(campos[5].obtenerValor());
                 publicacion.AdmitePreguntas = (campos[6].obtenerValor().ToString() == "Admite" ? true : false);
                 publicacion.Visibilidad = Convert.ToInt32(campos[7].obtenerValor());
                 publicacion.AgregarRubros(campos[9].obtenerValor().ToString());
                 publicacion.Estado = Convert.ToInt32(campos[8].obtenerValor());
 
-
+                /*
                 DateTime fecha_actual = Convert.ToDateTime(ConfigurationManager.AppSettings["DateTimeNow"]);
                 if (publicacion.FechaInicio < fecha_actual)
                 {
                     publicacion.FechaInicio = fecha_actual;
-                }
+                }*/
 
 
             }
@@ -395,6 +399,37 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
 
         }
 
+        /// <summary>
+         /// mira el campo elegido de Estado y valida que sea Borrador o Publicada nada mas
+         /// </summary>
+         /// <returns></returns>
+         public String obtenerCampoSubasta()
+         {
+             String errores = "";
+             try
+             {
+          
+                 List<Filtro> campos = obtenerCamposEnPantalla();
+                 string tipoPublic = ((FiltroComboBox)campos[0]).obtenerValorText();
+                 int stock = Convert.ToInt32(campos[3].obtenerValor());
+
+                 if ((tipoPublic == "Subasta") && (stock != 1)) 
+                 {
+                     errores += "Las subastas solo pueden tener stock 1.";
+                     Metodos_Comunes.MostrarMensaje("Las subastas solo pueden tener cantidad = 1.");
+
+                 }
+
+                 return errores;
+             }
+             catch (Exception)
+             {
+                 throw;
+             }
+         }
+
+
+
          /// <summary>
          /// mira el campo elegido de Estado y valida que sea Borrador o Publicada nada mas
          /// </summary>
@@ -408,9 +443,10 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
                  List<Filtro> campos = obtenerCamposEnPantalla();
                  int estado = Convert.ToInt32(campos[8].obtenerValor());
 
-                 if (estado != 1 || estado != 2) 
+                 if (estado != 1)  
                  {
-                     errores += campos[8].obtenerLabel();
+                     if (estado != 2)
+                        errores += campos[8].obtenerLabel();
                  }
 
                  return errores;
@@ -494,58 +530,60 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
         public Boolean esValidoElEstado()
         {
             Boolean valida = false;
-            Boolean stoc = false;
-            String script;
-            int estado_viejo;
+            Boolean stoc = true;
+           // String script;
+            List<Filtro> campos = obtenerCamposEnPantalla();
+            int estado_nuevo = Convert.ToInt32(campos[8].obtenerValor());
+            int stock_nuevo = Convert.ToInt32(campos[3].obtenerValor());
             try
             { // " + publicacion + "
-                script = "SELECT IdEstado FROM vadem.publicacion WHERE IdPublicacion = "+ publicacion.Id;
-                 DataTable res = AccesoDatos.Instance.EjecutarScript(script);
+              //  script = "SELECT IdEstado FROM vadem.publicacion WHERE IdPublicacion = "+ publicacion.Id;
+              //   DataTable res = AccesoDatos.Instance.EjecutarScript(script);
 
-                 if (res.Rows[0][0] != null)
-                 {
-                     estado_viejo = Convert.ToInt32(res.Rows[0][0]);
+               //  if (res.Rows[0][0] != null)
+                // {
+                //     estado_viejo = Convert.ToInt32(res.Rows[0][0]);
 
                      //estaba en estado borrador
-                     if ((estado_viejo == 1) && (publicacion.Estado != 3))
+                if ((publicacion.Estado == 1) && (estado_nuevo != 3))
                      {
                          valida = true;
                      }
 
                      // estaba en estado activa
-                     if ((estado_viejo == 2) && (publicacion.Estado != 1))
+                if ((publicacion.Estado == 2) && (estado_nuevo != 1))
                      {
                          valida = true;
                          // Validacion del stock que no sea menor al actual//
-                         string script2 = "SELECT Stock FROM vadem.publicacion WHERE IdPublicacion = " + publicacion.Id;
-                         DataTable res2 = AccesoDatos.Instance.EjecutarScript(script2);
-                         if (res2.Rows[0][0] != null)
-                         {
-                             int stock_anterior = Convert.ToInt32(res2.Rows[0][0]);
+                        // string script2 = "SELECT Stock FROM vadem.publicacion WHERE IdPublicacion = " + publicacion.Id;
+                        // DataTable res2 = AccesoDatos.Instance.EjecutarScript(script2);
+                         //if (res2.Rows[0][0] != null)
+                         //{
+                          //   int stock_anterior = Convert.ToInt32(res2.Rows[0][0]);
 
-                             if (publicacion.Cantidad >= stock_anterior)
-                                 stoc = true;
-                             else
-                                 Metodos_Comunes.MostrarMensaje("El stock debe ser mayor al actual.");
+                             if (stock_nuevo < publicacion.Cantidad)
+                             {
+                                 stoc = false;
+                               Metodos_Comunes.MostrarMensaje("El stock debe ser mayor al actual.");
                          }
 
                      }
 
                      //estaba en estado pausada
-                     if ((estado_viejo == 3) && (publicacion.Estado != 1))
+                if ((publicacion.Estado == 3) && (estado_nuevo !=1))
                      {
                          valida = true;
                      }
 
                      //estaba en estado finalizada
-                     if ((estado_viejo == 4) && (publicacion.Estado == 4))
+                if ((publicacion.Estado == 4) && (estado_nuevo == 4))
                      {
                          valida = true;
                      }
 
                      if (valida == false)
                          Metodos_Comunes.MostrarMensaje("El estado elegido no está permitido.");
-                 }
+            //     }
 
                 return (valida&stoc);
             }
@@ -554,6 +592,26 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
                 throw;
             }
         }
+
+        /// <summary>
+        /// Agrega el filtro parámetro en la pantalla
+        /// </summary>
+        /// <param name="filtro"></param>
+        public void agregarACamposEnPantalla(Filtro filtro)
+        {
+            try
+            {
+                List<Filtro> filtrosI = obtenerCamposEnPantalla();
+                filtrosI.Add(filtro);
+
+                this.ctrlAltaModificacion1.cargarFiltros(filtrosI);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
 
         #endregion
     }
