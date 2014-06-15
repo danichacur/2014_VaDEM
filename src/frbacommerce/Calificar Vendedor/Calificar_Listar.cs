@@ -87,8 +87,8 @@ namespace FrbaCommerce.Formularios.Calificar_Vendedor
             System.Windows.Forms.DialogResult result;
             try
             {
-                DataGridViewRow compra = dgv.Rows[e.RowIndex];
-                Formularios.Calificar_Vendedor.Calificar formCalificar = new Formularios.Calificar_Vendedor.Calificar(compra);
+                Compra compra = (Compra)dgv.Rows[e.RowIndex].DataBoundItem;
+                Formularios.Calificar_Vendedor.Calificar formCalificar = new Formularios.Calificar_Vendedor.Calificar();
                 result = formCalificar.ShowDialog();
 
                 if (result == System.Windows.Forms.DialogResult.OK)

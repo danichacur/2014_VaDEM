@@ -70,8 +70,8 @@ namespace FrbaCommerce.Datos
                 script += "Descripcion, PrecioInicial, Stock, Tipo, IdPublicacion, ";
                 script += "(SELECT Descripcion FROM vadem.visibilidad V WHERE V.IdVisibilidad = P.IdVisibilidad) AS 'Visibilidad',";
                 script += "CASE WHEN AdmitePreguntas = 1 THEN 'SI' ELSE 'NO' END AS 'Admite_Preguntas',";
-                script += "FechaInicio AS 'FechaInicio', ";
-                script += "FechaFin AS 'FechaFin' FROM vadem.publicacion P  ";
+                script += "CONVERT (nvarchar(10),FechaInicio,101) AS 'FechaInicio', ";
+                script += "CONVERT (nvarchar(10),FechaFin,101) AS 'FechaFin' FROM vadem.publicacion P  ";
 
                 script += clausulaWhere;
 
@@ -197,14 +197,6 @@ namespace FrbaCommerce.Datos
                 publicacion.Visibilidad = Convert.ToInt32(dt.Rows[0]["IdVisibilidad"]);
                 publicacion.VisibilidadDesc = Convert.ToString(dt.Rows[0]["VisibilidadDesc"]);
                 publicacion.AdmitePreguntas = (bool)dt.Rows[0]["AdmitePreguntas"];
-                publicacion.Estado = Convert.ToInt32(dt.Rows[0]["IdEstado"]);
-
-                script = "select R.IdRubro, Descripcion from vadem.rubro R " +
-                        "join vadem.rubrosPublicacion P on R.IdRubro = P.IdRubro " +
-                        "where P.IdPublicacion = " + p;
-
-
-                publicacion.Rubros = RubroDAO.obtenerRubros(script);
 
                 return publicacion;
             }

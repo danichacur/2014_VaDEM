@@ -42,6 +42,7 @@ namespace FrbaCommerce.Formularios.Calificar_Vendedor
         {
             try
             {
+                this.ctrlABM1.ocultarBotonAlta();
                 cargaFiltros();
                 cargaInicialGrilla();
             }
@@ -86,8 +87,8 @@ namespace FrbaCommerce.Formularios.Calificar_Vendedor
             System.Windows.Forms.DialogResult result;
             try
             {
-                Compra compra = (Compra)dgv.Rows[e.RowIndex].DataBoundItem;
-                Formularios.Calificar_Vendedor.Calificar formCalificar = new Formularios.Calificar_Vendedor.Calificar();
+                DataGridViewRow compra = dgv.Rows[e.RowIndex];
+                Formularios.Calificar_Vendedor.Calificar formCalificar = new Formularios.Calificar_Vendedor.Calificar(compra);
                 result = formCalificar.ShowDialog();
 
                 if (result == System.Windows.Forms.DialogResult.OK)
@@ -114,10 +115,7 @@ namespace FrbaCommerce.Formularios.Calificar_Vendedor
             {
                 List<Filtro> filtrosI = new List<Filtro>();
               //  filtrosI.Add(new FiltroFecha("Documento", "Documento", "=", ""));
-                filtrosI.Add(new FiltroTextBox("Producto", "P.Descripcion", "LIKE", ""));
-                filtrosI.Add(new FiltroTextBox("Vendedor", "u.Username", "LIKE", ""));
-                filtrosI.Add(new FiltroTextBox("Id Compra", "IdCompra", "=", ""));
-                //filtrosI.Add(new FiltroComboBox("Estado", "IdEstado", "=", "0", obtenerEstados(), "IdEstado", "Descripcion"));
+              //  filtrosI.Add(new FiltroTextBox("Apellido", "Apellido", "LIKE", ""));
                 
 
                 this.ctrlABM1.cargarFiltros(filtrosI, null);
@@ -154,18 +152,12 @@ namespace FrbaCommerce.Formularios.Calificar_Vendedor
         {
             try
             {
-                if (clausulaWhere != "")
-                    clausulaWhere = clausulaWhere.Replace("WHERE", "");
-
-                //clausulaWhere += " C.Calificada = 0 ";
-
                 Object listaCompras = (Object)ComprasDAO.obtenerCompras(clausulaWhere);
 
                 DataGridViewColumn[] columnas = obtenerDisenoColumnasGrilla();
 
                 dgv = this.ctrlABM1.cargarGrilla(listaCompras, columnas);
 
-         //       this.ctrlABM1.cargarGrilla(listaCompras);
             }
             catch (Exception)
             {
@@ -196,7 +188,7 @@ namespace FrbaCommerce.Formularios.Calificar_Vendedor
 
                 DataGridViewTextBoxColumn colIdPublicacion = new DataGridViewTextBoxColumn();
                 colIdPublicacion.DataPropertyName = "Publicacion.Descripcion"; colIdPublicacion.Name = "IdPublicacion"; 
-                colIdPublicacion.HeaderText = "Descripción Publicación";
+                colIdPublicacion.HeaderText = "Id Publicación";
                 columnas[1] = colIdPublicacion;
 
                 DataGridViewTextBoxColumn colFecha = new DataGridViewTextBoxColumn();
@@ -225,44 +217,6 @@ namespace FrbaCommerce.Formularios.Calificar_Vendedor
             {
                 throw;
             }
-        }
-        private DataTable obtenerTiposPublicacion()
-        {
-            try
-            {
-                DataTable tbl;
-                DataRow row;
-                DataColumn column;
-
-                tbl = new DataTable("id", "descripcion");
-
-                column = new DataColumn();
-                column.ColumnName = "id";
-                tbl.Columns.Add(column);
-
-                column = new DataColumn();
-                column.ColumnName = "descripcion";
-                tbl.Columns.Add(column);
-
-                row = tbl.NewRow();
-                row["id"] = 0; row["descripcion"] = "";
-                tbl.Rows.Add(row);
-
-                row = tbl.NewRow();
-                row["id"] = 1; row["descripcion"] = "Compra Inmediata";
-                tbl.Rows.Add(row);
-
-                row = tbl.NewRow();
-                row["id"] = 2; row["descripcion"] = "Subasta";
-                tbl.Rows.Add(row);
-
-                return tbl;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error " + ex.Message);
-            }
-
         }
 
         #endregion

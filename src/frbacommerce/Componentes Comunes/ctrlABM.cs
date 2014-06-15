@@ -255,6 +255,19 @@ namespace FrbaCommerce.Componentes_Comunes
         #endregion
 
         #region MetodosAuxiliares
+
+        public void ocultarBotonAlta()
+        {
+            try
+            {
+                btnAlta.Visible = false;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         #endregion
     }
 }

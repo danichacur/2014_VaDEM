@@ -76,10 +76,10 @@ namespace FrbaCommerce.Generar_Publicacion
             try
             {
                 // Ignora los clicks que no son sobre las columnas con boton  
-                if (e.RowIndex < 0 || (e.ColumnIndex != dgv.Columns["Editar"].Index)) return;
+                if (e.RowIndex < 0 || (e.ColumnIndex != dgv.Columns["Modificar"].Index)) return;
                 
 
-                if (e.ColumnIndex == dgv.Columns["Editar"].Index)
+                if (e.ColumnIndex == dgv.Columns["Modificar"].Index)
                 {
                     btnModificar_Click(sender, e);
                 }
@@ -189,7 +189,7 @@ namespace FrbaCommerce.Generar_Publicacion
 
                 DataGridViewColumn[] columnas = obtenerDisenoColumnasGrilla();
 
-                dgv = this.ctrlABM1.cargarGrilla(listaPublicaciones, columnas);
+                this.ctrlABM1.cargarGrilla(listaPublicaciones, columnas);
 
             }
             catch (Exception ex)
@@ -298,7 +298,7 @@ namespace FrbaCommerce.Generar_Publicacion
             try
             {
 
-                DataGridViewColumn[] columnas = new DataGridViewColumn[11];
+                DataGridViewColumn[] columnas = new DataGridViewColumn[10];
 
                 DataGridViewTextBoxColumn colEstado = new DataGridViewTextBoxColumn();
                 colEstado.DataPropertyName = "Estado"; colEstado.Name = "Estado";
@@ -346,17 +346,10 @@ namespace FrbaCommerce.Generar_Publicacion
 
                 DataGridViewButtonColumn colModificar = new DataGridViewButtonColumn();
                 colModificar.Width = 60;
-                colModificar.Text = "Editar";
-                colModificar.Name = "Editar";
+                colModificar.Text = "Eliminar";
+                colModificar.Name = "Eliminar";
                 colModificar.UseColumnTextForButtonValue = true;
                 columnas[9] = colModificar;
-
-
-                DataGridViewTextBoxColumn colId = new DataGridViewTextBoxColumn();
-                colId.DataPropertyName = "IdPublicacion"; colId.Name = "IdPublicacion";
-                colId.HeaderText = "IdPublicacion";
-                colId.Visible = false;
-                columnas[10] = colId;
 
                 return columnas;
             }

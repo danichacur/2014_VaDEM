@@ -8,46 +8,111 @@ using System.Text;
 using System.Windows.Forms;
 using FrbaCommerce.Componentes_Comunes;
 using FrbaCommerce.Datos;
-using FrbaCommerce.Entidades;
+using System.Configuration;
 
 namespace FrbaCommerce.Formularios.Calificar_Vendedor
 {
     public partial class Calificar : Form
     {
-        public Calificar()
+        #region VariablesDeClase
+
+        DataGridViewRow publicacionSinCalificar;
+
+        #endregion
+
+
+        #region Eventos
+
+        public Calificar(DataGridViewRow pPublicacionSinCalificar)
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
+                publicacionSinCalificar = pPublicacionSinCalificar;
+            }
+            catch (Exception ex)
+            {
+                Metodos_Comunes.MostrarMensajeError(ex);
+            }
+            
         }
 
         private void Calificar_Load(object sender, EventArgs e)
         {
             try
             {
-           //     Compra compra = sender;
-                cargarComboPuntaje();
-                //cargar descripción publicación
-                cargarDescripcionPublicación("14021"); //compra.IdPublicacion );
-                //cargar nombre vendedor
-                cargarNombreVendedor("14021");
-                //total abonado
-                cargarTotalAbonado();
-
+                cargarControles();
             }
             catch (Exception ex)
             {
-               Metodos_Comunes.MostrarMensajeError(ex);
+                Metodos_Comunes.MostrarMensajeError(ex);
             }
         }
 
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (pasaValidaciones())
+                {
+                    insertarCalificacion();
+                    DialogResult = System.Windows.Forms.DialogResult.OK;
+                }
+            }
+            catch (Exception ex)
+            {
+                Metodos_Comunes.MostrarMensajeError(ex);
+            }
+        }
 
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            }
+            catch (Exception ex)
+            {
+                Metodos_Comunes.MostrarMensajeError(ex);
+            }
+        }
+        
+        #endregion
 
+        #region MetodosGenerales
+
+        /// <summary>
+        /// cargo todos los controles, los que se cargan con la información de la publicacion y los que traigo de la BD
+        /// </summary>
+        private void cargarControles()
+        {
+            try
+            {
+                //Estos 3 los cargo con datos que traje de la publicacion seleccionada
+                cargarDescripcionPublicacion();
+                cargarVendedor();
+                cargarMontoTotal();
+
+                //
+                cargarComboPuntaje();
+                cargarComboSeleccion();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        
+
+        /// <summary>
+        /// Cargo el combo puntaje con valores del 1 al 10
+        /// </summary>
         private void cargarComboPuntaje()
         {
             try
             {
-                cboPuntaje.DataSource = Metodos_Comunes.obtenerTablaComboPuntajes();
-                cboPuntaje.DisplayMember = "Descripcion";
-                cboPuntaje.ValueMember = "Id";
+                Metodos_Comunes.cargarCombo(cboPuntaje, Metodos_Comunes.obtenerTablaComboPuntajes(), "Id", "Descripcion");
             }
             catch (Exception)
             {
@@ -55,18 +120,93 @@ namespace FrbaCommerce.Formularios.Calificar_Vendedor
             }
         }
 
-        private void cargarDescripcionPublicación(string idcompra)
+        private void cargarComboSeleccion()
+        {
+            DataTable listaSeleccion;
+            try
+            {
+                listaSeleccion = CalificacionDAO.obtenerCalificacionesEstandard();
+                Metodos_Comunes.cargarCombo(cboSeleccion, listaSeleccion, "Id", "Descripcion");
+            }
+            catch (Exception)
+            {   
+                throw;
+            }
+        }
+
+        private Boolean pasaValidaciones()
+        {
+            String camposConErrores;
+            Boolean valida;
+            try
+            {
+                camposConErrores = "";
+
+                if (cboPuntaje.SelectedIndex == 0) camposConErrores += "Puntaje, ";
+
+                if (rbtnComboSeleccion.Checked)
+                {
+                    if (cboSeleccion.SelectedIndex == 0) camposConErrores += "Selección de Detalle, ";
+                }
+                else 
+                {
+                    if (rtxtTextoLibre.Text == "") camposConErrores += "Texto Libre de Detalle, ";
+                }
+
+                if (camposConErrores.Length != 0)
+                {
+                    camposConErrores = camposConErrores.Substring(0, camposConErrores.Length - 2);
+                    valida = false;
+                    Metodos_Comunes.MostrarMensaje("No se puede guardar la calificación. Debe completar todos los campos. Los campos faltantes son: " + camposConErrores);
+                }
+                else
+                    valida = true;
+                    
+
+                return valida;
+            }
+            catch (Exception)
+            {   
+                throw;
+            }
+        }
+
+        private void insertarCalificacion()
+        {
+            int idCompra, idVendedor, idCalificador, cantidadEstrellas;
+            DateTime FechaActual;
+            String detalle;
+
+            try
+            {
+               idCompra = Convert.ToInt32(publicacionSinCalificar.Cells["IdCompra"].Value);
+               idVendedor = Convert.ToInt32(publicacionSinCalificar.Cells["IdVendedor"].Value);
+               idCalificador = Session.IdUsuario;
+               cantidadEstrellas = Convert.ToInt32(cboPuntaje.SelectedValue);
+               FechaActual = Convert.ToDateTime(ConfigurationManager.AppSettings["DateTimeNow"]);
+               if (rbtnComboSeleccion.Checked)
+                   detalle = cboSeleccion.SelectedText;
+               else
+                   detalle = rtxtTextoLibre.Text;
+               
+
+                CalificacionDAO.insertarCalificacion(idCompra, idVendedor, idCalificador, FechaActual, cantidadEstrellas, detalle);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        #endregion
+
+        #region MetodosAuxiliares
+
+        private void cargarDescripcionPublicacion()
         {
             try
             {
-                String script = "select p.Descripcion ";
-                script += "from vadem.compras c ";
-                script += "left join vadem.publicacion p on c.IdPublicacion = p.IdPublicacion ";
-                script += "where c.IdCompra = " + idcompra;
-
-                DataTable res = AccesoDatos.Instance.EjecutarScript(script);
-                
-                txtDescripPublic.Text = Convert.ToString(res.Rows[0][0]);
+                rtxtDescripcionPubl.Text = publicacionSinCalificar.Cells["PublicacionDescripcion"].ToString();
             }
             catch (Exception)
             {
@@ -74,19 +214,11 @@ namespace FrbaCommerce.Formularios.Calificar_Vendedor
             }
         }
 
-        private void cargarNombreVendedor(string idcompra)
+        private void cargarVendedor()
         {
             try
             {
-                String script = "select u.Username ";
-                script += "from vadem.compras c ";
-                script += "left join vadem.publicacion p on c.IdPublicacion = p.IdPublicacion ";
-                script += "left join vadem.usuario u on p.IdVendedor = u.IdUsuario ";
-                script += "where c.IdCompra = " + idcompra;
-
-                DataTable res = AccesoDatos.Instance.EjecutarScript(script);
-
-                txtNombreVendedor.Text = Convert.ToString(res.Rows[0][0]);
+                txtVendedor.Text = publicacionSinCalificar.Cells["UsernameVendedor"].ToString();
             }
             catch (Exception)
             {
@@ -94,11 +226,11 @@ namespace FrbaCommerce.Formularios.Calificar_Vendedor
             }
         }
 
-        private void cargarTotalAbonado()
+        private void cargarMontoTotal()
         {
             try
             {
-
+                txtMontoTotal.Text = publicacionSinCalificar.Cells["MontoTotalPagado"].ToString();
             }
             catch (Exception)
             {
@@ -106,29 +238,7 @@ namespace FrbaCommerce.Formularios.Calificar_Vendedor
             }
         }
 
-//        /// <summary>
-//        /// Evento del boton Aceptar. 
-//        /// Cargo en el objeto de la clase los parámetros correspondientes de acuerdo a los campos insertados. Luego persisto en la BD
-//        /// Cierro la ventana devolviendo un OK
-//        /// </summary>
-//        /// <param name="sender"></param>
-//        /// <param name="e"></param>
-//        public override void btnCalificarClick(object sender, EventArgs e)
-//        {
-//            try
-//            {
-//   //             if (pasaValidacionesVarias())
-//   //             {
-//            Calificacion calificacion = new Calificacion(generarId(), compra.id,  Session.IdUsuario, fecha, estrellas, detalle);
-
-//                    DialogResult = System.Windows.Forms.DialogResult.OK;
-//    //            }
-//            }
-//            catch (Exception ex)
-//            {
-//                Metodos_Comunes.MostrarMensajeError(ex);
-//            }
-//        }
+        #endregion
 
 
     }

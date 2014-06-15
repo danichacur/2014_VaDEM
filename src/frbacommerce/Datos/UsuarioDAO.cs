@@ -155,5 +155,89 @@ namespace FrbaCommerce.Datos
                 throw;
             }
         }
+
+        public static DataTable obtenerRegistrosReporteVendedoresMayorCantProductosNoVendidos(int anio, int nroTrimestre, int idVisibilidad, int mes)
+        {
+            //DataTable tbl;
+            String script;
+            try
+            {
+
+                script = "SELECT TOP 5 U.Username, V.Cantidad, V.Año, V.Trimestre, V.Mes, VI.Descripcion AS Visibilidad ";
+                script += "FROM [vadem].[PublicacionesPorVendedorPorTrimestre] V ";
+                script += "LEFT JOIN vadem.usuario U ";
+                script += "ON V.IdVendedor = U.IdUsuario ";
+                script += "LEFT JOIN vadem.visibilidad VI ";
+                script += "ON V.IdVisibilidad = VI.IdVisibilidad ";
+                script += "WHERE Año = " + anio + " and Trimestre = " + nroTrimestre + " ";
+                script += "        and V.IdVisibilidad = " + idVisibilidad + " and Mes = " + mes + " ";
+
+                return AccesoDatos.Instance.EjecutarScript(script);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static DataTable obtenerRegistrosReporteVendedoresMayorFacturacion(int anio, int nroTrimestre)
+        {
+            //DataTable tbl;
+            String script;
+            try
+            {
+                script = "SELECT TOP 5 U.Username, V.Total, V.Año, V.Trimestre ";
+                script += "FROM vadem.[FacturasPorVendedorPorTrimestre] V ";
+                script += "LEFT JOIN vadem.usuario U ";
+                script += "ON V.IdVendedor = U.IdUsuario ";
+                script += "WHERE Año = " + anio + " and Trimestre = " + nroTrimestre + " ";
+
+                return AccesoDatos.Instance.EjecutarScript(script);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static DataTable obtenerRegistrosReporteVendedoresMayoresCalificaciones(int anio, int nroTrimestre)
+        {
+            //DataTable tbl;
+            String script;
+            try
+            {
+                script = "SELECT TOP 5 U.Username, V.Calificacion, V.Año, V.Trimestre ";
+                script += "FROM vadem.[CalificacionesPorVendedorPorTrimestre] V ";
+                script += "LEFT JOIN vadem.usuario U ";
+                script += "ON V.IdVendedor = U.IdUsuario ";
+                script += "WHERE Año = " + anio + " and Trimestre = " + nroTrimestre + " ";
+
+                return AccesoDatos.Instance.EjecutarScript(script);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static DataTable obtenerRegistrosReporteClientesMayorCantPublicacionesSinCalificar(int anio, int nroTrimestre)
+        {
+            //DataTable tbl;
+            String script;
+            try
+            {
+                script = "SELECT TOP 5 U.Username, V.Cantidad, V.Año, V.Trimestre ";
+                script += "FROM vadem.[ComprasPorCompradorPorTrimestre] V ";
+                script += "LEFT JOIN vadem.usuario U ";
+                script += "ON V.IdComprador = U.IdUsuario ";
+                script += "WHERE Año = " + anio + " and Trimestre = " + nroTrimestre + " ";
+
+                return AccesoDatos.Instance.EjecutarScript(script);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }
