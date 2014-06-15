@@ -1,3 +1,5 @@
+USE [GD1C2014]
+GO
 
 /****** Object:  Trigger [vadem].[bajaRol]    Script Date: 05/20/2014 16:58:53 ******/
 SET ANSI_NULLS ON
@@ -79,7 +81,64 @@ END
 GO
 
 
-USE [GD1C2014]
+/****** Object:  Trigger [vadem].[altaPublicacion]    Script Date: 05/20/2014 16:58:53 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TRIGGER [vadem].[altaPublicacion]
+ON [vadem].[publicacion]
+AFTER INSERT, UPDATE
+AS
+BEGIN
+
+DECLARE @ESTADO INT
+SET @ESTADO = (SELECT IdEstado FROM INSERTED) 
+
+IF (@ESTADO = 2)
+BEGIN
+	DECLARE @VISIBILIDAD INT
+	SELECT @VISIBILIDAD = IdVisibilidad FROM INSERTED 
+
+	DECLARE @CANTIDAD INT
+	SET @CANTIDAD = (SELECT CantPublicacionesAcumuladas 
+					FROM vadem.tipoVisualizacionPorUsuario
+					WHERE IdUsuario = (SELECT IdVendedor FROM INSERTED) 
+					AND IdVisibilidad = @VISIBILIDAD
+					) + 1
+
+	DECLARE @COSTO INT
+	SET @COSTO = (SELECT CostoFijo FROM vadem.visibilidad
+					  WHERE IdVisibilidad = @VISIBILIDAD)
+					
+		-- CONTROLO SI LLEGUE AL LIMITE DONDE HAY QUE BONIFICARLA -- 
+
+		-- PREGUNTO SI NO ES GRATUITA --
+		IF (@VISIBILIDAD <> 10006)
+		BEGIN
+			IF (@CANTIDAD = 10)
+				BEGIN
+					SET @COSTO = 0
+					SET @CANTIDAD = 0
+				END		
+		END
+
+		-- ACTUALIZA LA TABLA DE TIPO PUBLICACION POR USUARIO -- 
+
+		UPDATE vadem.tipoVisualizacionPorUsuario
+			SET CantPublicacionesAcumuladas = @CANTIDAD
+		WHERE IdUsuario = (SELECT IdVendedor FROM INSERTED) 
+		AND IdVisibilidad = @VISIBILIDAD
+
+		-- INSERTA EL COSTO POR LA PUBLICACION EN LOS ITEM FACTURA --
+
+		INSERT vadem.itemFactura 
+		SELECT IdPublicacion, IdVendedor, @COSTO, 1, NULL FROM INSERTED
+		
+END 
+	
+END
+
 GO
 
 /****** Object:  StoredProcedure [vadem].[insertPublicaciones]    Script Date: 06/14/2014 01:33:56 ******/
@@ -128,44 +187,31 @@ END
 GO
 
 
-/****** Object:  Procedure [vadem].[editarActivarPublicaciones]    Script Date: 06/11/2014 21:08:58 ******/
+/****** Object:  StoredProcedure [vadem].[controlPublicacionesGratuitas]    Script Date: 06/14/2014 01:33:56 ******/
 SET ANSI_NULLS ON
 GO
+
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROCEDURE [vadem].[editarActivarPublicaciones]
 
-@PUBLICACION INT,
-@STOCK INT,
-@DESCRIPCION VARCHAR(255),
-@VISIBILIDAD INT,
-@FECHA_INI DATETIME,
-@PRECIO INT,
-@TIPO VARCHAR(20),
-@PREGUNTAS CHAR
+
+CREATE PROCEDURE [vadem].[controlPublicacionesGratuitas]
+
+@USUARIO INT 
 
 AS
-DECLARE @VIGENCIA INT
+DECLARE @CANTIDAD INT
 
 BEGIN
 
-SET @VIGENCIA = (SELECT DiasVigencia FROM vadem.visibilidad
-					WHERE @VISIBILIDAD = IdVisibilidad)
-
-
-UPDATE vadem.publicacion
-SET
-	Stock =	@STOCK, 
-	IdEstado = 2,
-	Descripcion = @DESCRIPCION,
-	IdVisibilidad = @VISIBILIDAD, 
-	FechaInicio = @FECHA_INI,
-	FechaFin = DATEADD(D,@VIGENCIA,@FECHA_INI),
-	PrecioInicial = @PRECIO, 
-	AdmitePreguntas = @PREGUNTAS
-
-
-WHERE IdPublicacion = @PUBLICACION
+ SELECT @CANTIDAD = CantPublicacionesAcumuladas FROM vadem.tipoVisualizacionPorUsuario
+ WHERE IdUsuario = @USUARIO
+ AND IdVisibilidad = 10006
+ 
+ IF (@CANTIDAD = 3)
+	SELECT 0
+ ELSE 
+	SELECT 1
 
 END
 

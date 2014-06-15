@@ -72,17 +72,16 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
         {
              String camposConErrores;
             String camposEnCero;
-            String campoEstado;
             String campoParaSubasta;
             try
             {
 
                 camposConErrores = obtenerCamposConErrores();
                 camposEnCero = obtenerCamposEnCero();
-                //campoEstado = obtenerCampoEstado();
+                Boolean campoVisibilidad = obtenerCampoVisibilidad();
                 campoParaSubasta = obtenerCampoSubasta();
 
-                if ((camposConErrores == "") && (camposEnCero == "") && esValidoElEstado() && (campoParaSubasta == ""))
+                if (campoVisibilidad && (camposConErrores == "") && (camposEnCero == "") && esValidoElEstado() && (campoParaSubasta == ""))
                 {
                     armarPublicacionConCamposEdicion();
                     publicacion.modificar();
@@ -98,6 +97,10 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
                     if (camposConErrores != "")
                     {
                         Metodos_Comunes.MostrarMensaje("Debe completar todos los campos. Los campos incompletos son: " + camposConErrores);
+                    }
+                    if (!campoVisibilidad)
+                    {
+                        Metodos_Comunes.MostrarMensaje("Usted llego al limite de publicaciones gratuitas, por favor elija otro tipo de Visibilidad");
                     }
                 }
 

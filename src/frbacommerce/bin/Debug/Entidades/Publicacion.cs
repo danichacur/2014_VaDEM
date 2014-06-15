@@ -76,6 +76,20 @@ namespace FrbaCommerce.Entidades
         }
 
 
+        /// <summary>
+        /// Valida si se llego al limite de publicaciones gratuitas.
+        /// </summary>
+        public Boolean validarVisibilidad()
+        {
+            try
+            {
+                return PublicacionDAO.validarVisibilidad();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
         /// <summary>
         /// Recibo una lista de ids de rubros y los inserto en la lista de rubros, pero sin descripcion

@@ -74,7 +74,13 @@ namespace FrbaCommerce.Datos
                 script += "FechaInicio AS 'FechaInicio', ";
                 script += "FechaFin AS 'FechaFin' FROM vadem.publicacion P  ";
 
-                script += clausulaWhere;
+                if (clausulaWhere == "")
+                    script += " WHERE P.IdVendedor = " + Session.IdUsuario;
+                else
+                {
+                    script += clausulaWhere;
+                    script += " AND P.IdVendedor = " + Session.IdUsuario;
+                }
                 script += " ORDER BY IdPublicacion DESC ";
 
                 return AccesoDatos.Instance.EjecutarScript(script);
@@ -88,6 +94,34 @@ namespace FrbaCommerce.Datos
        
         }
 
+         public static Boolean validarVisibilidad()
+         {
+             Boolean cantidad = true;
+             try
+             {
+                 String script = "[vadem].[controlPublicacionesGratuitas]";
+                 List<SqlParameter> colparam = new List<SqlParameter>();
+
+                 SqlParameter usua = new SqlParameter();
+                 usua.ParameterName = "@USUARIO";
+                 usua.SqlDbType = SqlDbType.Int;
+                 usua.Value = Session.IdUsuario; 
+                 colparam.Add(usua);
+                 
+                 DataTable res = AccesoDatos.Instance.EjecutarSp(script, colparam);
+
+                 if (res.Rows[0][0] != null)
+                 {
+                     cantidad = Convert.ToInt32(res.Rows[0][0]) == 1 ? true : false;
+                 }
+                 return cantidad;
+
+             }
+             catch (Exception)
+             {
+                 throw;
+             }
+         }
 
 
         public static int insertar(Publicacion publicacion)

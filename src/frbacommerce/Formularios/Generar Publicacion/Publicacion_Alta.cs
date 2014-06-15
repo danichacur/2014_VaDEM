@@ -69,6 +69,7 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
             String camposEnCero;
             String campoEstado;
             String campoParaSubasta;
+            Boolean campoVisibilidad;
             try
             {
 
@@ -76,8 +77,9 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
                 camposEnCero = obtenerCamposEnCero();
                 campoEstado = obtenerCampoEstado();
                 campoParaSubasta = obtenerCampoSubasta();
+                campoVisibilidad = obtenerCampoVisibilidad();
 
-                if ((camposConErrores == "") && (camposEnCero == "") && (campoEstado == "") && (campoParaSubasta == ""))
+                if (campoVisibilidad && (camposConErrores == "") && (camposEnCero == "") && (campoEstado == "") && (campoParaSubasta == ""))
                 {
                     armarPublicacionConCampos();
                     publicacion.insertar();
@@ -101,6 +103,10 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
                     if (camposConErrores != "")
                     {
                         Metodos_Comunes.MostrarMensaje("Debe completar todos los campos. Los campos incompletos son: " + camposConErrores);
+                    }
+                    if (!campoVisibilidad)
+                    {
+                        Metodos_Comunes.MostrarMensaje("Usted llego al limite de publicaciones gratuitas, por favor elija otro tipo de Visibilidad");
                     }
                 }
             }
@@ -398,6 +404,31 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
             }
 
         }
+        
+        /// <summary>
+         /// mira el campo elegido de Estado y valida que sea Borrador o Publicada nada mas
+         /// </summary>
+         /// <returns></returns>
+         public Boolean obtenerCampoVisibilidad()
+         {
+             Boolean errores = true;
+             try
+             {
+          
+                 List<Filtro> campos = obtenerCamposEnPantalla();
+                 int visibilidad = Convert.ToInt32(campos[7].obtenerValor());
+
+                 if (visibilidad == 10006)  
+                     errores = publicacion.validarVisibilidad();                     
+
+                 return errores;
+             }
+             catch (Exception)
+             {
+                 throw;
+             }
+         }
+
 
         /// <summary>
          /// mira el campo elegido de Estado y valida que sea Borrador o Publicada nada mas
