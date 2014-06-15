@@ -108,7 +108,7 @@ BEGIN
 					) + 1
 
 	DECLARE @COSTO INT
-	SET @COSTO = (SELECT CostoFijo FROM vadem.visibilidad
+	SET @COSTO = (SELECT Comision FROM vadem.visibilidad
 					  WHERE IdVisibilidad = @VISIBILIDAD)
 					
 		-- CONTROLO SI LLEGUE AL LIMITE DONDE HAY QUE BONIFICARLA -- 
