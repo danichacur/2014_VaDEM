@@ -197,9 +197,9 @@ namespace FrbaCommerce.Datos
                 publicacion.Visibilidad = Convert.ToInt32(dt.Rows[0]["IdVisibilidad"]);
                 publicacion.VisibilidadDesc = Convert.ToString(dt.Rows[0]["VisibilidadDesc"]);
                 publicacion.AdmitePreguntas = (bool)dt.Rows[0]["AdmitePreguntas"];
+                publicacion.Estado = Convert.ToInt32(dt.Rows[0]["IdEstado"]);
 
-
-                script = "select IdRubro, Descripcion from vadem.rubro R" +
+                script = "select R.IdRubro, Descripcion from vadem.rubro R " +
                         "join vadem.rubrosPublicacion P on R.IdRubro = P.IdRubro " +
                         "where P.IdPublicacion = " + p;
 

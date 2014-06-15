@@ -183,11 +183,11 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
                 filtroDtp = new FiltroFecha("Fecha Inicio", "FechaInicio");
                 filtroDtp.setObligatorio(true);
                 filtrosI.Add(filtroDtp);
-                /*
+                
                 filtroDtp = new FiltroFecha("Fecha Fin", "FechaFin");
                 filtroDtp.setObligatorio(true);
                 filtrosI.Add(filtroDtp);
-                */
+                
                 filtroCbo = new FiltroComboBox("Admite Preguntas", "AdmitePreguntas", "=", "", Metodos_Comunes.obtenerTablaComboPreguntas(), "descripcion", "descripcion");
                 filtroCbo.setObligatorio(true);
                 filtrosI.Add(filtroCbo);
@@ -243,7 +243,7 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
                 publicacion.Precio = Convert.ToInt32(campos[2].obtenerValor());
                 publicacion.Cantidad = Convert.ToInt32(campos[3].obtenerValor());
                 publicacion.FechaInicio = Convert.ToDateTime(campos[4].obtenerValor());
-                publicacion.FechaFin = Convert.ToDateTime(campos[5].obtenerValor());
+                //publicacion.FechaFin = Convert.ToDateTime(campos[5].obtenerValor());
                 publicacion.AdmitePreguntas = (campos[6].obtenerValor().ToString() == "Admite" ? true : false);
                 publicacion.Visibilidad = Convert.ToInt32(campos[7].obtenerValor());
                 publicacion.AgregarRubros(campos[9].obtenerValor().ToString());
@@ -371,13 +371,13 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
                 int precio = Convert.ToInt32(campos[2].obtenerValor());
                 int cantidad = Convert.ToInt32(campos[3].obtenerValor());
 
-                if (precio == 0)
+                if (precio <= 0)
                 {
                     errores += campos[2].obtenerLabel();
                 }
                 else
                 {
-                    if (cantidad == 0)
+                    if (cantidad <= 0)
                     {
                         errores += campos[3].obtenerLabel();
                     }
@@ -489,6 +489,70 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
                 throw;
             }
         
+        }
+
+        public Boolean esValidoElEstado()
+        {
+            Boolean valida = false;
+            Boolean stoc = false;
+            String script;
+            int estado_viejo;
+            try
+            { // " + publicacion + "
+                script = "SELECT IdEstado FROM vadem.publicacion WHERE IdPublicacion = "+ publicacion.Id;
+                 DataTable res = AccesoDatos.Instance.EjecutarScript(script);
+
+                 if (res.Rows[0][0] != null)
+                 {
+                     estado_viejo = Convert.ToInt32(res.Rows[0][0]);
+
+                     //estaba en estado borrador
+                     if ((estado_viejo == 1) && (publicacion.Estado != 3))
+                     {
+                         valida = true;
+                     }
+
+                     // estaba en estado activa
+                     if ((estado_viejo == 2) && (publicacion.Estado != 1))
+                     {
+                         valida = true;
+                         // Validacion del stock que no sea menor al actual//
+                         string script2 = "SELECT Stock FROM vadem.publicacion WHERE IdPublicacion = " + publicacion.Id;
+                         DataTable res2 = AccesoDatos.Instance.EjecutarScript(script2);
+                         if (res2.Rows[0][0] != null)
+                         {
+                             int stock_anterior = Convert.ToInt32(res2.Rows[0][0]);
+
+                             if (publicacion.Cantidad >= stock_anterior)
+                                 stoc = true;
+                             else
+                                 Metodos_Comunes.MostrarMensaje("El stock debe ser mayor al actual.");
+                         }
+
+                     }
+
+                     //estaba en estado pausada
+                     if ((estado_viejo == 3) && (publicacion.Estado != 1))
+                     {
+                         valida = true;
+                     }
+
+                     //estaba en estado finalizada
+                     if ((estado_viejo == 4) && (publicacion.Estado == 4))
+                     {
+                         valida = true;
+                     }
+
+                     if (valida == false)
+                         Metodos_Comunes.MostrarMensaje("El estado elegido no está permitido.");
+                 }
+
+                return (valida&stoc);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         #endregion
