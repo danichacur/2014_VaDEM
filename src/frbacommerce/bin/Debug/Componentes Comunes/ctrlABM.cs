@@ -199,15 +199,7 @@ namespace FrbaCommerce.Componentes_Comunes
                         }
                         else
                         {
-                            if (filtro.GetType().Name == "FiltroFecha")
-                            {
-                                clausulaWhere += filtro.obtenerCampo() + " " + filtro.obtenerModoComparacion() + " '" + ((FiltroFecha)filtro).obtenerValorSQL() + "'";
-                            }
-                            else
-                            {
-                                clausulaWhere += filtro.obtenerCampo() + " " + filtro.obtenerModoComparacion() + " '" + filtro.obtenerValor() + "'";
-                            }
-                            
+                            clausulaWhere += filtro.obtenerCampo() + " = '" + filtro.obtenerValor() + "'";
                         }
                         clausulaWhere += " AND ";
                         aplicaWhere = true;

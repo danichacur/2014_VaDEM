@@ -13,7 +13,6 @@ namespace FrbaCommerce.Componentes_Comunes
     {
 
         #region VariablesDeClase
-            private DateTime valorDefault;
         #endregion
 
         #region Eventos
@@ -96,22 +95,6 @@ namespace FrbaCommerce.Componentes_Comunes
             }
         }
 
-        /// <summary>
-        /// Obtiene el valor seleccionado del combobox (El valor, no el texto)
-        /// </summary>
-        /// <returns></returns>
-        public Object obtenerValorSQL()
-        {
-            try
-            {
-                return Metodos_Comunes.localDateToSQLDate(dtpFecha.Value);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
 
         /// <summary>
         /// Obligatorio de Implementar
@@ -121,7 +104,7 @@ namespace FrbaCommerce.Componentes_Comunes
         {
             try
             {
-                dtpFecha.Value = valorDefault;
+                dtpFecha.Text = "";
             }
             catch (Exception)
             {
@@ -140,19 +123,6 @@ namespace FrbaCommerce.Componentes_Comunes
             try
             {
                 dtpFecha.Value = Convert.ToDateTime(texto);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public void setearDefault(DateTime fecha)
-        {
-            try
-            {
-                valorDefault = fecha;
-                dtpFecha.Value = fecha;
             }
             catch (Exception)
             {
