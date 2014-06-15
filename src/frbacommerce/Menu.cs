@@ -64,8 +64,8 @@ namespace FrbaCommerce
         {
             try
             {
-                ABM abm = (ABM)((Button)sender).Tag;
-                abm.ShowDialog();
+                Form pantalla = (Form)((Button)sender).Tag;
+                pantalla.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -90,7 +90,7 @@ namespace FrbaCommerce
                 foreach (Funcionalidad funcionalidad in funcionalidades)
                 {
 
-                    ABM pantalla = agregarFuncionalidadAListaDeABMs(funcionalidad);
+                    Form pantalla = agregarFuncionalidadAListaDeABMs(funcionalidad);
 
                     if (posicionBoton == new Point(0, 0))
                     {
@@ -123,9 +123,9 @@ namespace FrbaCommerce
         /// </summary>
         /// <param name="func"></param>
         /// <returns></returns>
-        private ABM agregarFuncionalidadAListaDeABMs(Funcionalidad func)
+        private Form agregarFuncionalidadAListaDeABMs(Funcionalidad func)
         {
-            ABM pantalla = new ABM();
+            Form pantalla = new Form();
             try
             {
                 switch (func.Descripcion)
@@ -170,7 +170,7 @@ namespace FrbaCommerce
                     //    pantalla = new ;
                     //    break;
                     case "LISTADO_ESTADISTICO":
-                        pantalla = new Formularios.Listado_Estadistico.Listado_Estadistico();
+                        pantalla = new Formularios.Listado_Estadistico.Estadisticas();
                         break;
                     default:
                         //Metodos_Comunes.MostrarMensajeError("Existe una funcionalidad (" + func.Descripcion + ") en la base de datos que no está definida en el código");

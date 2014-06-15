@@ -52,12 +52,13 @@ AS
 SELECT TOP 100000 
 		YEAR(FechaInicio) AS Año, 
 		DATEPART(QUARTER, FechaInicio) AS Trimestre, 
+		MONTH(FechaInicio) AS Mes,
 		IdVisibilidad,
 		IdVendedor,  
 		SUM(Stock) AS Cantidad
 FROM    vadem.publicacion
-GROUP BY IdVendedor, YEAR(FechaInicio), DATEPART(QUARTER, FechaInicio), IdVisibilidad
-ORDER BY  Año, Trimestre, IdVisibilidad, Cantidad DESC, IdVendedor
+GROUP BY IdVendedor, YEAR(FechaInicio), DATEPART(QUARTER, FechaInicio), MONTH(FechaInicio), IdVisibilidad
+ORDER BY  Año, Trimestre, Mes, IdVisibilidad, Cantidad DESC, IdVendedor
 
 GO
 

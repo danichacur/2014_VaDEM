@@ -1,5 +1,13 @@
 
 /*
+drop procedure vadem.editarActivarPublicaciones
+drop procedure vadem.insertPublicaciones
+
+drop view vadem.CalificacionesPorVendedorPorTrimestre
+drop view vadem.ComprasPorCompradorPorTrimestre
+drop view vadem.FacturasPorVendedorPorTrimestre
+drop view vadem.PublicacionesPorVendedorPorTrimestre
+
 drop table vadem.empresa
 drop table vadem.factura
 drop table vadem.itemFactura
@@ -19,6 +27,7 @@ drop table vadem.estado
 drop table vadem.funcionalidad
 drop table vadem.usuario
 drop table vadem.visibilidad
+drop table vadem.calificacionesEstandard
 */
 
 -- BEGIN TRANSACTION
@@ -429,6 +438,20 @@ CREATE TABLE [vadem].[calificacion](
 GO
 SET ANSI_PADDING OFF
 GO
+/****** Object:  Table [vadem].[calificacionesEstandard]    Script Date: 04/21/2014 23:30:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [vadem].[calificacionesEstandard](
+	[Id] [int] NOT NULL IDENTITY(1,1),
+	[Descripcion] [nvarchar](255) NOT NULL,
+CONSTRAINT [PK_calificacionesEstandard] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
 /****** Object:  ForeignKey [FK_calificacion_cliente]    Script Date: 04/21/2014 23:30:23 ******/
 ALTER TABLE [vadem].[calificacion]  WITH CHECK ADD  CONSTRAINT [FK_calificacion_cliente] FOREIGN KEY([IdCalificador])
 REFERENCES [vadem].[cliente] ([IdCliente])
@@ -578,5 +601,4 @@ REFERENCES [vadem].[usuario] ([IdUsuario])
 GO
 ALTER TABLE [vadem].[rolesPorUsuario] CHECK CONSTRAINT [FK_rolesPorUsuario_usuario]
 GO
-
 

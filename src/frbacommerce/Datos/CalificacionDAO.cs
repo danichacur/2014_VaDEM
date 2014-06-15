@@ -55,5 +55,44 @@ namespace FrbaCommerce.Datos
                 throw;
             }
         }
+
+        public static DataTable obtenerCalificacionesEstandard()
+        {
+
+            try
+            {
+                string script;
+
+                script = "SELECT * FROM vadem.calificacionesEstandard";
+                return AccesoDatos.Instance.EjecutarScript(script);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static void insertarCalificacion(int idCompra, int idVendedor, int idCalificador, DateTime FechaActual, int cantidadEstrellas, string detalle)
+        {
+            String script;
+            try
+            {
+                script = "INSERT INTO vadem.calificacion VALUES ( ";
+                script += "(SELECT MAX(IdCalificacion) + 1 FROM vadem.calificaciones), ";
+                script += idCompra + ",";
+                script += idVendedor + ",";
+                script += idCalificador + ",";
+                script += "'" + Metodos_Comunes.localDateToSQLDate(FechaActual) + "' ,";
+                script += cantidadEstrellas + ",";
+                script += "'" + detalle + "'";
+                script += ")";
+
+                AccesoDatos.Instance.EjecutarScript(script);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

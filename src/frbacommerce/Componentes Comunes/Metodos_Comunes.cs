@@ -477,6 +477,27 @@ namespace FrbaCommerce.Componentes_Comunes
             }
         }
 
+        /// <summary>
+        /// carga el combo recibido con los items parametros
+        /// </summary>
+        /// <param name="cbo"></param>
+        /// <param name="items"></param>
+        /// <param name="display"></param>
+        /// <param name="value"></param>
+        public static void cargarCombo(ComboBox cbo, Object items, String value, String display)
+        {
+            try
+            {
+                cbo.DataSource = items;
+                cbo.DisplayMember = display;
+                cbo.ValueMember = value;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
 
     }
 }

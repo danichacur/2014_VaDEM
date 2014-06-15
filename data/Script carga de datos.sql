@@ -253,8 +253,19 @@ UPDATE vadem.usuario
 						WHERE C.IdVendedor = IdUsuario)
 GO
 
---COMMIT
+/************************/ SELECT 'CALIFICACIONES STANDARD' /************************/
+INSERT INTO vadem.calificacionesEstandard VALUES	('Excelente atención')
+INSERT INTO vadem.calificacionesEstandard VALUES	('Excelente producto')
+INSERT INTO vadem.calificacionesEstandard VALUES	('Buena atención')
+INSERT INTO vadem.calificacionesEstandard VALUES	('Buen producto')
+INSERT INTO vadem.calificacionesEstandard VALUES	('Mala atención')
+INSERT INTO vadem.calificacionesEstandard VALUES	('Mal producto')
+INSERT INTO vadem.calificacionesEstandard VALUES	('Muy mala atención')
+INSERT INTO vadem.calificacionesEstandard VALUES	('Muy mal producto')
+											
+GO
 
+--COMMIT
 
 
 

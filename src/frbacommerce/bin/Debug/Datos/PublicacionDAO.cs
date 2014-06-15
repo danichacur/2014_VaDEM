@@ -67,14 +67,12 @@ namespace FrbaCommerce.Datos
             {
 
                 String script = "SELECT(SELECT Descripcion FROM vadem.estado E WHERE E.IdEstado = P.IdEstado) AS 'Estado',";
-                script += "Descripcion, PrecioInicial, Stock, Tipo, ";
+                script += "Descripcion, PrecioInicial, Stock, Tipo, IdPublicacion, ";
                 script += "(SELECT Descripcion FROM vadem.visibilidad V WHERE V.IdVisibilidad = P.IdVisibilidad) AS 'Visibilidad',";
-                script += "CASE WHEN AdmitePreguntas = 1 THEN 'SI' ELSE 'NO' END AS 'Admite Preguntas',";
-                script += "CONVERT (nvarchar(10),FechaInicio,101) AS 'Fecha Inicio', ";
-                script += "CONVERT (nvarchar(10),FechaFin,101) AS 'Fecha Fin' FROM vadem.publicacion P";
+                script += "CASE WHEN AdmitePreguntas = 1 THEN 'SI' ELSE 'NO' END AS 'Admite_Preguntas',";
+                script += "CONVERT (nvarchar(10),FechaInicio,101) AS 'FechaInicio', ";
+                script += "CONVERT (nvarchar(10),FechaFin,101) AS 'FechaFin' FROM vadem.publicacion P  ";
 
-              //  script += "WHERE P.Tipo = " + tipo + "AND P.IdEstado = "+ estado;
-              //  script += " AND P.FechaFin <= " + fecha + "AND P.Descripcion = " + descripcion;
                 script += clausulaWhere;
 
                 return AccesoDatos.Instance.EjecutarScript(script);
@@ -160,6 +158,7 @@ namespace FrbaCommerce.Datos
                 if (res.Rows[0][0] != null)
                 {
                     publicacion.Id = Convert.ToInt32(res.Rows[0][0]);
+                    publicacion.FechaFin = Convert.ToDateTime(res.Rows[0][1]);
                     PublicacionDAO.insertarRubros(publicacion.Rubros, publicacion.Id);
                 }
                 return publicacion.Id;
@@ -262,17 +261,32 @@ namespace FrbaCommerce.Datos
             String script;
             try
             { // " + publicacion + "
-                script = "UPDATE vadem.publicacion ";
+                script = "SELECT IdEstado FROM vadem.publicacion WHERE IdPublicacion = "+ publicacion.Id;
 
+                        script = "UPDATE vadem.publicacion " +
+                               "     SET [Stock] = " + publicacion.Cantidad +
+                               "   ,[IdEstado] = " + publicacion.Estado +
+                               "   ,[Descripcion] = " + publicacion.Descripcion +
+                               "   ,[IdVisibilidad] = " + publicacion.Visibilidad +
+                               "   ,[FechaInicio] = " + publicacion.FechaInicio +
+                               "   ,[FechaFin] = DATEADD(D,(SELECT DiasVigencia FROM vadem.visibilidad " + 
+					                           "WHERE IdVisibilidad = " + publicacion.Visibilidad + ")," + publicacion.FechaInicio + ")," + 
+                               "   ,[PrecioInicial] = " + publicacion.Precio +
+                               "   ,[Tipo] = " + publicacion.Tipo + 
+                               "   ,[AdmitePreguntas] =  " + publicacion.AdmitePreguntas + 
+                               "WHERE IdPublicacion = " + publicacion.Id;
+                        
+                        AccesoDatos.Instance.EjecutarScript(script);
+                     return obtenerPublicacion(publicacion.Id);
+                
 
-                AccesoDatos.Instance.EjecutarScript(script);
-
-                return obtenerPublicacion(publicacion.Id);
             }
             catch (Exception)
             {
                 throw;
             }
         }
+
+       
     }
 }

@@ -1,5 +1,4 @@
 
-
 /****** Object:  Trigger [vadem].[bajaRol]    Script Date: 05/20/2014 16:58:53 ******/
 SET ANSI_NULLS ON
 GO
@@ -36,6 +35,41 @@ BEGIN
      WHERE IdRol IN (SELECT IdRol FROM DELETED)
 	 
 END
+
+
+
+/****** Object:  Trigger [vadem].[insertCalificacion]    Script Date: 06/13/2014 18:51:21 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TRIGGER [vadem].[insertCalificacion]
+ON [vadem].[calificacion]
+FOR INSERT
+AS  
+BEGIN
+SET NOCOUNT ON;
+
+
+	DECLARE @IdVendedor AS INT
+	DECLARE @nuevaReputacion AS numeric(3,2)
+
+	SELECT @IdVendedor = IdVendedor FROM INSERTED 
+
+	SELECT @nuevaReputacion = AVG(Estrellas) 
+	FROM vadem.calificacion
+	WHERE IdVendedor = @IdVendedor
+
+	UPDATE vadem.usuario SET Reputacion = @nuevaReputacion
+	WHERE IdUsuario = @IdVendedor
+
+
+END
+
+
+GO
 
 
 USE [GD1C2014]
@@ -87,6 +121,48 @@ END
 GO
 
 
+/****** Object:  Procedure [vadem].[editarActivarPublicaciones]    Script Date: 06/11/2014 21:08:58 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [vadem].[editarActivarPublicaciones]
+
+@PUBLICACION INT,
+@STOCK INT,
+@DESCRIPCION VARCHAR(255),
+@VISIBILIDAD INT,
+@FECHA_INI DATETIME,
+@PRECIO INT,
+@TIPO VARCHAR(20),
+@PREGUNTAS CHAR
+
+AS
+DECLARE @VIGENCIA INT
+
+BEGIN
+
+SET @VIGENCIA = (SELECT DiasVigencia FROM vadem.visibilidad
+					WHERE @VISIBILIDAD = IdVisibilidad)
+
+
+UPDATE vadem.publicacion
+SET
+	Stock =	@STOCK, 
+	IdEstado = 2,
+	Descripcion = @DESCRIPCION,
+	IdVisibilidad = @VISIBILIDAD, 
+	FechaInicio = @FECHA_INI,
+	FechaFin = DATEADD(D,@VIGENCIA,@FECHA_INI),
+	PrecioInicial = @PRECIO, 
+	AdmitePreguntas = @PREGUNTAS
+
+
+WHERE IdPublicacion = @PUBLICACION
+
+END
+
+GO
 
 --rollback
 --commit
