@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using FrbaCommerce.Entidades;
 using FrbaCommerce.Componentes_Comunes;
+using FrbaCommerce.Datos;
 
 namespace FrbaCommerce.Formularios.Generar_Publicacion
 {
@@ -49,6 +50,7 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
         {
             try
             {
+                publicacion = PublicacionDAO.obtenerPublicacion(publicacion.Id);
                 llenarCampos();
                 habilitaCamposParaModificacion();
             }
@@ -69,10 +71,16 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
         {
             try
             {
-                    armarPublicacionConCampos();
+
+                armarPublicacionConCampos();
+                if (esValidoElEstado())
+                {
                     publicacion.modificar();
 
                     DialogResult = System.Windows.Forms.DialogResult.OK;
+                }else
+                    DialogResult = System.Windows.Forms.DialogResult.Cancel;
+
             }
             catch (Exception ex)
             {
@@ -137,6 +145,21 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
                     campos[9].Enabled = false;
                 }
 
+                //Si está en finalizada, no puede modificar nada//
+                if (publicacion.Estado == 4)
+                {
+                    campos[0].Enabled = false;
+                    campos[1].Enabled = false;
+                    campos[2].Enabled = false;
+                    campos[3].Enabled = false;
+                    campos[4].Enabled = false;
+                    campos[5].Enabled = false;
+                    campos[6].Enabled = false;
+                    campos[7].Enabled = false;
+                    campos[8].Enabled = false;
+                    campos[9].Enabled = false;
+                }
+
             }
             catch (Exception)
             {
@@ -161,10 +184,10 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
                     campos[3].colocarValor(publicacion.Cantidad);
                     campos[4].colocarValor(publicacion.FechaInicio);
                     campos[5].colocarValor(publicacion.FechaFin);
-                    ((FiltroComboBox)campos[6]).colocarValor(publicacion.AdmitePreguntas);
-                    ((FiltroComboBox)campos[7]).colocarValor(publicacion.Visibilidad);
+                    ((FiltroComboBox)campos[6]).colocarValor(publicacion.AdmitePreguntas == true ? "Admite" : "No Admite");
+                    ((FiltroComboBox)campos[7]).colocarValorTexto(publicacion.VisibilidadDesc);
                     ((FiltroComboBox)campos[8]).colocarValor(publicacion.Estado);
-                    campos[9].colocarValor(publicacion.Rubros);
+                    campos[9].colocarValor(publicacion.obtenerRubrosComoString());
                 }
             }
             catch (Exception)

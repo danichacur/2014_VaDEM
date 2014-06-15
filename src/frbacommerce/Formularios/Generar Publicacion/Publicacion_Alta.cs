@@ -494,6 +494,7 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
         public Boolean esValidoElEstado()
         {
             Boolean valida = false;
+            Boolean stoc = false;
             String script;
             int estado_viejo;
             try
@@ -509,12 +510,12 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
                      if ((estado_viejo == 1) && (publicacion.Estado != 3))
                      {
                          valida = true;
-                     }else
-                         Metodos_Comunes.MostrarMensaje("El estado elegido no está permitido.");
+                     }
 
                      // estaba en estado activa
                      if ((estado_viejo == 2) && (publicacion.Estado != 1))
                      {
+                         valida = true;
                          // Validacion del stock que no sea menor al actual//
                          string script2 = "SELECT Stock FROM vadem.publicacion WHERE IdPublicacion = " + publicacion.Id;
                          DataTable res2 = AccesoDatos.Instance.EjecutarScript(script2);
@@ -523,30 +524,30 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
                              int stock_anterior = Convert.ToInt32(res2.Rows[0][0]);
 
                              if (publicacion.Cantidad >= stock_anterior)
-                                 valida = true;
+                                 stoc = true;
                              else
                                  Metodos_Comunes.MostrarMensaje("El stock debe ser mayor al actual.");
                          }
 
-                     }else
-                         Metodos_Comunes.MostrarMensaje("El estado elegido no está permitido.");
+                     }
 
                      //estaba en estado pausada
                      if ((estado_viejo == 3) && (publicacion.Estado != 1))
                      {
                          valida = true;
-                     }else
-                         Metodos_Comunes.MostrarMensaje("El estado elegido no está permitido.");
+                     }
 
                      //estaba en estado finalizada
                      if ((estado_viejo == 4) && (publicacion.Estado == 4))
                      {
                          valida = true;
-                     }else
+                     }
+
+                     if (valida == false)
                          Metodos_Comunes.MostrarMensaje("El estado elegido no está permitido.");
                  }
 
-                return valida;
+                return (valida&stoc);
             }
             catch (Exception)
             {

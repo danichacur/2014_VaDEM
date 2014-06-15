@@ -148,7 +148,7 @@ namespace FrbaCommerce
                     case "AMB_VISIBILIDAD":
                         pantalla = new Formularios.Abm_Visibilidad.Visibilidad_Listar();
                         break;
-                    case "GENERA_PUBLICACION":
+                    case "PUBLICACIONES":
                         pantalla = new Generar_Publicacion.Publicacion_Listar();
                         break;
                     //case "EDITA_PUBLICACION":
