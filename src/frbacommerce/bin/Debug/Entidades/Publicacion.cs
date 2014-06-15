@@ -102,7 +102,7 @@ namespace FrbaCommerce.Entidades
             }
         }
 
-        new public Publicacion modificar()
+        public Publicacion modificar()
         {
             try
             {
@@ -113,5 +113,33 @@ namespace FrbaCommerce.Entidades
                 throw;
             }
         }
+
+
+        /// <summary>
+        /// Retorna la lista de ids de rubros separadas por coma en un String
+        /// </summary>
+        /// <returns></returns>
+        public String obtenerRubrosComoString()
+        {
+            String lista;
+            try
+            {
+                lista = "";
+                if (this.Rubros.Count > 0)
+                {
+                    foreach (Rubro func in this.Rubros)
+                    {
+                        lista += func.Id.ToString() + ",";
+                    }
+                    lista = lista.Substring(0, lista.Length - 1);
+                }
+                return lista;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
     }
 }
