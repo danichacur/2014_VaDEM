@@ -179,16 +179,16 @@ namespace FrbaCommerce.Formularios.Calificar_Vendedor
             try
             {
 
-                DataGridViewColumn[] columnas = new DataGridViewColumn[6];
+                DataGridViewColumn[] columnas = new DataGridViewColumn[9];
 
                 DataGridViewTextBoxColumn colIdCompra = new DataGridViewTextBoxColumn();
-                colIdCompra.DataPropertyName = "Id"; colIdCompra.Name = "Id";
+                colIdCompra.DataPropertyName = "IdCompra"; colIdCompra.Name = "IdCompra";
                 colIdCompra.HeaderText = "Id";
                 columnas[0] = colIdCompra;
 
                 DataGridViewTextBoxColumn colIdPublicacion = new DataGridViewTextBoxColumn();
-                colIdPublicacion.DataPropertyName = "Publicacion.Descripcion"; colIdPublicacion.Name = "IdPublicacion"; 
-                colIdPublicacion.HeaderText = "Id Publicación";
+                colIdPublicacion.DataPropertyName = "PublicacionDescripcion"; colIdPublicacion.Name = "PublicacionDescripcion";
+                colIdPublicacion.HeaderText = "Descripción Publicación";
                 columnas[1] = colIdPublicacion;
 
                 DataGridViewTextBoxColumn colFecha = new DataGridViewTextBoxColumn();
@@ -203,13 +203,29 @@ namespace FrbaCommerce.Formularios.Calificar_Vendedor
                 colCalificada.DataPropertyName = "Calificada"; colCalificada.Name = "Calificada"; colCalificada.HeaderText = "Está Calificada";
                 colCalificada.FalseValue = "0"; colCalificada.TrueValue = "1";
                 columnas[4] = colCalificada;
-                
+
+                DataGridViewTextBoxColumn colIdVendedor = new DataGridViewTextBoxColumn();
+                colIdVendedor.DataPropertyName = "IdVendedor"; colIdVendedor.Name = "IdVendedor"; colIdVendedor.HeaderText = "IdVendedor";
+                colIdVendedor.Visible = false;
+                columnas[5] = colIdVendedor;
+
+                DataGridViewTextBoxColumn colUsernameVendedor = new DataGridViewTextBoxColumn();
+                colUsernameVendedor.DataPropertyName = "UsernameVendedor"; colUsernameVendedor.Name = "UsernameVendedor"; 
+                colUsernameVendedor.HeaderText = "UsernameVendedor";
+                colUsernameVendedor.Visible = false;
+                columnas[6] = colUsernameVendedor;
+
+                DataGridViewTextBoxColumn colMontoTotalPagado = new DataGridViewTextBoxColumn();
+                colMontoTotalPagado.DataPropertyName = "MontoTotalPagado"; colMontoTotalPagado.Name = "MontoTotalPagado"; colMontoTotalPagado.HeaderText = "MontoTotalPagado";
+                colMontoTotalPagado.Visible = false;
+                columnas[7] = colMontoTotalPagado;
+
                 DataGridViewButtonColumn colElim = new DataGridViewButtonColumn();
                 colElim.Width = 60;
                 colElim.Text = "Calificar";
                 colElim.Name = "Calificar";
                 colElim.UseColumnTextForButtonValue = true;
-                columnas[5] = colElim;
+                columnas[8] = colElim;
 
                 return columnas;
             }

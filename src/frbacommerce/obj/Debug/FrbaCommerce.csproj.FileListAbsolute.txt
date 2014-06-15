@@ -679,3 +679,4 @@ C:\Users\Matias\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formulari
 C:\Users\Matias\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Registro de Usuario\registroUsuario.Designer.cs
 C:\Users\Matias\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Session.cs
 C:\Users\Matias\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\app.config
+C:\Users\Matias\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Generar_Publicacion.Publicacion_Editar.resources

@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using FrbaCommerce.Entidades;
 using FrbaCommerce.Componentes_Comunes;
+using FrbaCommerce.Datos;
 
 namespace FrbaCommerce.Formularios.Registro_de_Usuario
 {
@@ -87,7 +88,42 @@ namespace FrbaCommerce.Formularios.Registro_de_Usuario
                 if (txtCuil.Text == "") camposErroneos += "CUIL, ";
 
                 //Valido que el teléfono ingresado no coincida con uno ya existente
-                //TODO
+                if (validarTipoYNumeroDeDocumento())
+                {
+                    if (validaTelefono())
+                    {
+                        if (validaCuitCantidadDigitos())
+                        {
+                            if (validaCuitDigitoVerificador())
+                            {
+                                if (validaCuitNoRepetido())
+                                {
+                                   
+                                }
+                                else
+                                {
+                                    throw new Exception("El Cuit ingresado no es válido, ya se encuentra asignado");
+                                }
+                            }
+                            else
+                            {
+                                throw new Exception("El Cuit ingresado no es válido, el dígito identificador no coincide. Debería ser: " + CalcularDigitoCuit(txtCuil.Text.Substring(0, 10)).ToString());
+                            }
+                        }
+                        else
+                        {
+                            throw new Exception("El Cuit ingresado no es válido, debe tener 11 dígitos.");
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception("El teléfono ingresado ya está en uso.");
+                    }
+                }
+                else
+                {
+                    throw new Exception("El Tipo y Número de Documento ingresados ya están en uso.");
+                }
 
                 return camposErroneos;
             }
@@ -156,6 +192,160 @@ namespace FrbaCommerce.Formularios.Registro_de_Usuario
                 cboTipoDocumento.DataSource = Metodos_Comunes.obtenerTablaComboTipoDocumento();
                 cboTipoDocumento.DisplayMember = "descripcion";
                 cboTipoDocumento.ValueMember = "id";
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Verifica que el tipo y número de documento ingresado no se encuentre ya registrado en un cliente 
+        /// </summary>
+        /// <returns></returns>
+        public Boolean validarTipoYNumeroDeDocumento()
+        {
+            String tipoDocumentoIngresado, nroDocumentoIngresado;
+            try
+            {
+                tipoDocumentoIngresado = cboTipoDocumento.Text;
+                nroDocumentoIngresado = txtDocumento.Text;
+                return ClienteDAO.verificarTipoYNumeroDeDocumento(tipoDocumentoIngresado, nroDocumentoIngresado,0);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Verifica que el teléfono ingresado no se encuentre ya registrado en un cliente o empresa
+        /// </summary>
+        /// <returns></returns>
+        public Boolean validaTelefono()
+        {
+            String telefonoIngresado;
+            try
+            {
+                telefonoIngresado = txtTelefono.Text;
+
+                return ClienteDAO.verificarTelefonoNoEnUso(telefonoIngresado, 0);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Verifico que la cantidad de dígitos sea igual a 11
+        /// </summary>
+        /// <returns></returns>
+        private Boolean validaCuitCantidadDigitos()
+        {
+            string cuitIngresado;
+            try
+            {
+                cuitIngresado = txtCuil.Text;
+                return cuitIngresado.Length == 11;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Valido que el código identificador se corresponda con el resto del código
+        /// </summary>
+        /// <returns></returns>
+        private Boolean validaCuitDigitoVerificador()
+        {
+            string cuitIngresado;
+            string digitoIdentificadorValido;
+            try
+            {
+                cuitIngresado = txtCuil.Text;
+                digitoIdentificadorValido = CalcularDigitoCuit(cuitIngresado.Substring(0, 10)).ToString();
+                return cuitIngresado.Substring(10, 1) == digitoIdentificadorValido;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Valida en la tabla de clientes y de empresas que el cuit ingresado no exista
+        /// </summary>
+        /// <returns></returns>
+        private Boolean validaCuitNoRepetido()
+        {
+            Boolean valida;
+            try
+            {
+                valida = true;
+                if (cuitExisteEnClientes())
+                    valida = false;
+                else if (cuilExisteEnEmpresas())
+                    valida = false;
+
+                return valida;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        private Boolean cuitExisteEnClientes()
+        {
+            string cuitIngresado;
+            try
+            {
+                cuitIngresado = txtCuil.Text;
+
+                return ClienteDAO.existeCUIT(cuitIngresado);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        private Boolean cuilExisteEnEmpresas()
+        {
+            string cuitIngresado;
+            try
+            {
+                cuitIngresado = txtCuil.Text;
+
+                return EmpresaDAO.existeCUIL(cuitIngresado);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Calcula el dígito verificador dado un CUIT completo o sin él.
+        /// </summary>
+        /// <param name="cuit">El CUIT como String sin guiones</param>
+        /// <returns>El valor del dígito verificador calculado.</returns>
+        private int CalcularDigitoCuit(string cuit)
+        {
+            try
+            {
+                int[] mult = new[] { 5, 4, 3, 2, 7, 6, 5, 4, 3, 2 };
+                char[] nums = cuit.ToCharArray();
+                int total = 0;
+                for (int i = 0; i < mult.Length; i++)
+                {
+                    total += int.Parse(nums[i].ToString()) * mult[i];
+                }
+                var resto = total % 11;
+                return resto == 0 ? 0 : resto == 1 ? 9 : 11 - resto;
             }
             catch (Exception)
             {

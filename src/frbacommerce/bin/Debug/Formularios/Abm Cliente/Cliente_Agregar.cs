@@ -105,8 +105,6 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
 
         #endregion
 
-        
-
         #region MetodosGenerales
 
         /// <summary>
@@ -280,7 +278,28 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
                     {
                         if (validaTelefono())
                         {
-                            valida = true;
+                            if (validaCuitCantidadDigitos())
+                            {
+                                if (validaCuitDigitoVerificador())
+                                {
+                                    if (validaCuitNoRepetido())
+                                    {
+                                        valida = true;
+                                    }
+                                    else
+                                    {
+                                        Metodos_Comunes.MostrarMensaje("El Cuit ingresado no es válido, ya se encuentra asignado");
+                                    }
+                                }
+                                else
+                                {
+                                    Metodos_Comunes.MostrarMensaje("El Cuit ingresado no es válido, el dígito identificador no coincide. Debería ser: " + CalcularDigitoCuit(obtenerCamposEnPantalla()[13].obtenerValor().ToString().Substring(0, 10)).ToString());
+                                }
+                            }
+                            else 
+                            {
+                                Metodos_Comunes.MostrarMensaje("El Cuit ingresado no es válido, debe tener 11 dígitos.");
+                            }
                         }
                         else
                         {
@@ -394,7 +413,6 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
                 throw;
             }
         }
-        #endregion
 
         /// <summary>
         /// Agrega el filtro parámetro en la pantalla
@@ -441,20 +459,147 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
         /// Verifica que el teléfono ingresado no se encuentre ya registrado en un cliente o empresa
         /// </summary>
         /// <returns></returns>
-        public Boolean validaTelefono() {
+        public Boolean validaTelefono()
+        {
             String telefonoIngresado;
             List<Filtro> campos;
             try
-            {    campos = obtenerCamposEnPantalla();
-                 telefonoIngresado = campos[5].obtenerValor().ToString();
+            {
+                campos = obtenerCamposEnPantalla();
+                telefonoIngresado = campos[5].obtenerValor().ToString();
 
-                 return ClienteDAO.verificarTelefonoNoEnUso(telefonoIngresado, cliente.IdUsuario);
+                return ClienteDAO.verificarTelefonoNoEnUso(telefonoIngresado, cliente.IdUsuario);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Verifico que la cantidad de dígitos sea igual a 11
+        /// </summary>
+        /// <returns></returns>
+        private Boolean validaCuitCantidadDigitos()
+        {
+            string cuitIngresado;
+            List<Filtro> campos;
+            try
+            {
+                campos = obtenerCamposEnPantalla();
+                cuitIngresado = campos[13].obtenerValor().ToString();
+                return cuitIngresado.Length == 11;
             }
             catch (Exception)
             {   
                 throw;
             }
         }
-        
+
+        /// <summary>
+        /// Valido que el código identificador se corresponda con el resto del código
+        /// </summary>
+        /// <returns></returns>
+        private Boolean validaCuitDigitoVerificador()
+        {
+            string cuitIngresado;
+            List<Filtro> campos;
+            string digitoIdentificadorValido;
+            try
+            {
+                campos = obtenerCamposEnPantalla();
+                cuitIngresado = campos[13].obtenerValor().ToString();
+                digitoIdentificadorValido = CalcularDigitoCuit(cuitIngresado.Substring(0,10)).ToString();
+                return cuitIngresado.Substring(10,1) == digitoIdentificadorValido;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Valida en la tabla de clientes y de empresas que el cuit ingresado no exista
+        /// </summary>
+        /// <returns></returns>
+        private Boolean validaCuitNoRepetido()
+        {
+            Boolean valida;
+            try
+            {
+                valida = true;
+                if (cuitExisteEnClientes())
+                    valida = false;
+                else if (cuilExisteEnEmpresas())
+                    valida = false;
+
+                return valida;
+            }
+            catch (Exception)
+            {   
+                throw;
+            }
+        }
+
+        private Boolean cuitExisteEnClientes()
+        {
+            string cuitIngresado;
+            List<Filtro> campos;
+            try
+            {
+                campos = obtenerCamposEnPantalla();
+                cuitIngresado = campos[13].obtenerValor().ToString();
+
+                return ClienteDAO.existeCUIT(cuitIngresado);
+            }
+            catch (Exception)
+            {   
+                throw;
+            }
+        }
+
+        private Boolean cuilExisteEnEmpresas()
+        {
+            string cuitIngresado;
+            List<Filtro> campos;
+            try
+            {
+                campos = obtenerCamposEnPantalla();
+                cuitIngresado = campos[13].obtenerValor().ToString();
+
+                return EmpresaDAO.existeCUIL(cuitIngresado);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Calcula el dígito verificador dado un CUIT completo o sin él.
+        /// </summary>
+        /// <param name="cuit">El CUIT como String sin guiones</param>
+        /// <returns>El valor del dígito verificador calculado.</returns>
+        private int CalcularDigitoCuit(string cuit)
+        {
+            try
+            {
+                int[] mult = new[] { 5, 4, 3, 2, 7, 6, 5, 4, 3, 2 };
+                char[] nums = cuit.ToCharArray();
+                int total = 0;
+                for (int i = 0; i < mult.Length; i++)
+                {
+                    total += int.Parse(nums[i].ToString()) * mult[i];
+                }
+                var resto = total % 11;
+                return resto == 0 ? 0 : resto == 1 ? 9 : 11 - resto;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        #endregion
     }
 }

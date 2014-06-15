@@ -110,9 +110,12 @@ namespace FrbaCommerce.Formularios.Calificar_Vendedor
         /// </summary>
         private void cargarComboPuntaje()
         {
+            DataTable listaPuntaje;
             try
             {
-                Metodos_Comunes.cargarCombo(cboPuntaje, Metodos_Comunes.obtenerTablaComboPuntajes(), "Id", "Descripcion");
+                listaPuntaje = Metodos_Comunes.obtenerTablaComboPuntajes();
+               Metodos_Comunes.InsertarVacioEnPrimerRegistro(ref listaPuntaje);
+               Metodos_Comunes.cargarCombo(cboPuntaje, listaPuntaje, "Id", "Descripcion");
             }
             catch (Exception)
             {
@@ -126,6 +129,7 @@ namespace FrbaCommerce.Formularios.Calificar_Vendedor
             try
             {
                 listaSeleccion = CalificacionDAO.obtenerCalificacionesEstandard();
+                Metodos_Comunes.InsertarVacioEnPrimerRegistro(ref listaSeleccion);
                 Metodos_Comunes.cargarCombo(cboSeleccion, listaSeleccion, "Id", "Descripcion");
             }
             catch (Exception)
@@ -148,9 +152,13 @@ namespace FrbaCommerce.Formularios.Calificar_Vendedor
                 {
                     if (cboSeleccion.SelectedIndex == 0) camposConErrores += "Selección de Detalle, ";
                 }
-                else 
+                else if(rbtnTextoLibre.Checked)
                 {
                     if (rtxtTextoLibre.Text == "") camposConErrores += "Texto Libre de Detalle, ";
+                }
+                else
+                {
+                    camposConErrores += "Opción de Selección o Texto Libre, ";
                 }
 
                 if (camposConErrores.Length != 0)
@@ -185,7 +193,7 @@ namespace FrbaCommerce.Formularios.Calificar_Vendedor
                cantidadEstrellas = Convert.ToInt32(cboPuntaje.SelectedValue);
                FechaActual = Convert.ToDateTime(ConfigurationManager.AppSettings["DateTimeNow"]);
                if (rbtnComboSeleccion.Checked)
-                   detalle = cboSeleccion.SelectedText;
+                   detalle = cboSeleccion.Text;
                else
                    detalle = rtxtTextoLibre.Text;
                
@@ -206,7 +214,7 @@ namespace FrbaCommerce.Formularios.Calificar_Vendedor
         {
             try
             {
-                rtxtDescripcionPubl.Text = publicacionSinCalificar.Cells["PublicacionDescripcion"].ToString();
+                rtxtDescripcionPubl.Text = publicacionSinCalificar.Cells["PublicacionDescripcion"].Value.ToString();
             }
             catch (Exception)
             {
@@ -218,7 +226,7 @@ namespace FrbaCommerce.Formularios.Calificar_Vendedor
         {
             try
             {
-                txtVendedor.Text = publicacionSinCalificar.Cells["UsernameVendedor"].ToString();
+                txtVendedor.Text = publicacionSinCalificar.Cells["UsernameVendedor"].Value.ToString();
             }
             catch (Exception)
             {
@@ -230,7 +238,7 @@ namespace FrbaCommerce.Formularios.Calificar_Vendedor
         {
             try
             {
-                txtMontoTotal.Text = publicacionSinCalificar.Cells["MontoTotalPagado"].ToString();
+                txtMontoTotal.Text = publicacionSinCalificar.Cells["MontoTotalPagado"].Value.ToString();
             }
             catch (Exception)
             {

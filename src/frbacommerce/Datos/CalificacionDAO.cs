@@ -78,7 +78,7 @@ namespace FrbaCommerce.Datos
             try
             {
                 script = "INSERT INTO vadem.calificacion VALUES ( ";
-                script += "(SELECT MAX(IdCalificacion) + 1 FROM vadem.calificaciones), ";
+                script += "(SELECT MAX(IdCalificacion) + 1 FROM vadem.calificacion), ";
                 script += idCompra + ",";
                 script += idVendedor + ",";
                 script += idCalificador + ",";

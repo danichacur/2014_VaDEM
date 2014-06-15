@@ -79,7 +79,7 @@ namespace FrbaCommerce.Datos
                 script += ",'" + cliente.TipoDocumento + "','" + cliente.Nombre + "','" + cliente.Apellido;
                 script += "','" + cliente.Email + "','" + cliente.Telefono + "','" + cliente.Direccion + "', " + cliente.Numero;
                 script += "," + (cliente.Piso == "" ? "NULL" : cliente.Piso) + "," + (cliente.Departamento == "" ? "NULL" : "'" + cliente.Departamento + "'") + ",'" + cliente.Localidad + "','" + cliente.CodigoPostal;
-                script += "','" + cliente.FechaNacimiento + "','" + cliente.Cuil + "')";
+                script += "','" + Metodos_Comunes.localDateToSQLDate(cliente.FechaNacimiento) + "','" + cliente.Cuil + "')";
                 
                 AccesoDatos.Instance.EjecutarScript(script);
 
@@ -296,6 +296,25 @@ namespace FrbaCommerce.Datos
             }
         }
 
-       
+
+
+        public  static Boolean existeCUIT(string cuitIngresado)
+        {
+            String script;
+            DataTable tbl;
+            try
+            {
+                script = "SELECT TOP 1 1 FROM vadem.cliente ";
+                script += "WHERE CUIL = '" + cuitIngresado + "' ";
+                
+                tbl = AccesoDatos.Instance.EjecutarScript(script);
+
+                return tbl.Rows.Count > 0;
+            }
+            catch (Exception)
+            {   
+                throw;
+            }
+        }
     }
 }

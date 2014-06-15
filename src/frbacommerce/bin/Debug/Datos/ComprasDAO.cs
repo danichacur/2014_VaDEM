@@ -15,18 +15,27 @@ namespace FrbaCommerce.Datos
         /// </summary>
         /// <param name="script"></param>
         /// <returns></returns>
-        public static List<Compra> obtenerCompras(String clausulaWhere)
+        public static DataTable obtenerCompras(String clausulaWhere)
         {
-            Compra compra;
             List<Compra> compras;
             DataTable tbl;
             try
             {
-                String script = "SELECT * FROM vadem.compras C left join vadem.publicacion P on C.IdPublicacion = P.IdPublicacion ";
-                script += "left join vadem.usuario u on p.IdVendedor = u.IdUsuario ";
-                script += "WHERE C.IdComprador = " + Session.IdUsuario + " ";
-                script += "AND Calificada = 0";
-                //script += "AND " + clausulaWhere;
+
+
+                String script = "SELECT C.IdCompra, ";
+                script += "        P.IdVendedor,  ";
+                script += "        P.Descripcion AS PublicacionDescripcion,  ";
+                script += "        U.Username AS UsernameVendedor,  ";
+                script += "        C.Fecha,  ";
+                script += "        C.Cantidad,  ";
+                script += "        Calificada,  ";
+                script += "        PrecioInicial * Cantidad AS MontoTotalPagado ";
+                script += " FROM vadem.compras C  ";
+                script += " LEFT JOIN vadem.publicacion P ON C.IdPublicacion = P.IdPublicacion  ";
+                script += " LEFT JOIN vadem.usuario U ON P.IdVendedor = U.IdUsuario  ";
+                script += " WHERE C.IdComprador = " + Session.IdUsuario + " AND Calificada = 0 ";
+
                 if (clausulaWhere != "")
                     script += "AND " + clausulaWhere;
 
@@ -34,21 +43,7 @@ namespace FrbaCommerce.Datos
 
                 tbl = AccesoDatos.Instance.EjecutarScript(script);
 
-                foreach (DataRow row in tbl.Rows)
-                {
-                    compra = new Compra(
-                                Convert.ToInt32(row["IdCompra"]),
-                                new Publicacion(Convert.ToInt32(row["IdPublicacion"]),
-                                                (String)row["Descripcion"]),
-                                new Cliente(),
-                                (DateTime)row["Fecha"],
-                                Convert.ToInt32(row["Cantidad"]),
-                                Convert.ToInt32(row["Calificada"]) == 1 ? true : false
-                                    );
-                    compras.Add(compra);
-                }
-
-                return compras;
+                return tbl;
             }
             catch (Exception)
             {

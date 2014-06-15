@@ -47,12 +47,12 @@ GO
 
 CREATE TRIGGER [vadem].[insertCalificacion]
 ON [vadem].[calificacion]
-FOR INSERT
+AFTER INSERT
 AS  
 BEGIN
 SET NOCOUNT ON;
 
-
+	--CALCULA REPUTACION
 	DECLARE @IdVendedor AS INT
 	DECLARE @nuevaReputacion AS numeric(3,2)
 
@@ -64,7 +64,14 @@ SET NOCOUNT ON;
 
 	UPDATE vadem.usuario SET Reputacion = @nuevaReputacion
 	WHERE IdUsuario = @IdVendedor
+	
+	
+	--CAMBIA ESTADO CALIFICADA
+	DECLARE @IdCompra AS INT
+	SELECT @IdCompra = IdCompra FROM INSERTED 
 
+	UPDATE vadem.compras SET Calificada = 1 
+	WHERE IdCompra = @IdCompra
 
 END
 
