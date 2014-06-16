@@ -389,7 +389,7 @@ CREATE TABLE [vadem].[itemFactura](
 	[Costo] [numeric] (18,2) NOT NULL,
 	[Cantidad] [numeric] (18,0) NOT NULL,
 	--[EsCompra] [bit] NOT NULL, --lo sacamos porque agregamos el campo ComprasPorRendir en Usuarios
-	[IdFactura] [int] NULL,
+	[IdFactura] [numeric] (18,0) NOT NULL DEFAULT 0,
  CONSTRAINT [PK_itemFactura] PRIMARY KEY CLUSTERED 
 (
 	[IdItem] ASC
@@ -493,6 +493,12 @@ ALTER TABLE [vadem].[factura]  WITH CHECK ADD  CONSTRAINT [FK_factura_usuario] F
 REFERENCES [vadem].[usuario] ([IdUsuario])
 GO
 ALTER TABLE [vadem].[factura] CHECK CONSTRAINT [FK_factura_usuario]
+GO
+/****** Object:  ForeignKey [FK_itemFactura_factura]    Script Date: 04/21/2014 23:30:23 ******/
+ALTER TABLE [vadem].[itemFactura]  WITH CHECK ADD  CONSTRAINT FK_itemFactura_factura FOREIGN KEY([IdFactura])
+REFERENCES [vadem].[factura] ([IdFactura])
+GO
+ALTER TABLE [vadem].[itemFactura] CHECK CONSTRAINT FK_itemFactura_factura
 GO
 /****** Object:  ForeignKey [FK_itemFactura_publicacion]    Script Date: 04/21/2014 23:30:23 ******/
 ALTER TABLE [vadem].[itemFactura]  WITH CHECK ADD  CONSTRAINT [FK_itemFactura_publicacion] FOREIGN KEY([IdPublicacion])

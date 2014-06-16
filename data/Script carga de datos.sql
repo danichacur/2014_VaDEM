@@ -142,6 +142,12 @@ INSERT INTO vadem.factura
 	LEFT JOIN vadem.usuario U
 		ON U.Username = (ISNULL(E.Publ_Empresa_Cuit, CONVERT(VARCHAR,E.Publ_Cli_DNI) + '-' + E.Publ_Cli_Apeliido))
 	WHERE E.Factura_Nro IS NOT NULL
+	
+-- Se crea la factura 0 que tendra asociadas a los item pendientes de facturar --
+-- La factura se le asocia al usuario administrador -- 
+INSERT INTO vadem.factura 
+VALUES (0, 1, '', '', NULL, 0)
+	
 GO
 
 
@@ -243,6 +249,7 @@ INSERT INTO vadem.itemFactura
 	LEFT JOIN vadem.usuario U
 		ON U.Username = (ISNULL(E.Publ_Empresa_Cuit, CONVERT(VARCHAR,E.Publ_Cli_DNI) + '-' + E.Publ_Cli_Apeliido))
 	WHERE Item_Factura_Cantidad IS NOT NULL
+	
 GO	
 
 
