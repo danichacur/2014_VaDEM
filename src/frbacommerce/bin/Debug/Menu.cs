@@ -133,9 +133,9 @@ namespace FrbaCommerce
                     case "AMB_ROLES":
                         pantalla = new ABM_Rol.Rol_Listar();
                         break;
-                    //case "REGISTRO_USUARIO":
-                    //    pantalla = new ;
-                    //    break;
+                    case "REGISTRO_USUARIO":
+                        pantalla = new FrbaCommerce.Registro_de_Usuario.registroUsuario();
+                        break;
                     case "ABM_CLIENTE":
                         pantalla = new Abm_Cliente.Cliente_Listar();
                         break;

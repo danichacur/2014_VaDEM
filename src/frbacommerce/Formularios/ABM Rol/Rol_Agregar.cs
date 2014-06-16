@@ -64,7 +64,7 @@ namespace FrbaCommerce.Formularios.ABM_Rol
             String camposConErrores;
             try
             {
-                validarIdNoEnUso();
+                validarNombreNoEnUso();
                 camposConErrores = obtenerCamposConErrores();
                 if (camposConErrores == "")
                 {
@@ -274,6 +274,27 @@ namespace FrbaCommerce.Formularios.ABM_Rol
             }
             catch (Exception)
             {   
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// En caso de que el nombre del rol no esté en uso lanzo una excepción e interrumpo.
+        /// </summary>
+        private void validarNombreNoEnUso()
+        {
+            try
+            {
+                List<Filtro> campos = obtenerCamposEnPantalla();
+                String where = "WHERE Descripcion = '" + Convert.ToString(campos[0].obtenerValor()) + "'";
+                
+                if (RolDAO.obtenerRoles(where).Count != 0)
+                {
+                    throw new Exception("El Rol ingresado ya está en uso.");
+                }
+            }
+            catch (Exception)
+            {
                 throw;
             }
         }

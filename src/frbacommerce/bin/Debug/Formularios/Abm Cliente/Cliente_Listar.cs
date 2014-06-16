@@ -175,7 +175,7 @@ namespace FrbaCommerce.Abm_Cliente
                     List<Filtro> filtrosD = new List<Filtro>();
                     DataTable tbl = Metodos_Comunes.obtenerTablaComboTipoDocumento();
                     Metodos_Comunes.InsertarVacioEnPrimerRegistro(ref tbl);
-                    filtrosD.Add(new FiltroComboBox("Tipo Doc", "TipoDocumento", "", "-1", tbl, "id", "descripcion"));
+                    filtrosD.Add(new FiltroComboBox("Tipo Doc", "TipoDocumento", "=", "-1", tbl, "id", "descripcion"));
                     filtrosD.Add(new FiltroTextBox("Apellido", "Apellido", "LIKE", ""));
 
                     this.ctrlABM1.cargarFiltros(filtrosI, filtrosD);
