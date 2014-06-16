@@ -16,6 +16,15 @@ namespace FrbaCommerce.Componentes_Comunes
 
         List<Filtro> filtrosEnPantalla;
 
+        /// <summary>
+        /// getter de obtenerCamposEnPantalla
+        /// </summary>
+        /// <returns></returns>
+        public List<Filtro> obtenerFiltrosEnPantalla()
+        {
+            return filtrosEnPantalla;
+        }
+
         #endregion
 
         #region Eventos

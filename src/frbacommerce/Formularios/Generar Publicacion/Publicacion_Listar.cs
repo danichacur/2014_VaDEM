@@ -172,6 +172,12 @@ namespace FrbaCommerce.Generar_Publicacion
 
                     this.ctrlABM1.cargarFiltros(filtrosI, filtrosD);
                 }
+         /*       else
+                {
+                    List<Filtro> filtros = obtenerFiltrosEnPantalla();
+                    ((FiltroComboBox)filtros[3]).colocarValor(obtenerVisibilidadHabilitadas());
+
+                }*/
             }
             catch (Exception ex)
             {
@@ -195,6 +201,22 @@ namespace FrbaCommerce.Generar_Publicacion
             catch (Exception ex)
             {
                 throw new Exception("Error " + ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Obtiene del control AltaModificacion los campos que fueron cargados.
+        /// </summary>
+        /// <returns></returns>
+        public List<Filtro> obtenerFiltrosEnPantalla()
+        {
+            try
+            {
+                return ctrlABM1.obtenerFiltrosEnPantalla();
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
 
