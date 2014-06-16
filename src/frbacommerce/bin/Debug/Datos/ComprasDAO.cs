@@ -37,7 +37,7 @@ namespace FrbaCommerce.Datos
                 script += " WHERE C.IdComprador = " + Session.IdUsuario + " AND Calificada = 0 ";
 
                 if (clausulaWhere != "")
-                    script += "AND " + clausulaWhere;
+                    script += clausulaWhere.Replace("WHERE", "AND");
 
                 compras = new List<Compra>();
 

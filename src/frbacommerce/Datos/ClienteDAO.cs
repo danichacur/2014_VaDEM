@@ -154,7 +154,7 @@ namespace FrbaCommerce.Datos
                                     (String)row["Nombre"],
                                     (String)row["Apellido"],
                                     (String)row["Mail"],
-                                    (String)row["Telefono"],
+                                    Convert.ToString(row["Telefono"]),
                                     (String)row["Direccion"],
                                     Convert.ToInt32(row["Numero"]),
                                     Convert.ToString(((row["Piso"] == DBNull.Value) ? "" : row["Piso"])),

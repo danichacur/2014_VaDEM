@@ -111,14 +111,20 @@ namespace FrbaCommerce.Formularios.Calificar_Vendedor
         /// </summary>
         private void cargaFiltros()
         {
+            FiltroFecha filtroFecha;
+            DateTime valorDefault;
             try
             {
                 List<Filtro> filtrosI = new List<Filtro>();
-              //  filtrosI.Add(new FiltroFecha("Documento", "Documento", "=", ""));
-              //  filtrosI.Add(new FiltroTextBox("Apellido", "Apellido", "LIKE", ""));
-                
+                filtrosI.Add(new FiltroTextBox("Descripcion", "P.Descripcion", "LIKE", ""));
 
-                this.ctrlABM1.cargarFiltros(filtrosI, null);
+                List<Filtro> filtrosD = new List<Filtro>();
+                valorDefault = Convert.ToDateTime("01/01/1900");
+                filtroFecha = new FiltroFecha("Fecha De Compra", "C.Fecha", "=", valorDefault.ToString());
+                filtroFecha.setearDefault(valorDefault);
+                filtrosD.Add(filtroFecha);
+
+                this.ctrlABM1.cargarFiltros(filtrosI, filtrosD);
             }
             catch (Exception)
             {

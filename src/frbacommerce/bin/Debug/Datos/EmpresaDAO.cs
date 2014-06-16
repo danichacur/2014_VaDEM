@@ -73,11 +73,11 @@ namespace FrbaCommerce.Datos
                                     Convert.ToInt32(row["Numero"]),
                                     Convert.ToString(((row["Piso"] == DBNull.Value) ? "" : row["Piso"])),
                                     (String)((row["Dpto"] == DBNull.Value) ? "" : row["Dpto"]),
-                                    (String)row["Localidad"],
+                                    Convert.ToString(row["Localidad"]),
                                     Convert.ToInt32(row["CodPostal"]),
-                                    (String)row["Ciudad"],
+                                    Convert.ToString(row["Ciudad"]),
                                     (String)row["Mail"],
-                                    (String)row["NombreContacto"],
+                                    Convert.ToString(row["NombreContacto"]),
                                     (DateTime)row["FechaCreacion"]
                                   );
                     return empresa;

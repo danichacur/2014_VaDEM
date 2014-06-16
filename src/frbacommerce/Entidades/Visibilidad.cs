@@ -39,7 +39,7 @@ namespace FrbaCommerce.Entidades
             try
             {
                 String query = "INSERT INTO vadem.visibilidad VALUES(";
-                query += Id;
+                query += "(SELECT MAX(IdVisibilidad)+1 FROM vadem.visibilidad)";
                 query += ",";
                 query += "'" + Descripcion + "'";
                 query += ",";

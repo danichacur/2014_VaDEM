@@ -45,7 +45,8 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
         {
             try
             {
-                ponerCamposNuevos();
+                if (empresa.IdUsuario == 1)
+                    ponerCamposNuevos();
                 llenarCampos();
                 habilitaCamposParaModificacion();
             }
@@ -71,6 +72,8 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
                     armarEmpresaConCampos();
                     empresa.modificar();
 
+                    if (empresa.IdUsuario != 1)
+                        Metodos_Comunes.MostrarMensaje("Gracias, por favor ingrese al sistema con su nueva clave");
                     DialogResult = System.Windows.Forms.DialogResult.OK;
                 }
             }
@@ -106,7 +109,8 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
                 campos[10].Enabled = true;
                 campos[11].Enabled = true;
                 campos[12].Enabled = true;
-                campos[13].Enabled = true;
+                if (empresa.IdUsuario == 1)
+                    campos[13].Enabled = true;
             }
             catch (Exception)
             {
@@ -138,7 +142,8 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
                     campos[10].colocarValor(empresa.Email);
                     campos[11].colocarValor(empresa.NombreContacto);
                     campos[12].colocarValor(empresa.fechaCreacion);
-                    campos[13].colocarValor((empresa.Habilitado ? "1" : "0"));
+                    if (empresa.IdUsuario == 1)
+                        campos[13].colocarValor((empresa.Habilitado ? "1" : "0"));
                 }
             }
             catch (Exception)
@@ -175,8 +180,11 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
             try
             {
                 base.armarEmpresaConCampos();
-                List<Filtro> campos = obtenerCamposEnPantalla();
-                empresa.Habilitado = (campos[13].obtenerValor().ToString() == "1" ? true : false);
+                if (empresa.IdUsuario == 1)
+                {
+                    List<Filtro> campos = obtenerCamposEnPantalla();
+                    empresa.Habilitado = (campos[13].obtenerValor().ToString() == "1" ? true : false);
+                }
             }
             catch (Exception)
             {

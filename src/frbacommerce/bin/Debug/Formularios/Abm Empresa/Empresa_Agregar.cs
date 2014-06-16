@@ -155,7 +155,7 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
                 filtroTxt.setObligatorio(true);
                 filtros.Add(filtroTxt);
 
-                filtroTxt = new FiltroTextBox("CUIL", "CUIL");
+                filtroTxt = new FiltroTextBox("CUIT", "CUIT");
                 filtroTxt.setTipoTextoIngresado(FiltroTextBox.TipoTexto.Numerico);
                 filtroTxt.setObligatorio(true);
                 filtros.Add(filtroTxt);
@@ -292,27 +292,30 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
                     {
                         if (validaTelefono())
                         {
-                            if (validaCuitCantidadDigitos())
+                            if (validaInicioCuit())
                             {
-                                if (validaCuitDigitoVerificador())
+                                if (validaCuitCantidadDigitos())
                                 {
-                                    if (validaCuitNoRepetido())
+                                    if (validaCuitDigitoVerificador())
                                     {
-                                        valida = true;
+                                        if (validaCuitNoRepetido())
+                                        {
+                                            valida = true;
+                                        }
+                                        else
+                                        {
+                                            Metodos_Comunes.MostrarMensaje("El Cuit ingresado no es válido, ya se encuentra asignado");
+                                        }
                                     }
                                     else
                                     {
-                                        Metodos_Comunes.MostrarMensaje("El Cuit ingresado no es válido, ya se encuentra asignado");
+                                        Metodos_Comunes.MostrarMensaje("El Cuit ingresado no es válido, el dígito identificador no coincide. Debería ser: " + CalcularDigitoCuit(obtenerCamposEnPantalla()[1].obtenerValor().ToString().Substring(0, 10)).ToString());
                                     }
                                 }
                                 else
                                 {
-                                    Metodos_Comunes.MostrarMensaje("El Cuit ingresado no es válido, el dígito identificador no coincide. Debería ser: " + CalcularDigitoCuit(obtenerCamposEnPantalla()[1].obtenerValor().ToString().Substring(0, 10)).ToString());
+                                    Metodos_Comunes.MostrarMensaje("El Cuit ingresado no es válido, debe tener 11 dígitos.");
                                 }
-                            }
-                            else
-                            {
-                                Metodos_Comunes.MostrarMensaje("El Cuit ingresado no es válido, debe tener 11 dígitos.");
                             }
                         }
                         else
@@ -504,6 +507,35 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
                 campos = obtenerCamposEnPantalla();
                 cuitIngresado = campos[1].obtenerValor().ToString();
                 return cuitIngresado.Length == 11;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Valida los 2 primeros digitos y el contenido del CUIT
+        /// </summary>
+        /// <returns></returns>
+        private Boolean validaInicioCuit()
+        {
+            string cuilIngresado;
+            List<Filtro> campos;
+            Boolean inicio = false;
+
+            try
+            {
+                campos = obtenerCamposEnPantalla();
+                cuilIngresado = campos[1].obtenerValor().ToString();
+                int primerosDigitos = Convert.ToInt32(cuilIngresado.Substring(0, 2));
+
+                if ((primerosDigitos == 33) || (primerosDigitos == 30))
+                    inicio = true;
+                else
+                    Metodos_Comunes.MostrarMensajeError("Los primeros dígitos del CUIT deben ser 33.");
+
+                return inicio;
             }
             catch (Exception)
             {

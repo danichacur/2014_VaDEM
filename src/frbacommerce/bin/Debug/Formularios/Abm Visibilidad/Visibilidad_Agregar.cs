@@ -64,11 +64,11 @@ namespace FrbaCommerce.Formularios.Abm_Visibilidad
                 camposConErrores = obtenerCamposConErrores();
                 if (camposConErrores == "")
                 {
-                    validarIdNoEnUso();
-                
+                    //validarIdNoEnUso();
+                    validarNombreNoEnUso();
                     armarVisibilidadConCampos();
                     visibilidad.insertar();
-
+                    
                     DialogResult = System.Windows.Forms.DialogResult.OK;
                 }
                 else
@@ -118,10 +118,15 @@ namespace FrbaCommerce.Formularios.Abm_Visibilidad
             FiltroTextBox filtroTxt;
             try
             {
+
                 List<Filtro> filtros = new List<Filtro>();
+                
+                //visibilidad.Id = Convert.ToInt32(visibilidades[0].Id);
                 filtroTxt = new FiltroTextBox("Id", "IdVisibilidad", "=", "");
-                filtroTxt.setTipoTextoIngresado(FiltroTextBox.TipoTexto.Numerico);
+                //filtroTxt.setTipoTextoIngresado(FiltroTextBox.TipoTexto.Numerico); 
+                filtroTxt.Enabled = false;
                 filtros.Add(filtroTxt);
+                filtros[0].colocarValor(Convert.ToString(VisibilidadDAO.obtenerVisibilidadMaxima() + 1));
 
                 filtros.Add(new FiltroTextBox("Descripcion", "Descripcion", "LIKE", ""));
 
@@ -243,6 +248,28 @@ namespace FrbaCommerce.Formularios.Abm_Visibilidad
                 if (VisibilidadDAO.obtenerVisibilidad(Convert.ToInt16(campos[0].obtenerValor())) != null)
                 {
                     throw new Exception("El Id Visibilidad ingresado ya está en uso.");
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
+        /// <summary>
+        /// En caso de que el nombre de la visibilidad no esté en uso lanzo una excepción e interrumpo.
+        /// </summary>
+        private void validarNombreNoEnUso()
+        {
+            try
+            {
+                List<Filtro> campos = obtenerCamposEnPantalla();
+                String where = "WHERE Descripcion = '" + Convert.ToString(campos[1].obtenerValor()) + "'";
+
+                if (VisibilidadDAO.obtenerVisibilidades(where).Count != 0)
+                {
+                    throw new Exception("El nombre de la visibilidad ingresada ya está en uso.");
                 }
             }
             catch (Exception)

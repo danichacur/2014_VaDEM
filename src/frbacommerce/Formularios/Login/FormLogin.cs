@@ -155,6 +155,24 @@ namespace FrbaCommerce.Formularios.Login
                         Formularios.Registro_de_Usuario.CambiaPassword cambiaPass = new Formularios.Registro_de_Usuario.CambiaPassword(usr);
                         cambiaPass.ShowDialog();
                         usr.aumentarCantidadLoggeosSatisfactorios();
+
+                        if (usr.Rol.Id == 2)
+                        {
+                            Cliente cliente = new Cliente();
+                            cliente = ClienteDAO.obtenerCliente(usr.IdUsuario);
+                            Metodos_Comunes.MostrarMensaje("Por unica vez debe validar sus datos.");
+                            Formularios.Abm_Cliente.Cliente_Modificar actualizarCli = new Formularios.Abm_Cliente.Cliente_Modificar(cliente);
+                            actualizarCli.ShowDialog();
+                        }
+                        else
+                        {
+                            Empresa empresa = new Empresa();
+                            empresa = EmpresaDAO.obtenerEmpresa(usr.IdUsuario);
+                            Metodos_Comunes.MostrarMensaje("Por unica vez debe validar sus datos.");
+                            Formularios.Abm_Empresa.Empresa_Modificar actualizarEmp = new Formularios.Abm_Empresa.Empresa_Modificar(empresa);
+                            actualizarEmp.ShowDialog();
+                        }
+
                         return;
                     }
                 }

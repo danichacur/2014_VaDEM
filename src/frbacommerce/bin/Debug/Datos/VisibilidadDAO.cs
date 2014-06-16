@@ -52,6 +52,29 @@ namespace FrbaCommerce.Datos
             }
         }
 
+        public static int obtenerVisibilidadMaxima()
+        {
+            String script;
+            DataTable tblVisibilidades;
+            int visib= 0;
+            try
+            {
+                script = "SELECT MAX(IdVisibilidad) FROM vadem.visibilidad ";
+                
+                tblVisibilidades = AccesoDatos.Instance.EjecutarScript(script);
+
+                 if (tblVisibilidades.Rows[0][0] != null)
+                 {
+                     visib = Convert.ToInt32(tblVisibilidades.Rows[0][0]);
+                 }
+                 return visib;
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
 
         public static Visibilidad obtenerVisibilidad(int pIdVisibilidad)
         {

@@ -278,27 +278,30 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
                     {
                         if (validaTelefono())
                         {
-                            if (validaCuitCantidadDigitos())
+                            if (validaInicioYCentroCuil())
                             {
-                                if (validaCuitDigitoVerificador())
+                                if (validaCuitCantidadDigitos())
                                 {
-                                    if (validaCuitNoRepetido())
+                                    if (validaCuitDigitoVerificador())
                                     {
-                                        valida = true;
+                                        if (validaCuitNoRepetido())
+                                        {
+                                            valida = true;
+                                        }
+                                        else
+                                        {
+                                            Metodos_Comunes.MostrarMensaje("El Cuit ingresado no es válido, ya se encuentra asignado");
+                                        }
                                     }
                                     else
                                     {
-                                        Metodos_Comunes.MostrarMensaje("El Cuit ingresado no es válido, ya se encuentra asignado");
+                                        Metodos_Comunes.MostrarMensaje("El Cuit ingresado no es válido, el dígito identificador no coincide. Debería ser: " + CalcularDigitoCuit(obtenerCamposEnPantalla()[13].obtenerValor().ToString().Substring(0, 10)).ToString());
                                     }
                                 }
                                 else
                                 {
-                                    Metodos_Comunes.MostrarMensaje("El Cuit ingresado no es válido, el dígito identificador no coincide. Debería ser: " + CalcularDigitoCuit(obtenerCamposEnPantalla()[13].obtenerValor().ToString().Substring(0, 10)).ToString());
+                                    Metodos_Comunes.MostrarMensaje("El Cuit ingresado no es válido, debe tener 11 dígitos.");
                                 }
-                            }
-                            else 
-                            {
-                                Metodos_Comunes.MostrarMensaje("El Cuit ingresado no es válido, debe tener 11 dígitos.");
                             }
                         }
                         else
@@ -511,6 +514,48 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
                 cuitIngresado = campos[13].obtenerValor().ToString();
                 digitoIdentificadorValido = CalcularDigitoCuit(cuitIngresado.Substring(0,10)).ToString();
                 return cuitIngresado.Substring(10,1) == digitoIdentificadorValido;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Valida los 2 primeros digitos y el contenido del CUIL
+        /// </summary>
+        /// <returns></returns>
+        private Boolean validaInicioYCentroCuil()
+        {
+            string cuilIngresado;
+            List<Filtro> campos;
+            Boolean inicio = false;
+            Boolean fin = false;
+
+            try
+            {
+                campos = obtenerCamposEnPantalla();
+                cuilIngresado = campos[13].obtenerValor().ToString();
+                int primerosDigitos = Convert.ToInt32(cuilIngresado.Substring(0, 2));
+                string mediosDigitos = Convert.ToString(cuilIngresado.Substring(2, 8));
+
+                if ((primerosDigitos == 27) || (primerosDigitos == 20) || (primerosDigitos == 23) || (primerosDigitos == 24))
+                    inicio = true;
+                else
+                    Metodos_Comunes.MostrarMensajeError("Los primeros dígitos del CUIL deben ser 23.");
+
+
+                String documento = Convert.ToString(campos[1].obtenerValor());
+                if (documento.Length < 8)
+                    Metodos_Comunes.MostrarMensajeError("Su documento debe ser de 8 digitos, puede completar el inicio con ceros hasta llegar a los 8.");
+                else
+                {
+                    if (Convert.ToString(mediosDigitos) != documento)
+                        Metodos_Comunes.MostrarMensajeError("Los dígitos medios del CUIL deben ser iguales a su documento.");
+                    else
+                        fin = true;
+                }
+                return (inicio&fin);
             }
             catch (Exception)
             {
