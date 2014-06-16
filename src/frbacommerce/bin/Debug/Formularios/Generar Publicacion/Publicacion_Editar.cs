@@ -107,7 +107,7 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
                     }
                     if (campoEstado != "")
                     {
-                        Metodos_Comunes.MostrarMensaje("El estado de la publicacion solo puede ser BORRADOR o ACTIVA");
+                        Metodos_Comunes.MostrarMensaje("El estado de la publicacion solo puede ser BORRADOR o PUBLICADA");
                     }
                 }
 

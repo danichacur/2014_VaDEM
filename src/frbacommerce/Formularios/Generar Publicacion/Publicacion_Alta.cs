@@ -548,7 +548,7 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
             int alto;
             try
             {
-                alto = 544;
+                alto = 644;
                 this.Size = new System.Drawing.Size(this.Size.Width, alto);
             }
             catch (Exception)

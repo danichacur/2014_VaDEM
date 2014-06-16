@@ -43,7 +43,7 @@
             // dtpFecha
             // 
             this.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFecha.Location = new System.Drawing.Point(72, 0);
+            this.dtpFecha.Location = new System.Drawing.Point(107, 0);
             this.dtpFecha.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.dtpFecha.Name = "dtpFecha";
             this.dtpFecha.Size = new System.Drawing.Size(121, 20);
@@ -56,7 +56,7 @@
             this.Controls.Add(this.dtpFecha);
             this.Controls.Add(this.lblFiltro);
             this.Name = "FiltroFecha";
-            this.Size = new System.Drawing.Size(195, 21);
+            this.Size = new System.Drawing.Size(231, 21);
             this.ResumeLayout(false);
 
         }

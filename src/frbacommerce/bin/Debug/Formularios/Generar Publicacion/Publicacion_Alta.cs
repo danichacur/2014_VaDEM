@@ -97,7 +97,7 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
 
                     if (campoEstado != "")
                     {
-                        Metodos_Comunes.MostrarMensaje("El estado de la publicacion solo puede ser BORRADOR o ACTIVA");
+                        Metodos_Comunes.MostrarMensaje("El estado de la publicacion solo puede ser BORRADOR o PUBLICADA");
                     }
 
                     if (camposConErrores != "")
@@ -548,7 +548,7 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
             int alto;
             try
             {
-                alto = 544;
+                alto = 644;
                 this.Size = new System.Drawing.Size(this.Size.Width, alto);
             }
             catch (Exception)

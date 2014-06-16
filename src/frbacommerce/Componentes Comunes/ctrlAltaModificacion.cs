@@ -142,7 +142,7 @@ namespace FrbaCommerce.Componentes_Comunes
                     contador = 0;
                     foreach (Filtro filtro in filtrosDerecha)
                     {
-                        filtro.Location = new Point(200, 30 * contador); ;
+                        filtro.Location = new Point(250, 30 * contador); ;
                         this.Controls.Add(filtro);
                         contador += 1;
 
