@@ -178,7 +178,6 @@
             this.btnComprar.TabIndex = 16;
             this.btnComprar.Text = "Comprar";
             this.btnComprar.UseVisualStyleBackColor = true;
-            this.btnComprar.Click += new System.EventHandler(this.btnComprar_Click);
             // 
             // btnOfertar
             // 
@@ -188,7 +187,6 @@
             this.btnOfertar.TabIndex = 17;
             this.btnOfertar.Text = "Ofertar";
             this.btnOfertar.UseVisualStyleBackColor = true;
-            this.btnOfertar.Click += new System.EventHandler(this.btnOfertar_Click);
             // 
             // btnPreguntar
             // 
