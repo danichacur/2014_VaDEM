@@ -158,12 +158,12 @@ GO
 
 /************************/ SELECT 'VISIBILIDAD' /************************/
 INSERT INTO vadem.visibilidad
-	SELECT DISTINCT Publicacion_Visibilidad_Cod,Publicacion_Visibilidad_Desc,Publicacion_Visibilidad_Porcentaje,Publicacion_Visibilidad_Precio,
+	SELECT DISTINCT Publicacion_Visibilidad_Cod,Publicacion_Visibilidad_Desc,Publicacion_Visibilidad_Precio,Publicacion_Visibilidad_Porcentaje,
 		10,7,1
 	FROM gd_esquema.Maestra
 	WHERE Publicacion_Visibilidad_Cod <> 10006
 INSERT INTO vadem.visibilidad
-	SELECT DISTINCT Publicacion_Visibilidad_Cod,Publicacion_Visibilidad_Desc,Publicacion_Visibilidad_Porcentaje,Publicacion_Visibilidad_Precio,
+	SELECT DISTINCT Publicacion_Visibilidad_Cod,Publicacion_Visibilidad_Desc,Publicacion_Visibilidad_Precio,Publicacion_Visibilidad_Porcentaje,
 		3,7,1
 	FROM gd_esquema.Maestra
 	WHERE Publicacion_Visibilidad_Cod = 10006
@@ -261,13 +261,13 @@ UPDATE vadem.usuario
 GO
 
 /************************/ SELECT 'CALIFICACIONES STANDARD' /************************/
-INSERT INTO vadem.calificacionesEstandard VALUES	('Excelente atención')
+INSERT INTO vadem.calificacionesEstandard VALUES	('Excelente atenciï¿½n')
 INSERT INTO vadem.calificacionesEstandard VALUES	('Excelente producto')
-INSERT INTO vadem.calificacionesEstandard VALUES	('Buena atención')
+INSERT INTO vadem.calificacionesEstandard VALUES	('Buena atenciï¿½n')
 INSERT INTO vadem.calificacionesEstandard VALUES	('Buen producto')
-INSERT INTO vadem.calificacionesEstandard VALUES	('Mala atención')
+INSERT INTO vadem.calificacionesEstandard VALUES	('Mala atenciï¿½n')
 INSERT INTO vadem.calificacionesEstandard VALUES	('Mal producto')
-INSERT INTO vadem.calificacionesEstandard VALUES	('Muy mala atención')
+INSERT INTO vadem.calificacionesEstandard VALUES	('Muy mala atenciï¿½n')
 INSERT INTO vadem.calificacionesEstandard VALUES	('Muy mal producto')
 											
 GO
