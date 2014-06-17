@@ -73,6 +73,7 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
              String camposConErrores;
             String camposEnCero;
             String campoParaSubasta;
+            String campoEstado = "";
             try
             {
 
@@ -80,8 +81,10 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
                 camposEnCero = obtenerCamposEnCero();
                 Boolean campoVisibilidad = obtenerCampoVisibilidad();
                 campoParaSubasta = obtenerCampoSubasta();
+                if (publicacion.Estado == 1)
+                    campoEstado = obtenerCampoEstado();
 
-                if (campoVisibilidad && (camposConErrores == "") && (camposEnCero == "") && esValidoElEstado() && (campoParaSubasta == ""))
+                if (campoVisibilidad && (campoEstado == "") && (camposConErrores == "") && (camposEnCero == "") && esValidoElEstado() && (campoParaSubasta == ""))
                 {
                     armarPublicacionConCamposEdicion();
                     publicacion.modificar();
@@ -101,6 +104,10 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
                     if (!campoVisibilidad)
                     {
                         Metodos_Comunes.MostrarMensaje("Usted llego al limite de publicaciones gratuitas, por favor elija otro tipo de Visibilidad");
+                    }
+                    if (campoEstado != "")
+                    {
+                        Metodos_Comunes.MostrarMensaje("El estado de la publicacion solo puede ser BORRADOR o PUBLICADA");
                     }
                 }
 

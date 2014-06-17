@@ -42,9 +42,9 @@
             // 
             // txtFiltro
             // 
-            this.txtFiltro.Location = new System.Drawing.Point(72, 0);
+            this.txtFiltro.Location = new System.Drawing.Point(107, 0);
             this.txtFiltro.Name = "txtFiltro";
-            this.txtFiltro.Size = new System.Drawing.Size(121, 20);
+            this.txtFiltro.Size = new System.Drawing.Size(121, 21);
             this.txtFiltro.TabIndex = 1;
             // 
             // FiltroTextBox
@@ -54,7 +54,7 @@
             this.Controls.Add(this.txtFiltro);
             this.Controls.Add(this.lblFiltro);
             this.Name = "FiltroTextBox";
-            this.Size = new System.Drawing.Size(195, 21);
+            this.Size = new System.Drawing.Size(231, 21);
             this.ResumeLayout(false);
             this.PerformLayout();
 

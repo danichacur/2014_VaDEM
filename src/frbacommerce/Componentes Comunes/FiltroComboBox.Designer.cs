@@ -43,7 +43,7 @@
             // cboFiltro
             // 
             this.cboFiltro.FormattingEnabled = true;
-            this.cboFiltro.Location = new System.Drawing.Point(72, 0);
+            this.cboFiltro.Location = new System.Drawing.Point(107, 0);
             this.cboFiltro.Name = "cboFiltro";
             this.cboFiltro.Size = new System.Drawing.Size(121, 21);
             this.cboFiltro.TabIndex = 2;
@@ -55,7 +55,7 @@
             this.Controls.Add(this.cboFiltro);
             this.Controls.Add(this.lblFiltro);
             this.Name = "FiltroComboBox";
-            this.Size = new System.Drawing.Size(195, 21);
+            this.Size = new System.Drawing.Size(231, 21);
             this.ResumeLayout(false);
 
         }

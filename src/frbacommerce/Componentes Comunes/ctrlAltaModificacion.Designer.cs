@@ -30,7 +30,6 @@
         {
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
-            this.lblTitulo = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnCancelar
@@ -55,27 +54,15 @@
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
-            // lblTitulo
-            // 
-            this.lblTitulo.AutoSize = true;
-            this.lblTitulo.Location = new System.Drawing.Point(136, 25);
-            this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(35, 13);
-            this.lblTitulo.TabIndex = 3;
-            this.lblTitulo.Text = "label1";
-            this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
             // ctrlAltaModificacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
-            this.Controls.Add(this.lblTitulo);
             this.Name = "ctrlAltaModificacion";
             this.Size = new System.Drawing.Size(321, 111);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -83,6 +70,5 @@
 
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnAceptar;
-        private System.Windows.Forms.Label lblTitulo;
     }
 }
