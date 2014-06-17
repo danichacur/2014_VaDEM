@@ -343,7 +343,7 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [vadem].[pregunta](
-	[IdPregunta] [int] NOT NULL IDENTITY(1,1),
+	[IdPregunta] [int] NOT NULL,
 	[IdPublicacion] [numeric] (18,0) NOT NULL,
 	[UsuarioPregunta] [int] NOT NULL,
 	[FechaPregunta] [smalldatetime] NOT NULL,
