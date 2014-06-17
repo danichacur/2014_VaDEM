@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace FrbaCommerce.Facturar_Publicaciones
+namespace FrbaCommerce.Formularios.Facturar_Publicaciones
 {
-    public partial class Form1 : Form
+    public partial class Facturar_Listar : Form
     {
-        public Form1()
+        public Facturar_Listar()
         {
             InitializeComponent();
         }
