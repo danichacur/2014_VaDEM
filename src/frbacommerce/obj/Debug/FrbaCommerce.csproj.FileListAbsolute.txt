@@ -345,8 +345,6 @@ C:\Users\Nati\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios
 C:\Users\Nati\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Calificar Vendedor\Calificar_Listar.Designer.cs
 C:\Users\Nati\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\FiltroTextBox.cs
 C:\Users\Nati\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\FiltroTextBox.Designer.cs
-C:\Users\Nati\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Facturar Publicaciones\Form1.cs
-C:\Users\Nati\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Facturar Publicaciones\Form1.Designer.cs
 C:\Users\Nati\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Generar Publicacion\Publicacion_Listar.cs
 C:\Users\Nati\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Generar Publicacion\Publicacion_Listar.Designer.cs
 C:\Users\Nati\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Generar Publicacion\Publicacion_Editar.cs
@@ -365,8 +363,6 @@ C:\Users\Nati\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Menu.cs
 C:\Users\Nati\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Menu.Designer.cs
 C:\Users\Nati\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Gestion de Preguntas\Form1.cs
 C:\Users\Nati\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Gestion de Preguntas\Form1.Designer.cs
-C:\Users\Nati\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Listado Estadistico\Form1.cs
-C:\Users\Nati\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Listado Estadistico\Form1.Designer.cs
 C:\Users\Nati\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Program.cs
 C:\Users\Nati\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Registro de Usuario\registroUsuario.cs
 C:\Users\Nati\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Registro de Usuario\registroUsuario.Designer.cs
@@ -814,3 +810,8 @@ C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaComm
 C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.csproj.GenerateResource.Cache
 C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.exe
 C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.pdb
+C:\Users\Nati\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Generar_Publicacion.Publicacion_Editar.resources
+C:\Users\Nati\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Listado_Estadistico.Estadisticas.resources
+C:\Users\Nati\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Comprar_Ofertar.Comprar_Ofertar_Ofertar.resources
+C:\Users\Nati\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Comprar_Ofertar.Comprar_Ofertar_Comprar.resources
+C:\Users\Nati\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Facturar_Publicaciones.Facturar_Listar.resources

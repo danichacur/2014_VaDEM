@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using FrbaCommerce.Entidades;
 using System.Data;
-
+using System.Data.SqlClient;
 namespace FrbaCommerce.Datos
 {
     class ComprasDAO
@@ -64,6 +64,50 @@ namespace FrbaCommerce.Datos
                             "where IdComprador = " + usuario;
                             
             return AccesoDatos.Instance.EjecutarScript(script);
+        }
+
+        public static int Comprar(int idPublicacion,int idComprador,DateTime fecha,int cantidad)
+        {
+            try
+            {
+                string script= "vadem.NuevaCompra";
+                DataTable dtl;
+                List<SqlParameter> colparam = new List<SqlParameter>();
+
+                SqlParameter pIdPublicacion = new SqlParameter();
+                pIdPublicacion.SqlDbType = SqlDbType.Int;
+                pIdPublicacion.ParameterName = "@IdPublicacion";
+                pIdPublicacion.Value = idPublicacion;
+
+                SqlParameter pIdComprador = new SqlParameter();
+                pIdComprador.SqlDbType = SqlDbType.Int;
+                pIdComprador.ParameterName = "@IdComprador";
+                pIdComprador.Value = idComprador;
+
+                SqlParameter pFecha = new SqlParameter();
+                pFecha.SqlDbType = SqlDbType.DateTime;
+                pFecha.ParameterName = "@Fecha";
+                pFecha.Value = fecha;
+
+                SqlParameter pCantidad = new SqlParameter();
+                pCantidad.SqlDbType = SqlDbType.Int;
+                pCantidad.ParameterName = "@Cantidad";
+                pCantidad.Value = cantidad;
+
+                colparam.Add(pIdPublicacion);
+                colparam.Add(pIdComprador);
+                colparam.Add(pFecha);
+                colparam.Add(pCantidad);
+
+               dtl= AccesoDatos.Instance.EjecutarSp(script, colparam);
+
+               return Convert.ToInt32(dtl.Rows[0][0]);
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
         }
 
     }

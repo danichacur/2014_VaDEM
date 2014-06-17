@@ -154,7 +154,7 @@ namespace FrbaCommerce.Generar_Publicacion
             DateTime valorDefault;
             try
             {
-                //if (!this.ctrlABM1.existenFiltrosCargados())
+                if (!this.ctrlABM1.existenFiltrosCargados())
                 {
                     List<Filtro> filtrosI = new List<Filtro>();
                     filtrosI.Add(new FiltroComboBox("Tipo", "Tipo", "=", "", obtenerTiposPublicacion(), "descripcion", "descripcion"));

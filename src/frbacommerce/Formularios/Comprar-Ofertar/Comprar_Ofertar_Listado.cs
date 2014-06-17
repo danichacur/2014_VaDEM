@@ -18,6 +18,8 @@ namespace FrbaCommerce.Comprar_Ofertar
         #region VariablesDeClase
 
         private DataGridView dgv;
+        private DataGridViewColumn[] columnas;
+        private Paginar pag;
 
         #endregion
 
@@ -147,10 +149,11 @@ namespace FrbaCommerce.Comprar_Ofertar
             try
             {
                 Object listaPublicaciones = (Object)PublicacionDAO.obtenerPublicacionesActivas(txtDescripcion.Text, (int)cmbRubro.SelectedValue);
+                pag = new Paginar(listaPublicaciones, 10);
 
-                DataGridViewColumn[] columnas = obtenerDisenoColumnasGrilla();
+                 columnas = obtenerDisenoColumnasGrilla();
 
-                dgv = cargarGrilla(listaPublicaciones, columnas);
+                dgv = cargarGrilla(pag.cargar(), columnas);
 
                 dgv.CellClick -= new DataGridViewCellEventHandler(dgv_CellClick);
                 dgv.CellClick += new DataGridViewCellEventHandler(dgv_CellClick);
@@ -261,6 +264,7 @@ namespace FrbaCommerce.Comprar_Ofertar
         {
             try
             {
+             
                 Object listDatos = lista;
                 dgvPubliaciones.DataSource = null;
                 dgvPubliaciones.DataSource = listDatos;
@@ -273,6 +277,34 @@ namespace FrbaCommerce.Comprar_Ofertar
         }
 
         #endregion
+
+        private void btnPrimera_Click(object sender, EventArgs e)
+        {
+            cargarGrilla(pag.primeraPagina(), columnas);
+        }
+
+        private void btnAnterior_Click(object sender, EventArgs e)
+        {
+            cargarGrilla(pag.atras(),columnas);
+        }
+
+        private void btnSiguiente_Click(object sender, EventArgs e)
+        {
+            cargarGrilla(pag.adelante(), columnas);
+        }
+
+        private void btnUltima_Click(object sender, EventArgs e)
+        {
+            cargarGrilla(pag.ultimaPagina(), columnas);
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            cmbRubro.SelectedIndex = 0;
+            txtDescripcion.Text = "";
+
+        }
+
 
 
     }
