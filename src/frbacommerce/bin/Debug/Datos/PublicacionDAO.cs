@@ -280,8 +280,8 @@ namespace FrbaCommerce.Datos
                 string script = "select P.* from vadem.publicacion P " +
                        " join vadem.visibilidad V on V.IdVisibilidad = P.IdVisibilidad " +
                        "join vadem.rubrosPublicacion R on R.IdPublicacion = P.IdPublicacion " +
-                       "where P.idEstado <> 2 " +
-                       "/*and (GETDATE() between FechaInicio and FechaFin)*/ " +
+                       "where P.idEstado = 2 " +
+                       "and (GETDATE() between FechaInicio and FechaFin) " +
                        "and ( (P.Tipo = 'Compra Inmediata' and P.Stock > 0) or P.Tipo ='Subasta' ) " +
                        "and (P.Descripcion like '%'+'" + Descripcion + "'+'%') " +
                        "and (R.IdRubro =" + Rubro + " or " + Rubro + " =0 ) " +
