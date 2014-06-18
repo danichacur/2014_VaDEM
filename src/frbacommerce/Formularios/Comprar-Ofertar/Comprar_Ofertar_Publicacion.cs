@@ -9,46 +9,71 @@ using System.Windows.Forms;
 using FrbaCommerce.Componentes_Comunes;
 using FrbaCommerce.Datos;
 using FrbaCommerce.Entidades;
+using System.Configuration;
 
 namespace FrbaCommerce.Formularios.Comprar_Ofertar
 {
     public partial class Comprar_Ofertar_Publicacion : ABM
     {
-        private int IdPublicacion{get;set;}
+
+        private Publicacion pub { get; set; }
         public Comprar_Ofertar_Publicacion(int idPublicacion)
         {
-            this.IdPublicacion = idPublicacion;
-            InitializeComponent();
+            try
+            {
+
+
+                this.pub = PublicacionDAO.obtenerPublicacion(idPublicacion);
+                InitializeComponent();
+            }
+            catch (Exception ex)
+            {
+
+                Metodos_Comunes.MostrarMensajeError(ex);
+            }
         }
 
 
 
         private void Comprar_Ofertar_Publicacion_Load(object sender, EventArgs e)
         {
-            Publicacion pub = PublicacionDAO.obtenerPublicacion(IdPublicacion);
-            labelDescripcion.Text = pub.Descripcion;
-            labelFechaIni.Text = pub.FechaInicio.ToString();
-            labelFechaFin.Text = pub.FechaFin.ToString();
-            labelVendedor.Text = pub.VendedorDesc;
-            labelPrecio.Text = pub.Precio.ToString();
-            labelStock.Text = pub.Cantidad.ToString();
-            labelTipo.Text = pub.Tipo;
-
-
-            if (pub.Tipo == "Subasta")
+            try
             {
-                btnComprar.Visible = false;
-                btnOfertar.Visible = true;
+                labelDescripcion.Text = pub.Descripcion;
+                labelFechaIni.Text = pub.FechaInicio.ToString();
+                labelFechaFin.Text = pub.FechaFin.ToString();
+                labelVendedor.Text = pub.VendedorDesc;
+                labelPrecio.Text = pub.Precio.ToString();
+                labelStock.Text = pub.Cantidad.ToString();
+                labelTipo.Text = pub.Tipo;
+
+
+                if (pub.Tipo == "Subasta")
+                {
+                    btnComprar.Visible = false;
+                    btnOfertar.Visible = true;
+                }
+                else
+                {
+                    btnOfertar.Visible = false;
+                    btnComprar.Visible = true;
+                }
+
+                if (pub.AdmitePreguntas)
+                {
+                    btnPreguntar.Enabled = true;
+                    pnlPregunta.Visible = false;
+                }
+                else
+                {
+                    btnPreguntar.Enabled = false;
+                    pnlPregunta.Visible = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                btnOfertar.Visible = false;
-                btnComprar.Visible = true;
-            }
 
-            if (pub.AdmitePreguntas)
-            {
-                btnPreguntar.Enabled = true;
+                Metodos_Comunes.MostrarMensajeError(ex);
             }
         }
 
@@ -59,13 +84,44 @@ namespace FrbaCommerce.Formularios.Comprar_Ofertar
 
         private void btnAceparPregunta_Click(object sender, EventArgs e)
         {
-            Pregunta pregunta = new Pregunta();
+            try
+            {
+                if (Session.IdUsuario != pub.Vendedor)
+                {
+                    Pregunta pregunta = new Pregunta();
 
-            pregunta.IdPublicacion = IdPublicacion;
-            pregunta.Fecha = DateTime.Today;
-            pregunta.PreguntaDesc = txtPregunta.Text;
+                    pregunta.IdPublicacion = pub.Id;
+                    pregunta.Fecha = Convert.ToDateTime(ConfigurationManager.AppSettings["DateTimeNow"]);
+                    pregunta.PreguntaDesc = txtPregunta.Text;
 
-            PreguntaDAO.insertar(pregunta);
+                    PreguntaDAO.insertar(pregunta);
+                    Metodos_Comunes.MostrarMensaje("La pregunta fue realizada");
+                    txtPregunta.Text = "";
+                }
+                else
+                {
+                    Metodos_Comunes.MostrarMensaje("No puedes preguntarte a ti mismo");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Metodos_Comunes.MostrarMensajeError(ex);
+            }
+        }
+
+        private void btnOfertar_Click(object sender, EventArgs e)
+        {
+
+            Formularios.Comprar_Ofertar.Comprar_Ofertar_Ofertar formOfertar = new Formularios.Comprar_Ofertar.Comprar_Ofertar_Ofertar(pub.Id);
+            formOfertar.ShowDialog();
+        }
+
+        private void btnComprar_Click(object sender, EventArgs e)
+        {
+
+            Formularios.Comprar_Ofertar.Comprar_Ofertar_Comprar formComprar = new Formularios.Comprar_Ofertar.Comprar_Ofertar_Comprar(pub);
+            formComprar.ShowDialog();
         }
     }
 }
