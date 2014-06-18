@@ -133,17 +133,11 @@ namespace FrbaCommerce
                     case "AMB_ROLES":
                         pantalla = new ABM_Rol.Rol_Listar();
                         break;
-                    case "REGISTRO_USUARIO":
-                        pantalla = new FrbaCommerce.Registro_de_Usuario.registroUsuario();
-                        break;
                     case "ABM_CLIENTE":
                         pantalla = new Abm_Cliente.Cliente_Listar();
                         break;
                     case "AMB_EMPRESA":
                         pantalla = new Formularios.Abm_Empresa.Empresa_Listar();
-                        break;
-                    case "AMB_RUBRO":
-                        pantalla = new Abm_Rubro.Abm_Rubro();
                         break;
                     case "AMB_VISIBILIDAD":
                         pantalla = new Formularios.Abm_Visibilidad.Visibilidad_Listar();
@@ -151,9 +145,6 @@ namespace FrbaCommerce
                     case "PUBLICACIONES":
                         pantalla = new Generar_Publicacion.Publicacion_Listar();
                         break;
-                    //case "EDITA_PUBLICACION":
-                    //    pantalla = new ;
-                    //    break;
                     case "GESTIONA_PREGUNTAS":
                         pantalla = new Gestion_de_Preguntas.Preguntas();
                         break;
