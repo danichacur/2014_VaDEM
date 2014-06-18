@@ -238,8 +238,7 @@ END
 
 GO
 
-
-/****** Object:  Trigger [vadem].[Trigercompras]    Script Date: 06/17/2014 05:00:34 ******/
+/****** Object:  Trigger [vadem].[Trigercompras]    Script Date: 06/18/2014 03:36:32 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -266,13 +265,14 @@ BEGIN
     declare @IdComprador int
     declare @Costo int
     declare @Cantidad int
+    declare @IdVisibilidad int 
     
     select @IdPublicacion = (select IdPublicacion from Inserted)
     select @IdComprador = (select IdComprador from Inserted)
     select @Costo = (select PrecioInicial from vadem.publicacion where IdPublicacion = @IdPublicacion)
     select @IdVendedor = (select IdVendedor from vadem.publicacion where IdPublicacion = @IdPublicacion)
     select @Cantidad = (select Cantidad from Inserted)
-    
+    select @IdVisibilidad = (select IdVisibilidad from vadem.publicacion where IdPublicacion = @IdPublicacion)
 
 if not exists(select 1 from vadem.factura where IdVendedor = @idVendedor  and IdFactura = 0)
 	begin
@@ -280,8 +280,8 @@ if not exists(select 1 from vadem.factura where IdVendedor = @idVendedor  and Id
 		values(0,@IdVendedor,'','',null,0)
 	end 
 
-insert into vadem.itemFactura (IdPublicacion,IdVendedor,Costo,Cantidad,IdFactura)
-values (@IdPublicacion,@IdVendedor,@Costo,@Cantidad,0)
+insert into vadem.itemFactura (IdPublicacion,IdVendedor,Costo,Cantidad,IdFactura,EsCompra)
+values (@IdPublicacion,@IdVendedor,@Costo,@Cantidad,0,1)
 
 update vadem.publicacion
 set Stock = Stock - @Cantidad
@@ -303,10 +303,22 @@ begin
 	and IdEstado = 2
 end  
     
+if((select Stock from vadem.publicacion where IdPublicacion = @IdPublicacion)  = 0 )   
+	begin
+		update vadem.tipoVisualizacionPorUsuario
+		set CantPublicacionesAcumuladas = CantPublicacionesAcumuladas - 1
+		where IdUsuario = @IdVendedor
+		and IdVisibilidad = @IdVisibilidad
+		
+		update vadem.publicacion
+		set IdEstado = 4
+		where IdPublicacion = @IdPublicacion
+	end
 
 END
 
 GO
+
 
 
 /****** Object:  StoredProcedure [vadem].[NuevaCompra]    Script Date: 06/17/2014 05:01:27 ******/
@@ -401,6 +413,45 @@ BEGIN
 END
 
 GO
+
+
+
+/****** Object:  StoredProcedure [vadem].[NuevaFactura]    Script Date: 06/18/2014 06:00:49 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+Create PROCEDURE [vadem].[NuevaFactura] 
+	@IdVendedor int,
+	@Fecha datetime,
+	@FormaPago nvarchar(255),
+	@DatosTarjeta int,
+	@total int
+	
+AS
+BEGIN
+	
+	declare @IdFactura int
+	
+	select @IdFactura =  (select MAX(idFactura) + 1 from vadem.factura)
+	
+	insert into vadem.factura (IdFactura,IdVendedor,FechaPago,FormaPago,DatosTarjeta,Total)
+	values( @IdFactura , @IdVendedor , @Fecha,  @FormaPago, @DatosTarjeta,@total)
+	
+	select @IdFactura
+	
+END
+
+GO
+
+
 
 --rollback
 --commit
