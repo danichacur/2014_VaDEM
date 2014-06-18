@@ -205,8 +205,9 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
                 filtroCbo.setObligatorio(true);
                 filtrosI.Add(filtroCbo);
 
-                filtroRubros = new FiltroDgvCheck("Rubros", "Descripcion", "", obtenerListaRubros(), obtenerFormatoColumnas());
+                filtroRubros = new FiltroDgvCheck("Rubros", "Rubros", "", obtenerListaRubros(), obtenerFormatoColumnas());
                 filtroRubros.setObligatorio(true);
+                filtroRubros.Size = new System.Drawing.Size(200, 500);
                 filtrosD.Add(filtroRubros);
 
                 filtroCbo = new FiltroComboBox("Estado", "IdEstado", "=", "0", obtenerEstados(), "IdEstado", "Descripcion");
