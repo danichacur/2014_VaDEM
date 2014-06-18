@@ -388,7 +388,7 @@ CREATE TABLE [vadem].[itemFactura](
 	--[Fecha] [smalldatetime] NOT NULL,
 	[Costo] [numeric] (18,2) NOT NULL,
 	[Cantidad] [numeric] (18,0) NOT NULL,
-	--[EsCompra] [bit] NOT NULL, --lo sacamos porque agregamos el campo ComprasPorRendir en Usuarios
+	[EsCompra] [bit] NOT NULL,
 	[IdFactura] [numeric] (18,0) NOT NULL DEFAULT 0,
  CONSTRAINT [PK_itemFactura] PRIMARY KEY CLUSTERED 
 (

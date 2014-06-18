@@ -244,7 +244,7 @@ GO
 
 /************************/ SELECT 'ITEM FACTURA' /************************/
 INSERT INTO vadem.itemFactura
-	SELECT DISTINCT Publicacion_Cod, U.IdUsuario,  Item_Factura_Monto, Item_Factura_Cantidad, Factura_Nro
+	SELECT DISTINCT Publicacion_Cod, U.IdUsuario,  Item_Factura_Monto, Item_Factura_Cantidad,1 ,Factura_Nro
 	FROM gd_esquema.Maestra E
 	LEFT JOIN vadem.usuario U
 		ON U.Username = (ISNULL(E.Publ_Empresa_Cuit, CONVERT(VARCHAR,E.Publ_Cli_DNI) + '-' + E.Publ_Cli_Apeliido))
