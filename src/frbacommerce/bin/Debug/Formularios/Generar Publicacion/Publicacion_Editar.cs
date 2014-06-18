@@ -118,6 +118,29 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
             }
         }
 
+        /// <summary>
+        /// Evento del boton Cancelar.
+        /// Devuelvo resultado Cancel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public override void btnCancelar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            }
+            catch (Exception ex)
+            {
+                //DialogResult = System.Windows.Forms.DialogResult.Abort;
+                Metodos_Comunes.MostrarMensajeError(ex);
+            }
+            finally
+            {
+                this.Close();
+            }
+        }
+
         #endregion
 
         #region MetodosGenerales

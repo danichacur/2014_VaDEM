@@ -154,9 +154,9 @@ namespace FrbaCommerce
                     //case "EDITA_PUBLICACION":
                     //    pantalla = new ;
                     //    break;
-                    //case "GESTIONA_PREGUNTAS":
-                    //    pantalla = new ;
-                    //    break;
+                    case "GESTIONA_PREGUNTAS":
+                        pantalla = new Gestion_de_Preguntas.Preguntas();
+                        break;
                     case "COMPRA_OFERTA":
                         pantalla = new Comprar_Ofertar.Comprar_Ofertar_Listado();
                         break;

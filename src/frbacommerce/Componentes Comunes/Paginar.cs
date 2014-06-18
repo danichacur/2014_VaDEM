@@ -43,7 +43,7 @@ namespace FrbaCommerce.Componentes_Comunes
 
                 asignarTope();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }

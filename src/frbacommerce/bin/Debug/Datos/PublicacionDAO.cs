@@ -160,7 +160,7 @@ namespace FrbaCommerce.Datos
                 SqlParameter fecha = new SqlParameter();
                 fecha.ParameterName = "@FECHA_INI";
                 fecha.SqlDbType = SqlDbType.DateTime;
-                fecha.Value = Metodos_Comunes.localDateToSQLDate(publicacion.FechaInicio);
+                fecha.Value = publicacion.FechaInicio;
                 colparam.Add(fecha);
 
                 SqlParameter precio = new SqlParameter();
