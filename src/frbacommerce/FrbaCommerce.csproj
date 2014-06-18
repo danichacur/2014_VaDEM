@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{9F87DEAA-7E5A-4897-BB78-E15F28C4FAE6}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -129,6 +129,7 @@
     <Compile Include="Componentes Comunes\Metodos_Comunes.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Componentes Comunes\Paginar.cs" />
     <Compile Include="Datos\CalificacionDAO.cs" />
     <Compile Include="Datos\ClienteDAO.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -323,11 +324,23 @@
       <DependentUpon>FiltroTextBox.cs</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Formularios\Comprar-Ofertar\Comprar_Ofertar_Comprar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Comprar-Ofertar\Comprar_Ofertar_Comprar.designer.cs">
+      <DependentUpon>Comprar_Ofertar_Comprar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Comprar-Ofertar\Comprar_Ofertar_Listado.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Formularios\Comprar-Ofertar\Comprar_Ofertar_Listado.designer.cs">
       <DependentUpon>Comprar_Ofertar_Listado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Comprar-Ofertar\Comprar_Ofertar_Ofertar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Comprar-Ofertar\Comprar_Ofertar_Ofertar.designer.cs">
+      <DependentUpon>Comprar_Ofertar_Ofertar.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Comprar-Ofertar\Comprar_Ofertar_Publicacion.cs">
       <SubType>Form</SubType>
@@ -536,9 +549,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Comprar-Ofertar\Comprar_Ofertar_Comprar.resx">
+      <DependentUpon>Comprar_Ofertar_Comprar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Comprar-Ofertar\Comprar_Ofertar_Listado.resx">
       <DependentUpon>Comprar_Ofertar_Listado.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Comprar-Ofertar\Comprar_Ofertar_Ofertar.resx">
+      <DependentUpon>Comprar_Ofertar_Ofertar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Comprar-Ofertar\Comprar_Ofertar_Publicacion.resx">
       <DependentUpon>Comprar_Ofertar_Publicacion.cs</DependentUpon>

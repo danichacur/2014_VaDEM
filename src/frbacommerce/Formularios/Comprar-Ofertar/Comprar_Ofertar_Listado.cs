@@ -18,13 +18,15 @@ namespace FrbaCommerce.Comprar_Ofertar
         #region VariablesDeClase
 
         private DataGridView dgv;
+        private DataGridViewColumn[] columnas;
+        private Paginar pag;
 
         #endregion
 
         #region Eventos
-       /// <summary>
-       /// Constructor de la clase
-       /// </summary>
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
         public Comprar_Ofertar_Listado()
         {
             InitializeComponent();
@@ -94,11 +96,11 @@ namespace FrbaCommerce.Comprar_Ofertar
             System.Windows.Forms.DialogResult result;
             try
             {
-                
+
                 int idPublicacion = Convert.ToInt32(dgv.Rows[e.RowIndex].Cells["IdPublicacion"].Value);
                 Formularios.Comprar_Ofertar.Comprar_Ofertar_Publicacion formComprarOfertar = new Formularios.Comprar_Ofertar.Comprar_Ofertar_Publicacion(idPublicacion);
                 result = formComprarOfertar.ShowDialog();
-               
+
                 //if (result == System.Windows.Forms.DialogResult.OK)
                 //{
                 //    ctrlABM1.buscar();
@@ -147,10 +149,11 @@ namespace FrbaCommerce.Comprar_Ofertar
             try
             {
                 Object listaPublicaciones = (Object)PublicacionDAO.obtenerPublicacionesActivas(txtDescripcion.Text, (int)cmbRubro.SelectedValue);
+                pag = new Paginar(listaPublicaciones, 10);
 
-                DataGridViewColumn[] columnas = obtenerDisenoColumnasGrilla();
+                columnas = obtenerDisenoColumnasGrilla();
 
-                dgv = cargarGrilla(listaPublicaciones, columnas);
+                dgv = cargarGrilla(pag.cargar(), columnas);
 
                 dgv.CellClick -= new DataGridViewCellEventHandler(dgv_CellClick);
                 dgv.CellClick += new DataGridViewCellEventHandler(dgv_CellClick);
@@ -200,7 +203,7 @@ namespace FrbaCommerce.Comprar_Ofertar
 
                 DataGridViewTextBoxColumn colPrecioInicial = new DataGridViewTextBoxColumn();
                 colPrecioInicial.DataPropertyName = "PrecioInicial"; colPrecioInicial.Name = "PrecioInicial"; colPrecioInicial.HeaderText = "Precio";
-              
+
                 columnas[4] = colPrecioInicial;
 
                 DataGridViewButtonColumn colOfertarComprar = new DataGridViewButtonColumn();
@@ -217,7 +220,7 @@ namespace FrbaCommerce.Comprar_Ofertar
                 colIdPublicacion.HeaderText = "IdPublicacion";
                 colIdPublicacion.Visible = false;
                 columnas[6] = colIdPublicacion;
-               
+
                 return columnas;
             }
             catch (Exception)
@@ -235,7 +238,7 @@ namespace FrbaCommerce.Comprar_Ofertar
         {
             try
             {
-                
+
                 //dgv.Columns.Clear();
                 if (dgvPubliaciones.Columns.Count == 0)
                 {
@@ -261,6 +264,7 @@ namespace FrbaCommerce.Comprar_Ofertar
         {
             try
             {
+
                 Object listDatos = lista;
                 dgvPubliaciones.DataSource = null;
                 dgvPubliaciones.DataSource = listDatos;
@@ -273,6 +277,34 @@ namespace FrbaCommerce.Comprar_Ofertar
         }
 
         #endregion
+
+        private void btnPrimera_Click(object sender, EventArgs e)
+        {
+            cargarGrilla(pag.primeraPagina(), columnas);
+        }
+
+        private void btnAnterior_Click(object sender, EventArgs e)
+        {
+            cargarGrilla(pag.atras(), columnas);
+        }
+
+        private void btnSiguiente_Click(object sender, EventArgs e)
+        {
+            cargarGrilla(pag.adelante(), columnas);
+        }
+
+        private void btnUltima_Click(object sender, EventArgs e)
+        {
+            cargarGrilla(pag.ultimaPagina(), columnas);
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            cmbRubro.SelectedIndex = 0;
+            txtDescripcion.Text = "";
+
+        }
+
 
 
     }
