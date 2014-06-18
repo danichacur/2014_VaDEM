@@ -536,26 +536,34 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
             {
                 campos = obtenerCamposEnPantalla();
                 cuilIngresado = campos[13].obtenerValor().ToString();
-                int primerosDigitos = Convert.ToInt32(cuilIngresado.Substring(0, 2));
-                string mediosDigitos = Convert.ToString(cuilIngresado.Substring(2, 8));
-
-                if ((primerosDigitos == 27) || (primerosDigitos == 20) || (primerosDigitos == 23) || (primerosDigitos == 24))
-                    inicio = true;
-                else
-                    Metodos_Comunes.MostrarMensajeError("Los primeros dígitos del CUIL deben ser 23.");
-
-
-                String documento = Convert.ToString(campos[1].obtenerValor());
-                if (documento.Length < 8)
-                    Metodos_Comunes.MostrarMensajeError("Su documento debe ser de 8 digitos, puede completar el inicio con ceros hasta llegar a los 8.");
-                else
+                if (cuilIngresado.Length > 10)
                 {
-                    if (Convert.ToString(mediosDigitos) != documento)
-                        Metodos_Comunes.MostrarMensajeError("Los dígitos medios del CUIL deben ser iguales a su documento.");
+                    int primerosDigitos = Convert.ToInt32(cuilIngresado.Substring(0, 2));
+                    string mediosDigitos = Convert.ToString(cuilIngresado.Substring(2, 8));
+
+                    if ((primerosDigitos == 27) || (primerosDigitos == 20) || (primerosDigitos == 23) || (primerosDigitos == 24))
+                        inicio = true;
                     else
-                        fin = true;
+                        Metodos_Comunes.MostrarMensajeError("Los primeros dígitos del CUIL deben ser 23.");
+
+
+                    String documento = Convert.ToString(campos[1].obtenerValor());
+                    if (documento.Length < 8)
+                        Metodos_Comunes.MostrarMensajeError("Su documento debe ser de 8 digitos, puede completar el inicio con ceros hasta llegar a los 8.");
+                    else
+                    {
+                        if (Convert.ToString(mediosDigitos) != documento)
+                            Metodos_Comunes.MostrarMensajeError("Los dígitos medios del CUIL deben ser iguales a su documento.");
+                        else
+                            fin = true;
+                    }
+                    return (inicio & fin);
                 }
-                return (inicio&fin);
+                else 
+                {
+                    Metodos_Comunes.MostrarMensajeError("La cantidad de dígitos ingresada en el CUIL es inferior a la permitida.");
+                    return false;
+                }
             }
             catch (Exception)
             {
@@ -595,7 +603,7 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
                 campos = obtenerCamposEnPantalla();
                 cuitIngresado = campos[13].obtenerValor().ToString();
 
-                return ClienteDAO.existeCUIT(cuitIngresado);
+                return ClienteDAO.existeCUIT(cuitIngresado,cliente.IdUsuario);
             }
             catch (Exception)
             {   
@@ -612,7 +620,7 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
                 campos = obtenerCamposEnPantalla();
                 cuitIngresado = campos[13].obtenerValor().ToString();
 
-                return EmpresaDAO.existeCUIL(cuitIngresado);
+                return EmpresaDAO.existeCUIL(cuitIngresado, cliente.IdUsuario);
             }
             catch (Exception)
             {

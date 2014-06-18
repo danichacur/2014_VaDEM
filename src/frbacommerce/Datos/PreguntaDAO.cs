@@ -15,7 +15,7 @@ namespace FrbaCommerce.Datos
             try
             { 
                 script = "INSERT INTO vadem.pregunta VALUES (" + pregunta.IdPublicacion + "," + Session.IdUsuario;
-                script += ",'" + pregunta.Fecha + "','" + pregunta.PreguntaDesc + "',null,null)" ;
+                script += ",'" + Metodos_Comunes.localDateToSQLDate(pregunta.Fecha) + "','" + pregunta.PreguntaDesc + "',null,null)" ;
 
                 AccesoDatos.Instance.EjecutarScript(script);
 

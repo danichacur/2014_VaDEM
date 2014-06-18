@@ -87,42 +87,45 @@ namespace FrbaCommerce.Formularios.Registro_de_Usuario
                 if (txtCodigoPostal.Text == "") camposErroneos += "Codigo Postal, ";
                 if (txtCuil.Text == "") camposErroneos += "CUIL, ";
 
-                //Valido que el teléfono ingresado no coincida con uno ya existente
-                if (validarTipoYNumeroDeDocumento())
+                if (camposErroneos == "")
                 {
-                    if (validaTelefono())
+                    //Valido que el teléfono ingresado no coincida con uno ya existente
+                    if (validarTipoYNumeroDeDocumento())
                     {
-                        if (validaCuitCantidadDigitos())
+                        if (validaTelefono())
                         {
-                            if (validaCuitDigitoVerificador())
+                            if (validaCuitCantidadDigitos())
                             {
-                                if (validaCuitNoRepetido())
+                                if (validaCuitDigitoVerificador())
                                 {
-                                   
+                                    if (validaCuitNoRepetido())
+                                    {
+
+                                    }
+                                    else
+                                    {
+                                        throw new Exception("El Cuit ingresado no es válido, ya se encuentra asignado");
+                                    }
                                 }
                                 else
                                 {
-                                    throw new Exception("El Cuit ingresado no es válido, ya se encuentra asignado");
+                                    throw new Exception("El Cuit ingresado no es válido, el dígito identificador no coincide. Debería ser: " + CalcularDigitoCuit(txtCuil.Text.Substring(0, 10)).ToString());
                                 }
                             }
                             else
                             {
-                                throw new Exception("El Cuit ingresado no es válido, el dígito identificador no coincide. Debería ser: " + CalcularDigitoCuit(txtCuil.Text.Substring(0, 10)).ToString());
+                                throw new Exception("El Cuit ingresado no es válido, debe tener 11 dígitos.");
                             }
                         }
                         else
                         {
-                            throw new Exception("El Cuit ingresado no es válido, debe tener 11 dígitos.");
+                            throw new Exception("El teléfono ingresado ya está en uso.");
                         }
                     }
                     else
                     {
-                        throw new Exception("El teléfono ingresado ya está en uso.");
+                        throw new Exception("El Tipo y Número de Documento ingresados ya están en uso.");
                     }
-                }
-                else
-                {
-                    throw new Exception("El Tipo y Número de Documento ingresados ya están en uso.");
                 }
 
                 return camposErroneos;
