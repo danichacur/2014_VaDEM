@@ -201,16 +201,14 @@ namespace FrbaCommerce.Componentes_Comunes
             {
                 fechaHoraSQL = "";
                 fechaHoraSQL += fechaHora.Year;
-                fechaHoraSQL += "/";
-                fechaHoraSQL += fechaHora.Month;
-                fechaHoraSQL += "/";
-                fechaHoraSQL += fechaHora.Day;
+                fechaHoraSQL += fechaHora.Month.ToString().PadLeft(2, '0');
+                fechaHoraSQL += fechaHora.Day.ToString().PadLeft(2, '0');
                 fechaHoraSQL += " ";
-                fechaHoraSQL += fechaHora.Hour;
+                fechaHoraSQL += fechaHora.Hour.ToString().PadLeft(2, '0');
                 fechaHoraSQL += ":";
-                fechaHoraSQL += fechaHora.Minute;
+                fechaHoraSQL += fechaHora.Minute.ToString().PadLeft(2, '0');
                 fechaHoraSQL += ":";
-                fechaHoraSQL += fechaHora.Second;
+                fechaHoraSQL += fechaHora.Second.ToString().PadLeft(2, '0');
 
                 return fechaHoraSQL;
 
