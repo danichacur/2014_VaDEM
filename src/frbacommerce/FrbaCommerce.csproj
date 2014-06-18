@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{9F87DEAA-7E5A-4897-BB78-E15F28C4FAE6}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -143,6 +143,7 @@
     <Compile Include="Datos\EmpresaDAO.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Datos\FacturarDAO.cs" />
     <Compile Include="Datos\LoginDAO.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
@@ -179,6 +180,7 @@
     <Compile Include="Entidades\Funcionalidad.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Entidades\ItemFacturacion.cs" />
     <Compile Include="Entidades\Oferta.cs" />
     <Compile Include="Entidades\Pregunta.cs" />
     <Compile Include="Entidades\Publicacion.cs">
@@ -348,13 +350,19 @@
     <Compile Include="Formularios\Comprar-Ofertar\Comprar_Ofertar_Publicacion.designer.cs">
       <DependentUpon>Comprar_Ofertar_Publicacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\Facturar Publicaciones\Form1.cs">
+    <Compile Include="Formularios\Facturar Publicaciones\Facturar_Publicaciones_Listado.cs">
       <SubType>Form</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Formularios\Facturar Publicaciones\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Formularios\Facturar Publicaciones\Facturar_Publicaciones_Listado.Designer.cs">
+      <DependentUpon>Facturar_Publicaciones_Listado.cs</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Formularios\Facturar Publicaciones\Facturar_Publicar_Datos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Facturar Publicaciones\Facturar_Publicar_Datos.Designer.cs">
+      <DependentUpon>Facturar_Publicar_Datos.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Generar Publicacion\Publicacion_Listar.cs">
       <SubType>Form</SubType>
@@ -567,6 +575,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Comprar-Ofertar\Comprar_Ofertar_Publicacion.resx">
       <DependentUpon>Comprar_Ofertar_Publicacion.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Facturar Publicaciones\Facturar_Publicaciones_Listado.resx">
+      <DependentUpon>Facturar_Publicaciones_Listado.cs</DependentUpon>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Facturar Publicaciones\Facturar_Publicar_Datos.resx">
+      <DependentUpon>Facturar_Publicar_Datos.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Generar Publicacion\Publicacion_Editar.resx">

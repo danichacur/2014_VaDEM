@@ -166,9 +166,9 @@ namespace FrbaCommerce
                     case "CALIFICAR":
                         pantalla = new Formularios.Calificar_Vendedor.Calificar_Listar();
                         break;
-                    //case "FACTURAR":
-                    //    pantalla = new ;
-                    //    break;
+                    case "FACTURAR":
+                        pantalla = new Formularios.Facturar_Publicaciones.Facturar_Publicaciones_Listado();
+                        break;
                     case "LISTADO_ESTADISTICO":
                         pantalla = new Formularios.Listado_Estadistico.Estadisticas();
                         break;

@@ -285,11 +285,12 @@ namespace FrbaCommerce.Datos
                        "between FechaInicio and FechaFin) " +
                        "and ( (P.Tipo = 'Compra Inmediata' and P.Stock > 0) or P.Tipo ='Subasta' ) " +
                        "and (P.Descripcion like '%'+'" + Descripcion + "'+'%') " +
-                      // "and (R.IdRubro =" + Rubro + " or " + Rubro + " =0 ) " +
-                        " and (( " + Rubro + " =0 ) " + "or " +
-                            Rubro + " IN (select R.IdRubro from vadem.rubrosPublicacion R " +
-				            " where R.IdPublicacion = P.IdPublicacion)) "+
-                       " order by V.IdVisibilidad";
+
+                       "and (" + Rubro + " in (select IdRubro from vadem.rubrosPublicacion where IdPublicacion = P.IdPublicacion)  or " + Rubro + " =0 ) " +
+                       "order by V.IdVisibilidad";
+
+          
+
 
                 return AccesoDatos.Instance.EjecutarScript(script);
 

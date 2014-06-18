@@ -49,7 +49,7 @@ namespace FrbaCommerce.Datos
                                     (String)row["Nombre"],
                                     (String)row["Apellido"],
                                     (String)row["Mail"],
-                                    (String)row["Telefono"],
+                                    Convert.ToString(((row["Telefono"] == DBNull.Value) ? "" : row["Telefono"])),
                                     (String)row["Direccion"],
                                     Convert.ToInt32(row["Numero"]),
                                     Convert.ToString(((row["Piso"] == DBNull.Value) ? "" : row["Piso"])),
@@ -296,9 +296,7 @@ namespace FrbaCommerce.Datos
             }
         }
 
-
-
-        public  static Boolean existeCUIT(string cuitIngresado)
+        public static Boolean existeCUIT(string cuitIngresado)
         {
             String script;
             DataTable tbl;
@@ -306,6 +304,25 @@ namespace FrbaCommerce.Datos
             {
                 script = "SELECT TOP 1 1 FROM vadem.cliente ";
                 script += "WHERE CUIL = '" + cuitIngresado + "' ";
+
+                tbl = AccesoDatos.Instance.EjecutarScript(script);
+
+                return tbl.Rows.Count > 0;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public  static Boolean existeCUIT(string cuitIngresado, int IdUsuarioLoggeado)
+        {
+            String script;
+            DataTable tbl;
+            try
+            {
+                script = "SELECT TOP 1 1 FROM vadem.cliente ";
+                script += "WHERE CUIL = '" + cuitIngresado + "' AND IdCliente <> " + IdUsuarioLoggeado;
                 
                 tbl = AccesoDatos.Instance.EjecutarScript(script);
 
