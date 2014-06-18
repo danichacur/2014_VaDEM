@@ -29,7 +29,7 @@ namespace FrbaCommerce.Datos
             Oferta oferta = new Oferta();
 
             script = "select IdPublicacion,MAX( Importe ) as Importe from vadem.ofertas  " +
-                       "where IdPublicacion = " + 63597 +
+                       "where IdPublicacion = " + idPublicacion +
                        " group by IdPublicacion";
 
             tbl = AccesoDatos.Instance.EjecutarScript(script);
