@@ -2,30 +2,6 @@
 
 USE [GD1C2014]
 GO
-
-/*
-DELETE FROM vadem.rubrosPublicacion
-DELETE FROM vadem.rubro
-DELETE FROM vadem.pregunta
-DELETE FROM vadem.compras
-DELETE FROM vadem.ofertas
-DELETE FROM vadem.calificacion
-DELETE FROM vadem.itemFactura
-DELETE FROM vadem.publicacion
-DELETE FROM vadem.estado	
-DELETE FROM vadem.tipoVisualizacionPorUsuario
-DELETE FROM vadem.factura
-DELETE FROM vadem.visibilidad
-DELETE FROM vadem.cliente
-DELETE FROM vadem.empresa
-DELETE FROM vadem.rolesPorUsuario
-DELETE FROM vadem.usuario
-DELETE FROM vadem.rolPorFuncionalidad
-DELETE FROM vadem.rol
-DELETE FROM vadem.funcionalidad
-*/
-
-
 SELECT 'COMIENZO'
 
 /************************/ SELECT 'ROLES' /************************/
@@ -88,8 +64,8 @@ GO
 
 /************************/ SELECT 'USUARIOS TIPO EMPRESA' /************************/
 INSERT INTO vadem.usuario 
-	SELECT  Publ_Empresa_Cuit, 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3',0,0,1,0,NULL,0
-	FROM (	SELECT DISTINCT TOP 100 Publ_Empresa_Cuit
+	SELECT  Publ_Empresa_Razon_Social + '-' + Publ_Empresa_Cuit, 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3',0,0,1,0,NULL,0
+	FROM (	SELECT DISTINCT TOP 100 Publ_Empresa_Razon_Social,Publ_Empresa_Cuit
 			FROM         gd_esquema.Maestra
 			WHERE     (Publ_Empresa_Cuit IS NOT NULL)
 			ORDER BY Publ_Empresa_Cuit
@@ -98,7 +74,7 @@ GO
 
 /************************/ SELECT 'EMPRESA' /************************/
 INSERT INTO vadem.empresa
-	SELECT (SELECT IdUsuario FROM vadem.usuario U WHERE U.username = E.Publ_Empresa_Cuit),
+	SELECT (SELECT IdUsuario FROM vadem.usuario U WHERE U.username = E.Publ_Empresa_Razon_Social + '-' + E.Publ_Empresa_Cuit),
 		E.Publ_Empresa_Razon_Social,E.Publ_Empresa_Cuit,NULL,E.Publ_Empresa_Dom_Calle, E.Publ_Empresa_Nro_Calle, 
 		E.Publ_Empresa_Piso, E.Publ_Empresa_Depto,NULL, E.Publ_Empresa_Cod_Postal, NULL, E.Publ_Empresa_Mail, NULL, GETDATE()
 	FROM (SELECT DISTINCT TOP 100 Publ_Empresa_Cuit, Publ_Empresa_Razon_Social, 
@@ -112,8 +88,8 @@ GO
 /************************/ SELECT 'ROLES POR USUARIO' /************************/
 -- carga los roles empresa --
 INSERT INTO vadem.rolesPorUsuario
-	SELECT (SELECT IdUsuario FROM vadem.usuario U WHERE U.username = E.Publ_Empresa_Cuit), 3
-	FROM (SELECT DISTINCT TOP 100 Publ_Empresa_Cuit	
+	SELECT (SELECT IdUsuario FROM vadem.usuario U WHERE U.username = E.Publ_Empresa_Razon_Social + '-' + E.Publ_Empresa_Cuit), 3
+	FROM (SELECT DISTINCT TOP 100 Publ_Empresa_Razon_Social, Publ_Empresa_Cuit	
 			FROM   gd_esquema.Maestra
 			WHERE  (Publ_Empresa_Cuit IS NOT NULL)
 			ORDER BY Publ_Empresa_Cuit) E
@@ -140,7 +116,7 @@ INSERT INTO vadem.factura
 	SELECT DISTINCT E.Factura_Nro, U.IdUsuario, E.Factura_Fecha, E.Forma_Pago_Desc, NULL AS Tarjeta, E.Factura_Total
 	FROM gd_esquema.Maestra E
 	LEFT JOIN vadem.usuario U
-		ON U.Username = (ISNULL(E.Publ_Empresa_Cuit, CONVERT(VARCHAR,E.Publ_Cli_DNI) + '-' + E.Publ_Cli_Apeliido))
+		ON U.Username = (ISNULL(E.Publ_Empresa_Razon_Social + '-' + E.Publ_Empresa_Cuit, CONVERT(VARCHAR,E.Publ_Cli_DNI) + '-' + E.Publ_Cli_Apeliido))
 	WHERE E.Factura_Nro IS NOT NULL
 	
 -- Se crea la factura 0 que tendra asociadas a los item pendientes de facturar --
@@ -175,7 +151,7 @@ INSERT INTO vadem.tipoVisualizacionPorUsuario
 	SELECT DISTINCT U.IdUsuario,E.Publicacion_Visibilidad_Cod,0
 	FROM gd_esquema.Maestra E
 	LEFT JOIN vadem.usuario U
-		ON U.Username = (ISNULL(E.Publ_Empresa_Cuit, CONVERT(VARCHAR,E.Publ_Cli_DNI) + '-' + E.Publ_Cli_Apeliido))
+		ON U.Username = (ISNULL(E.Publ_Empresa_Razon_Social + '-' + E.Publ_Empresa_Cuit, CONVERT(VARCHAR,E.Publ_Cli_DNI) + '-' + E.Publ_Cli_Apeliido))
 GO
 
 
@@ -192,7 +168,7 @@ INSERT INTO vadem.publicacion
 			Publicacion_Fecha_Venc, Publicacion_Precio, U.IdUsuario, Publicacion_Tipo, 1
 	FROM gd_esquema.Maestra E
 	LEFT JOIN vadem.usuario U
-		ON U.Username = (ISNULL(E.Publ_Empresa_Cuit, CONVERT(VARCHAR,E.Publ_Cli_DNI) + '-' + E.Publ_Cli_Apeliido))
+		ON U.Username = (ISNULL(E.Publ_Empresa_Razon_Social + '-' + E.Publ_Empresa_Cuit, CONVERT(VARCHAR,E.Publ_Cli_DNI) + '-' + E.Publ_Cli_Apeliido))
 GO
 
 
@@ -233,7 +209,7 @@ INSERT INTO vadem.calificacion
 	SELECT	DISTINCT Calificacion_Codigo, C.IdCompra, U1.IdUsuario, U2.IdUsuario,Compra_Fecha,Calificacion_Cant_Estrellas, Calificacion_Descripcion
 	FROM gd_esquema.Maestra E
 	LEFT JOIN vadem.usuario U1
-		ON U1.Username = (ISNULL(E.Publ_Empresa_Cuit, CONVERT(VARCHAR,E.Publ_Cli_DNI) + '-' + E.Publ_Cli_Apeliido))
+		ON U1.Username = (ISNULL(E.Publ_Empresa_Razon_Social + '-' + E.Publ_Empresa_Cuit, CONVERT(VARCHAR,E.Publ_Cli_DNI) + '-' + E.Publ_Cli_Apeliido))
 	LEFT JOIN vadem.usuario U2
 		ON U2.Username = CONVERT(VARCHAR,E.Cli_Dni) + '-' + E.Cli_Apeliido
 	LEFT JOIN vadem.compras C
@@ -247,7 +223,7 @@ INSERT INTO vadem.itemFactura
 	SELECT DISTINCT Publicacion_Cod, U.IdUsuario,  Item_Factura_Monto, Item_Factura_Cantidad,1 ,Factura_Nro
 	FROM gd_esquema.Maestra E
 	LEFT JOIN vadem.usuario U
-		ON U.Username = (ISNULL(E.Publ_Empresa_Cuit, CONVERT(VARCHAR,E.Publ_Cli_DNI) + '-' + E.Publ_Cli_Apeliido))
+		ON U.Username = (ISNULL(E.Publ_Empresa_Razon_Social + '-' + E.Publ_Empresa_Cuit, CONVERT(VARCHAR,E.Publ_Cli_DNI) + '-' + E.Publ_Cli_Apeliido))
 	WHERE Item_Factura_Cantidad IS NOT NULL
 	
 GO	

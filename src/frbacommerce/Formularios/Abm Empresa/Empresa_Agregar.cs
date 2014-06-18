@@ -597,7 +597,7 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
                 campos = obtenerCamposEnPantalla();
                 cuitIngresado = campos[1].obtenerValor().ToString();
 
-                return ClienteDAO.existeCUIT(cuitIngresado);
+                return ClienteDAO.existeCUIT(cuitIngresado, empresa.IdUsuario);
             }
             catch (Exception)
             {
@@ -614,7 +614,7 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
                 campos = obtenerCamposEnPantalla();
                 cuitIngresado = campos[1].obtenerValor().ToString();
 
-                return EmpresaDAO.existeCUIL(cuitIngresado);
+                return EmpresaDAO.existeCUIL(cuitIngresado, empresa.IdUsuario);
             }
             catch (Exception)
             {

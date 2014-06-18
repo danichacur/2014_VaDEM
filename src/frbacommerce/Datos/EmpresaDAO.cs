@@ -247,5 +247,24 @@ namespace FrbaCommerce.Datos
                 throw;
             }
         }
+
+        public static Boolean existeCUIL(string cuitIngresado, int IdUsuarioLoggeado)
+        {
+            String script;
+            DataTable tbl;
+            try
+            {
+                script = "SELECT TOP 1 1 FROM vadem.empresa ";
+                script += "WHERE CUIT = '" + cuitIngresado + "' AND IdEmpresa <> " + IdUsuarioLoggeado;
+
+                tbl = AccesoDatos.Instance.EjecutarScript(script);
+
+                return tbl.Rows.Count > 0;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }
