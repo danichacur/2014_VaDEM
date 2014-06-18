@@ -13,8 +13,7 @@ using FrbaCommerce.Datos;
 namespace FrbaCommerce.Formularios.Calificar_Vendedor
 {
     public partial class Calificar_Listar : ABM
-    {
-        
+    {       
 
         #region VariablesDeClase
         
