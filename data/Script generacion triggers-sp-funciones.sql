@@ -154,7 +154,7 @@ BEGIN
 		-- INSERTA EL COSTO POR LA PUBLICACION EN LOS ITEM FACTURA --
 
 		INSERT vadem.itemFactura 
-		SELECT IdPublicacion, IdVendedor, @COSTO, 1, 0 FROM INSERTED
+		SELECT IdPublicacion, IdVendedor, @COSTO, 1, 0, 0 FROM INSERTED
 		
 END 
 	
