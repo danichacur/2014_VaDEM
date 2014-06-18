@@ -69,32 +69,41 @@ namespace FrbaCommerce.Formularios.Comprar_Ofertar
 
         private void btnComprar_Click(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(txtCantidad.Text) <= Publicacion.Cantidad)
+            if (Session.IdUsuario != Publicacion.Vendedor)
             {
-                int result = ComprasDAO.Comprar(Publicacion.Id, Session.IdUsuario, Convert.ToDateTime(ConfigurationManager.AppSettings["DateTimeNow"]), Convert.ToInt32(txtCantidad.Text));
 
-                switch (result)
+                if (Convert.ToInt32(txtCantidad.Text) <= Publicacion.Cantidad)
                 {
-                    case 0:
-                        Metodos_Comunes.MostrarMensaje("La compra se realizo con exito");
-                        break;
-                    case 1:
-                        Metodos_Comunes.MostrarMensaje("No hay suficiente stock");
-                        break;
-                    case 2:
-                        Metodos_Comunes.MostrarMensaje("Posee 5 compras sin calificar, para poder comprar debera calificar las calificaciones pendientes");
-                        break;
-                    case 3:
-                        Metodos_Comunes.MostrarMensaje("La publicacion se encuentra Pausada");
-                        break;
-                    default:
-                        break;
+                    int result = ComprasDAO.Comprar(Publicacion.Id, Session.IdUsuario, Convert.ToDateTime(ConfigurationManager.AppSettings["DateTimeNow"]), Convert.ToInt32(txtCantidad.Text));
+
+                    switch (result)
+                    {
+                        case 0:
+                            Metodos_Comunes.MostrarMensaje("La compra se realizo con exito");
+                            break;
+                        case 1:
+                            Metodos_Comunes.MostrarMensaje("No hay suficiente stock");
+                            break;
+                        case 2:
+                            Metodos_Comunes.MostrarMensaje("Posee 5 compras sin calificar, para poder comprar debera calificar las calificaciones pendientes");
+                            break;
+                        case 3:
+                            Metodos_Comunes.MostrarMensaje("La publicacion se encuentra Pausada");
+                            break;
+                        default:
+                            break;
+                    }
+
                 }
-                
+                else
+                {
+                    Metodos_Comunes.MostrarMensaje("No hay suficiente stock");
+                }
+
             }
             else
             {
-                Metodos_Comunes.MostrarMensaje("No hay suficiente stock");
+                Metodos_Comunes.MostrarMensaje("No puedes comprarte a ti mismo");
             }
         }
 
