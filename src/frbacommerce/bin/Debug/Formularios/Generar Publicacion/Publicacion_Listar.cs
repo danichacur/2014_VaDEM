@@ -157,7 +157,7 @@ namespace FrbaCommerce.Generar_Publicacion
                 if (!this.ctrlABM1.existenFiltrosCargados())
                 {
                     List<Filtro> filtrosI = new List<Filtro>();
-                    filtrosI.Add(new FiltroComboBox("Tipo", "Tipo", "=", "", obtenerTiposPublicacion(), "descripcion", "descripcion"));
+                    filtrosI.Add(new FiltroComboBox("Tipo", "T.Descripcion", "=", "", obtenerTiposPublicacion(), "descripcion", "descripcion"));
                     filtrosI.Add(new FiltroComboBox("Estado", "P.IdEstado", "=", "0", obtenerEstados(), "IdEstado", "Descripcion"));
                     filtrosI.Add(new FiltroTextBox("Descripcion", "P.Descripcion", "LIKE", ""));
 

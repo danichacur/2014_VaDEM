@@ -163,7 +163,7 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
                 List<Filtro> filtrosD = new List<Filtro>();
 
 
-                filtroCbo = new FiltroComboBox("Tipo", "Tipo", "=", "", Metodos_Comunes.obtenerTablaComboTiposPublicacion(), "descripcion", "descripcion");
+                filtroCbo = new FiltroComboBox("Tipo", "IdTipo", "=", "", Metodos_Comunes.obtenerTablaComboTiposPublicacion(), "descripcion", "descripcion");
                 filtroCbo.setObligatorio(true);
                 filtrosI.Add(filtroCbo);
 

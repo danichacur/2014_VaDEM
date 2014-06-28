@@ -68,12 +68,12 @@ namespace FrbaCommerce.Datos
             {
 
                 String script = "SELECT(SELECT Descripcion FROM vadem.estado E WHERE E.IdEstado = P.IdEstado) AS 'Estado',";
-                script += "Descripcion, PrecioInicial, Stock, Tipo, IdPublicacion, ";
+                script += "P.Descripcion, PrecioInicial, Stock, T.Descripcion, IdPublicacion, ";
                 script += "(SELECT Descripcion FROM vadem.visibilidad V WHERE V.IdVisibilidad = P.IdVisibilidad) AS 'Visibilidad',";
                 script += "CASE WHEN AdmitePreguntas = 1 THEN 'SI' ELSE 'NO' END AS 'Admite_Preguntas',";
                 script += "FechaInicio AS 'FechaInicio', ";
                 script += "FechaFin AS 'FechaFin' FROM vadem.publicacion P  ";
-
+                script += "LEFT JOIN  vadem.tipoPublicacion T ON T.IdTipo = P.IdTipo ";
                 if (clausulaWhere == "")
                     script += " WHERE P.IdVendedor = " + Session.IdUsuario;
                 else
@@ -82,6 +82,7 @@ namespace FrbaCommerce.Datos
                     script += " AND P.IdVendedor = " + Session.IdUsuario;
                 }
                 script += " ORDER BY IdPublicacion DESC ";
+
 
                 return AccesoDatos.Instance.EjecutarScript(script);
 
@@ -229,7 +230,10 @@ namespace FrbaCommerce.Datos
                 publicacion.VendedorDesc = Convert.ToString(dt.Rows[0]["Username"]);
                 publicacion.Precio = Convert.ToInt32(dt.Rows[0]["PrecioInicial"]);
                 publicacion.Cantidad = Convert.ToInt32(dt.Rows[0]["Stock"]);
-                publicacion.Tipo = Convert.ToString(dt.Rows[0]["Tipo"]);
+                if (Convert.ToInt32(dt.Rows[0]["IdTipo"]) == 1)
+                    publicacion.Tipo = "Compra Inmediata";
+                else
+                    publicacion.Tipo = "Subasta";                
                 publicacion.Visibilidad = Convert.ToInt32(dt.Rows[0]["IdVisibilidad"]);
                 publicacion.VisibilidadDesc = Convert.ToString(dt.Rows[0]["VisibilidadDesc"]);
                 publicacion.AdmitePreguntas = (bool)dt.Rows[0]["AdmitePreguntas"];
@@ -283,7 +287,7 @@ namespace FrbaCommerce.Datos
                        "where P.idEstado = 2 " +
                        "and ('" + Metodos_Comunes.localDateToSQLDate(Convert.ToDateTime(ConfigurationManager.AppSettings["DateTimeNow"])) + "' " +
                        "between FechaInicio and FechaFin) " +
-                       "and ( (P.Tipo = 'Compra Inmediata' and P.Stock > 0) or P.Tipo ='Subasta' ) " +
+                       "and ( (P.IdTipo = 1 and P.Stock > 0) or P.IdTipo = 2 ) " +
                        "and (P.Descripcion like '%'+'" + Descripcion + "'+'%') " +
 
                        "and (" + Rubro + " in (select IdRubro from vadem.rubrosPublicacion where IdPublicacion = P.IdPublicacion)  or " + Rubro + " =0 ) " +
@@ -321,7 +325,7 @@ namespace FrbaCommerce.Datos
                                "   ,[FechaFin] = DATEADD(D,(SELECT DiasVigencia FROM vadem.visibilidad " + 
 					                           "WHERE IdVisibilidad = " + publicacion.Visibilidad + "),'" + Metodos_Comunes.localDateToSQLDate(publicacion.FechaInicio) + "')" + 
                                "   ,[PrecioInicial] = " + publicacion.Precio +
-                               "   ,[Tipo] = '" + publicacion.Tipo + "'" +
+                               "   ,[IdTipo] = (SELECT IdTipo FROM vadem.tipoPublicacion WHERE Descripcion = '" + publicacion.Tipo + "')" +
                                "   ,[AdmitePreguntas] =  " + (publicacion.AdmitePreguntas == true ? 1 : 0) + 
                                " WHERE IdPublicacion = " + publicacion.Id;
                         

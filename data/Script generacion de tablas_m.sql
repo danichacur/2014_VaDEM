@@ -2,6 +2,9 @@
 /*
 drop procedure vadem.controlPublicacionesGratuitas
 drop procedure vadem.insertPublicaciones
+drop procedure vadem.NuevaCompra
+drop procedure vadem.NuevaFactura
+drop procedure vadem.NuevaOferta
 
 drop view vadem.CalificacionesPorVendedorPorTrimestre
 drop view vadem.ComprasPorCompradorPorTrimestre
@@ -9,7 +12,6 @@ drop view vadem.FacturasPorVendedorPorTrimestre
 drop view vadem.PublicacionesPorVendedorPorTrimestre
 
 drop table vadem.empresa
-drop table vadem.factura
 drop table vadem.itemFactura
 drop table vadem.ofertas
 drop table vadem.pregunta
@@ -21,10 +23,12 @@ drop table vadem.calificacion
 drop table vadem.cliente
 drop table vadem.compras
 drop table vadem.publicacion
+drop table vadem.tipoPublicacion
 drop table vadem.rol
 drop table vadem.rubro
 drop table vadem.estado
 drop table vadem.funcionalidad
+drop table vadem.factura
 drop table vadem.usuario
 drop table vadem.visibilidad
 drop table vadem.calificacionesEstandard
@@ -306,11 +310,29 @@ CREATE TABLE [vadem].[publicacion](
 	[FechaFin] [datetime] NOT NULL,
 	[PrecioInicial] [numeric](18, 2) NOT NULL,
 	[IdVendedor] [int] NOT NULL,
-	[Tipo] [nvarchar](255) NOT NULL,
+	[IdTipo] [int] NOT NULL,
 	[AdmitePreguntas] [bit] NOT NULL,
  CONSTRAINT [PK_publicacion] PRIMARY KEY CLUSTERED 
 (
 	[IdPublicacion] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [vadem].[tipoPublicacion]    Script Date: 04/21/2014 23:30:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [vadem].[tipoPublicacion](
+	[IdTipo] [int] NOT NULL IDENTITY(1,1),
+	[Descripcion] [nvarchar](20) NOT NULL
+ CONSTRAINT [PK_tipoPublicacion] PRIMARY KEY CLUSTERED 
+(
+	[IdTipo] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
@@ -475,6 +497,12 @@ ALTER TABLE [vadem].[compras]  WITH CHECK ADD  CONSTRAINT [FK_compras_publicacio
 REFERENCES [vadem].[publicacion] ([IdPublicacion])
 GO
 ALTER TABLE [vadem].[compras] CHECK CONSTRAINT [FK_compras_publicacion]
+GO
+/****** Object:  ForeignKey [FK_publicacion_tipoPublicacion]    Script Date: 04/21/2014 23:30:23 ******/
+ALTER TABLE [vadem].[publicacion]  WITH CHECK ADD  CONSTRAINT [FK_publicacion_tipoPublicacion] FOREIGN KEY([IdTipo])
+REFERENCES [vadem].[tipoPublicacion] ([IdTipo])
+GO
+ALTER TABLE [vadem].[publicacion] CHECK CONSTRAINT [FK_publicacion_tipoPublicacion]
 GO
 /****** Object:  ForeignKey [FK_compras_usuario]    Script Date: 04/21/2014 23:30:23 ******/
 ALTER TABLE [vadem].[compras]  WITH CHECK ADD  CONSTRAINT [FK_compras_usuario] FOREIGN KEY([IdComprador])

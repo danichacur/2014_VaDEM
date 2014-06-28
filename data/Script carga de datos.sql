@@ -161,14 +161,20 @@ INSERT INTO vadem.rubro
 	FROM gd_esquema.Maestra
 GO
 
+/************************/ SELECT 'TIPO PUBLICACION' /************************/
+INSERT INTO vadem.tipoPublicacion
+	SELECT DISTINCT  Publicacion_Tipo
+	FROM gd_esquema.Maestra E
+GO
 
 /************************/ SELECT 'PUBLICACION' /************************/
 INSERT INTO vadem.publicacion
 	SELECT DISTINCT Publicacion_Cod, Publicacion_Stock, 4, Publicacion_Descripcion, Publicacion_Visibilidad_Cod, Publicacion_Fecha,
-			Publicacion_Fecha_Venc, Publicacion_Precio, U.IdUsuario, Publicacion_Tipo, 1
+			Publicacion_Fecha_Venc, Publicacion_Precio, U.IdUsuario, P.IdTipo, 1
 	FROM gd_esquema.Maestra E
 	LEFT JOIN vadem.usuario U
 		ON U.Username = (ISNULL(E.Publ_Empresa_Razon_Social + '-' + E.Publ_Empresa_Cuit, CONVERT(VARCHAR,E.Publ_Cli_DNI) + '-' + E.Publ_Cli_Apeliido))
+	LEFT JOIN vadem.tipoPublicacion P ON P.Descripcion = E.Publicacion_Tipo
 GO
 
 
@@ -213,7 +219,7 @@ INSERT INTO vadem.calificacion
 	LEFT JOIN vadem.usuario U2
 		ON U2.Username = CONVERT(VARCHAR,E.Cli_Dni) + '-' + E.Cli_Apeliido
 	LEFT JOIN vadem.compras C
-		ON C.IdPublicacion = E.Publicacion_Cod
+		ON C.IdPublicacion = E.Publicacion_Cod and C.IdComprador = U2.IdUsuario and Compra_Fecha = C.Fecha and Compra_Cantidad = C.Cantidad
 	WHERE Calificacion_Codigo IS NOT NULL
 GO
 
