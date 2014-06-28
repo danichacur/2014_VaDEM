@@ -202,12 +202,12 @@ GO
 
 /************************/ SELECT 'COMPRAS' /************************/
 INSERT INTO vadem.compras
-	SELECT  Publicacion_Cod, U.IdUsuario, Compra_Fecha, Compra_Cantidad, 1 AS calificada
+	SELECT  Publicacion_Cod, U.IdUsuario, Compra_Fecha, Compra_Cantidad, Calificacion_Codigo
 	FROM gd_esquema.Maestra E
 	LEFT JOIN vadem.usuario U
 	ON U.Username = CONVERT(VARCHAR,E.Cli_Dni) + '-' + E.Cli_Apeliido
 	WHERE Compra_Cantidad IS NOT NULL
-		AND Calificacion_Codigo IS NULL
+		AND Calificacion_Codigo IS NOT NULL
 GO
 
 /************************/ SELECT 'CALIFICACIONES' /************************/
@@ -219,10 +219,11 @@ INSERT INTO vadem.calificacion
 	LEFT JOIN vadem.usuario U2
 		ON U2.Username = CONVERT(VARCHAR,E.Cli_Dni) + '-' + E.Cli_Apeliido
 	LEFT JOIN vadem.compras C
-		ON C.IdPublicacion = E.Publicacion_Cod and C.IdComprador = U2.IdUsuario and Compra_Fecha = C.Fecha and Compra_Cantidad = C.Cantidad
+		ON C.Calificada = Calificacion_Codigo 
 	WHERE Calificacion_Codigo IS NOT NULL
-GO
 
+UPDATE vadem.compras SET Calificada = 1
+GO
 
 /************************/ SELECT 'ITEM FACTURA' /************************/
 INSERT INTO vadem.itemFactura
