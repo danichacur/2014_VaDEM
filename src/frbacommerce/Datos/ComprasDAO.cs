@@ -58,7 +58,7 @@ namespace FrbaCommerce.Datos
         /// <returns></returns>
         public static DataTable obtenerHistorialCompras(int usuario)
         {
-            String script = "select C.Fecha,C.Cantidad,P.Descripcion,P.Tipo,U.Username from vadem.compras C " +
+            String script = "select C.Fecha,C.Cantidad,P.Descripcion,P.IdTipo,U.Username from vadem.compras C " +
                             "join vadem.publicacion P on C.IdPublicacion = P.IdPublicacion " +
                             "join vadem.usuario U on P.IdVendedor = U.IdUsuario " +
                             "where IdComprador = " + usuario;
