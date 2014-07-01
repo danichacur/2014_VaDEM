@@ -328,27 +328,35 @@
     </Compile>
     <Compile Include="Formularios\Comprar-Ofertar\Comprar_Ofertar_Comprar.cs">
       <SubType>Form</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Formularios\Comprar-Ofertar\Comprar_Ofertar_Comprar.designer.cs">
       <DependentUpon>Comprar_Ofertar_Comprar.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Formularios\Comprar-Ofertar\Comprar_Ofertar_Listado.cs">
       <SubType>Form</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Formularios\Comprar-Ofertar\Comprar_Ofertar_Listado.designer.cs">
       <DependentUpon>Comprar_Ofertar_Listado.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Formularios\Comprar-Ofertar\Comprar_Ofertar_Ofertar.cs">
       <SubType>Form</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Formularios\Comprar-Ofertar\Comprar_Ofertar_Ofertar.designer.cs">
       <DependentUpon>Comprar_Ofertar_Ofertar.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Formularios\Comprar-Ofertar\Comprar_Ofertar_Publicacion.cs">
       <SubType>Form</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Formularios\Comprar-Ofertar\Comprar_Ofertar_Publicacion.designer.cs">
       <DependentUpon>Comprar_Ofertar_Publicacion.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Formularios\Facturar Publicaciones\Facturar_Publicaciones_Listado.cs">
       <SubType>Form</SubType>
@@ -565,17 +573,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Comprar-Ofertar\Comprar_Ofertar_Comprar.resx">
       <DependentUpon>Comprar_Ofertar_Comprar.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Comprar-Ofertar\Comprar_Ofertar_Listado.resx">
       <DependentUpon>Comprar_Ofertar_Listado.cs</DependentUpon>
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Comprar-Ofertar\Comprar_Ofertar_Ofertar.resx">
       <DependentUpon>Comprar_Ofertar_Ofertar.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Comprar-Ofertar\Comprar_Ofertar_Publicacion.resx">
       <DependentUpon>Comprar_Ofertar_Publicacion.cs</DependentUpon>
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Facturar Publicaciones\Facturar_Publicaciones_Listado.resx">
       <DependentUpon>Facturar_Publicaciones_Listado.cs</DependentUpon>

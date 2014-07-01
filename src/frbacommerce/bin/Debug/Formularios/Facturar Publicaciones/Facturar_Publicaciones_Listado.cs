@@ -188,8 +188,10 @@ namespace FrbaCommerce.Formularios.Facturar_Publicaciones
                     if (Convert.ToBoolean(item.Cells["Pagar"].Value))
                     {
                         ItemFacturacion itemFac = new ItemFacturacion();
-                        itemFac.Id = Convert.ToInt32( item.Cells["IdTeam"].Value);
+                        itemFac.Id = Convert.ToInt32(item.Cells["IdItem"].Value);
                         itemFac.IdPublicacion = Convert.ToInt32( item.Cells["IdPublicacion"].Value);
+                        itemFac.Cantidad = Convert.ToInt32(item.Cells["Cantidad"].Value);
+                        itemFac.Costo = Convert.ToInt32(item.Cells["Costo"].Value);
 
                         colitems.Add(itemFac);
                         
@@ -216,6 +218,8 @@ namespace FrbaCommerce.Formularios.Facturar_Publicaciones
                     else
                     {
                         FacturarDAO.Pagar(colitems, cmbFormaPago.SelectedText, txtDatosTarjeta.Text);
+                        Metodos_Comunes.MostrarMensaje("Ha pagado con exito");
+                        cargaInicialGrilla();
                     }
                 }
 

@@ -51,7 +51,7 @@ namespace FrbaCommerce.Datos
                 SqlParameter fecha = new SqlParameter();
                 fecha.ParameterName = "@Fecha";
                 fecha.SqlDbType = SqlDbType.DateTime;
-                fecha.Value = Metodos_Comunes.localDateToSQLDate(Convert.ToDateTime(ConfigurationManager.AppSettings["DateTimeNow"]));
+                fecha.Value = Convert.ToDateTime(ConfigurationManager.AppSettings["DateTimeNow"]);
 
                 SqlParameter formaPago = new SqlParameter();
                 formaPago.ParameterName = "@FormaPago";
@@ -73,7 +73,7 @@ namespace FrbaCommerce.Datos
 
 
                 SqlParameter total = new SqlParameter();
-                total.ParameterName = "@IdVendedor";
+                total.ParameterName = "@total";
                 total.SqlDbType = SqlDbType.Int;
                 total.Value = tot ;
 
