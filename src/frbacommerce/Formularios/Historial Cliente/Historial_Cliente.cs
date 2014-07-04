@@ -148,7 +148,7 @@ namespace FrbaCommerce.Historial_Cliente
                 columnas[2] = colDescripcion;
 
                 DataGridViewTextBoxColumn colTipo = new DataGridViewTextBoxColumn();
-                colTipo.DataPropertyName = "Tipo"; colTipo.Name = "Tipo"; colTipo.HeaderText = "Tipo";
+                colTipo.DataPropertyName = "TipoPublicacion"; colTipo.Name = "TipoPublicacion"; colTipo.HeaderText = "Tipo";
                 columnas[3] = colTipo;
 
                 DataGridViewTextBoxColumn colUsername = new DataGridViewTextBoxColumn();
