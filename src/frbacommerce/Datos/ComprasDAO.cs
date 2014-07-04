@@ -5,6 +5,7 @@ using System.Text;
 using FrbaCommerce.Entidades;
 using System.Data;
 using System.Data.SqlClient;
+using FrbaCommerce.Componentes_Comunes;
 namespace FrbaCommerce.Datos
 {
     class ComprasDAO
@@ -58,12 +59,12 @@ namespace FrbaCommerce.Datos
         /// <returns></returns>
         public static DataTable obtenerHistorialCompras(int usuario)
         {
-            String script = "select C.Fecha,C.Cantidad,P.Descripcion,TP.Descripcion AS TipoPublicacion,U.Username from vadem.compras C " +
-                            "join vadem.publicacion P on C.IdPublicacion = P.IdPublicacion " +
-                            "join vadem.usuario U on P.IdVendedor = U.IdUsuario " +
-                            "join vadem.tipoPublicacion TP ON TP.IdTipo = P.IdTipo " +
-                            "where IdComprador = " + usuario;
-
+             String script = "select C.Fecha,C.Cantidad,P.Descripcion,TP.Descripcion AS TipoPublicacion,U.Username from vadem.compras C " +
+                              "join vadem.publicacion P on C.IdPublicacion = P.IdPublicacion " +
+                              "join vadem.usuario U on P.IdVendedor = U.IdUsuario " +
+                             "join vadem.tipoPublicacion TP ON TP.IdTipo = P.IdTipo " +
+                              "where IdComprador = " + usuario;
+  
             return AccesoDatos.Instance.EjecutarScript(script);
         }
 
@@ -86,9 +87,9 @@ namespace FrbaCommerce.Datos
                 pIdComprador.Value = idComprador;
 
                 SqlParameter pFecha = new SqlParameter();
-                pFecha.SqlDbType = SqlDbType.DateTime;
+                pFecha.SqlDbType = SqlDbType.VarChar;
                 pFecha.ParameterName = "@Fecha";
-                pFecha.Value = fecha;
+                pFecha.Value = Metodos_Comunes.localDateToSQLDate(fecha);
 
                 SqlParameter pCantidad = new SqlParameter();
                 pCantidad.SqlDbType = SqlDbType.Int;

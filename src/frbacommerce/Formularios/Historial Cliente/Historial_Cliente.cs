@@ -200,7 +200,7 @@ namespace FrbaCommerce.Historial_Cliente
         {
             try
             {
-                Object listaCalificacionesRealizadas = (Object)CalificacionDAO.CalificacionesRecibidas(Session.IdUsuario);
+                Object listaCalificacionesRealizadas = (Object)CalificacionDAO.CalificacionesRealizadas(Session.IdUsuario);
                 DataGridViewColumn[] columnas = obtenerDisenoColumnasGrillaCalificaciones();
 
                 if (dgCompras.Columns.Count == 0)
@@ -269,7 +269,7 @@ namespace FrbaCommerce.Historial_Cliente
         {
             try
             {
-                Object listaCalificacionesRecibidas= (Object)CalificacionDAO.CalificacionesRealizadas(Session.IdUsuario);
+                Object listaCalificacionesRecibidas= (Object)CalificacionDAO.CalificacionesRecibidas(Session.IdUsuario);
                 DataGridViewColumn[] columnas = obtenerDisenoColumnasGrillaCalificaciones();
 
                 if (dgCompras.Columns.Count == 0)
