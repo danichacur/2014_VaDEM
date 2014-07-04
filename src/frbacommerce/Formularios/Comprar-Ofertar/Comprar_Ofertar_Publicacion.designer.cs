@@ -48,6 +48,7 @@
             this.pnlPregunta = new System.Windows.Forms.Panel();
             this.btnAceparPregunta = new System.Windows.Forms.Button();
             this.txtPregunta = new System.Windows.Forms.TextBox();
+            this.VerPreguntas = new System.Windows.Forms.Button();
             this.pnlPregunta.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -229,11 +230,23 @@
             this.txtPregunta.Size = new System.Drawing.Size(383, 73);
             this.txtPregunta.TabIndex = 0;
             // 
+            // VerPreguntas
+            // 
+            this.VerPreguntas.Enabled = false;
+            this.VerPreguntas.Location = new System.Drawing.Point(337, 223);
+            this.VerPreguntas.Name = "VerPreguntas";
+            this.VerPreguntas.Size = new System.Drawing.Size(95, 23);
+            this.VerPreguntas.TabIndex = 20;
+            this.VerPreguntas.Text = "Ver pregutas";
+            this.VerPreguntas.UseVisualStyleBackColor = true;
+            this.VerPreguntas.Click += new System.EventHandler(this.VerPreguntas_Click);
+            // 
             // Comprar_Ofertar_Publicacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(463, 427);
+            this.Controls.Add(this.VerPreguntas);
             this.Controls.Add(this.pnlPregunta);
             this.Controls.Add(this.btnPreguntar);
             this.Controls.Add(this.btnOfertar);
@@ -284,5 +297,6 @@
         private System.Windows.Forms.Panel pnlPregunta;
         private System.Windows.Forms.TextBox txtPregunta;
         private System.Windows.Forms.Button btnAceparPregunta;
+        private System.Windows.Forms.Button VerPreguntas;
     }
 }

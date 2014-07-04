@@ -5,6 +5,7 @@ using System.Text;
 using FrbaCommerce.Entidades;
 using System.Data;
 using System.Data.SqlClient;
+using FrbaCommerce.Componentes_Comunes;
 namespace FrbaCommerce.Datos
 {
     class ComprasDAO
@@ -85,9 +86,9 @@ namespace FrbaCommerce.Datos
                 pIdComprador.Value = idComprador;
 
                 SqlParameter pFecha = new SqlParameter();
-                pFecha.SqlDbType = SqlDbType.DateTime;
+                pFecha.SqlDbType = SqlDbType.VarChar;
                 pFecha.ParameterName = "@Fecha";
-                pFecha.Value = fecha;
+                pFecha.Value = Metodos_Comunes.localDateToSQLDate(fecha);
 
                 SqlParameter pCantidad = new SqlParameter();
                 pCantidad.SqlDbType = SqlDbType.Int;

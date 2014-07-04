@@ -633,173 +633,6 @@ C:\Users\Matias\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formulari
 C:\Users\Matias\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Session.cs
 C:\Users\Matias\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\app.config
 C:\Users\Matias\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Generar_Publicacion.Publicacion_Editar.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\ctrlABM.resx
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\ctrlAltaModificacion.resx
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\FiltroDgvCheck.resx
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\Filtro.resx
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\FiltroComboBox.resx
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\FiltroFecha.resx
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\FiltroTextBox.resx
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\Form_Agregar.resx
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Cliente\Cliente_Agregar.resx
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Cliente\Cliente_Listar.resx
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Cliente\Cliente_Modificar.resx
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Empresa\Empresa_Agregar.resx
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Empresa\Empresa_Listar.resx
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Empresa\Empresa_Modificar.resx
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\ABM Rol\Rol_Agregar.resx
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\ABM Rol\Rol_Modificar.resx
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Visibilidad\Visibilidad_Agregar.resx
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Visibilidad\Visibilidad_Listar.resx
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Visibilidad\Visibilidad_Modificar.resx
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Calificar Vendedor\Calificar.resx
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Calificar Vendedor\Calificar_Listar.resx
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Generar Publicacion\Publicacion_Listar.resx
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Generar Publicacion\Publicacion_Alta.resx
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Login\FormLogin.resx
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Registro de Usuario\CambiaPassword.resx
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Registro de Usuario\registroCliente.resx
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Registro de Usuario\registroEmpresa.resx
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Registro de Usuario\registroUsuario.resx
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Menu.resx
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\ABM Rol\Rol_Listar.resx
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Rubro\AMBRubros.resx
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\ABM.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\CampoTextBox.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\CampoTextBox.Designer.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\ctrlABM.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\ctrlABM.Designer.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\ctrlAltaModificacion.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\ctrlAltaModificacion.Designer.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\FiltroDgvCheck.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\FiltroDgvCheck.Designer.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\Filtro.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\FiltroComboBox.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\FiltroComboBox.Designer.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\FiltroFecha.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\FiltroFecha.Designer.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\FiltroTextBoxPassword.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\FiltroTextBoxPassword.Designer.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\Form_Agregar.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\Form_Agregar.Designer.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\Metodos_Comunes.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Datos\ClienteDAO.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Datos\ComprasDAO.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Datos\Datos.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Datos\EmpresaDAO.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Datos\LoginDAO.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Datos\PublicacionDAO.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Datos\FuncionalidadDAO.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Datos\RolDAO.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Datos\RubroDAO.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Datos\UsuarioDAO.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Datos\VisibilidadDAO.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Entidades\Cliente.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Entidades\Compra.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Entidades\Empresa.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Entidades\Funcionalidad.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Entidades\Publicacion.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Entidades\Rubro.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Entidades\Rol.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Entidades\Usuario.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Entidades\Visibilidad.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Cliente\Cliente_Agregar.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Cliente\Cliente_Agregar.Designer.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Cliente\Cliente_Modificar.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Cliente\Cliente_Modificar.Designer.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Empresa\Empresa_Agregar.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Empresa\Empresa_Agregar.Designer.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Empresa\Empresa_Listar.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Empresa\Empresa_Listar.Designer.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Empresa\Empresa_Modificar.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Empresa\Empresa_Modificar.Designer.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\ABM Rol\Rol_Listar.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\ABM Rol\Rol_Listar.Designer.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Cliente\Cliente_Listar.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Cliente\Cliente_Listar.Designer.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\ABM Rol\Rol_Agregar.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\ABM Rol\Rol_Agregar.Designer.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\ABM Rol\Rol_Modificar.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\ABM Rol\Rol_Modificar.Designer.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Rubro\AMBRubros.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Rubro\AMBRubros.Designer.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Visibilidad\Visibilidad_Agregar.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Visibilidad\Visibilidad_Agregar.Designer.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Visibilidad\Visibilidad_Listar.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Visibilidad\Visibilidad_Listar.Designer.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Visibilidad\Visibilidad_Modificar.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Visibilidad\Visibilidad_Modificar.Designer.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Calificar Vendedor\Calificar.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Calificar Vendedor\Calificar.Designer.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Calificar Vendedor\Calificar_Listar.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Calificar Vendedor\Calificar_Listar.Designer.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\FiltroTextBox.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\FiltroTextBox.Designer.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Generar Publicacion\Publicacion_Listar.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Generar Publicacion\Publicacion_Listar.Designer.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Generar Publicacion\Publicacion_Editar.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Generar Publicacion\Publicacion_Editar.Designer.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Generar Publicacion\Publicacion_Alta.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Generar Publicacion\Publicacion_Alta.Designer.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Login\FormLogin.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Login\FormLogin.Designer.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Registro de Usuario\CambiaPassword.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Registro de Usuario\CambiaPassword.Designer.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Registro de Usuario\registroCliente.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Registro de Usuario\registroCliente.Designer.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Registro de Usuario\registroEmpresa.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Registro de Usuario\registroEmpresa.Designer.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Menu.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Menu.Designer.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Program.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Registro de Usuario\registroUsuario.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Registro de Usuario\registroUsuario.Designer.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Session.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\app.config
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\FrbaCommerce.exe.config
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\FrbaCommerce.exe
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\FrbaCommerce.pdb
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.ctrlABM.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.ctrlAltaModificacion.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.FiltroDgvCheck.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.Filtro.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.FiltroComboBox.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.FiltroFecha.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.FiltroTextBox.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.Form_Agregar.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Abm_Cliente.Cliente_Agregar.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Abm_Cliente.Cliente_Listar.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Abm_Cliente.Cliente_Modificar.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Abm_Empresa.Empresa_Agregar.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Abm_Empresa.Empresa_Listar.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Abm_Empresa.Empresa_Modificar.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.ABM_Rol.Rol_Agregar.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.ABM_Rol.Rol_Modificar.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Abm_Visibilidad.Visibilidad_Agregar.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Abm_Visibilidad.Visibilidad_Listar.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Abm_Visibilidad.Visibilidad_Modificar.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Calificar_Vendedor.Calificar.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Calificar_Vendedor.Calificar_Listar.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Comprar_Ofertar.Comprar_Ofertar_Listado.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Comprar_Ofertar.Comprar_Ofertar_Publicacion.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Generar_Publicacion.Publicacion_Editar.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Generar_Publicacion.Publicacion_Listar.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Generar_Publicacion.Publicacion_Alta.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Historial_Cliente.Historial_Cliente.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Listado_Estadistico.Estadisticas.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Login.FormLogin.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Registro_de_Usuario.CambiaPassword.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Registro_de_Usuario.registroCliente.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Registro_de_Usuario.registroEmpresa.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Registro_de_Usuario.registroUsuario.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Menu.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.ABM_Rol.Rol_Listar.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Abm_Rubro.Abm_Rubro.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Properties.Resources.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.csproj.GenerateResource.Cache
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.exe
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.pdb
 C:\Users\Nati\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Generar_Publicacion.Publicacion_Editar.resources
 C:\Users\Nati\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Listado_Estadistico.Estadisticas.resources
 C:\Users\Nati\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Comprar_Ofertar.Comprar_Ofertar_Comprar.resources
@@ -824,17 +657,6 @@ C:\Users\Matias\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaComme
 C:\Users\Matias\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Facturar_Publicaciones.Facturar_Publicar_Datos.resources
 C:\Users\Matias\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Gestion_de_Preguntas.Preguntas.resources
 C:\Users\Matias\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Gestion_de_Preguntas.Respuesta.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Facturar Publicaciones\Facturar_Publicaciones_Listado.resx
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Facturar Publicaciones\Facturar_Publicaciones_Listado.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Facturar Publicaciones\Facturar_Publicaciones_Listado.Designer.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Gestion de Preguntas\Preguntas.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Gestion de Preguntas\Preguntas.Designer.cs
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Comprar_Ofertar.Comprar_Ofertar_Comprar.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Comprar_Ofertar.Comprar_Ofertar_Ofertar.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Facturar_Publicaciones.Facturar_Publicaciones_Listado.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Facturar_Publicaciones.Facturar_Publicar_Datos.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Gestion_de_Preguntas.Preguntas.resources
-C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Gestion_de_Preguntas.Respuesta.resources
 C:\Users\Nati\Desktop\2014_VaDEM\src\FrbaCommerce\bin\Debug\FrbaCommerce.exe.config
 C:\Users\Nati\Desktop\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.exe
 C:\Users\Nati\Desktop\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.pdb
@@ -1025,3 +847,194 @@ C:\Users\Nati\Desktop\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Comprar-
 C:\Users\Nati\Desktop\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Comprar-Ofertar\Comprar_Ofertar_Ofertar.designer.cs
 C:\Users\Nati\Desktop\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Comprar-Ofertar\Comprar_Ofertar_Publicacion.cs
 C:\Users\Nati\Desktop\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Comprar-Ofertar\Comprar_Ofertar_Publicacion.designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\FrbaCommerce.exe.config
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\ctrlABM.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\ctrlAltaModificacion.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\FiltroDgvCheck.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\Filtro.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\FiltroComboBox.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\FiltroFecha.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\FiltroTextBox.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\Form_Agregar.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Cliente\Cliente_Agregar.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Cliente\Cliente_Listar.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Cliente\Cliente_Modificar.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Empresa\Empresa_Agregar.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Empresa\Empresa_Listar.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Empresa\Empresa_Modificar.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\ABM Rol\Rol_Agregar.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\ABM Rol\Rol_Modificar.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Visibilidad\Visibilidad_Agregar.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Visibilidad\Visibilidad_Listar.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Visibilidad\Visibilidad_Modificar.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Calificar Vendedor\Calificar.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Calificar Vendedor\Calificar_Listar.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Comprar-Ofertar\Comprar_Ofertar_Comprar.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Comprar-Ofertar\Comprar_Ofertar_Listado.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Comprar-Ofertar\Comprar_Ofertar_Ofertar.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Comprar-Ofertar\Comprar_Ofertar_Publicacion.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Facturar Publicaciones\Facturar_Publicaciones_Listado.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Generar Publicacion\Publicacion_Listar.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Generar Publicacion\Publicacion_Alta.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Login\FormLogin.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Registro de Usuario\CambiaPassword.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Registro de Usuario\registroCliente.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Registro de Usuario\registroEmpresa.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Registro de Usuario\registroUsuario.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Menu.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\ABM Rol\Rol_Listar.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Rubro\AMBRubros.resx
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\ABM.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\CampoTextBox.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\CampoTextBox.Designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\ctrlABM.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\ctrlABM.Designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\ctrlAltaModificacion.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\ctrlAltaModificacion.Designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\FiltroDgvCheck.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\FiltroDgvCheck.Designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\Filtro.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\FiltroComboBox.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\FiltroComboBox.Designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\FiltroFecha.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\FiltroFecha.Designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\FiltroTextBoxPassword.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\FiltroTextBoxPassword.Designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\Form_Agregar.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\Form_Agregar.Designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\Metodos_Comunes.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Datos\ClienteDAO.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Datos\ComprasDAO.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Datos\Datos.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Datos\EmpresaDAO.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Datos\LoginDAO.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Datos\PublicacionDAO.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Datos\FuncionalidadDAO.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Datos\RolDAO.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Datos\RubroDAO.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Datos\UsuarioDAO.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Datos\VisibilidadDAO.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Entidades\Cliente.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Entidades\Compra.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Entidades\Empresa.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Entidades\Funcionalidad.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Entidades\Publicacion.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Entidades\Rubro.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Entidades\Rol.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Entidades\Usuario.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Entidades\Visibilidad.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Cliente\Cliente_Agregar.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Cliente\Cliente_Agregar.Designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Cliente\Cliente_Modificar.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Cliente\Cliente_Modificar.Designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Empresa\Empresa_Agregar.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Empresa\Empresa_Agregar.Designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Empresa\Empresa_Listar.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Empresa\Empresa_Listar.Designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Empresa\Empresa_Modificar.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Empresa\Empresa_Modificar.Designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\ABM Rol\Rol_Listar.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\ABM Rol\Rol_Listar.Designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Cliente\Cliente_Listar.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Cliente\Cliente_Listar.Designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\ABM Rol\Rol_Agregar.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\ABM Rol\Rol_Agregar.Designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\ABM Rol\Rol_Modificar.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\ABM Rol\Rol_Modificar.Designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Rubro\AMBRubros.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Rubro\AMBRubros.Designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Visibilidad\Visibilidad_Agregar.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Visibilidad\Visibilidad_Agregar.Designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Visibilidad\Visibilidad_Listar.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Visibilidad\Visibilidad_Listar.Designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Visibilidad\Visibilidad_Modificar.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Abm Visibilidad\Visibilidad_Modificar.Designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Calificar Vendedor\Calificar.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Calificar Vendedor\Calificar.Designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Calificar Vendedor\Calificar_Listar.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Calificar Vendedor\Calificar_Listar.Designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\FiltroTextBox.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Componentes Comunes\FiltroTextBox.Designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Comprar-Ofertar\Comprar_Ofertar_Comprar.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Comprar-Ofertar\Comprar_Ofertar_Comprar.designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Comprar-Ofertar\Comprar_Ofertar_Listado.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Comprar-Ofertar\Comprar_Ofertar_Listado.designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Comprar-Ofertar\Comprar_Ofertar_Ofertar.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Comprar-Ofertar\Comprar_Ofertar_Ofertar.designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Comprar-Ofertar\Comprar_Ofertar_Publicacion.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Comprar-Ofertar\Comprar_Ofertar_Publicacion.designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Facturar Publicaciones\Facturar_Publicaciones_Listado.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Facturar Publicaciones\Facturar_Publicaciones_Listado.Designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Generar Publicacion\Publicacion_Listar.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Generar Publicacion\Publicacion_Listar.Designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Generar Publicacion\Publicacion_Editar.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Generar Publicacion\Publicacion_Editar.Designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Generar Publicacion\Publicacion_Alta.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Generar Publicacion\Publicacion_Alta.Designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Login\FormLogin.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Login\FormLogin.Designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Registro de Usuario\CambiaPassword.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Registro de Usuario\CambiaPassword.Designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Registro de Usuario\registroCliente.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Registro de Usuario\registroCliente.Designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Registro de Usuario\registroEmpresa.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Registro de Usuario\registroEmpresa.Designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Menu.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Menu.Designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Gestion de Preguntas\Preguntas.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Gestion de Preguntas\Preguntas.Designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Program.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Registro de Usuario\registroUsuario.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Formularios\Registro de Usuario\registroUsuario.Designer.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\Session.cs
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\app.config
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\FrbaCommerce.exe
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\bin\Debug\FrbaCommerce.pdb
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.ctrlABM.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.ctrlAltaModificacion.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.FiltroDgvCheck.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.Filtro.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.FiltroComboBox.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.FiltroFecha.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.FiltroTextBox.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Componentes_Comunes.Form_Agregar.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Abm_Cliente.Cliente_Agregar.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Abm_Cliente.Cliente_Listar.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Abm_Cliente.Cliente_Modificar.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Abm_Empresa.Empresa_Agregar.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Abm_Empresa.Empresa_Listar.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Abm_Empresa.Empresa_Modificar.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.ABM_Rol.Rol_Agregar.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.ABM_Rol.Rol_Modificar.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Abm_Visibilidad.Visibilidad_Agregar.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Abm_Visibilidad.Visibilidad_Listar.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Abm_Visibilidad.Visibilidad_Modificar.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Calificar_Vendedor.Calificar.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Calificar_Vendedor.Calificar_Listar.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Comprar_Ofertar.Comprar_Ofertar_Comprar.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Comprar_Ofertar.Comprar_Ofertar_Listado.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Comprar_Ofertar.Comprar_Ofertar_Ofertar.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Comprar_Ofertar.Comprar_Ofertar_Publicacion.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Facturar_Publicaciones.Facturar_Publicaciones_Listado.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Facturar_Publicaciones.Facturar_Publicar_Datos.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Generar_Publicacion.Publicacion_Editar.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Generar_Publicacion.Publicacion_Listar.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Generar_Publicacion.Publicacion_Alta.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Gestion_de_Preguntas.Preguntas.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Gestion_de_Preguntas.Respuesta.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Gestion_de_Preguntas.Ver_Preguntas.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Historial_Cliente.Historial_Cliente.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Listado_Estadistico.Estadisticas.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Login.FormLogin.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Registro_de_Usuario.CambiaPassword.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Registro_de_Usuario.registroCliente.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Formularios.Registro_de_Usuario.registroEmpresa.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Registro_de_Usuario.registroUsuario.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Menu.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.ABM_Rol.Rol_Listar.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Abm_Rubro.Abm_Rubro.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.Properties.Resources.resources
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.csproj.GenerateResource.Cache
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.exe
+C:\Users\danytin\Documents\GitHub\2014_VaDEM\src\FrbaCommerce\obj\Debug\FrbaCommerce.pdb

@@ -429,7 +429,9 @@ CREATE TABLE [vadem].[compras](
 	[IdComprador] [int] NOT NULL,
 	[Fecha] [datetime] NOT NULL,
 	[Cantidad] [numeric](18, 0) NOT NULL,
-	[Calificada] [int] NOT NULL,
+	[Calificada] [bit] NOT NULL,
+	[Calificacion] [int] NOT NULL,
+
  CONSTRAINT [PK_compras] PRIMARY KEY CLUSTERED 
 (
 	[IdCompra] ASC

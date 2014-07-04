@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{9F87DEAA-7E5A-4897-BB78-E15F28C4FAE6}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -402,6 +402,12 @@
     <Compile Include="Formularios\Gestion de Preguntas\Respuesta.Designer.cs">
       <DependentUpon>Respuesta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Gestion de Preguntas\Ver_Preguntas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Gestion de Preguntas\Ver_Preguntas.Designer.cs">
+      <DependentUpon>Ver_Preguntas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Historial Cliente\Historial_Cliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -616,6 +622,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Gestion de Preguntas\Respuesta.resx">
       <DependentUpon>Respuesta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Gestion de Preguntas\Ver_Preguntas.resx">
+      <DependentUpon>Ver_Preguntas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Historial Cliente\Historial_Cliente.resx">
       <DependentUpon>Historial_Cliente.cs</DependentUpon>

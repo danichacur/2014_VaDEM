@@ -69,6 +69,8 @@ namespace FrbaCommerce.Formularios.Comprar_Ofertar
                     btnPreguntar.Enabled = false;
                     pnlPregunta.Visible = false;
                 }
+
+                VerPreguntas.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -122,6 +124,13 @@ namespace FrbaCommerce.Formularios.Comprar_Ofertar
 
             Formularios.Comprar_Ofertar.Comprar_Ofertar_Comprar formComprar = new Formularios.Comprar_Ofertar.Comprar_Ofertar_Comprar(pub);
             formComprar.ShowDialog();
+        }
+
+        private void VerPreguntas_Click(object sender, EventArgs e)
+        {
+            Formularios.Gestion_de_Preguntas.Ver_Preguntas formPreguntar = new Formularios.Gestion_de_Preguntas.Ver_Preguntas(pub);
+            formPreguntar.ShowDialog();
+
         }
     }
 }

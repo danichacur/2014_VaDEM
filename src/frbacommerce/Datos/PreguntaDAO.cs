@@ -34,8 +34,8 @@ namespace FrbaCommerce.Datos
                 script = " SELECT E.IdPregunta, P.Descripcion, P.IdPublicacion, U.IdUsuario, E.Pregunta, U.Username, E.FechaPregunta, E.Respuesta, E.FechaRespuesta ";
                 script += " FROM vadem.pregunta E, vadem.publicacion P, vadem.usuario U";
                 script += " WHERE E.IdPublicacion = P.IdPublicacion";
-	            script += " AND E.UsuarioPregunta = U.IdUsuario";
-                script += " AND P.IdVendedor = " + Session.IdUsuario + " ";
+	            script += " AND E.UsuarioPregunta = U.IdUsuario ";
+                //script += " AND P.IdVendedor = " + Session.IdUsuario + " ";
 
                 if (clausulaWhere != "")
                     clausulaWhere = clausulaWhere.Replace("WHERE","AND");

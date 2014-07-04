@@ -11,24 +11,28 @@ using FrbaCommerce.Entidades;
 using System.Configuration;
 using FrbaCommerce.Datos;
 
-namespace FrbaCommerce.Gestion_de_Preguntas
+namespace FrbaCommerce.Formularios.Gestion_de_Preguntas
 {
-    public partial class Preguntas : ABM
+    public partial class Ver_Preguntas : ABM
     {
 
         #region VariablesDeClase
 
+        private Publicacion Publicacion { get; set; }
         private DataGridView dgv;
 
         #endregion
 
         #region Eventos
-        public Preguntas()
+
+        public Ver_Preguntas(Publicacion Pub)
         {
+            Publicacion = Pub;
+            
             InitializeComponent();
         }
 
-        private void Preguntas_Load(object sender, EventArgs e)
+        private void Ver_Preguntas_Load(object sender, EventArgs e)
         {
             try
             {
@@ -42,80 +46,17 @@ namespace FrbaCommerce.Gestion_de_Preguntas
             }
         }
 
-        /// <summary>
-        /// Evento del click en cualquier parte de la grilla. Sólo se hace algo si se hace click en Modificar o Eliminar
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                // Ignora los clicks que no son sobre las columnas con boton  
-                if (e.RowIndex < 0 || (e.ColumnIndex != dgv.Columns["Responder"].Index)) return;
-
-
-                if (e.ColumnIndex == dgv.Columns["Responder"].Index)
-                {
-                    btnResponder_Click(sender, e);
-                }
-            }
-            catch (Exception ex)
-            {
-                Metodos_Comunes.MostrarMensajeError(ex);
-            }
-        }
-
-        /// <summary>
-        /// Evento boton responder. Se abre la ventana de responder con la informacion correspondiente. Al regresar de la ventana
-        /// valida que el resultado sea satisfactorio, en ese caso refresca la pantalla
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnResponder_Click(object sender, DataGridViewCellEventArgs e)
-        {
-            System.Windows.Forms.DialogResult result;
-            Pregunta pregunta;
-            try
-            {
-                DataGridViewRow filaPreguntas = dgv.Rows[e.RowIndex];
-                pregunta = new Pregunta(Convert.ToInt32(filaPreguntas.Cells["IdPregunta"].Value),
-                    Convert.ToInt32(filaPreguntas.Cells["IdPublicacion"].Value), 
-                    Convert.ToInt32(filaPreguntas.Cells["IdUsuario"].Value), 
-                    Convert.ToDateTime(filaPreguntas.Cells["FechaPregunta"].Value),
-                    Convert.ToString(filaPreguntas.Cells["Pregunta"].Value),
-                     Convert.ToDateTime(ConfigurationManager.AppSettings["DateTimeNow"]),
-                    Convert.ToString(filaPreguntas.Cells["Respuesta"].Value),
-                    Convert.ToString(filaPreguntas.Cells["Descripcion"].Value),
-                    Convert.ToString(filaPreguntas.Cells["Username"].Value));
-
-                Formularios.Gestion_de_Preguntas.Respuesta formRespuesta = new Formularios.Gestion_de_Preguntas.Respuesta(pregunta);
-                result = formRespuesta.ShowDialog();
-
-                if (result == System.Windows.Forms.DialogResult.OK)
-                {
-                    ctrlABM1.buscar();
-                }
-            }
-            catch (Exception ex)
-            {
-                Metodos_Comunes.MostrarMensajeError(ex);
-            }
-        }
-
-
         #endregion
 
         #region MetodosGenerales
-
 
         private void cargaInicialGrilla()
         {
             try
             {
                 aplicarFiltro("");
-                dgv.CellClick -= new DataGridViewCellEventHandler(dgv_CellClick);
-                dgv.CellClick += new DataGridViewCellEventHandler(dgv_CellClick);
+               // dgv.CellClick -= new DataGridViewCellEventHandler(dgv_CellClick);
+               // dgv.CellClick += new DataGridViewCellEventHandler(dgv_CellClick);
             }
             catch (Exception)
             {
@@ -141,7 +82,7 @@ namespace FrbaCommerce.Gestion_de_Preguntas
 
                     this.ctrlABM1.cargarFiltros(filtros, null);
                 }
-             
+
             }
             catch (Exception)
             {
@@ -155,9 +96,9 @@ namespace FrbaCommerce.Gestion_de_Preguntas
             try
             {
                 if (clausulaWhere == "")
-                    clausulaWhere += " WHERE P.IdVendedor = " + Session.IdUsuario + " ";
+                    clausulaWhere += " WHERE P.IdPublicacion = " + Publicacion.Id;
                 else
-                    clausulaWhere += " AND P.IdVendedor = " + Session.IdUsuario + " ";
+                    clausulaWhere += " AND P.IdPublicacion = " + Publicacion.Id;
                         
                 Object listaPreguntas = (Object)PreguntaDAO.obtenerPreguntas(clausulaWhere);
 
@@ -238,6 +179,7 @@ namespace FrbaCommerce.Gestion_de_Preguntas
                 colResponder.Text = "Ver/Responder";
                 colResponder.Name = "Responder";
                 colResponder.UseColumnTextForButtonValue = true;
+                colResponder.Visible = false;
                 columnas[6] = colResponder;
 
                 DataGridViewTextBoxColumn colIdP = new DataGridViewTextBoxColumn();
@@ -268,4 +210,5 @@ namespace FrbaCommerce.Gestion_de_Preguntas
 
         #endregion
     }
+
 }

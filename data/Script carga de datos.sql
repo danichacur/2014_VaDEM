@@ -121,8 +121,8 @@ INSERT INTO vadem.factura
 	
 -- Se crea la factura 0 que tendra asociadas a los item pendientes de facturar --
 -- La factura se le asocia al usuario administrador -- 
-INSERT INTO vadem.factura 
-VALUES (0, 1, '', '', NULL, 0)
+--INSERT INTO vadem.factura 
+--VALUES (0, 1, '', '', NULL, 0)
 	
 GO
 
@@ -202,7 +202,7 @@ GO
 
 /************************/ SELECT 'COMPRAS' /************************/
 INSERT INTO vadem.compras
-	SELECT  Publicacion_Cod, U.IdUsuario, Compra_Fecha, Compra_Cantidad, Calificacion_Codigo
+	SELECT  Publicacion_Cod, U.IdUsuario, Compra_Fecha, Compra_Cantidad, 1, Calificacion_Codigo
 	FROM gd_esquema.Maestra E
 	LEFT JOIN vadem.usuario U
 	ON U.Username = CONVERT(VARCHAR,E.Cli_Dni) + '-' + E.Cli_Apeliido
@@ -219,10 +219,12 @@ INSERT INTO vadem.calificacion
 	LEFT JOIN vadem.usuario U2
 		ON U2.Username = CONVERT(VARCHAR,E.Cli_Dni) + '-' + E.Cli_Apeliido
 	LEFT JOIN vadem.compras C
-		ON C.Calificada = Calificacion_Codigo 
+		ON C.Calificacion = Calificacion_Codigo 
 	WHERE Calificacion_Codigo IS NOT NULL
 
-UPDATE vadem.compras SET Calificada = 1
+ALTER TABLE vadem.compras 
+DROP COLUMN Calificacion;
+
 GO
 
 /************************/ SELECT 'ITEM FACTURA' /************************/

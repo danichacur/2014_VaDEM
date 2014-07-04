@@ -615,6 +615,13 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
 
                      if (valida == false)
                          Metodos_Comunes.MostrarMensaje("El estado elegido no está permitido.");
+
+
+                     //estaba en estado finalizada
+                     if ((publicacion.Estado == 4) && (estado_nuevo == 4))
+                     {
+                         valida = false;
+                     }
             //     }
 
                 return (valida&stoc);

@@ -32,6 +32,7 @@ namespace FrbaCommerce.Gestion_de_Preguntas
         {
             try
             {
+                this.ctrlABM1.ocultarBotonAlta();
                 cargaFiltros();
                 cargaInicialGrilla();
             }
@@ -153,7 +154,11 @@ namespace FrbaCommerce.Gestion_de_Preguntas
         {
             try
             {
-
+                if (clausulaWhere == "")
+                    clausulaWhere += " WHERE P.IdVendedor = " + Session.IdUsuario + " ";
+                else
+                    clausulaWhere += " AND P.IdVendedor = " + Session.IdUsuario + " ";
+                        
                 Object listaPreguntas = (Object)PreguntaDAO.obtenerPreguntas(clausulaWhere);
 
                 DataGridViewColumn[] columnas = obtenerDisenoColumnasGrilla();
