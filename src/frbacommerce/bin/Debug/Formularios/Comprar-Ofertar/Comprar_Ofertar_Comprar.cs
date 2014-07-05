@@ -93,6 +93,7 @@ namespace FrbaCommerce.Formularios.Comprar_Ofertar
                         default:
                             break;
                     }
+                    DialogResult = System.Windows.Forms.DialogResult.OK;
 
                 }
                 else

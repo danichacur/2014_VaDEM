@@ -77,7 +77,7 @@
             // 
             // txtDatosTarjeta
             // 
-            this.txtDatosTarjeta.Location = new System.Drawing.Point(782, 166);
+            this.txtDatosTarjeta.Location = new System.Drawing.Point(803, 166);
             this.txtDatosTarjeta.Name = "txtDatosTarjeta";
             this.txtDatosTarjeta.Size = new System.Drawing.Size(121, 20);
             this.txtDatosTarjeta.TabIndex = 5;
@@ -85,7 +85,7 @@
             // cmbFormaPago
             // 
             this.cmbFormaPago.FormattingEnabled = true;
-            this.cmbFormaPago.Location = new System.Drawing.Point(782, 123);
+            this.cmbFormaPago.Location = new System.Drawing.Point(803, 123);
             this.cmbFormaPago.Name = "cmbFormaPago";
             this.cmbFormaPago.Size = new System.Drawing.Size(121, 21);
             this.cmbFormaPago.TabIndex = 4;
@@ -102,9 +102,9 @@
             // comboBoxVend
             // 
             this.comboBoxVend.FormattingEnabled = true;
-            this.comboBoxVend.Location = new System.Drawing.Point(782, 84);
+            this.comboBoxVend.Location = new System.Drawing.Point(759, 84);
             this.comboBoxVend.Name = "comboBoxVend";
-            this.comboBoxVend.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxVend.Size = new System.Drawing.Size(211, 21);
             this.comboBoxVend.TabIndex = 10;
             this.comboBoxVend.SelectionChangeCommitted += new System.EventHandler(this.comboBoxVend_SelectionChangeCommitted);
             // 

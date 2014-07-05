@@ -59,11 +59,11 @@ namespace FrbaCommerce.Datos
         /// <returns></returns>
         public static DataTable obtenerHistorialCompras(int usuario)
         {
-             String script = "select C.Fecha,C.Cantidad,P.Descripcion,TP.Descripcion AS TipoPublicacion,U.Username from vadem.compras C " +
-                              "join vadem.publicacion P on C.IdPublicacion = P.IdPublicacion " +
-                              "join vadem.usuario U on P.IdVendedor = U.IdUsuario " +
-                             "join vadem.tipoPublicacion TP ON TP.IdTipo = P.IdTipo " +
-                              "where IdComprador = " + usuario;
+            String script = "select C.Fecha,C.Cantidad,P.Descripcion,TP.Descripcion AS TipoPublicacion,U.Username from vadem.compras C " +
+                             "join vadem.publicacion P on C.IdPublicacion = P.IdPublicacion " +
+                             "join vadem.usuario U on P.IdVendedor = U.IdUsuario " +
+                            "join vadem.tipoPublicacion TP ON TP.IdTipo = P.IdTipo " +
+                             "where Fecha between FechaInicio and FechaFin and IdComprador = " + usuario;
   
             return AccesoDatos.Instance.EjecutarScript(script);
         }

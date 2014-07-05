@@ -19,7 +19,7 @@ namespace FrbaCommerce.Datos
                      "join vadem.usuario U on C.IdVendedor = U.IdUsuario " +
                      "join vadem.compras CO on CO.IdCompra = C.IdCompra " +
                      "join vadem.publicacion P on P.IdPublicacion = CO.IdPublicacion " +
-                     "where IdCalificador = " + IdUsuario;
+                     "where CO.Fecha between FechaInicio and FechaFin and IdCalificador = " + IdUsuario;
 
             return AccesoDatos.Instance.EjecutarScript(script);
         }
@@ -32,7 +32,7 @@ namespace FrbaCommerce.Datos
                      "join vadem.usuario U on C.IdCalificador = U.IdUsuario " +
                      "join vadem.compras CO on CO.IdCompra = C.IdCompra " +
                      "join vadem.publicacion P on P.IdPublicacion = CO.IdPublicacion " +
-                     "where C.IdVendedor = " + IdUsuario;
+                     "where CO.Fecha between FechaInicio and FechaFin and C.IdVendedor = " + IdUsuario;
             return AccesoDatos.Instance.EjecutarScript(script);
         }
 
