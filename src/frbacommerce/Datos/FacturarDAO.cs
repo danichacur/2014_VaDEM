@@ -5,7 +5,6 @@ using System.Text;
 using FrbaCommerce.Entidades;
 using System.Data;
 using FrbaCommerce.Componentes_Comunes;
-using FrbaCommerce.Entidades;
 using System.Data.SqlClient;
 using System.Configuration;
 namespace FrbaCommerce.Datos
@@ -22,8 +21,8 @@ namespace FrbaCommerce.Datos
 
             script = "select F.IdItem,F.IdPublicacion,P.Descripcion,F.IdVendedor,F.Costo,F.Cantidad,F.IdFactura,F.EsCompra from vadem.itemFactura  F " +
                       "join vadem.publicacion P on P.IdPublicacion = F.IdPublicacion " +
-                      "where IdFactura = 0 " +
-                      "and EsCompra = 0 " +
+                      "where IdFactura = " + (-1)*IdVendedor +
+                      " and EsCompra = 0 " +
                       "and P.IdVendedor = " + IdVendedor +
                       " order by IdItem ";
 

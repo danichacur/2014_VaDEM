@@ -13,13 +13,13 @@ using FrbaCommerce.Datos;
 
 namespace FrbaCommerce.Formularios.Gestion_de_Preguntas
 {
-    public partial class Ver_Preguntas : ABM
+    public partial class Ver_Preguntas : Form
     {
 
         #region VariablesDeClase
 
         private Publicacion Publicacion { get; set; }
-        private DataGridView dgv;
+      //  private DataGridView dgv;
 
         #endregion
 
@@ -36,8 +36,8 @@ namespace FrbaCommerce.Formularios.Gestion_de_Preguntas
         {
             try
             {
-                this.ctrlABM1.ocultarBotonAlta();
-                cargaFiltros();
+                //this.ctrlABM1.ocultarBotonAlta();
+                //cargaFiltros();
                 cargaInicialGrilla();
             }
             catch (Exception ex)
@@ -63,7 +63,7 @@ namespace FrbaCommerce.Formularios.Gestion_de_Preguntas
                 throw;
             }
         }
-
+        /*
         private void cargaFiltros()
         {
             FiltroFecha filtroFecha;
@@ -89,22 +89,30 @@ namespace FrbaCommerce.Formularios.Gestion_de_Preguntas
                 throw;
             }
 
-        }
+        }*/
 
-        public override void aplicarFiltro(String clausulaWhere)
+        public void aplicarFiltro(String clausulaWhere)
         {
             try
             {
-                if (clausulaWhere == "")
-                    clausulaWhere += " WHERE P.IdPublicacion = " + Publicacion.Id;
-                else
-                    clausulaWhere += " AND P.IdPublicacion = " + Publicacion.Id;
+                
+                clausulaWhere += " AND E.Respuesta IS NOT NULL AND P.IdPublicacion = " + Publicacion.Id;
                         
                 Object listaPreguntas = (Object)PreguntaDAO.obtenerPreguntas(clausulaWhere);
 
                 DataGridViewColumn[] columnas = obtenerDisenoColumnasGrilla();
 
-                dgv = this.ctrlABM1.cargarGrilla(listaPreguntas, columnas);
+                dataGridView1.Columns.Clear();
+                if (dataGridView1.Columns.Count == 0)
+                {
+                    dataGridView1.Columns.AddRange(columnas);
+                    dataGridView1.AutoGenerateColumns = false;
+                }
+
+                Object listDatos = listaPreguntas;
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = listDatos;
+                //dgv = this.ctrlABM1.cargarGrilla(listaPreguntas, columnas);
 
             }
             catch (Exception)
@@ -117,7 +125,7 @@ namespace FrbaCommerce.Formularios.Gestion_de_Preguntas
         /// Obtiene del control AltaModificacion los campos que fueron cargados.
         /// </summary>
         /// <returns></returns>
-        public List<Filtro> obtenerFiltrosEnPantalla()
+       /* public List<Filtro> obtenerFiltrosEnPantalla()
         {
             try
             {
@@ -128,7 +136,7 @@ namespace FrbaCommerce.Formularios.Gestion_de_Preguntas
                 throw;
             }
         }
-
+        */
         #endregion
 
         #region MetodosAuxiliares
@@ -147,12 +155,13 @@ namespace FrbaCommerce.Formularios.Gestion_de_Preguntas
                 DataGridViewTextBoxColumn colPublicacion = new DataGridViewTextBoxColumn();
                 colPublicacion.DataPropertyName = "Descripcion"; colPublicacion.Name = "Descripcion";
                 colPublicacion.HeaderText = "Descripcion Publicacion";
+                colPublicacion.Visible = false;
                 columnas[0] = colPublicacion;
 
                 DataGridViewTextBoxColumn colPregunta = new DataGridViewTextBoxColumn();
                 colPregunta.DataPropertyName = "Pregunta"; colPregunta.Name = "Pregunta";
                 colPregunta.HeaderText = "Pregunta";
-                columnas[1] = colPregunta;
+                columnas[3] = colPregunta;
 
                 DataGridViewTextBoxColumn colUsuario = new DataGridViewTextBoxColumn();
                 colUsuario.DataPropertyName = "Username"; colUsuario.Name = "Username";
@@ -162,7 +171,7 @@ namespace FrbaCommerce.Formularios.Gestion_de_Preguntas
                 DataGridViewTextBoxColumn colFechaPregunta = new DataGridViewTextBoxColumn();
                 colFechaPregunta.DataPropertyName = "FechaPregunta"; colFechaPregunta.Name = "FechaPregunta";
                 colFechaPregunta.HeaderText = "Fecha Pregunta";
-                columnas[3] = colFechaPregunta;
+                columnas[1] = colFechaPregunta;
 
                 DataGridViewTextBoxColumn colRespuesta = new DataGridViewTextBoxColumn();
                 colRespuesta.DataPropertyName = "Respuesta"; colRespuesta.Name = "Respuesta";

@@ -27,7 +27,18 @@ namespace FrbaCommerce.Formularios.Facturar_Publicaciones
         {
             try
             {
-
+                if (Session.IdUsuario == 1)
+                {
+                    vendedor.Visible = true;
+                    comboBoxVend.Visible = true;
+                    cargarVendedores();
+                    comboBoxVend.SelectedIndex = 0;
+                }
+                else
+                {
+                    vendedor.Visible = false;
+                    comboBoxVend.Visible = false;
+                }
                 cmbFormaPago.Items.Insert(0, "Efectivo");
                 cmbFormaPago.Items.Insert(1, "Tarjeta");
 
@@ -40,6 +51,49 @@ namespace FrbaCommerce.Formularios.Facturar_Publicaciones
                 Metodos_Comunes.MostrarMensajeError(ex);
             }
         }
+
+        private void cargarVendedores()
+        {
+            try
+            {
+
+                comboBoxVend.DropDownStyle = ComboBoxStyle.DropDownList;
+                comboBoxVend.Text = "Username";
+
+                comboBoxVend.DataSource = obtenerVendedores();
+                comboBoxVend.DisplayMember = "Username";
+                comboBoxVend.ValueMember = "IdUsuario";
+            }
+            catch (Exception)
+            {                
+                throw;
+            }
+        }
+
+
+        private DataTable obtenerVendedores()
+        {
+            DataRow fila;
+            try
+            {
+                String script = "SELECT IdUsuario, Username FROM vadem.usuario where IdUsuario <> 1 ";
+
+                DataTable listaVendedores = PublicacionDAO.obtenerEstados(script);
+                fila = listaVendedores.NewRow();
+                fila["IdUsuario"] = 0;
+                fila["Username"] = "";
+                listaVendedores.Rows.InsertAt(fila, 0);
+
+                return listaVendedores;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error " + ex.Message);
+            }
+
+
+        }
+
 
 
         /// <summary>
@@ -229,6 +283,24 @@ namespace FrbaCommerce.Formularios.Facturar_Publicaciones
 
                 Metodos_Comunes.MostrarMensajeError(ex);
             }
+        }
+        
+        private void comboBoxVend_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+
+            try
+            {
+                Object listaPublicaciones = (Object)FacturarDAO.ObtenerItemFactura((int) comboBoxVend.SelectedValue);
+                columnas = obtenerDisenoColumnasGrilla();
+                dgv = cargarGrilla(listaPublicaciones, columnas);
+
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
         }
 
 

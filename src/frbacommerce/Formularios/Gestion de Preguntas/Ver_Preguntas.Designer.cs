@@ -28,31 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctrlABM1 = new FrbaCommerce.Componentes_Comunes.ctrlABM();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // ctrlABM1
+            // dataGridView1
             // 
-            this.ctrlABM1.Location = new System.Drawing.Point(12, 12);
-            this.ctrlABM1.Name = "ctrlABM1";
-            this.ctrlABM1.Size = new System.Drawing.Size(881, 412);
-            this.ctrlABM1.TabIndex = 0;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(25, 44);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(647, 336);
+            this.dataGridView1.TabIndex = 0;
             // 
             // Ver_Preguntas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(880, 403);
-            this.Controls.Add(this.ctrlABM1);
+            this.ClientSize = new System.Drawing.Size(703, 414);
+            this.Controls.Add(this.dataGridView1);
             this.Name = "Ver_Preguntas";
             this.Text = "Ver_Preguntas";
             this.Load += new System.EventHandler(this.Ver_Preguntas_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private FrbaCommerce.Componentes_Comunes.ctrlABM ctrlABM1;
+        private System.Windows.Forms.DataGridView dataGridView1;
+
     }
 }

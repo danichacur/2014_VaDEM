@@ -34,6 +34,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtDatosTarjeta = new System.Windows.Forms.TextBox();
             this.cmbFormaPago = new System.Windows.Forms.ComboBox();
+            this.vendedor = new System.Windows.Forms.Label();
+            this.comboBoxVend = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgFacturacion)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,7 +49,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(685, 143);
+            this.button1.Location = new System.Drawing.Point(683, 204);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
@@ -58,7 +60,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(683, 108);
+            this.label2.Location = new System.Drawing.Point(681, 169);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(95, 13);
             this.label2.TabIndex = 7;
@@ -67,7 +69,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(684, 70);
+            this.label1.Location = new System.Drawing.Point(682, 131);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 13);
             this.label1.TabIndex = 6;
@@ -75,7 +77,7 @@
             // 
             // txtDatosTarjeta
             // 
-            this.txtDatosTarjeta.Location = new System.Drawing.Point(784, 105);
+            this.txtDatosTarjeta.Location = new System.Drawing.Point(782, 166);
             this.txtDatosTarjeta.Name = "txtDatosTarjeta";
             this.txtDatosTarjeta.Size = new System.Drawing.Size(121, 20);
             this.txtDatosTarjeta.TabIndex = 5;
@@ -83,16 +85,36 @@
             // cmbFormaPago
             // 
             this.cmbFormaPago.FormattingEnabled = true;
-            this.cmbFormaPago.Location = new System.Drawing.Point(784, 67);
+            this.cmbFormaPago.Location = new System.Drawing.Point(782, 123);
             this.cmbFormaPago.Name = "cmbFormaPago";
             this.cmbFormaPago.Size = new System.Drawing.Size(121, 21);
             this.cmbFormaPago.TabIndex = 4;
+            // 
+            // vendedor
+            // 
+            this.vendedor.AutoSize = true;
+            this.vendedor.Location = new System.Drawing.Point(681, 87);
+            this.vendedor.Name = "vendedor";
+            this.vendedor.Size = new System.Drawing.Size(53, 13);
+            this.vendedor.TabIndex = 9;
+            this.vendedor.Text = "Vendedor";
+            // 
+            // comboBoxVend
+            // 
+            this.comboBoxVend.FormattingEnabled = true;
+            this.comboBoxVend.Location = new System.Drawing.Point(782, 84);
+            this.comboBoxVend.Name = "comboBoxVend";
+            this.comboBoxVend.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxVend.TabIndex = 10;
+            this.comboBoxVend.SelectionChangeCommitted += new System.EventHandler(this.comboBoxVend_SelectionChangeCommitted);
             // 
             // Facturar_Publicaciones_Listado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(982, 356);
+            this.Controls.Add(this.comboBoxVend);
+            this.Controls.Add(this.vendedor);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtDatosTarjeta);
@@ -116,5 +138,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtDatosTarjeta;
         private System.Windows.Forms.ComboBox cmbFormaPago;
+        private System.Windows.Forms.Label vendedor;
+        private System.Windows.Forms.ComboBox comboBoxVend;
     }
 }
