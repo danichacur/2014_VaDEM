@@ -19,11 +19,11 @@ namespace FrbaCommerce.Datos
 
             String script;
 
-            script = "select F.IdItem,F.IdPublicacion,P.Descripcion,F.IdVendedor,F.Costo,F.Cantidad,F.IdFactura,F.EsCompra from vadem.itemFactura  F " +
+            script = "select F.IdItem,F.IdPublicacion,P.Descripcion,F.IdVendedor,F.Costo,F.Cantidad,F.IdFactura, case when F.EsCompra=1 then 'SI' else 'NO' end AS EsCompra from vadem.itemFactura  F " +
                       "join vadem.publicacion P on P.IdPublicacion = F.IdPublicacion " +
                       "where IdFactura = " + (-1)*IdVendedor +
                       //" and EsCompra = 0 " +
-                      "and P.IdVendedor = " + IdVendedor +
+                      " and P.IdVendedor = " + IdVendedor +
                       " order by IdItem ";
 
             return AccesoDatos.Instance.EjecutarScript(script);

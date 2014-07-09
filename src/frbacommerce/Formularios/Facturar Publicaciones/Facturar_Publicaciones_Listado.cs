@@ -174,8 +174,8 @@ namespace FrbaCommerce.Formularios.Facturar_Publicaciones
                 DataGridViewTextBoxColumn colEsCompra = new DataGridViewTextBoxColumn();
                 colEsCompra.DataPropertyName = "EsCompra";
                 colEsCompra.Name = "EsCompra";
-                colEsCompra.HeaderText = "EsCompra";
-                colEsCompra.Visible = false;
+                colEsCompra.HeaderText = "Es Compra";
+                colEsCompra.Visible = true;
                 columnas[6] = colEsCompra;
 
                 return columnas;
@@ -253,13 +253,13 @@ namespace FrbaCommerce.Formularios.Facturar_Publicaciones
                         itemFac.IdPublicacion = Convert.ToInt32( item.Cells["IdPublicacion"].Value);
                         itemFac.Cantidad = Convert.ToInt32(item.Cells["Cantidad"].Value);
                         itemFac.Costo = Convert.ToInt32(item.Cells["Costo"].Value);
-                        itemFac.EsCompra = Convert.ToBoolean(item.Cells["EsCompra"].Value);
+                        itemFac.EsCompra = Convert.ToBoolean(item.Cells["EsCompra"].Value == "SI");
 
                         colitems.Add(itemFac);
                         
                         if (i != 0)
                         {
-                            if (!Convert.ToBoolean(dgFacturacion.Rows[i - 1].Cells["Pagar"].Value))
+                            if (!Convert.ToBoolean(dgFacturacion.Rows[i - 1].Cells["Pagar"].Value) && Convert.ToString(dgFacturacion.Rows[i - 1].Cells["EsCompra"].Value)=="SI")
                             {
                                 Metodos_Comunes.MostrarMensaje("No puede saltearse ningun item");
                                 colitems = new List<ItemFacturacion>();
