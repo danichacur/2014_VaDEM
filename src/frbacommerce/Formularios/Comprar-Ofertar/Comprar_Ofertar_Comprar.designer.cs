@@ -39,6 +39,7 @@
             this.txtCantidad = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnComprar = new System.Windows.Forms.Button();
+            this.lblReputacion = new System.Windows.Forms.Label(); 
             this.SuspendLayout();
             // 
             // label1
@@ -121,6 +122,7 @@
             this.label2.Size = new System.Drawing.Size(49, 13);
             this.label2.TabIndex = 9;
             this.label2.Text = "Cantidad";
+
             // 
             // btnComprar
             // 
@@ -131,6 +133,15 @@
             this.btnComprar.Text = "Comprar";
             this.btnComprar.UseVisualStyleBackColor = true;
             this.btnComprar.Click += new System.EventHandler(this.btnComprar_Click);
+
+            // 
+            // lblReputacion
+            // 
+            this.lblReputacion.AutoSize = true;
+            this.lblReputacion.Location = new System.Drawing.Point(29, 196);
+            this.lblReputacion.Name = "lblReputacion";
+            this.lblReputacion.Size = new System.Drawing.Size(0, 13);
+            this.lblReputacion.TabIndex = 11;
             // 
             // Comprar_Ofertar_Comprar
             // 
@@ -141,6 +152,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtCantidad);
             this.Controls.Add(this.lblContacto);
+            this.Controls.Add(this.lblReputacion);
             this.Controls.Add(this.lblDNIcuit);
             this.Controls.Add(this.lblMail);
             this.Controls.Add(this.lblCodPostal);

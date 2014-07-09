@@ -46,7 +46,7 @@ namespace FrbaCommerce.Formularios.Comprar_Ofertar
                 lblDireccion.Text = "Dirección: " + emp.Direccion + " " + emp.Numero + " " + emp.Piso + " " + emp.Departamento;
                 lblCodPostal.Text = "C.P.: " + emp.CodigoPostal.ToString();
                 lblContacto.Text = "Persona de Contacto: " + emp.NombreContacto;
-                //lblReputacion.Text = "Reputacion: " + Convert.ToString(emp.Reputacion);
+                lblReputacion.Text = "Reputacion: " + Convert.ToString(emp.Reputacion);
             }
             else
             {
@@ -56,7 +56,7 @@ namespace FrbaCommerce.Formularios.Comprar_Ofertar
                 lblTelefono.Text = "Telefono: " + cli.Telefono;
                 lblDireccion.Text = "Dirección: " + cli.Direccion + " " + cli.Numero + " " + cli.Piso + " " + cli.Departamento;
                 lblCodPostal.Text = "C.P.: " + cli.CodigoPostal.ToString();
-               // lblReputacion.Text = "Reputacion: " + Convert.ToString(cli.Reputacion);
+                lblReputacion.Text = "Reputacion: " + Convert.ToString(cli.Reputacion);
 
             }
         }
