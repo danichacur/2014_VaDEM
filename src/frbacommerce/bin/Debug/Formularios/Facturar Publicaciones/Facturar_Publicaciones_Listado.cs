@@ -129,7 +129,7 @@ namespace FrbaCommerce.Formularios.Facturar_Publicaciones
             try
             {
 
-                DataGridViewColumn[] columnas = new DataGridViewColumn[6];
+                DataGridViewColumn[] columnas = new DataGridViewColumn[7];
 
                 DataGridViewTextBoxColumn colDescripcion = new DataGridViewTextBoxColumn();
                 colDescripcion.DataPropertyName = "Descripcion"; colDescripcion.Name = "Descripcion";
@@ -170,6 +170,13 @@ namespace FrbaCommerce.Formularios.Facturar_Publicaciones
                 colIdItem.HeaderText = "IdItem";
                 colIdItem.Visible = false;
                 columnas[5] = colIdItem;
+
+                DataGridViewTextBoxColumn colEsCompra = new DataGridViewTextBoxColumn();
+                colEsCompra.DataPropertyName = "EsCompra";
+                colEsCompra.Name = "EsCompra";
+                colEsCompra.HeaderText = "EsCompra";
+                colEsCompra.Visible = false;
+                columnas[6] = colEsCompra;
 
                 return columnas;
             }
@@ -246,6 +253,7 @@ namespace FrbaCommerce.Formularios.Facturar_Publicaciones
                         itemFac.IdPublicacion = Convert.ToInt32( item.Cells["IdPublicacion"].Value);
                         itemFac.Cantidad = Convert.ToInt32(item.Cells["Cantidad"].Value);
                         itemFac.Costo = Convert.ToInt32(item.Cells["Costo"].Value);
+                        itemFac.EsCompra = Convert.ToBoolean(item.Cells["EsCompra"].Value);
 
                         colitems.Add(itemFac);
                         
@@ -265,15 +273,26 @@ namespace FrbaCommerce.Formularios.Facturar_Publicaciones
                 }
                 if (colitems.Count > 0)
                 {
-                    if (cmbFormaPago.SelectedIndex == 1 && txtDatosTarjeta.Text == "")
+                    if ((cmbFormaPago.SelectedIndex == 1 && txtDatosTarjeta.Text == "") )
                     {
                         Metodos_Comunes.MostrarMensaje("Debe Cargar los Datos De Tarjeta");
                     }
                     else
                     {
-                        FacturarDAO.Pagar(colitems, cmbFormaPago.SelectedText, txtDatosTarjeta.Text);
-                        Metodos_Comunes.MostrarMensaje("Ha pagado con exito");
-                        cargaInicialGrilla();
+                        if (cmbFormaPago.SelectedIndex == 0 && txtDatosTarjeta.Text != "")
+                        {
+                            Metodos_Comunes.MostrarMensaje("Seleccione el medio de pago adecuado");
+                        }
+                        else
+                        {
+                            if (Session.IdUsuario == 1)
+                                FacturarDAO.Pagar(colitems, cmbFormaPago.Text.ToString(), txtDatosTarjeta.Text, (int)comboBoxVend.SelectedValue);
+                            else
+                                FacturarDAO.Pagar(colitems, cmbFormaPago.Text.ToString(), txtDatosTarjeta.Text, Session.IdUsuario);
+                            
+                            Metodos_Comunes.MostrarMensaje("Ha pagado con exito");
+                            cargaInicialGrilla();
+                        }
                     }
                 }
 

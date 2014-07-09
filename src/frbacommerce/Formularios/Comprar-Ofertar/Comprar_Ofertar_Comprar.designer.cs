@@ -166,6 +166,7 @@
         private System.Windows.Forms.Label lblMail;
         private System.Windows.Forms.Label lblDNIcuit;
         private System.Windows.Forms.Label lblContacto;
+        private System.Windows.Forms.Label lblReputacion;
         private System.Windows.Forms.TextBox txtCantidad;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnComprar;

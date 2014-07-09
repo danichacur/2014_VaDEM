@@ -39,22 +39,25 @@ namespace FrbaCommerce.Formularios.Comprar_Ofertar
             if (cli == null)
             {
                 Empresa emp = EmpresaDAO.obtenerEmpresa(Publicacion.Vendedor);
-                lblNombreRazonSocial.Text = emp.RazonSocial;
-                lblMail.Text = emp.Email;
-                lblDNIcuit.Text = emp.Cuit;
-                lblTelefono.Text = emp.Telefono;
-                lblDireccion.Text = emp.Direccion + " " + emp.Numero + " " + emp.Piso + " " + emp.Departamento;
-                lblCodPostal.Text = emp.CodigoPostal.ToString();
-                lblContacto.Text = emp.NombreContacto;
+                lblNombreRazonSocial.Text = "Nombre: " + emp.RazonSocial;
+                lblMail.Text = "Mail: " + emp.Email;
+                lblDNIcuit.Text = "CUIT: " + emp.Cuit;
+                lblTelefono.Text = "Telefono: " + emp.Telefono;
+                lblDireccion.Text = "Dirección: " + emp.Direccion + " " + emp.Numero + " " + emp.Piso + " " + emp.Departamento;
+                lblCodPostal.Text = "C.P.: " + emp.CodigoPostal.ToString();
+                lblContacto.Text = "Persona de Contacto: " + emp.NombreContacto;
+                //lblReputacion.Text = "Reputacion: " + Convert.ToString(emp.Reputacion);
             }
             else
             {
-                lblNombreRazonSocial.Text = cli.Nombre + " " + cli.Apellido;
-                lblMail.Text = cli.Email;
-                lblDNIcuit.Text = cli.Documento.ToString();
-                lblTelefono.Text = cli.Telefono;
-                lblDireccion.Text = cli.Direccion + " " + cli.Numero + " " + cli.Piso + " " + cli.Departamento;
-                lblCodPostal.Text = cli.CodigoPostal.ToString();
+                lblNombreRazonSocial.Text = "Nombre: " + cli.Nombre + " " + cli.Apellido;
+                lblMail.Text = "Mail: " + cli.Email;
+                lblDNIcuit.Text = "Documento: " + cli.Documento.ToString();
+                lblTelefono.Text = "Telefono: " + cli.Telefono;
+                lblDireccion.Text = "Dirección: " + cli.Direccion + " " + cli.Numero + " " + cli.Piso + " " + cli.Departamento;
+                lblCodPostal.Text = "C.P.: " + cli.CodigoPostal.ToString();
+               // lblReputacion.Text = "Reputacion: " + Convert.ToString(cli.Reputacion);
+
             }
         }
 
