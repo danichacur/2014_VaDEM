@@ -35,7 +35,7 @@ namespace FrbaCommerce.Datos
             }
         }
 
-        public static int Pagar(List<ItemFacturacion> colItems,string FormaPago , string DatosTarjeta)
+        public static int Pagar(List<ItemFacturacion> colItems,string FormaPago , string DatosTarjeta, int vendedor)
         {
             try{
                 string script = "[vadem].[NuevaFactura]";
@@ -45,7 +45,7 @@ namespace FrbaCommerce.Datos
                 SqlParameter idVendedor = new SqlParameter();
                 idVendedor.ParameterName = "@IdVendedor";
                 idVendedor.SqlDbType = SqlDbType.Int;
-                idVendedor.Value = Session.IdUsuario;
+                idVendedor.Value = vendedor;
 
                 SqlParameter fecha = new SqlParameter();
                 fecha.ParameterName = "@Fecha";
@@ -85,8 +85,14 @@ namespace FrbaCommerce.Datos
                 foreach (ItemFacturacion item in colItems)
                 {
                      script = "update vadem.itemFactura set IdFactura = " +idFactura +" where IdItem = " + item.Id; 
-                    
-                AccesoDatos.Instance.EjecutarScript(script);
+                   if (item.EsCompra == true)
+                    {
+                           script += " update vadem.usuario set ComprasPorRendir = ComprasPorRendir - 1" +
+                                    " where IdUsuario = " + vendedor;
+                    }
+
+                    AccesoDatos.Instance.EjecutarScript(script);
+                   
                 }
                     
             return 1;
