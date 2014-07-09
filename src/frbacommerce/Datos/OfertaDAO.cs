@@ -15,7 +15,7 @@ namespace FrbaCommerce.Datos
         {
             string script;
 
-            script = "select O.Fecha,O.Importe,P.Descripcion,U.Username ,isnull((select 'SI' from vadem.compras where IdPublicacion = O.IdPublicacion and O.IdOfertante = IdComprador),'NO') as Gano " +
+            script = "select O.Fecha,O.Importe,P.Descripcion,U.Username ,isnull((select 'SI' from vadem.compras where IdPublicacion = O.IdPublicacion and O.IdOfertante = IdComprador and Fecha = O.Fecha),'NO') as Gano " +
                       "from vadem.ofertas O join vadem.publicacion P on P.IdPublicacion = O.IdPublicacion join vadem.usuario U on U.IdUsuario = P.IdVendedor " +
                       "where O.IdOfertante = " + IdUsuario;
 
