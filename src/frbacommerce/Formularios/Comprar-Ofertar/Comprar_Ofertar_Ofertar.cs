@@ -65,7 +65,13 @@ namespace FrbaCommerce.Formularios.Comprar_Ofertar
                     nuevaOferta.IdOfertante = Session.IdUsuario;
                     nuevaOferta.IdPublicacion = publicacion.Id;
                     nuevaOferta.Importe = Convert.ToInt32(txtMonto.Text);
-                    nuevaOferta.Fecha = Convert.ToDateTime(ConfigurationManager.AppSettings["DateTimeNow"]);
+
+                    DateTime fechaActual = Convert.ToDateTime(ConfigurationManager.AppSettings["DateTimeNow"]);
+                    fechaActual = fechaActual.AddHours(DateTime.Now.Hour);
+                    fechaActual = fechaActual.AddMinutes(DateTime.Now.Minute);
+                    fechaActual = fechaActual.AddSeconds(DateTime.Now.Second);
+                    
+                    nuevaOferta.Fecha = Convert.ToDateTime(fechaActual);
 
                     if (OfertaDAO.nuevaOferta(nuevaOferta) == 1)
                     {

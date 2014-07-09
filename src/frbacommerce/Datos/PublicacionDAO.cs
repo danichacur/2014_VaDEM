@@ -281,12 +281,18 @@ namespace FrbaCommerce.Datos
             try
             {
 
+                DateTime fechaActual = Convert.ToDateTime(ConfigurationManager.AppSettings["DateTimeNow"]);
+                fechaActual = fechaActual.AddHours(DateTime.Now.Hour);
+                fechaActual = fechaActual.AddMinutes(DateTime.Now.Minute);
+                fechaActual = fechaActual.AddSeconds(DateTime.Now.Second);
+
+
                 string script = "select P.*, TP.Descripcion AS Tipo from vadem.publicacion P " +
                        " join vadem.visibilidad V on V.IdVisibilidad = P.IdVisibilidad" +
                       // "join vadem.rubrosPublicacion R on R.IdPublicacion = P.IdPublicacion " +
                       " join vadem.tipoPublicacion TP ON TP.IdTipo = P.IdTipo " + 
                        "where P.idEstado = 2 " +
-                       "and ('" + Metodos_Comunes.localDateToSQLDate(Convert.ToDateTime(ConfigurationManager.AppSettings["DateTimeNow"])) + "' " +
+                       "and ('" + Metodos_Comunes.localDateToSQLDate(fechaActual) + "' " +
                        "between FechaInicio and FechaFin) " +
                        "and ( (P.IdTipo = 1 and P.Stock > 0) or P.IdTipo = 2 ) " +
                        "and (P.Descripcion like '%'+'" + Descripcion + "'+'%') " +
