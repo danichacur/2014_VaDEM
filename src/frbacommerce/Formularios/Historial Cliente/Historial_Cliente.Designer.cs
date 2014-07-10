@@ -143,7 +143,7 @@
             this.ClientSize = new System.Drawing.Size(778, 419);
             this.Controls.Add(this.tabControl1);
             this.Name = "Historial_Cliente";
-            this.Text = "Historial_Cliente";
+            this.Text = "Historial";
             this.Load += new System.EventHandler(this.Historial_Cliente_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
