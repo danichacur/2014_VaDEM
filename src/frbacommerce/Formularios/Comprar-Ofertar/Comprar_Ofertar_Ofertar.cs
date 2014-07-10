@@ -101,6 +101,7 @@ namespace FrbaCommerce.Formularios.Comprar_Ofertar
                     if (OfertaDAO.nuevaOferta(nuevaOferta) == 1)
                     {
                         Metodos_Comunes.MostrarMensaje("la Oferta a sido realizada");
+                        DialogResult = System.Windows.Forms.DialogResult.OK;
                     }
                     else
                     {
