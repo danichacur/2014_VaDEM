@@ -46,7 +46,7 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
         {
             try
             {
-                if (cliente.IdUsuario == 1)
+                if (Session.IdUsuario == 1)
                     ponerCamposNuevos();
                 llenarCampos();
                 habilitaCamposParaModificacion();
@@ -73,7 +73,7 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
                     armarClienteConCampos();
                     cliente.modificar();
 
-                    if (cliente.IdUsuario != 1)
+                    if (Session.IdUsuario != 1)
                         Metodos_Comunes.MostrarMensaje("Gracias, por favor ingrese al sistema con su nueva clave");
                     DialogResult = System.Windows.Forms.DialogResult.OK;
                 }
@@ -109,7 +109,7 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
                 campos[10].Enabled = true;
                 campos[11].Enabled = true;
                 campos[12].Enabled = true;
-                if (cliente.IdUsuario == 1)
+                if (Session.IdUsuario == 1)
                  campos[13].Enabled = true;
             }
             catch (Exception)
@@ -143,8 +143,8 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
                     campos[11].colocarValor(cliente.CodigoPostal);
                     campos[12].colocarValor(cliente.FechaNacimiento);
                     campos[13].colocarValor(cliente.Cuil);
-                    if (cliente.IdUsuario == 1)
-                     campos[14].colocarValor((cliente.Habilitado?"1":"0"));
+                    if (Session.IdUsuario == 1)
+                     campos[14].colocarValor((cliente.Bloqueado?"1":"0"));
                 }
             }
             catch (Exception)
@@ -160,7 +160,7 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
             FiltroComboBox filtroCbo;
             try
             {
-                filtroCbo = new FiltroComboBox("Habilitado", "Habilitado", "=", "-1", Metodos_Comunes.obtenerTablaComboHabilitado(), "id", "descripcion");
+                filtroCbo = new FiltroComboBox("Bloqueado", "Bloqueado", "=", "-1", Metodos_Comunes.obtenerTablaComboHabilitado(), "id", "descripcion");
                 filtroCbo.setObligatorio(true);
 
                 this.Height = 96 +30;
@@ -181,10 +181,10 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
             {
                 base.armarClienteConCampos();
 
-                if (cliente.IdUsuario == 1)
+                if (Session.IdUsuario == 1)
                 {
                     List<Filtro> campos = obtenerCamposEnPantalla();
-                    cliente.Habilitado = (campos[14].obtenerValor().ToString() == "1" ? true : false);
+                    cliente.Bloqueado = (campos[14].obtenerValor().ToString() == "1" ? true : false);
                 }
             }
             catch (Exception)

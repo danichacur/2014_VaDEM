@@ -246,7 +246,7 @@
             // mayorOferta
             // 
             this.mayorOferta.AutoSize = true;
-            this.mayorOferta.Location = new System.Drawing.Point(158, 143);
+            this.mayorOferta.Location = new System.Drawing.Point(180, 143);
             this.mayorOferta.Name = "mayorOferta";
             this.mayorOferta.Size = new System.Drawing.Size(71, 13);
             this.mayorOferta.TabIndex = 21;
@@ -255,7 +255,7 @@
             // lblOfertaMax
             // 
             this.lblOfertaMax.AutoSize = true;
-            this.lblOfertaMax.Location = new System.Drawing.Point(170, 143);
+            this.lblOfertaMax.Location = new System.Drawing.Point(230, 143);
             this.lblOfertaMax.Name = "lblOfertaMax";
             this.lblOfertaMax.Size = new System.Drawing.Size(0, 13);
             this.lblOfertaMax.TabIndex = 22;

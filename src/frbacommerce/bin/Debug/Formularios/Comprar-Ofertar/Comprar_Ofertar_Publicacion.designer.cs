@@ -246,16 +246,16 @@
             // mayorOferta
             // 
             this.mayorOferta.AutoSize = true;
-            this.mayorOferta.Location = new System.Drawing.Point(158, 143);
+            this.mayorOferta.Location = new System.Drawing.Point(180, 143);
             this.mayorOferta.Name = "mayorOferta";
-            this.mayorOferta.Size = new System.Drawing.Size(69, 13);
+            this.mayorOferta.Size = new System.Drawing.Size(71, 13);
             this.mayorOferta.TabIndex = 21;
-            this.mayorOferta.Text = "Mayor oferta:";
+            this.mayorOferta.Text = "Oferta actual:";
             // 
             // lblOfertaMax
             // 
             this.lblOfertaMax.AutoSize = true;
-            this.lblOfertaMax.Location = new System.Drawing.Point(170, 143);
+            this.lblOfertaMax.Location = new System.Drawing.Point(230, 143);
             this.lblOfertaMax.Name = "lblOfertaMax";
             this.lblOfertaMax.Size = new System.Drawing.Size(0, 13);
             this.lblOfertaMax.TabIndex = 22;
@@ -265,7 +265,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(463, 427);
-            this.Controls.Add(this.mayorOferta);
             this.Controls.Add(this.VerPreguntas);
             this.Controls.Add(this.pnlPregunta);
             this.Controls.Add(this.btnPreguntar);

@@ -21,8 +21,6 @@ namespace FrbaCommerce.Formularios.Comprar_Ofertar
         {
             try
             {
-
-
                 this.pub = PublicacionDAO.obtenerPublicacion(idPublicacion);
                 InitializeComponent();
             }
@@ -47,16 +45,25 @@ namespace FrbaCommerce.Formularios.Comprar_Ofertar
                 labelStock.Text = pub.Cantidad.ToString();
                 labelTipo.Text = pub.Tipo;
 
+                Oferta oferta = OfertaDAO.ObtenerUltimaOferta(pub.Id);
+                //if ((int)oferta.Importe == 0)
+                //    lblOfertaMax.Text = pub.Precio.ToString();
+                //else
+                    lblOfertaMax.Text = oferta.Importe.ToString();
 
                 if (pub.Tipo == "Subasta")
                 {
                     btnComprar.Visible = false;
                     btnOfertar.Visible = true;
+                    mayorOferta.Visible = true;
+                    lblOfertaMax.Visible = true;
                 }
                 else
                 {
                     btnOfertar.Visible = false;
                     btnComprar.Visible = true;
+                    mayorOferta.Visible = false;
+                    lblOfertaMax.Visible = false;
                 }
 
                 if (pub.AdmitePreguntas)
@@ -132,6 +139,14 @@ namespace FrbaCommerce.Formularios.Comprar_Ofertar
                //recalcular
                 this.pub = PublicacionDAO.obtenerPublicacion(pub.Id);
                 labelStock.Text = pub.Cantidad.ToString();
+                if (pub.Tipo == "Subasta")
+                {
+                    Oferta oferta = OfertaDAO.ObtenerUltimaOferta(pub.Id);
+                    if ((int)oferta.Importe == 0)
+                        lblOfertaMax.Text = pub.Precio.ToString();
+                    else
+                        lblOfertaMax.Text = oferta.Importe.ToString();
+                }
             }
         }
 

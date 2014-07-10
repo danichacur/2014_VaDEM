@@ -27,6 +27,7 @@ namespace FrbaCommerce.Datos
                 String script = "SELECT * FROM vadem.cliente C LEFT JOIN vadem.usuario U ON C.IdCliente = U.IdUsuario ";
                 script += "INNER JOIN vadem.rolesPorUsuario RU ON RU.IdUsuario = U.IdUsuario ";
                 script += "WHERE U.IdUsuario IS NOT NULL ";
+                script += "AND U.Habilitado = 1 ";
                 script += clausulaWhere;
 
                 clientes = new List<Cliente>();
