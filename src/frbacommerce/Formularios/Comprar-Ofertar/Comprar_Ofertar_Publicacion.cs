@@ -63,14 +63,16 @@ namespace FrbaCommerce.Formularios.Comprar_Ofertar
                 {
                     btnPreguntar.Enabled = true;
                     pnlPregunta.Visible = false;
+                    VerPreguntas.Enabled = true;
                 }
                 else
                 {
                     btnPreguntar.Enabled = false;
                     pnlPregunta.Visible = false;
+                    VerPreguntas.Enabled = false;
                 }
 
-                VerPreguntas.Enabled = true;
+                
             }
             catch (Exception ex)
             {

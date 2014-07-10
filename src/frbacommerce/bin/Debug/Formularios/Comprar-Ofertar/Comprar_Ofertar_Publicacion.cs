@@ -63,14 +63,16 @@ namespace FrbaCommerce.Formularios.Comprar_Ofertar
                 {
                     btnPreguntar.Enabled = true;
                     pnlPregunta.Visible = false;
+                    VerPreguntas.Enabled = true;
                 }
                 else
                 {
                     btnPreguntar.Enabled = false;
                     pnlPregunta.Visible = false;
+                    VerPreguntas.Enabled = false;
                 }
 
-                VerPreguntas.Enabled = true;
+                
             }
             catch (Exception ex)
             {
@@ -121,9 +123,16 @@ namespace FrbaCommerce.Formularios.Comprar_Ofertar
 
         private void btnComprar_Click(object sender, EventArgs e)
         {
-
+            System.Windows.Forms.DialogResult result;
             Formularios.Comprar_Ofertar.Comprar_Ofertar_Comprar formComprar = new Formularios.Comprar_Ofertar.Comprar_Ofertar_Comprar(pub);
-            formComprar.ShowDialog();
+            result = formComprar.ShowDialog();
+
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+               //recalcular
+                this.pub = PublicacionDAO.obtenerPublicacion(pub.Id);
+                labelStock.Text = pub.Cantidad.ToString();
+            }
         }
 
         private void VerPreguntas_Click(object sender, EventArgs e)

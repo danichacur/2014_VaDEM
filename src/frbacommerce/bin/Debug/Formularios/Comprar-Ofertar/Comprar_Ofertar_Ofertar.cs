@@ -39,7 +39,32 @@ namespace FrbaCommerce.Formularios.Comprar_Ofertar
             
             try{
 
-            lblVendedor.Text = publicacion.VendedorDesc;
+            //lblVendedor.Text = publicacion.VendedorDesc;
+            Cliente cli = ClienteDAO.obtenerCliente(publicacion.Vendedor);
+
+            if (cli == null)
+            {
+                Empresa emp = EmpresaDAO.obtenerEmpresa(publicacion.Vendedor);
+                lblNombreRazonSocial.Text = "Nombre: " + emp.RazonSocial;
+                lblMail.Text = "Mail: " + emp.Email;
+                lblDNIcuit.Text = "CUIT: " + emp.Cuit;
+                lblTelefono.Text = "Telefono: " + emp.Telefono;
+                lblDireccion.Text = "Dirección: " + emp.Direccion + " " + emp.Numero + " " + emp.Piso + " " + emp.Departamento;
+                lblCodPostal.Text = "C.P.: " + emp.CodigoPostal.ToString();
+                lblContacto.Text = "Persona de Contacto: " + emp.NombreContacto;
+                lblReputacion.Text = "Reputacion: " + Convert.ToString(emp.Reputacion);
+            }
+            else
+            {
+                lblNombreRazonSocial.Text = "Nombre: " + cli.Nombre + " " + cli.Apellido;
+                lblMail.Text = "Mail: " + cli.Email;
+                lblDNIcuit.Text = "Documento: " + cli.Documento.ToString();
+                lblTelefono.Text = "Telefono: " + cli.Telefono;
+                lblDireccion.Text = "Dirección: " + cli.Direccion + " " + cli.Numero + " " + cli.Piso + " " + cli.Departamento;
+                lblCodPostal.Text = "C.P.: " + cli.CodigoPostal.ToString();
+                lblReputacion.Text = "Reputacion: " + Convert.ToString(cli.Reputacion);
+
+            }
             if (oferta.Importe == 0)
             {
                 lblOfertaActual.Text = publicacion.Precio.ToString();
@@ -65,7 +90,13 @@ namespace FrbaCommerce.Formularios.Comprar_Ofertar
                     nuevaOferta.IdOfertante = Session.IdUsuario;
                     nuevaOferta.IdPublicacion = publicacion.Id;
                     nuevaOferta.Importe = Convert.ToInt32(txtMonto.Text);
-                    nuevaOferta.Fecha = Convert.ToDateTime(ConfigurationManager.AppSettings["DateTimeNow"]);
+
+                    DateTime fechaActual = Convert.ToDateTime(ConfigurationManager.AppSettings["DateTimeNow"]);
+                    fechaActual = fechaActual.AddHours(DateTime.Now.Hour);
+                    fechaActual = fechaActual.AddMinutes(DateTime.Now.Minute);
+                    fechaActual = fechaActual.AddSeconds(DateTime.Now.Second);
+                    
+                    nuevaOferta.Fecha = Convert.ToDateTime(fechaActual);
 
                     if (OfertaDAO.nuevaOferta(nuevaOferta) == 1)
                     {

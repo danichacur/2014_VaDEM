@@ -202,7 +202,7 @@ namespace FrbaCommerce.Comprar_Ofertar
                 columnas[3] = colFechaFin;
 
                 DataGridViewTextBoxColumn colPrecioInicial = new DataGridViewTextBoxColumn();
-                colPrecioInicial.DataPropertyName = "PrecioInicial"; colPrecioInicial.Name = "PrecioInicial"; colPrecioInicial.HeaderText = "Precio";
+                colPrecioInicial.DataPropertyName = "PrecioInicial"; colPrecioInicial.Name = "PrecioInicial"; colPrecioInicial.HeaderText = "Precio Inicial";
 
                 columnas[4] = colPrecioInicial;
 

@@ -68,7 +68,7 @@ namespace FrbaCommerce.Datos
             {
 
                 String script = "SELECT(SELECT Descripcion FROM vadem.estado E WHERE E.IdEstado = P.IdEstado) AS 'Estado',";
-                script += "P.Descripcion, PrecioInicial, Stock, T.Descripcion, IdPublicacion, ";
+                script += "P.Descripcion, PrecioInicial, Stock, T.Descripcion AS TipoPublicacion, IdPublicacion, ";
                 script += "(SELECT Descripcion FROM vadem.visibilidad V WHERE V.IdVisibilidad = P.IdVisibilidad) AS 'Visibilidad',";
                 script += "CASE WHEN AdmitePreguntas = 1 THEN 'SI' ELSE 'NO' END AS 'Admite_Preguntas',";
                 script += "FechaInicio AS 'FechaInicio', ";
@@ -281,11 +281,18 @@ namespace FrbaCommerce.Datos
             try
             {
 
-                string script = "select P.* from vadem.publicacion P " +
-                       " join vadem.visibilidad V on V.IdVisibilidad = P.IdVisibilidad " +
+                DateTime fechaActual = Convert.ToDateTime(ConfigurationManager.AppSettings["DateTimeNow"]);
+                fechaActual = fechaActual.AddHours(DateTime.Now.Hour);
+                fechaActual = fechaActual.AddMinutes(DateTime.Now.Minute);
+                fechaActual = fechaActual.AddSeconds(DateTime.Now.Second);
+
+
+                string script = "select P.*, TP.Descripcion AS Tipo from vadem.publicacion P " +
+                       " join vadem.visibilidad V on V.IdVisibilidad = P.IdVisibilidad" +
                       // "join vadem.rubrosPublicacion R on R.IdPublicacion = P.IdPublicacion " +
+                      " join vadem.tipoPublicacion TP ON TP.IdTipo = P.IdTipo " + 
                        "where P.idEstado = 2 " +
-                       "and ('" + Metodos_Comunes.localDateToSQLDate(Convert.ToDateTime(ConfigurationManager.AppSettings["DateTimeNow"])) + "' " +
+                       "and ('" + Metodos_Comunes.localDateToSQLDate(fechaActual) + "' " +
                        "between FechaInicio and FechaFin) " +
                        "and ( (P.IdTipo = 1 and P.Stock > 0) or P.IdTipo = 2 ) " +
                        "and (P.Descripcion like '%'+'" + Descripcion + "'+'%') " +

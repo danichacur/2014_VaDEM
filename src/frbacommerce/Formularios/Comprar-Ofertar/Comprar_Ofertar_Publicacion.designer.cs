@@ -49,6 +49,8 @@
             this.btnAceparPregunta = new System.Windows.Forms.Button();
             this.txtPregunta = new System.Windows.Forms.TextBox();
             this.VerPreguntas = new System.Windows.Forms.Button();
+            this.mayorOferta = new System.Windows.Forms.Label();
+            this.lblOfertaMax = new System.Windows.Forms.Label();
             this.pnlPregunta.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -198,7 +200,7 @@
             this.btnPreguntar.Name = "btnPreguntar";
             this.btnPreguntar.Size = new System.Drawing.Size(75, 23);
             this.btnPreguntar.TabIndex = 18;
-            this.btnPreguntar.Text = "Pregutar";
+            this.btnPreguntar.Text = "Preguntar";
             this.btnPreguntar.UseVisualStyleBackColor = true;
             this.btnPreguntar.Click += new System.EventHandler(this.btnPreguntar_Click);
             // 
@@ -237,9 +239,26 @@
             this.VerPreguntas.Name = "VerPreguntas";
             this.VerPreguntas.Size = new System.Drawing.Size(95, 23);
             this.VerPreguntas.TabIndex = 20;
-            this.VerPreguntas.Text = "Ver pregutas";
+            this.VerPreguntas.Text = "Ver preguntas";
             this.VerPreguntas.UseVisualStyleBackColor = true;
             this.VerPreguntas.Click += new System.EventHandler(this.VerPreguntas_Click);
+            // 
+            // mayorOferta
+            // 
+            this.mayorOferta.AutoSize = true;
+            this.mayorOferta.Location = new System.Drawing.Point(158, 143);
+            this.mayorOferta.Name = "mayorOferta";
+            this.mayorOferta.Size = new System.Drawing.Size(71, 13);
+            this.mayorOferta.TabIndex = 21;
+            this.mayorOferta.Text = "Oferta actual:";
+            // 
+            // lblOfertaMax
+            // 
+            this.lblOfertaMax.AutoSize = true;
+            this.lblOfertaMax.Location = new System.Drawing.Point(170, 143);
+            this.lblOfertaMax.Name = "lblOfertaMax";
+            this.lblOfertaMax.Size = new System.Drawing.Size(0, 13);
+            this.lblOfertaMax.TabIndex = 22;
             // 
             // Comprar_Ofertar_Publicacion
             // 
@@ -265,6 +284,8 @@
             this.Controls.Add(this.lblFechaFin);
             this.Controls.Add(this.lblFechaIni);
             this.Controls.Add(this.lblDescripcion);
+            this.Controls.Add(this.mayorOferta);
+            this.Controls.Add(this.lblOfertaMax);
             this.Name = "Comprar_Ofertar_Publicacion";
             this.Text = "Comprar_Ofertar_Publicacion";
             this.Load += new System.EventHandler(this.Comprar_Ofertar_Publicacion_Load);
@@ -298,5 +319,7 @@
         private System.Windows.Forms.TextBox txtPregunta;
         private System.Windows.Forms.Button btnAceparPregunta;
         private System.Windows.Forms.Button VerPreguntas;
+        private System.Windows.Forms.Label mayorOferta;
+        private System.Windows.Forms.Label lblOfertaMax;
     }
 }

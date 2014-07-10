@@ -253,7 +253,7 @@ namespace FrbaCommerce.Formularios.Facturar_Publicaciones
                         itemFac.IdPublicacion = Convert.ToInt32( item.Cells["IdPublicacion"].Value);
                         itemFac.Cantidad = Convert.ToInt32(item.Cells["Cantidad"].Value);
                         itemFac.Costo = Convert.ToInt32(item.Cells["Costo"].Value);
-                        itemFac.EsCompra = Convert.ToBoolean(item.Cells["EsCompra"].Value == "SI");
+                        itemFac.EsCompra = Convert.ToBoolean(item.Cells["EsCompra"].Value.ToString() == "SI");
 
                         colitems.Add(itemFac);
                         
@@ -292,6 +292,7 @@ namespace FrbaCommerce.Formularios.Facturar_Publicaciones
                             
                             Metodos_Comunes.MostrarMensaje("Ha pagado con exito");
                             cargaInicialGrilla();
+                            comboBoxVend.SelectedIndex = 0;
                         }
                     }
                 }

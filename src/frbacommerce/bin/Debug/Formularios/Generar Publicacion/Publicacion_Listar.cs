@@ -343,7 +343,7 @@ namespace FrbaCommerce.Generar_Publicacion
                 columnas[3] = colStock;
 
                 DataGridViewTextBoxColumn colTipo = new DataGridViewTextBoxColumn();
-                colTipo.DataPropertyName = "Tipo"; colTipo.Name = "Tipo"; colTipo.HeaderText = "Tipo";
+                colTipo.DataPropertyName = "TipoPublicacion"; colTipo.Name = "Tipo"; colTipo.HeaderText = "Tipo";
                 columnas[4] = colTipo;
 
                 DataGridViewTextBoxColumn colVisibilidad = new DataGridViewTextBoxColumn();

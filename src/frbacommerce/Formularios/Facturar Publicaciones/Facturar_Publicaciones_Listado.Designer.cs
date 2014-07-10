@@ -41,6 +41,8 @@
             // 
             // dgFacturacion
             // 
+            this.dgFacturacion.AllowUserToAddRows = false;
+            this.dgFacturacion.AllowUserToDeleteRows = false;
             this.dgFacturacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgFacturacion.Location = new System.Drawing.Point(40, 39);
             this.dgFacturacion.Name = "dgFacturacion";
