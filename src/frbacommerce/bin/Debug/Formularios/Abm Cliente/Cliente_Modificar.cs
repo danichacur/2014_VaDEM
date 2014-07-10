@@ -160,7 +160,7 @@ namespace FrbaCommerce.Formularios.Abm_Cliente
             FiltroComboBox filtroCbo;
             try
             {
-                filtroCbo = new FiltroComboBox("Bloqueado", "Bloqueado", "=", "-1", Metodos_Comunes.obtenerTablaComboHabilitado(), "id", "descripcion");
+                filtroCbo = new FiltroComboBox("Bloqueado", "Bloqueado", "=", "-1", Metodos_Comunes.obtenerTablaComboBloqueado(), "id", "descripcion");
                 filtroCbo.setObligatorio(true);
 
                 this.Height = 96 +30;

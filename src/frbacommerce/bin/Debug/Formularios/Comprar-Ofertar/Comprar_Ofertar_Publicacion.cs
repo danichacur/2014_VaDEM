@@ -46,9 +46,9 @@ namespace FrbaCommerce.Formularios.Comprar_Ofertar
                 labelTipo.Text = pub.Tipo;
 
                 Oferta oferta = OfertaDAO.ObtenerUltimaOferta(pub.Id);
-                //if ((int)oferta.Importe == 0)
-                //    lblOfertaMax.Text = pub.Precio.ToString();
-                //else
+                if ((int)oferta.Importe == 0)
+                    lblOfertaMax.Text = pub.Precio.ToString();
+                else
                     lblOfertaMax.Text = oferta.Importe.ToString();
 
                 if (pub.Tipo == "Subasta")

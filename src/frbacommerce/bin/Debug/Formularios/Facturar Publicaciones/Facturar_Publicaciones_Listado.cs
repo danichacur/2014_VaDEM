@@ -286,13 +286,14 @@ namespace FrbaCommerce.Formularios.Facturar_Publicaciones
                         else
                         {
                             if (Session.IdUsuario == 1)
+                            {       
                                 FacturarDAO.Pagar(colitems, cmbFormaPago.Text.ToString(), txtDatosTarjeta.Text, (int)comboBoxVend.SelectedValue);
-                            else
+                                comboBoxVend.SelectedIndex = 0;
+                            } else
                                 FacturarDAO.Pagar(colitems, cmbFormaPago.Text.ToString(), txtDatosTarjeta.Text, Session.IdUsuario);
                             
                             Metodos_Comunes.MostrarMensaje("Ha pagado con exito");
                             cargaInicialGrilla();
-                            comboBoxVend.SelectedIndex = 0;
                         }
                     }
                 }

@@ -79,7 +79,12 @@ namespace FrbaCommerce.Formularios.Generar_Publicacion
 
                 camposConErrores = obtenerCamposConErrores();
                 camposEnCero = obtenerCamposEnCero();
-                Boolean campoVisibilidad = obtenerCampoVisibilidad();
+
+                List<Filtro> campos = obtenerCamposEnPantalla();
+                int estado_nuevo = Convert.ToInt32(campos[8].obtenerValor());
+                Boolean campoVisibilidad = true;
+                if ((estado_nuevo == 1) || (estado_nuevo == 2))
+                    campoVisibilidad = obtenerCampoVisibilidad();
                 campoParaSubasta = obtenerCampoSubasta();
                 if (publicacion.Estado == 1)
                     campoEstado = obtenerCampoEstado();
