@@ -121,6 +121,7 @@ namespace FrbaCommerce.Formularios.Login
         private void validarIngreso() 
         {
             Usuario usr;
+            System.Windows.Forms.DialogResult result;
             try
             {
                 FiltroTextBox txtUsername = (FiltroTextBox)this.Controls.Find("Username", false)[0];
@@ -154,15 +155,20 @@ namespace FrbaCommerce.Formularios.Login
                     {
                         Formularios.Registro_de_Usuario.CambiaPassword cambiaPass = new Formularios.Registro_de_Usuario.CambiaPassword(usr);
                         cambiaPass.ShowDialog();
-                        usr.aumentarCantidadLoggeosSatisfactorios();
-
+                       
                         if (usr.Rol.Id == 2)
                         {
                             Cliente cliente = new Cliente();
                             cliente = ClienteDAO.obtenerCliente(usr.IdUsuario);
                             Metodos_Comunes.MostrarMensaje("Por unica vez debe validar sus datos.");
                             Formularios.Abm_Cliente.Cliente_Modificar actualizarCli = new Formularios.Abm_Cliente.Cliente_Modificar(cliente);
-                            actualizarCli.ShowDialog();
+                            result = actualizarCli.ShowDialog();
+
+                            if (result != System.Windows.Forms.DialogResult.OK)
+                            {
+                                throw new Exception("Debe validar sus datos para loggearse correctamente");
+                            }
+                
                         }
                         else
                         {
@@ -170,8 +176,16 @@ namespace FrbaCommerce.Formularios.Login
                             empresa = EmpresaDAO.obtenerEmpresa(usr.IdUsuario);
                             Metodos_Comunes.MostrarMensaje("Por unica vez debe validar sus datos.");
                             Formularios.Abm_Empresa.Empresa_Modificar actualizarEmp = new Formularios.Abm_Empresa.Empresa_Modificar(empresa);
-                            actualizarEmp.ShowDialog();
+                            result = actualizarEmp.ShowDialog();
+
+                            if (result != System.Windows.Forms.DialogResult.OK)
+                            {
+                                throw new Exception("Debe validar sus datos para loggearse correctamente");
+                            }
                         }
+
+                        usr.aumentarCantidadLoggeosSatisfactorios();
+
 
                         return;
                     }

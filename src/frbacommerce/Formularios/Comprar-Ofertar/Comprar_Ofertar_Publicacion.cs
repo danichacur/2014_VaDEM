@@ -123,9 +123,24 @@ namespace FrbaCommerce.Formularios.Comprar_Ofertar
 
         private void btnOfertar_Click(object sender, EventArgs e)
         {
+            System.Windows.Forms.DialogResult result;
 
             Formularios.Comprar_Ofertar.Comprar_Ofertar_Ofertar formOfertar = new Formularios.Comprar_Ofertar.Comprar_Ofertar_Ofertar(pub.Id);
-            formOfertar.ShowDialog();
+            result = formOfertar.ShowDialog();
+
+          
+                //recalcular
+                this.pub = PublicacionDAO.obtenerPublicacion(pub.Id);
+                labelStock.Text = pub.Cantidad.ToString();
+                if (pub.Tipo == "Subasta")
+                {
+                    Oferta oferta = OfertaDAO.ObtenerUltimaOferta(pub.Id);
+                    if ((int)oferta.Importe == 0)
+                        lblOfertaMax.Text = pub.Precio.ToString();
+                    else
+                        lblOfertaMax.Text = oferta.Importe.ToString();
+                }
+        
         }
 
         private void btnComprar_Click(object sender, EventArgs e)
