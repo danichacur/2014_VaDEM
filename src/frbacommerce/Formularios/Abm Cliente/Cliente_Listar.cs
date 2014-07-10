@@ -310,10 +310,10 @@ namespace FrbaCommerce.Abm_Cliente
                 colCUIL.DataPropertyName = "Cuil"; colCUIL.Name = "Cuil"; colCUIL.HeaderText = "CUIL";
                 columnas[13] = colCUIL;
 
-                DataGridViewCheckBoxColumn colHabilitado = new DataGridViewCheckBoxColumn();
-                colHabilitado.DataPropertyName = "Habilitado"; colHabilitado.Name = "Habilitado"; colHabilitado.HeaderText = "Habilitado";
-                colHabilitado.FalseValue = "0"; colHabilitado.TrueValue = "1";
-                columnas[14] = colHabilitado;
+                DataGridViewCheckBoxColumn colBloqueado = new DataGridViewCheckBoxColumn();
+                colBloqueado.DataPropertyName = "Bloqueado"; colBloqueado.Name = "Bloqueado"; colBloqueado.HeaderText = "Bloqueado";
+                colBloqueado.FalseValue = "0"; colBloqueado.TrueValue = "1";
+                columnas[14] = colBloqueado;
 
                 DataGridViewButtonColumn colModif = new DataGridViewButtonColumn();
                 colModif.Width = 60;
