@@ -91,6 +91,45 @@ namespace FrbaCommerce.Componentes_Comunes
         }
 
         /// <summary>
+        /// Armo y devuelvo manualmente el contenido del Combo Bloqueado ya que no lo obtengo de la BD
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable obtenerTablaComboBloqueado()
+        {
+            try
+            {
+                DataTable tbl;
+                DataRow row;
+                DataColumn column;
+
+                tbl = new DataTable("id", "descripcion");
+
+                column = new DataColumn();
+                column.ColumnName = "id";
+                tbl.Columns.Add(column);
+
+                column = new DataColumn();
+                column.ColumnName = "descripcion";
+                tbl.Columns.Add(column);
+
+                row = tbl.NewRow();
+                row["id"] = 0; row["descripcion"] = "Desbloqueado";
+                tbl.Rows.Add(row);
+
+                row = tbl.NewRow();
+                row["id"] = 1; row["descripcion"] = "Bloqueado";
+                tbl.Rows.Add(row);
+
+                return tbl;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
+        /// <summary>
         /// Armo y devuelvo manualmente el contenido del Combo Habilitado ya que no lo obtengo de la BD con
         /// </summary>
         /// <returns></returns>
