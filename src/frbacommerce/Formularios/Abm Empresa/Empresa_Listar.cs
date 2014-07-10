@@ -300,10 +300,10 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
                 colFechaCreacion.HeaderText = "Fecha Creación";
                 columnas[12] = colFechaCreacion;
 
-                DataGridViewCheckBoxColumn colHabilitado = new DataGridViewCheckBoxColumn();
-                colHabilitado.DataPropertyName = "Habilitado"; colHabilitado.Name = "Habilitado"; colHabilitado.HeaderText = "Habilitado";
-                colHabilitado.FalseValue = "0"; colHabilitado.TrueValue = "1";
-                columnas[13] = colHabilitado;
+                DataGridViewCheckBoxColumn colBloqueado = new DataGridViewCheckBoxColumn();
+                colBloqueado.DataPropertyName = "Bloqueado"; colBloqueado.Name = "Bloqueado"; colBloqueado.HeaderText = "Bloqueado";
+                colBloqueado.FalseValue = "0"; colBloqueado.TrueValue = "1";
+                columnas[13] = colBloqueado;
 
                 DataGridViewButtonColumn colModif = new DataGridViewButtonColumn();
                 colModif.Width = 60;
