@@ -121,6 +121,7 @@ namespace FrbaCommerce.Abm_Cliente
             {
                 Cliente cliente = (Cliente)dgv.Rows[e.RowIndex].DataBoundItem;
                 cliente.bajaLogica();
+                PublicacionDAO.pausarPublicaciones(cliente.IdUsuario);
                 ctrlABM1.buscar();
             }
             catch (Exception ex)

@@ -24,7 +24,7 @@ namespace FrbaCommerce.Datos
                 script += "U. Habilitado, U.Reputacion, R.Descripcion AS Rol_Descripcion, R.Habilitado AS Rol_Habilitado ";
                 script += "FROM vadem.usuario U LEFT JOIN vadem.rolesPorUsuario RU ON RU.IdUsuario = U.IdUsuario ";
                 script += "LEFT JOIN vadem.rol R ON R.IdRol = RU.IdRol ";
-                script += "WHERE username = '" + username + "'";
+                script += "WHERE U.Habilitado = 1 and username = '" + username + "'";
 
                 tbl = AccesoDatos.Instance.EjecutarScript(script);
                 if (tbl.Rows.Count > 0)

@@ -132,7 +132,7 @@ namespace FrbaCommerce.Formularios.Login
                 
                 if (usr == null)
                 {
-                    Metodos_Comunes.MostrarMensajeError("El usuario ingresado no existe");
+                    Metodos_Comunes.MostrarMensajeError("El usuario ingresado no existe o fue eliminado");
                     return;
                 }
                 

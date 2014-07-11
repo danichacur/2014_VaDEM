@@ -60,6 +60,32 @@ namespace FrbaCommerce.Datos
 
         }
 
+        public static Boolean pausarPublicaciones(int vendedor)
+        {
+            try
+            {
+                Boolean valor = true;
+                string script = "SELECT IdPublicacion FROM vadem.publicacion WHERE IdVendedor = " + vendedor
+                       + " AND IdEstado = 2";
+
+                DataTable res = AccesoDatos.Instance.EjecutarScript(script);
+                int i = 0;
+                while ((i < res.Rows.Count) && (res.Rows[i][0] != null))
+                {
+                    script = "UPDATE vadem.publicacion SET IdEstado = 3 WHERE IdPublicacion = " + Convert.ToInt32(res.Rows[i][0]);
+                    AccesoDatos.Instance.EjecutarScript(script);
+                    i++;
+                }
+
+                return valor;
+                 
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error " + ex.Message);
+            }
+
+        }
        // public static object obtenerPublicaciones(int tipo, int estado, int visibilidad, DateTime fecha, string descripcion)
          public static object obtenerPublicaciones(string clausulaWhere)
        

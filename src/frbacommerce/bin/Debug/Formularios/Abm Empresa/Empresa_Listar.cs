@@ -122,6 +122,7 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
             {
                 Empresa empresa = (Empresa)dgv.Rows[e.RowIndex].DataBoundItem;
                 empresa.bajaLogica();
+                PublicacionDAO.pausarPublicaciones(empresa.IdUsuario);
                 ctrlABM1.buscar();
             }
             catch (Exception ex)
@@ -212,6 +213,10 @@ namespace FrbaCommerce.Formularios.Abm_Empresa
         {
             try
             {
+                if (clausulaWhere != "")
+                {
+                    clausulaWhere = clausulaWhere.Replace("WHERE", "AND");
+                }
                 Object listaRoles = (Object)EmpresaDAO.obtenerEmpresas(clausulaWhere);
 
                 DataGridViewColumn[] columnas = obtenerDisenoColumnasGrilla();

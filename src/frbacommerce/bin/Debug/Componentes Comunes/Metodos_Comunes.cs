@@ -22,10 +22,10 @@ namespace FrbaCommerce.Componentes_Comunes
             mensaje += "Ha ocurrido el siguiente error: ";
             mensaje += Environment.NewLine;
             mensaje += ex.Message;
-            mensaje += Environment.NewLine + Environment.NewLine;
-            mensaje += "El error se produjo en: ";
-            mensaje += Environment.NewLine;
-            mensaje += ex.StackTrace;
+            //mensaje += Environment.NewLine + Environment.NewLine;
+            //mensaje += "El error se produjo en: ";
+            //mensaje += Environment.NewLine;
+            //mensaje += ex.StackTrace;
 
             
             MessageBox.Show(mensaje,"",MessageBoxButtons.OK,MessageBoxIcon.Error);

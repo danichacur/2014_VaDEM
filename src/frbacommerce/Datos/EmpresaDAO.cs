@@ -102,8 +102,9 @@ namespace FrbaCommerce.Datos
                 List<Empresa> empresas;
                 DataTable tbl;
        
+
                     String script = "SELECT * FROM vadem.empresa E LEFT JOIN vadem.usuario U ON E.IdEmpresa = U.IdUsuario ";
-                script += "LEFT JOIN vadem.rolesPorUsuario RU ON RU.IdUsuario = U.IdUsuario ";
+                script += "LEFT JOIN vadem.rolesPorUsuario RU ON RU.IdUsuario = U.IdUsuario WHERE Habilitado = 1 ";
                     script += clausulaWhere;
 
                     empresas = new List<Empresa>();
